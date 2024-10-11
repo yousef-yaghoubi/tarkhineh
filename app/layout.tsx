@@ -1,17 +1,18 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import 'normalize.css';
 import "./globals.css";
+import Navbar from "../components/shared/navbar/Navbar";
+import { ThemeProvider } from "@/components/shared/themeProvider";
+import Footer from "@/components/shared/footer/Footer";
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-});
+
+
+const estedad = localFont({
+  src:"./fonts/Estedad[KSHD,wght].woff2",
+  variable:"--font-estedad",
+  weight:"100 900"
+})
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -24,11 +25,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html dir="rtl" lang="fa-Ir">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${estedad.variable} font-estedad antialiased`}
       >
-        {children}
+        <ThemeProvider
+            attribute="class"
+            defaultTheme="light"
+            enableSystem
+            disableTransitionOnChange
+            >
+            <Navbar/>
+            {children}
+            <Footer/>
+          </ThemeProvider>
       </body>
     </html>
   );

@@ -2,26 +2,120 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@font-face {
+  font-family: 'Estedad';
+  src: url('./fonts/Estedad-Thin.woff2');
+  font-weight: 100;
 }
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+@font-face {
+  font-family: 'Estedad';
+  src: url('./fonts/Estedad-ExtraLight.woff2');
+  font-weight: 200;
 }
-
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+@font-face {
+  font-family: 'Estedad';
+  src: url('./fonts/Estedad-Light.woff2');
+  font-weight: 300;
+}
+@font-face {
+  font-family: 'Estedat';
+  src: url('./fonts/Estedad-Regular.woff2');
+  font-weight: 400;
+}
+@font-face {
+  font-family: 'Estedad';
+  src: url('./fonts/Estedad-Medium.woff2');
+  font-weight: 500;
+}
+@font-face {
+  font-family: 'Estedad';
+  src: url('./fonts/Estedad-SemiBold.woff2');
+  font-weight: 600;
+}
+@font-face {
+  font-family: 'Estedad';
+  src: url('./fonts/Estedad-Bold.woff2');
+  font-weight: 700;
+}
+@font-face {
+  font-family: 'Estedad';
+  src: url('./fonts/Estedad-ExtraBold.woff2');
+  font-weight: 800;
+}
+@font-face {
+  font-family: 'Estedad';
+  src: url('./fonts/Estedad-Black.woff2');
+  font-weight: 900;
 }
 
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
+  .display1 {
+    @apply font-bold text-[64px] leading-[140%];
+  }
+  .display2 {
+    @apply font-bold text-[56px] leading-[120%];
+  }
+
+
+  .h1 {
+    @apply font-bold text-[44px] leading-[140%] capitalize;
+  }
+  .h2 {
+    @apply font-bold text-[40px] leading-[140%] capitalize;
+  }
+  .h3 {
+    @apply font-bold text-[32px] leading-[140%] capitalize;
+  }
+  .h4 {
+    @apply font-bold text-[24px] leading-[140%] capitalize;
+  }
+  .h5 {
+    @apply font-bold text-[20px] leading-[140%] capitalize;
+  }
+  .h6 {
+    @apply font-bold text-[16px] leading-[140%] capitalize;
+  }
+  .h7 {
+    @apply font-semibold text-[20px] leading-[180%] capitalize;
+  }
+
+  .body-xl {
+    @apply font-normal text-[20px] leading-[180%] capitalize;
+  }
+  .body-lg {
+    @apply font-normal text-[18px] leading-[180%] capitalize;
+  }
+  .body-md {
+    @apply font-normal text-[16px] leading-[180%] capitalize;
+  }
+  .body-sm {
+    @apply font-normal text-[14px] leading-[180%] capitalize;
+  }
+
+
+  .caption-lg {
+    @apply font-normal text-[14px] leading-[180%] capitalize;
+  }
+  .caption-md {
+    @apply font-normal text-[12px] leading-[180%] capitalize;
+  }
+  .caption-sm {
+    @apply font-normal text-[10px] leading-[180%] capitalize;
+  }
+
+
+  .button-lg{
+    @apply font-bold text-[16px] leading-[180%] capitalize;
+  }
+  .button-sm{
+    @apply font-medium text-[14px] leading-[24px] capitalize
+  }
+
+
+  .overline-lg{
+    @apply font-medium text-[16px] leading-[24px] capitalize
+  }
+  .overline-sm{
+    @apply font-bold text-[12px] leading-[21px] tracking-[0.8px]
   }
 }
