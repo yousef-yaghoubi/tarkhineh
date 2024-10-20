@@ -1,8 +1,12 @@
+import SwiperMain from '@/components/shared/swiper/swiper'
+import React from 'react'
 
-export default function Home() {
+function Home() {
   return (
-    <div>
-
+    <div className='h-screen'>
+      <SwiperMain/>
     </div>
-  );
+  )
 }
+
+export default Home

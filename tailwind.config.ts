@@ -27,8 +27,8 @@ const config: Config = {
         'shadow-16': '0 16px 16px rgba(0,0,0,25%)',
       },
       colors: {
-        background: 'hsl(var(--background))',
-        foreground: 'hsl(var(--foreground))',
+        'background-1': '#202425',
+        'background-2': '#1D1F20',
         primary: {
           DEFAULT: 'hsl(var(--primary))',
           foreground: 'hsl(var(--primary-foreground))',

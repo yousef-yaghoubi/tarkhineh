@@ -6,5 +6,3 @@ function InputFooter({placeholder}: {placeholder: string}) {
 }
 
 export default InputFooter;
-
-// h-full grid col-span-3 row-span-2

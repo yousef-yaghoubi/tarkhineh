@@ -25,9 +25,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html dir="rtl" lang="fa-Ir">
+    <html dir="rtl" lang="fa-Ir" >
       <body
-        className={`${estedad.variable} font-estedad antialiased`}
+        className={`${estedad.variable} font-estedad antialiased dark:bg-background-1`}
       >
         <ThemeProvider
             attribute="class"
