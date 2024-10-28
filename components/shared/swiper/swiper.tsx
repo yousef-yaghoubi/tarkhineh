@@ -25,7 +25,7 @@ function SwiperMain() {
         nextEl: '.next',
       }}
       modules={[Pagination, Navigation]}
-      className="mySwiper w-full h-[176px] md:h-[336px]"
+      className="mySwiper w-full h-[176px] md:h-[336px] drop-shadow-shadow-4"
     >
       <button className="next">
         <svg
@@ -33,6 +33,7 @@ function SwiperMain() {
           height="40"
           viewBox="0 0 24 24"
           fill="none"
+          className='hidden sm:flex'
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
@@ -78,12 +79,13 @@ function SwiperMain() {
         </div>
       </SwiperSlide>
 
-      <button className="prev">
+      <button className="prev hidden sm:flex">
         <svg
           width="40"
           height="40"
           viewBox="0 0 24 24"
           fill="none"
+          className='hidden sm:flex'
           xmlns="http://www.w3.org/2000/svg"
         >
           <path

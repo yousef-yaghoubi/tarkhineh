@@ -29,10 +29,7 @@ const config: Config = {
       colors: {
         'background-1': '#202425',
         'background-2': '#1D1F20',
-        primary: {
-          DEFAULT: 'hsl(var(--primary))',
-          foreground: 'hsl(var(--primary-foreground))',
-        },
+        'primary': '#417F56',
         'shade-1': '#396F4B',
         'shade-2': '#315F41',
         'shade-3': '#294F36',

@@ -127,7 +127,7 @@
   height: 4px !important;
 
   /* Neutral/ADADAD */
-  background-color: #757575 !important;
+  background-color: #000000 !important;
   transform: matrix(-1, 0, 0, 1, 0, 0);
 
   /* Inside auto layout */
