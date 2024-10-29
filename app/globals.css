@@ -139,6 +139,7 @@
   width: 8px !important;
   height: 8px !important;
   background-color: #417f56 !important;
+  outline: 2px solid #E5F2E9;
   /* box-shadow: 0px 0px 1px 3px #e5f2e9; */
 }
 
@@ -177,4 +178,18 @@
   display: flex;
   bottom: 50%;
   transform: translate(-50%, -50%);
+}
+
+.loader {
+  border: 3px solid; /* Light grey */
+  border-top: 3px solid rgba(0, 0, 0, 0); /* Blue */
+  border-radius: 50%;
+  width: 1.5em;
+  height: 1.5em;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }

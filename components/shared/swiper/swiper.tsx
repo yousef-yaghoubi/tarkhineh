@@ -9,6 +9,7 @@ import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 // import required modules
 import { Pagination, Navigation } from 'swiper/modules';
+import Button from '../button/Button';
 function SwiperMain() {
   return (
     <Swiper
@@ -48,9 +49,7 @@ function SwiperMain() {
             <span className="text-tint-1 h6 md:h4 lg:h2">
               تجربه غذای سالم و گیاهی به سبک ترخینه
             </span>
-            <button className="w-[91px] h-6 bg-[#417F56] text-withe caption-sm mt-8 md:mt-16 md:w-[184px] md:h-10 rounded-sm md:rounded-md md:button-lg">
-              سفارش آنلاین غذا
-            </button>
+            <Button btn='fill' theme='Primary' title='سفارش آنلاین غذا'/>
           </div>
         </div>
       </SwiperSlide>
@@ -60,9 +59,7 @@ function SwiperMain() {
             <span className="text-tint-1 h6 md:h4 lg:h2">
               طعم بی‌نظیر طبیعت!
             </span>
-            <button className="w-[91px] h-6 bg-[#417F56] text-withe caption-sm mt-8 md:mt-16 md:w-[184px] md:h-10 rounded-sm md:rounded-md md:button-lg">
-              سفارش آنلاین غذا
-            </button>
+            <Button btn='fill' theme='Primary' title='سفارش آنلاین غذا'/>
           </div>
         </div>
       </SwiperSlide>
@@ -72,9 +69,7 @@ function SwiperMain() {
             <span className="text-tint-1 h6 md:h4 lg:h2">
               لذت غذای سالم و گیاهی را با ترخینه تجربه کنید!
             </span>
-            <button className="w-[91px] h-6 bg-[#417F56] text-withe caption-sm mt-8 md:mt-16 md:w-[184px] md:h-10 rounded-sm md:rounded-md md:button-lg">
-              سفارش آنلاین غذا
-            </button>
+            <Button btn='fill' theme='Primary' title='سفارش آنلاین غذا'/>
           </div>
         </div>
       </SwiperSlide>
