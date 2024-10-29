@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import InputFooter from './InputFooter';
 import { Textarea } from '@/components/ui/textarea';
 import { convertToPersianNumbers } from '@/lib/convertNumberToPersian';
-import { Button } from '@/components/ui/button';
 
 function FormFooter() {
   const [quan, setQuan] = useState(0);
@@ -22,7 +21,7 @@ function FormFooter() {
         {/* <div className="col-start-2"> */}
         <div className="w-1/2">
           <Textarea
-            className="rounded-sm resize-none border-gray-7 h-[11.5em]"
+            className="rounded-sm resize-none border-gray-7 h-[11.5em] hover:border-gray-1"
             placeholder={'پیام شما'}
             maxLength={200}
             onChange={(e) => setQuan(e.target.value.length)}
@@ -34,9 +33,9 @@ function FormFooter() {
           {/* </div> */}
         </div>
       </div>
-      <Button className="border border-gray-7 w-[183px] h-10 rounded-sm mt-4 flex self-end">
+      <button className="border border-gray-7 w-[183px] h-10 rounded-sm mt-4 flex self-end justify-center items-center">
         ارسال پیام
-      </Button>
+      </button>
     </>
   );
 }
