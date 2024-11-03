@@ -27,7 +27,7 @@ export default function RootLayout({
   return (
     <html dir="rtl" lang="fa-Ir" >
       <body
-        className={`${estedad.variable} font-estedad antialiased dark:bg-background-1`}
+        className={`${estedad.variable} font-estedad antialiased dark:bg-background-1 selection:bg-tint-1 selection:text-gray-7`}
       >
         <ThemeProvider
             attribute="class"

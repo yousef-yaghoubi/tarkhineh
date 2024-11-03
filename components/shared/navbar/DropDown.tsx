@@ -18,7 +18,7 @@ interface Props{
 function DropDown( {stats} :{stats: Props}) {
   return (
     <DropdownMenu key={stats.route} dir="rtl">
-      <DropdownMenuTrigger className="focus:!outline-none flex flex-row items-center justify-center w-fit">
+      <DropdownMenuTrigger className="focus:!outline-none flex flex-row items-center justify-center w-fit caption-sm md:border-0 sm:body-sm lg:body-xl">
         {stats.label}
         <Image src="/icons/arrow-down.svg" alt="arrow" className='dark:!invert' width={24} height={24} />
       </DropdownMenuTrigger>

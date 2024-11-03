@@ -193,3 +193,12 @@
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
+
+.menuMobile > button{
+  left: 1em !important;
+  display: flex;
+  right: unset;
+  justify-content: end;
+  z-index: 100;
+  color: white;
+}

@@ -47,9 +47,9 @@ function Navbar() {
         <SheetTrigger className="md:!hidden" asChild>
           <Image src="/icons/menu.svg" alt="menu" width={24} height={24} />
         </SheetTrigger>
-        <SheetContent className="bg-white dark:bg-[#1c1b22] border-none">
+        <SheetContent className="bg-white dark:bg-[#1c1b22] border-none p-0 menuMobile">
           <SheetHeader>
-            <div className="flex flex-col justify-start m-4">
+            <div className="flex flex-col justify-start">
               <Nav menuBar={true}/>
             </div>
           </SheetHeader>
