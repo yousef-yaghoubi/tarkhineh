@@ -12,7 +12,7 @@ import { useTheme } from 'next-themes';
 
 function Nav({ menuBar }: { menuBar: boolean }) {
   const { theme } = useTheme();
-  console.log(theme);
+
   const navStats = [
     {
       id: 1,
@@ -231,6 +231,7 @@ function Nav({ menuBar }: { menuBar: boolean }) {
       ),
     },
   ];
+
   return (
     <div
       className={
@@ -246,61 +247,60 @@ function Nav({ menuBar }: { menuBar: boolean }) {
         className="w-full !h-[94px] md:hidden !relative mb-2 z-10"
       />
       {/* <div className="px-4"> */}
-        {navStats.map((stats) =>
-          stats.isSub ? (
-            menuBar == true ? (
-              <Accordion type="single" collapsible dir="rtl" className='mx-4'>
-                <AccordionItem
-                  value="item-1"
-                  className="border-none hover:!no-underline"
-                >
-                  <AccordionTrigger className=" pt-3 pb-2 caption-sm hover:!no-underline border-b border-gray-4 md:border-0 sm:body-sm">
-                    <div className="flex items-center">
-                      {stats.icon}
-                      <span>{stats.label}</span>
-                    </div>
-                  </AccordionTrigger>
-                  <AccordionContent
-                    dir="rtl"
-                    className="flex justify-start flex-col"
-                  >
-                    {stats.subMain.map((sub) => (
-                      <span key={sub} className="w-fit mr-2 pt-2 caption-sm sm:body-sm">
-                        {sub}
-                      </span>
-                    ))}
-                  </AccordionContent>
-                </AccordionItem>
-              </Accordion>
-            ) : (
-              <DropDown stats={stats} key={stats.id} />
-            )
-          ) : (
-            <>
-              <Link
-                href={stats.route}
-                key={stats.id}
-                className={`
-                  caption-sm 
-                  md:border-0
-                  sm:body-sm
-                  lg:body-xl
-                  mx-4
-                  md:mx-0
-                  ${stats.id == 6 ? 'border-0' : 'border-b border-gray-4 '}
-                  ${
-                    menuBar == false
-                      ? 'flex items-center'
-                      : 'flex items-center pt-3 pb-2'
-                  }
-                `}
+      {navStats.map((stats) =>
+        stats.isSub ? (
+          menuBar == true ? (
+            <Accordion
+              type="single"
+              collapsible
+              dir="rtl"
+              className="mx-4"
+              key={stats.id}
+            >
+              <AccordionItem
+                value="item-1"
+                className="border-none hover:!no-underline"
               >
-                {stats.icon}
-                {stats.label}
-              </Link>
-            </>
+                <AccordionTrigger className=" pt-3 pb-2 caption-sm hover:!no-underline border-b border-gray-4 md:border-0 sm:body-sm">
+                  <div className="flex items-center">
+                    {stats.icon}
+                    <span>{stats.label}</span>
+                  </div>
+                </AccordionTrigger>
+                <AccordionContent
+                  dir="rtl"
+                  className="flex justify-start flex-col"
+                >
+                  {stats.subMain.map((sub) => (
+                    <span
+                      key={sub}
+                      className="w-fit mr-2 pt-2 caption-sm sm:body-sm"
+                    >
+                      {sub}
+                    </span>
+                  ))}
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
+          ) : (
+            <DropDown stats={stats} key={stats.id} />
           )
-        )}
+        ) : (
+          <>
+            <Link
+              href={stats.route}
+              key={stats.id}
+              className={`caption-sm md:border-0 sm:body-sm lg:body-xl mx-4 md:mx-0
+                  ${ stats.id == 6 ? 'border-0' : 'border-b border-gray-4 '}
+                  ${ menuBar == false ? 'flex items-center' : 'flex items-center pt-3 pb-2'}
+                `}
+            >
+              {stats.icon}
+              {stats.label}
+            </Link>
+          </>
+        )
+      )}
       {/* </div> */}
     </div>
   );

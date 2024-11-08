@@ -2,72 +2,11 @@ import Button from '@/components/shared/button/Button';
 import CardTarkhineGardi from '@/components/shared/card/CardTarkhineGardi';
 import MiniCardMenu from '@/components/shared/card/MiniCardMenu';
 import SwiperMain from '@/components/shared/swiper/swiper';
+import { branchs, miniCards } from '@/lib/dataPublic';
 import Image from 'next/image';
 import React from 'react';
 
-const miniCards = [
-  { id: 4, img: '/image/miniCardFood.png', title: 'غذای اصلی' },
-  { id: 3, img: '/image/miniCardAppetizer.png', title: 'پیش غذا' },
-  { id: 2, img: '/image/miniCardDecer.png', title: 'دسر' },
-  { id: 1, img: '/image/miniCardDrink.png', title: 'نوشیدنی' },
-];
 
-interface image {
-  id: number,
-  src: string
-}
-interface branchType {
-  id: number,
-  images: image[],
-  title: string,
-  desc: string
-}
-const branchs: branchType[] = [
-  {
-    id: 1,
-    images: [
-      { id: 1, src: '/image/ekbatan1.jpg' },
-      { id: 2, src: '/image/vanak1.jpg' },
-      { id: 3, src: '/image/chaloos1.jpg' },
-      { id: 4, src: '/image/aghdasie1.jpg'},
-    ],
-    title: 'اکباتان',
-    desc: 'شهرک اکباتان، فاز ۳، مجتمع تجاری کوروش، طبقه سوم',
-  },
-  {
-    id: 2,
-    images: [
-      { id: 1, src: '/image/chaloos1.jpg' },
-      { id: 2, src: '/image/vanak1.jpg' },
-      { id: 3, src: '/image/aghdasie1.jpg'},
-      { id: 4, src: '/image/ekbatan1.jpg' },
-    ],
-    title: 'چالوس',
-    desc: 'چالوس، خیابان ۱۷ شهریور، بعد کوچه کوروش، جنب داروخانه دکتر میلانی',
-  },
-  {
-    id: 3,
-    images: [
-      { id: 1, src: '/image/aghdasie1.jpg'},
-      { id: 2, src: '/image/chaloos1.jpg' },
-      { id: 3, src: '/image/vanak1.jpg' },
-      { id: 4, src: '/image/ekbatan1.jpg' },
-    ],
-    title: 'اقدسیه',
-    desc: 'خیابان اقدسیه ، نرسیده به میدان خیام، پلاک ۸',
-  },
-  {
-    id: 4,
-    images: [
-      { id: 1, src: '/image/vanak1.jpg' },
-      { id: 2, src: '/image/aghdasie1.jpg'},
-      { id: 3, src: '/image/chaloos1.jpg' },
-      { id: 4, src: '/image/ekbatan1.jpg' },
-    ],
-    title: 'ونک',
-    desc: 'میدان ونک، خیابان فردوسی، نبش کوچه نیلوفر، پلاک ۲۶',
-  },
-];
 function Home() {
 
   return (
@@ -167,7 +106,7 @@ function Home() {
         <h6 className="h6 sm:h4 sm:mt-12">ترخینه گردی</h6>
         <div className="flex flex-col sm:grid sm:grid-cols-2 sm:gap-6 xl:grid-cols-4">
           {branchs.map((branch) => (
-            <CardTarkhineGardi title={branch.title} desc={branch.desc} hrefBTN='' img={branch.images[0].src} key={branch.id}/>
+            <CardTarkhineGardi title={branch.title} desc={branch.desc} hrefBTN='' img={branch.images[0].src} key={branch.id} id={branch.id} classCustom='' showBTN/>
           ))}
         </div>
       </section>

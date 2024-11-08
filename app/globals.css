@@ -202,3 +202,16 @@
   z-index: 100;
   color: white;
 }
+
+.mySwiper .swiper-slide-thumb-active{
+  border: 1px solid white;
+  width: 72px !important;
+  height: 72px !important;
+}
+.mySwiper .swiper-wrapper{
+  display: flex;
+  align-items: center;
+}
+.mySwiper .swiper-slide-thumb-active .transparentDiv{
+  z-index: 0 !important;
+}
