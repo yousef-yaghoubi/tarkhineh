@@ -12,7 +12,7 @@ function Home() {
     <div>
       <SwiperMain />
       <div className='w-full flex justify-center'>
-        <SearchBox />
+        <SearchBox classes='w-[90%] mt-4 sm:hidden'/>
       </div>
       <section className="w-full max-w-[1222px] inset-0 m-auto flex items-center flex-col justify-around mt-8 !mb-16">
         <h4 className="h4">منوی رستوران</h4>

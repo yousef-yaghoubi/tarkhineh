@@ -1,6 +1,8 @@
-'use client'
+'use client';
 import Image from 'next/image';
-import React from 'react';
+import React, { useState } from 'react';
+import Modal from '../Modal';
+import SearchBox from '../searchBox/SearchBox';
 
 interface Props {
   alt: string;
@@ -8,35 +10,52 @@ interface Props {
   imgActive: string;
   isActive: boolean;
   quantity: number;
-  className: string
+  className: string;
 }
 function Icon({ alt, img, imgActive, isActive, quantity, className }: Props) {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
+
   return (
-    <div
-      className={`w-6 h-6 md:w-10 md:h-10 rounded ${
-        isActive ? 'bg-primary' : 'bg-tint-1'
-      } justify-center flex items-center relative ${className}`}
-    >
-      {quantity != 0 && (
-        <div
-          className={`absolute -top-1.5 -right-1 ${
-            isActive ? 'bg-withe' : 'bg-tint-6'
-          } rounded-full w-4 h-4 text-xs flex justify-center items-center ${
-            isActive ? 'text-primary' : 'text-white'
-          }`}
-        >
-          {quantity}
+    <>
+      <button
+        className={`w-6 h-6 md:w-10 md:h-10 rounded ${
+          isActive ? 'bg-primary' : 'bg-tint-1'
+        } justify-center flex items-center relative ${className}`}
+        onClick={() => alt == 'search' && openModal()}
+      >
+        {quantity != 0 && (
+          <div
+            className={`absolute -top-1.5 -right-1 ${
+              isActive ? 'bg-withe' : 'bg-tint-6'
+            } rounded-full w-4 h-4 text-xs flex justify-center items-center ${
+              isActive ? 'text-primary' : 'text-white'
+            }`}
+          >
+            {quantity}
+          </div>
+        )}
+        <div className="w-6 h-6 flex justify-center items-center">
+          <Image
+            src={isActive ? imgActive : img}
+            alt={alt}
+            width={window.innerWidth < 770 ? 18 : 24}
+            height={window.innerWidth < 770 ? 18 : 24}
+          />
         </div>
-      )}
-      <div className="w-6 h-6 flex justify-center items-center">
-        <Image
-          src={isActive ? imgActive : img}
-          alt={alt}
-          width={window.innerWidth < 770 ? 18 : 24}
-          height={window.innerWidth < 770 ? 18 : 24}
-        />  
-      </div>
-    </div>
+      </button>
+
+      <Modal
+        isOpen={isModalOpen}
+        onClose={closeModal}
+        title="جستجو"
+        desc="لطفا متن خود را تایپ و سپس دکمه Enter را بزنید."
+      >
+        <SearchBox classes='w-[90%] max-w-[409px]'/>
+      </Modal>
+    </>
   );
 }
 

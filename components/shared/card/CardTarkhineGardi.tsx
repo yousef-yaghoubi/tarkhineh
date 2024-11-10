@@ -24,7 +24,6 @@ function CardTarkhineGardi({
   id
 }: Props) {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  console.log(id)
   let empty;
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);

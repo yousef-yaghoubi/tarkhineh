@@ -1,5 +1,5 @@
 'use client';
-import React, { ReactNode, useEffect, useRef, useState } from 'react';
+import React, { ReactNode, useRef, useState } from 'react';
 import Portal from './Portal';
 import Image from 'next/image';
 
@@ -51,7 +51,7 @@ const Modal: React.FC<ModalProps> = ({
     return (
       <Portal>
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 backdrop-blur-sm">
-          <div className="bg-white dark:bg-background-1 rounded-sm shadow-lg  max-w-[800px] w-11/12 relative flex flex-col items-center overflow-hidden">
+          <div className="bg-white dark:bg-background-1 rounded-sm sm:rounded-md shadow-lg  max-w-[800px] w-11/12 relative flex flex-col items-center overflow-hidden">
             <button
               ref={prevRef}
               className="custom-prev absolute right-0 bottom-[1.1em] w-12 flex justify-center items-center h-[74px] z-20 text-white bg-black/0 bg-gradient-to-l from-black/75 to-transparent disabled:hidden sm:hidden"
@@ -142,7 +142,6 @@ const Modal: React.FC<ModalProps> = ({
   } else {
     return (
       <Portal>
-        {/* Overlay */}
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 backdrop-blur-sm">
           <div className="bg-white dark:bg-background-1 rounded-sm shadow-lg  max-w-[800px] w-11/12 relative flex flex-col items-center overflow-hidden">
             <div className="bg-gray-4 dark:bg-background-2 relative w-full h-14 md:h-[86px] flex justify-center items-center">
@@ -161,8 +160,8 @@ const Modal: React.FC<ModalProps> = ({
 
               <h3 className="caption-lg md:h7">{title}</h3>
             </div>
-            <div className="p-4 md:p-6 flex flex-col justify-center items-center">
-              <p className="caption-md md:body-md">{desc}</p>
+            <div className="mt-10 mb-12 flex flex-col justify-center items-center w-full">
+              <p className="caption-md md:body-md mb-3">{desc}</p>
               {children}
             </div>
           </div>

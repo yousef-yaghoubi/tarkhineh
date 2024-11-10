@@ -62,3 +62,32 @@ export const branchs: branchType[] = [
 ];
 
 
+export const iconDetails = [
+  {
+    id: 1,
+    alt: 'search',
+    img: '/icons/search-icon.svg',
+    imgActive: '/icons/search-icon-active.svg',
+    isActive: false,
+    quantity: 0,
+    class: 'hidden sm:!flex',
+  },
+  {
+    id: 2,
+    alt: 'shopping',
+    img: '/icons/shopping-icon.svg',
+    imgActive: '/icons/shopping-icon-active.svg',
+    isActive: false,
+    quantity: 0,
+    class: '',
+  },
+  {
+    id: 3,
+    alt: 'profile',
+    img: '/icons/profile-icon.svg',
+    imgActive: '',
+    isActive: false,
+    quantity: 0,
+    class: '',
+  },
+];
