@@ -1,17 +1,19 @@
 import Button from '@/components/shared/button/Button';
 import CardTarkhineGardi from '@/components/shared/card/CardTarkhineGardi';
 import MiniCardMenu from '@/components/shared/card/MiniCardMenu';
+import SearchBox from '@/components/shared/searchBox/SearchBox';
 import SwiperMain from '@/components/shared/swiper/swiper';
 import { branchs, miniCards } from '@/lib/dataPublic';
 import Image from 'next/image';
 import React from 'react';
 
-
 function Home() {
-
   return (
     <div>
       <SwiperMain />
+      <div className='w-full flex justify-center'>
+        <SearchBox />
+      </div>
       <section className="w-full max-w-[1222px] inset-0 m-auto flex items-center flex-col justify-around mt-8 !mb-16">
         <h4 className="h4">منوی رستوران</h4>
         <div className="w-full grid grid-cols-2 justify-items-center sm:grid-cols-4 lg:mt-8">
@@ -106,7 +108,16 @@ function Home() {
         <h6 className="h6 sm:h4 sm:mt-12">ترخینه گردی</h6>
         <div className="flex flex-col sm:grid sm:grid-cols-2 sm:gap-6 xl:grid-cols-4">
           {branchs.map((branch) => (
-            <CardTarkhineGardi title={branch.title} desc={branch.desc} hrefBTN='' img={branch.images[0].src} key={branch.id} id={branch.id} classCustom='' showBTN/>
+            <CardTarkhineGardi
+              title={branch.title}
+              desc={branch.desc}
+              hrefBTN=""
+              img={branch.images[0].src}
+              key={branch.id}
+              id={branch.id}
+              classCustom=""
+              showBTN
+            />
           ))}
         </div>
       </section>
