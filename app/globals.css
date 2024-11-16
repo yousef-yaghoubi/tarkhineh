@@ -49,6 +49,9 @@
 }
 
 @layer utilities {
+  .activeLink{
+    @apply text-primary h5
+  }
   .display1 {
     @apply font-bold text-[64px] leading-[140%];
   }

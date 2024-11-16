@@ -70,7 +70,7 @@ export const iconDetails = [
     imgActive: '/icons/search-icon-active.svg',
     isActive: false,
     quantity: 0,
-    class: 'hidden sm:!flex',
+    class: 'hidden sm:flex',
   },
   {
     id: 2,
