@@ -1,7 +1,23 @@
-import React from 'react'
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+} from '@/components/ui/navigation-menu';
+import React from 'react';
 
 export default function ss() {
   return (
-    <div>ss</div>
-  )
+    <div>
+      <NavigationMenu>
+        <NavigationMenuList>
+          <NavigationMenuItem>
+            <NavigationMenuTrigger>hhh</NavigationMenuTrigger>
+            <NavigationMenuContent>dlcnevcw</NavigationMenuContent>
+          </NavigationMenuItem>
+        </NavigationMenuList>
+      </NavigationMenu>
+    </div>
+  );
 }

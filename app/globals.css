@@ -118,6 +118,12 @@
     @apply font-bold text-[12px] leading-[21px] tracking-[0.8px];
   }
 }
+nav[aria-label="Main"] > div{
+  width: 133% !important;
+}
+nav[aria-label="Main"] > div > div{
+  border: none !important;
+}
 
 .swiper-slide img {
   display: block;

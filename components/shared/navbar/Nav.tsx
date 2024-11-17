@@ -1,6 +1,5 @@
 'use client';
 import Link from 'next/link';
-import DropDown from './DropDown';
 import {
   Accordion,
   AccordionContent,
@@ -9,6 +8,15 @@ import {
 } from '@/components/ui/accordion';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+  NavigationMenuItem,
+  navigationMenuTriggerStyle,
+} from '@/components/ui/navigation-menu';
 
 function Nav({ menuBar }: { menuBar: boolean }) {
   const pathName = usePathname();
@@ -44,10 +52,10 @@ function Nav({ menuBar }: { menuBar: boolean }) {
       route: '/branchs',
       subMain: [
         { id: 1, label: 'شعبه', route: '/branchs' },
-        { id: 2, label: 'ونک', routeQuery: '/branchs/vanak' },
-        { id: 3, label: 'اکباتان', routeQuery: '/branchs/ekbatan' },
-        { id: 4, label: 'چالوس', routeQuery: '/branchs/chaloos' },
-        { id: 5, label: 'اقدسیه', routeQuery: '/branchs/aghdasie' },
+        { id: 2, label: 'شعبه ونک', routeQuery: '/branchs/vanak' },
+        { id: 3, label: 'شعبه اکباتان', routeQuery: '/branchs/ekbatan' },
+        { id: 4, label: 'شعبه چالوس', routeQuery: '/branchs/chaloos' },
+        { id: 5, label: 'شعبه اقدسیه', routeQuery: '/branchs/aghdasie' },
       ],
       icon: (
         <svg
@@ -248,10 +256,10 @@ function Nav({ menuBar }: { menuBar: boolean }) {
         fill
         className="w-full !h-[94px] md:hidden !relative mb-2 z-10"
       />
-      {/* <div className="px-4"> */}
-      {navStats.map((stats) =>
-        stats.subMain ? (
-          menuBar == true ? (
+
+      {menuBar == true ? (
+        navStats.map((stats) =>
+          stats.subMain ? (
             <Accordion
               type="single"
               collapsible
@@ -285,22 +293,79 @@ function Nav({ menuBar }: { menuBar: boolean }) {
               </AccordionItem>
             </Accordion>
           ) : (
-            <DropDown stats={stats} key={stats.id} />
-          )
-        ) : (
-          <>
             <Link
               href={stats.route}
               key={stats.id}
-              className={`md:border-0 mx-4 md:mx-0 ${stats.id == 6 ? 'border-0' : 'border-b border-gray-4 '} ${stats.route == pathName ? 'caption-md sm:body-lg activeLink lg:activeLink !border-b border-primary' : 'caption-sm sm:body-sm lg:body-xl'} ${ menuBar == false ? 'flex items-center' : 'flex items-center pt-3 pb-2'}`}
+              className={`md:border-0 mx-4 md:mx-0 flex h-[39px] justify-start items-center ${
+                stats.id == 6 ? 'border-0' : 'border-b border-gray-4 '
+              } ${
+                stats.route == pathName
+                  ? 'caption-md sm:body-lg activeLink lg:activeLink !border-b border-primary'
+                  : 'caption-sm sm:body-sm lg:body-xl'
+              }`}
             >
               {stats.icon}
               {stats.label}
             </Link>
-          </>
+          )
         )
+      ) : (
+        <NavigationMenu dir="rtl" className="max-w-full">
+          <NavigationMenuList className="justify-around">
+            {navStats.map((stats) =>
+              stats.subMain ? (
+                <NavigationMenuItem key={stats.id}>
+                  <NavigationMenuTrigger
+                    className={`rounded-none ${
+                      stats.subMain?.find(
+                        (sub) => sub.routeQuery == pathName
+                      ) || stats.route == pathName
+                        ? 'caption-md sm:body-lg activeLink lg:activeLink !border-b border-primary'
+                        : 'caption-sm sm:body-sm lg:body-xl'
+                    }`}
+                  >
+                    {stats.subMain?.find((sub) => sub.routeQuery == pathName)
+                      ?.label || stats.label}
+                  </NavigationMenuTrigger>
+
+
+
+                  <NavigationMenuContent className="!w-52 flex flex-col py-2 bg-white dark:bg-background-2">
+                    {stats.subMain?.map((sub) => (
+                      <NavigationMenuLink
+                        href={sub.routeQuery || sub.route}
+                        key={sub.label}
+                        className="py-1  px-5 hover:bg-slate-100 dark:hover:bg-background-1"
+                      >
+                        {sub.label}
+                      </NavigationMenuLink>
+                    ))}
+
+
+
+                  </NavigationMenuContent>
+                </NavigationMenuItem>
+              ) : (
+                <NavigationMenuItem key={stats.id}>
+                  <Link href={stats.route} legacyBehavior passHref>
+                    <NavigationMenuLink
+                      className={`${navigationMenuTriggerStyle()} md:border-0 mx-4 md:mx-0 ${
+                        stats.id == 6 ? 'border-0' : 'border-b border-gray-4 '
+                      } ${
+                        stats.route == pathName
+                          ? 'caption-md sm:body-lg activeLink lg:activeLink !border-b border-primary'
+                          : 'caption-sm sm:body-sm lg:!body-xl'
+                      }`}
+                    >
+                      {stats.label}
+                    </NavigationMenuLink>
+                  </Link>
+                </NavigationMenuItem>
+              )
+            )}
+          </NavigationMenuList>
+        </NavigationMenu>
       )}
-      {/* </div> */}
     </div>
   );
 }
