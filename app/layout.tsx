@@ -5,6 +5,7 @@ import './globals.css';
 import Navbar from '../components/shared/navbar/Navbar';
 import { ThemeProvider } from '@/components/shared/themeProvider';
 import Footer from '@/components/shared/footer/Footer';
+import { MyProvider } from '@/context/branchsContext';
 
 const estedad = localFont({
   src: './fonts/Estedad[KSHD,wght].woff2',
@@ -33,9 +34,11 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          <MyProvider>
           <Navbar />
           {children}
           <Footer />
+          </MyProvider>
         </ThemeProvider>
       </body>
     </html>
