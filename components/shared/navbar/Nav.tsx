@@ -17,12 +17,10 @@ import {
   NavigationMenuItem,
   navigationMenuTriggerStyle,
 } from '@/components/ui/navigation-menu';
-import { useEffect, useState } from 'react';
 import Cookies from 'js-cookie';
 
 function Nav({ menuBar }: { menuBar: boolean }) {
   const pathName = usePathname();
-  const [branchState, setBranchState] = useState();
 
   const navStats = [
     {
@@ -244,8 +242,7 @@ function Nav({ menuBar }: { menuBar: boolean }) {
       ),
     },
   ];
-  const sessionCookie = Cookies.get('branchs')
-  
+  const sessionCookie = Cookies.get('branchs');
 
   return (
     <div
@@ -329,8 +326,10 @@ function Nav({ menuBar }: { menuBar: boolean }) {
                         : 'caption-sm sm:body-sm lg:body-xl'
                     }`}
                   >
-                    { stats.label == 'شعبه' && sessionCookie || stats.subMain?.find((sub) => sub.routeQuery == pathName)
-                      ?.label || stats.label} 
+                    {(stats.label == 'شعبه' && sessionCookie) ||
+                      stats.subMain?.find((sub) => sub.routeQuery == pathName)
+                        ?.label ||
+                      stats.label}
                   </NavigationMenuTrigger>
 
                   <NavigationMenuContent className="!w-52 flex flex-col py-2 bg-white dark:bg-background-2">
@@ -339,7 +338,10 @@ function Nav({ menuBar }: { menuBar: boolean }) {
                         href={sub.routeQuery || sub.route}
                         key={sub.label}
                         className="py-1  px-5 hover:bg-slate-100 dark:hover:bg-background-1"
-                        onClick={()=> Cookies.set('branchs', `${sub.label}`, { path: '/' })}
+                        onClick={() =>
+                          stats.label == 'شعبه' &&
+                          Cookies.set('branchs', `${sub.label}`, { path: '/' })
+                        }
                       >
                         {sub.label}
                       </NavigationMenuLink>
