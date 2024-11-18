@@ -10,6 +10,7 @@ import {
   SheetTrigger,
 } from '@/components/ui/sheet';
 import { iconDetails } from '@/lib/dataPublic';
+import Link from 'next/link';
 
 function Navbar() {
   return (
@@ -21,26 +22,29 @@ function Navbar() {
         <SheetContent className="bg-white dark:bg-[#1c1b22] border-none p-0 menuMobile">
           <SheetHeader>
             <div className="flex flex-col justify-start">
-              <Nav menuBar={true}/>
+              <Nav menuBar={true} />
             </div>
           </SheetHeader>
         </SheetContent>
       </Sheet>
       <div className="w-[102px] h-8 lg:w-[155px] lg:h-[51px]">
-        <Image
-          src="/logoGreenSmall.png"
-          width={102}
-          height={32}
-          alt="logo"
-          className="flex lg:hidden"
-        />
-        <Image
-          src="/logoGreenBig.png"
-          width={155}
-          height={51}
-          alt="logo"
-          className="hidden lg:flex"
-        />
+        <Link href={'/'}>
+          <Image
+            src="/logoGreenSmall.png"
+            width={102}
+            height={32}
+            alt="logo"
+            className="flex lg:hidden"
+          />
+
+          <Image
+            src="/logoGreenBig.png"
+            width={155}
+            height={51}
+            alt="logo"
+            className="hidden lg:flex"
+          />
+        </Link>
       </div>
 
       <div className="hidden md:flex w-full max-w-[500px] lg:max-w-[650px] xl:max-w-[808px]">

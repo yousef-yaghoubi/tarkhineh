@@ -7,7 +7,7 @@ import {
   AccordionTrigger,
 } from '@/components/ui/accordion';
 import Image from 'next/image';
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -21,7 +21,6 @@ import Cookies from 'js-cookie';
 
 function Nav({ menuBar }: { menuBar: boolean }) {
   const pathName = usePathname();
-  const router = useRouter()
 
   const navStats = [
     {
@@ -53,7 +52,7 @@ function Nav({ menuBar }: { menuBar: boolean }) {
       label: 'شعبه',
       route: '/branchs',
       subMain: [
-        { id: 1, label: 'شعبه', route: '/branchs' },
+        // { id: 1, label: 'شعبه', route: '/branchs' },
         { id: 2, label: 'شعبه ونک', routeQuery: '/branchs/vanak' },
         { id: 3, label: 'شعبه اکباتان', routeQuery: '/branchs/ekbatan' },
         { id: 4, label: 'شعبه چالوس', routeQuery: '/branchs/chaloos' },
@@ -250,7 +249,7 @@ function Nav({ menuBar }: { menuBar: boolean }) {
       className={
         menuBar == false
           ? 'flex flex-row justify-between font-normal text-xs md:text-base w-full text-gray-7 dark:text-gray-4'
-          : 'flex flex-col justify-start text-gray-7 dark:text-gray-4'
+          : 'flex flex-col justify-start text-gray-7 dark:text-gray-4 overflow-y-scroll'
       }
     >
       <Image
@@ -258,7 +257,6 @@ function Nav({ menuBar }: { menuBar: boolean }) {
         alt="header menu"
         fill
         className="w-full !h-[94px] md:hidden !relative mb-2 z-10"
-        onClick={() => router.push('/')}
       />
 
       {menuBar == true ? (
@@ -275,10 +273,17 @@ function Nav({ menuBar }: { menuBar: boolean }) {
                 value="item-1"
                 className="border-none hover:!no-underline"
               >
-                <AccordionTrigger className={`pt-3 pb-2 hover:!no-underline border-b md:border-0 ${ stats.subMain?.find((sub) => sub.routeQuery == pathName ) || stats.route == pathName ? '!border-b border-primary caption-md sm:body-md text-primary' : 'caption-sm border-gray-4 sm:body-sm '}`}>
+                <AccordionTrigger
+                  className={`pt-3 pb-2 hover:!no-underline border-b md:border-0 ${
+                    stats.subMain?.find((sub) => sub.routeQuery == pathName) ||
+                    stats.route == pathName
+                      ? '!border-b border-primary caption-md sm:body-md text-primary'
+                      : 'caption-sm border-gray-4 sm:body-sm '
+                  }`}
+                >
                   <div className="flex items-center">
                     {stats.icon}
-                    <span >
+                    <span>
                       {(stats.label == 'شعبه' && sessionCookie) ||
                         stats.subMain?.find((sub) => sub.routeQuery == pathName)
                           ?.label ||
@@ -293,7 +298,7 @@ function Nav({ menuBar }: { menuBar: boolean }) {
                   {stats.subMain?.map((sub) => (
                     <Link
                       key={sub.id}
-                      href={sub.routeQuery || sub.route}
+                      href={sub.routeQuery! || sub.route!}
                       className="w-fit mr-2 pt-2 caption-sm sm:body-sm"
                       onClick={() =>
                         stats.label == 'شعبه' &&
@@ -328,7 +333,7 @@ function Nav({ menuBar }: { menuBar: boolean }) {
           <NavigationMenuList className="justify-around">
             {navStats.map((stats) =>
               stats.subMain ? (
-                <NavigationMenuItem key={stats.id}>
+                <NavigationMenuItem key={stats.id} defaultValue={'aa'}>
                   <NavigationMenuTrigger
                     className={`rounded-none ${
                       stats.subMain?.find(
@@ -340,8 +345,7 @@ function Nav({ menuBar }: { menuBar: boolean }) {
                   >
                     {(stats.label == 'شعبه' && sessionCookie) ||
                       stats.subMain?.find((sub) => sub.routeQuery == pathName)
-                        ?.label ||
-                      stats.label}
+                        ?.label || stats.label}
                   </NavigationMenuTrigger>
 
                   <NavigationMenuContent className="!w-52 flex flex-col py-2 bg-white dark:bg-background-2">
