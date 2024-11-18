@@ -7,7 +7,7 @@ import {
   AccordionTrigger,
 } from '@/components/ui/accordion';
 import Image from 'next/image';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -21,6 +21,7 @@ import Cookies from 'js-cookie';
 
 function Nav({ menuBar }: { menuBar: boolean }) {
   const pathName = usePathname();
+  const router = useRouter()
 
   const navStats = [
     {
@@ -257,6 +258,7 @@ function Nav({ menuBar }: { menuBar: boolean }) {
         alt="header menu"
         fill
         className="w-full !h-[94px] md:hidden !relative mb-2 z-10"
+        onClick={() => router.push('/')}
       />
 
       {menuBar == true ? (
@@ -273,10 +275,15 @@ function Nav({ menuBar }: { menuBar: boolean }) {
                 value="item-1"
                 className="border-none hover:!no-underline"
               >
-                <AccordionTrigger className=" pt-3 pb-2 caption-sm hover:!no-underline border-b border-gray-4 md:border-0 sm:body-sm">
+                <AccordionTrigger className={`pt-3 pb-2 hover:!no-underline border-b md:border-0 ${ stats.subMain?.find((sub) => sub.routeQuery == pathName ) || stats.route == pathName ? '!border-b border-primary caption-md sm:body-md text-primary' : 'caption-sm border-gray-4 sm:body-sm '}`}>
                   <div className="flex items-center">
                     {stats.icon}
-                    <span>{stats.label}</span>
+                    <span >
+                      {(stats.label == 'شعبه' && sessionCookie) ||
+                        stats.subMain?.find((sub) => sub.routeQuery == pathName)
+                          ?.label ||
+                        stats.label}
+                    </span>
                   </div>
                 </AccordionTrigger>
                 <AccordionContent
@@ -284,12 +291,17 @@ function Nav({ menuBar }: { menuBar: boolean }) {
                   className="flex justify-start flex-col"
                 >
                   {stats.subMain?.map((sub) => (
-                    <span
+                    <Link
                       key={sub.id}
+                      href={sub.routeQuery || sub.route}
                       className="w-fit mr-2 pt-2 caption-sm sm:body-sm"
+                      onClick={() =>
+                        stats.label == 'شعبه' &&
+                        Cookies.set('branchs', `${sub.label}`, { path: '/' })
+                      }
                     >
                       {sub.label}
-                    </span>
+                    </Link>
                   ))}
                 </AccordionContent>
               </AccordionItem>
