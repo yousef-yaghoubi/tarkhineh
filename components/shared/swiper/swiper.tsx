@@ -34,7 +34,7 @@ function SwiperMain() {
           height="40"
           viewBox="0 0 24 24"
           fill="none"
-          className='hidden sm:flex'
+          className="hidden sm:flex"
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
@@ -49,7 +49,12 @@ function SwiperMain() {
             <span className="text-tint-1 h6 md:h4 lg:h2">
               تجربه غذای سالم و گیاهی به سبک ترخینه
             </span>
-            <Button btn='fill' theme='Primary' title='سفارش آنلاین غذا' btnSize='h-[24px] w-[91px] sm:h-[32px] sm:w-[120px] mt-8 md:mt-16 caption-sm sm:caption-md md:button-lg'/>
+            <Button
+              btn="fill"
+              theme="Primary"
+              title="سفارش آنلاین غذا"
+              btnSize="h-[24px] w-[91px] sm:h-[32px] sm:w-[120px] md:w-[184px] md:h-10 mt-8 md:mt-16 caption-sm sm:caption-md md:button-lg"
+            />
           </div>
         </div>
       </SwiperSlide>
@@ -59,7 +64,12 @@ function SwiperMain() {
             <span className="text-tint-1 h6 md:h4 lg:h2">
               طعم بی‌نظیر طبیعت!
             </span>
-            <Button btn='fill' theme='Primary' title='سفارش آنلاین غذا' btnSize='h-[24px] w-[91px] sm:h-[32px] sm:w-[120px] mt-8 md:mt-16  caption-sm sm:caption-md md:button-lg'/>
+            <Button
+              btn="fill"
+              theme="Primary"
+              title="سفارش آنلاین غذا"
+              btnSize="h-[24px] w-[91px] sm:h-[32px] sm:w-[120px] md:w-[184px] md:h-10 mt-8 md:mt-16  caption-sm sm:caption-md md:button-lg"
+            />
           </div>
         </div>
       </SwiperSlide>
@@ -69,7 +79,12 @@ function SwiperMain() {
             <span className="text-tint-1 h6 md:h4 lg:h2">
               لذت غذای سالم و گیاهی را با ترخینه تجربه کنید!
             </span>
-            <Button btn='fill' theme='Primary' title='سفارش آنلاین غذا' btnSize='h-[24px] w-[91px] sm:h-[32px] sm:w-[120px] mt-8 md:mt-16  caption-sm sm:caption-md md:button-lg'/>
+            <Button
+              btn="fill"
+              theme="Primary"
+              title="سفارش آنلاین غذا"
+              btnSize="h-[24px] w-[91px] sm:h-[32px] sm:w-[120px] md:w-[184px] md:h-10 mt-8 md:mt-16  caption-sm sm:caption-md md:button-lg"
+            />
           </div>
         </div>
       </SwiperSlide>
@@ -80,7 +95,7 @@ function SwiperMain() {
           height="40"
           viewBox="0 0 24 24"
           fill="none"
-          className='hidden sm:flex'
+          className="hidden sm:flex"
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
