@@ -10,16 +10,35 @@ import 'swiper/css/navigation';
 // import required modules
 import { Pagination, Navigation } from 'swiper/modules';
 import Button from '../button/Button';
-function SwiperMain() {
+import Image from 'next/image';
+interface Slide {
+  id: number;
+  title?: string;
+  img: string;
+  imgMobile: string;
+  alt: string;
+}
+
+function SwiperMain({
+  slides,
+  pagination,
+  showBtn,
+}: {
+  slides: Slide[];
+  pagination?: boolean;
+  showBtn?: boolean;
+}) {
   return (
     <Swiper
-      pagination={{
-        el: '.swiper-pagination',
-        clickable: true,
-        renderBullet: function (index, className) {
-          return `<span class="${className}"></span>`;
-        },
-      }}
+      pagination={
+        pagination && {
+          el: '.swiper-pagination',
+          clickable: true,
+          renderBullet: function (index, className) {
+            return `<span class="${className}"></span>`;
+          },
+        }
+      }
       loop
       navigation={{
         prevEl: '.prev',
@@ -28,13 +47,13 @@ function SwiperMain() {
       modules={[Pagination, Navigation]}
       className="mySwiper w-full h-[176px] md:h-[336px] drop-shadow-shadow-4"
     >
-      <button className="next">
+      <div className={`${pagination == true ? 'hidden' : 'flex'} sm:flex bg-gradient-to-r from-[rgba(0,0,0,0.75)] to-transparent w-[48px] md:w-[136px] h-full text-white absolute top-1/2 left-4 md:left-16 z-20 transform -translate-x-1/2 -translate-y-1/2 items-center`}>
         <svg
-          width="40"
-          height="40"
+          width="24"
+          height="24"
           viewBox="0 0 24 24"
           fill="none"
-          className="hidden sm:flex"
+          className={`${pagination == true ? 'hidden' : 'flex'} sm:flex next cursor-pointer !w-6 !h-6 md:!w-12 md:!h-12 absolute left-4`}
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
@@ -42,60 +61,52 @@ function SwiperMain() {
             fill="white"
           />
         </svg>
-      </button>
-      <SwiperSlide className="text-center text-lg flex justify-center items-center">
-        <div className="w-full h-full bg-[url(/image/bannerSlider1Mobile.jpg)] xl:bg-[url(/image/bannerSlider1.jpg)] bg-cover flex justify-center items-center">
-          <div className="flex flex-col justify-center w-fit items-center mt-10 md:mt-16">
-            <span className="text-tint-1 h6 md:h4 lg:h2">
-              تجربه غذای سالم و گیاهی به سبک ترخینه
-            </span>
-            <Button
-              btn="fill"
-              theme="Primary"
-              title="سفارش آنلاین غذا"
-              btnSize="h-[24px] w-[91px] sm:h-[32px] sm:w-[120px] md:w-[184px] md:h-10 mt-8 md:mt-16 caption-sm sm:caption-md md:button-lg"
+      </div>
+      {slides.map((slide) => (
+        <SwiperSlide
+          className="text-center text-lg flex justify-center items-center"
+          key={slide.id}
+        >
+          <div className={`w-full h-full flex justify-center items-center`}>
+            <Image
+              src={slide.img}
+              alt={slide.alt}
+              fill
+              className="!hidden xl:!flex"
             />
-          </div>
-        </div>
-      </SwiperSlide>
-      <SwiperSlide className="text-center text-lg flex justify-center items-center">
-        <div className="w-full h-full bg-[url(/image/bannerSlider2Mobile.jpg)] xl:bg-[url(/image/bannerSlider2.jpg)] bg-cover flex justify-center items-center">
-          <div className="flex flex-col justify-center w-fit items-center mt-10 md:mt-16">
-            <span className="text-tint-1 h6 md:h4 lg:h2">
-              طعم بی‌نظیر طبیعت!
-            </span>
-            <Button
-              btn="fill"
-              theme="Primary"
-              title="سفارش آنلاین غذا"
-              btnSize="h-[24px] w-[91px] sm:h-[32px] sm:w-[120px] md:w-[184px] md:h-10 mt-8 md:mt-16  caption-sm sm:caption-md md:button-lg"
+            <Image
+              src={slide.imgMobile}
+              alt={slide.alt}
+              fill
+              className="!flex xl:!hidden"
             />
-          </div>
-        </div>
-      </SwiperSlide>
-      <SwiperSlide className="text-center text-lg flex justify-center items-center">
-        <div className="w-full h-full bg-[url(/image/bannerSlider3Mobile.jpg)] xl:bg-[url(/image/bannerSlider3.jpg)] bg-cover flex justify-center items-center">
-          <div className="flex flex-col justify-center w-fit items-center mt-10 md:mt-16">
-            <span className="text-tint-1 h6 md:h4 lg:h2">
-              لذت غذای سالم و گیاهی را با ترخینه تجربه کنید!
-            </span>
-            <Button
-              btn="fill"
-              theme="Primary"
-              title="سفارش آنلاین غذا"
-              btnSize="h-[24px] w-[91px] sm:h-[32px] sm:w-[120px] md:w-[184px] md:h-10 mt-8 md:mt-16  caption-sm sm:caption-md md:button-lg"
-            />
-          </div>
-        </div>
-      </SwiperSlide>
 
-      <button className="prev hidden sm:flex">
+            <div className="flex flex-col justify-center w-fit items-center mt-10 md:mt-16">
+              {slide.title && (
+                <span className="text-tint-1 h6 md:h4 lg:h2 z-30 select-none">
+                  {slide?.title}
+                </span>
+              )}
+              {showBtn && (
+                <Button
+                  btn="fill"
+                  theme="Primary"
+                  title="سفارش آنلاین غذا"
+                  btnSize="h-[24px] w-[91px] sm:h-[32px] sm:w-[120px] md:w-[184px] md:h-10 mt-8 md:mt-16 caption-sm sm:caption-md md:button-lg"
+                />
+              )}
+            </div>
+          </div>
+        </SwiperSlide>
+      ))}
+
+      <div className={`${pagination == true ? 'hidden' : 'flex'} bg-gradient-to-l from-[rgba(0,0,0,0.75)] to-transparent sm:flex w-[136px] h-full text-white absolute top-1/2 right-[-4.25em] z-20 transform -translate-x-1/2 -translate-y-1/2 items-center`}>
         <svg
-          width="40"
-          height="40"
+          width="24"
+          height="24"
           viewBox="0 0 24 24"
           fill="none"
-          className="hidden sm:flex"
+          className={`${pagination == true ? 'hidden' : 'flex'} sm:flex !w-6 !h-6 md:!w-12 md:!h-12 prev cursor-pointer absolute right-4`}
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
@@ -103,8 +114,12 @@ function SwiperMain() {
             fill="white"
           />
         </svg>
-      </button>
-      <span className="swiper-pagination !w-[82px] h-[19px] bg-[url(/image/Rectangle2Mobile.png)] dark:bg-[url(/image/Rectangle2MobileDark.png)] md:!w-[154px] md:h-7 md:bg-[url(/image/Rectangle2.png)] dark:md:bg-[url(/image/Rectangle2Dark.png)] mx-auto inset-0 !bottom-0 flex justify-center items-center"></span>
+      </div>
+      <span
+        className={`swiper-pagination !w-[82px] h-[19px] bg-[url(/image/Rectangle2Mobile.png)] dark:bg-[url(/image/Rectangle2MobileDark.png)] md:!w-[154px] md:h-7 md:bg-[url(/image/Rectangle2.png)] dark:md:bg-[url(/image/Rectangle2Dark.png)] mx-auto inset-0 !bottom-0 justify-center items-center ${
+          pagination ? 'flex' : 'hidden'
+        }`}
+      ></span>
     </Swiper>
   );
 }

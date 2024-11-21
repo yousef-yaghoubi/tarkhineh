@@ -17,7 +17,7 @@ function CardFoodBranch() {
         fill
         className="w-full !h-[109px] md:!h-[240px]"
       />
-      <div className="absolute bottom-0 h-[calc(100%_-_109px)] md:h-[calc(100%_-_240px)] w-full flex flex-col items-center border border-gray-4 !border-t-0 rounded-b">
+      <div className="absolute bottom-0 h-[calc(100%_-_109px)] md:h-[calc(100%_-_240px)] w-full flex flex-col items-center border border-gray-4 dark:border-background-2 !border-t-0 rounded-b">
         <span className="caption-md mt-1 md:h7 md:mt-2">غذای گیاهی</span>
 
         <div className="flex justify-between w-full h-10 md:h-[51px] px-2 mt-1 md:mt-4">

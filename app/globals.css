@@ -163,31 +163,9 @@ nav[aria-label="Main"] > div > div{
   }
 }
 
-.prev{
-  width: 2em;
-  height: 2em;
-  color: white;
-  position: absolute;
-  top: 50%;
-  right: 0;
-  z-index: 2;
-  display: flex;
-  bottom: 50%;
-  transform: translate(-50%, -50%);
-}
 
-.next{
-  width: 2em;
-  height: 2em;
-  color: white;
-  position: absolute;
-  top: 50%;
-  left: 2em;
-  z-index: 2;
-  display: flex;
-  bottom: 50%;
-  transform: translate(-50%, -50%);
-}
+
+
 
 
 .loader {

@@ -3,14 +3,14 @@ import CardTarkhineGardi from '@/components/shared/card/CardTarkhineGardi';
 import MiniCardMenu from '@/components/shared/card/MiniCardMenu';
 import SearchBox from '@/components/shared/searchBox/SearchBox';
 import SwiperMain from '@/components/shared/swiper/swiper';
-import { branchs, miniCards } from '@/lib/dataPublic';
+import { arraySlideMain, branchs, miniCards } from '@/lib/dataPublic';
 import Image from 'next/image';
 import React from 'react';
 
 function Home() {
   return (
     <div>
-      <SwiperMain />
+      <SwiperMain slides={arraySlideMain} pagination showBtn/>
       <div className='w-full flex justify-center'>
         <SearchBox classes='w-[90%] mt-4 sm:hidden'/>
       </div>

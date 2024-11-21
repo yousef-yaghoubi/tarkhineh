@@ -34,7 +34,7 @@ const config: Config = {
       },
       colors: {
         'background-1': '#232b33',
-        'background-2': '#22282f',
+        'background-2': '#2d3743',
         'primary': '#417F56',
         'shade-1': '#396F4B',
         'shade-2': '#315F41',

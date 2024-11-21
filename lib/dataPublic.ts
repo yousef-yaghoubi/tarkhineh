@@ -91,3 +91,32 @@ export const iconDetails = [
     class: '',
   },
 ];
+
+export const arraySlideMain = [
+  {
+    id: 1,
+    title: 'تجربه غذای سالم و گیاهی به سبک ترخینه',
+    img: '/image/bannerSlider1.jpg',
+    imgMobile: '/image/bannerSlider1Mobile.jpg',
+    alt:'تجربه غذای سالم'
+  },
+  {
+    id: 2,
+    title: 'طعم بی‌نظیر طبیعت!',
+    img: '/image/bannerSlider2.jpg',
+    imgMobile: '/image/bannerSlider2Mobile.jpg',
+    alt:'طعم بی‌نظیر طبیعت'
+  },
+  {
+    id: 3,
+    title: 'لذت غذای سالم و گیاهی را با ترخینه تجربه کنید!',
+    img: '/image/bannerSlider3.jpg',
+    imgMobile: '/image/bannerSlider3Mobile.jpg',
+    alt:'لذت غذای سالم'
+  },
+];
+
+export const arraySlideBranch = [
+  {id:1, img: '/image/ekbatanBranch1.jpg', imgMobile: '/image/ekbatanBranch1Mobile.jpg', alt: 'ekbatan Branch'},
+  {id:2, img: '/image/ekbatanBranch1.jpg', imgMobile: '/image/ekbatanBranch1Mobile.jpg', alt: 'ekbatan Branch'}
+]
