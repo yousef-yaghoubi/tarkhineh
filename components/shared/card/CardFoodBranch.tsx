@@ -10,7 +10,7 @@ function CardFoodBranch() {
   const price = 150000;
   const quantityRate = 62;
   return (
-    <div className="m-10 w-[168px] md:w-72 h-[231px] md:h-[417px] overflow-hidden rounded-sm relative hover:md:shadow-shadow-10  flex flex-col items-center">
+    <div className="w-[168px] md:w-72 h-[231px] md:h-[417px] overflow-hidden rounded-sm relative hover:md:shadow-shadow-10  flex flex-col items-center bg-white dark:bg-background-1">
       <Image
         src="/image/imageFood.jpg"
         alt="food"
@@ -28,7 +28,7 @@ function CardFoodBranch() {
                 alt="like"
                 width={16}
                 height={16}
-                className="w-4 h-4 ml-1"
+                className="!w-4 !h-4 ml-1"
               />
               <span className="caption-sm hidden md:flex text-gray-5">
                 افزودن به علاقمندی ها
@@ -41,7 +41,7 @@ function CardFoodBranch() {
                 alt="rate"
                 width={16}
                 height={16}
-                className="w-4 h-4"
+                className="!w-4 !h-4"
               />
               <span className="caption-sm md:button-sm hidden md:flex">
                 {convertToPersianNumbers(rate.toString())}

@@ -10,6 +10,9 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      position: {
+        unset: 'unset',
+      },
       fontFamily: {
         estedad: ['Estedad'],
       },

@@ -189,6 +189,7 @@ nav[aria-label="Main"] > div > div{
   transform: translate(-50%, -50%);
 }
 
+
 .loader {
   border: 3px solid; /* Light grey */
   border-top: 3px solid rgba(0, 0, 0, 0); /* Blue */
