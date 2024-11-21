@@ -33,8 +33,8 @@ const config: Config = {
         'shadow-16': '0 16px 16px rgba(0,0,0,25%)',
       },
       colors: {
-        'background-1': '#202425',
-        'background-2': '#1D1F20',
+        'background-1': '#232b33',
+        'background-2': '#22282f',
         'primary': '#417F56',
         'shade-1': '#396F4B',
         'shade-2': '#315F41',

@@ -61,7 +61,7 @@ const FoodSlider = ({theme, title}: Props) => {
         {title}
       </span>
       <div className="flex">
-        <div className={`w-[5%] h-full ${theme == 'Primary' ?'bg-[#417f567d]' : 'bg-[#ffffff87]'} z-10 hidden md:flex`}></div>
+        <div className={`w-[5%] h-full ${theme == 'Primary' ?'bg-[#417f567d]' : 'bg-[#ffffff87] dark:bg-[#202425a6]'} z-10 hidden md:flex`}></div>
         <Swiper
           modules={[Navigation]}
           navigation={{
@@ -88,7 +88,7 @@ const FoodSlider = ({theme, title}: Props) => {
               slidesPerView: 2.1,
             },
             900: {
-              slidesPerView: 2.5,
+              slidesPerView: 2.3,
             },
             1000: {
               slidesPerView: 3.1,
@@ -140,7 +140,7 @@ const FoodSlider = ({theme, title}: Props) => {
             </svg>
           </button>
         </Swiper>
-        <div className={`w-[5%] h-full ${theme == 'Primary' ?'bg-[#417f567d]' : 'bg-[#ffffff87]'} z-10 hidden md:flex`}></div>
+        <div className={`w-[5%] h-full ${theme == 'Primary' ?'bg-[#417f567d]' : 'bg-[#ffffff87] dark:bg-[#202425a6]'} z-10 hidden md:flex`}></div>
       </div>
     </div>
   );

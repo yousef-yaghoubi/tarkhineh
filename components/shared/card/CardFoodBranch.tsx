@@ -43,10 +43,10 @@ function CardFoodBranch() {
                 height={16}
                 className="!w-4 !h-4"
               />
-              <span className="caption-sm md:button-sm hidden md:flex">
+              <span className="caption-sm md:button-sm flex">
                 {convertToPersianNumbers(rate.toString())}
                 &nbsp;
-                <span className="caption-sm text-gray-5 flex items-center">
+                <span className="caption-sm text-gray-5 items-center hidden md:flex">
                   ({convertToPersianNumbers(quantityRate.toLocaleString())}{' '}
                   امتیاز)
                 </span>
