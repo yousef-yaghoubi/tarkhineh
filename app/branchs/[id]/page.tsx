@@ -5,7 +5,9 @@ import React from 'react'
 import FoodSlider from './FoodSlider'
 import Button from '@/components/shared/button/Button'
 import { cookies } from 'next/headers'
-import { arraySlideBranch, arraySlideMain } from '@/lib/dataPublic'
+import { arraySlideMain } from '@/lib/dataPublic'
+import SwiperDeatail from './SwiperDeatail'
+import Comment from './Comment'
 
 async function DynamicBranchs() {
   const cookieStore =await cookies()
@@ -27,7 +29,15 @@ async function DynamicBranchs() {
       <span className='h6 md:h5 lg:h4 mt-6 md:mt-9 lg:mt-12 mb-3 md:mb-[18px]'>
         {branch}
       </span>
-      <SwiperMain slides={arraySlideBranch}/>
+
+
+      <SwiperDeatail/>
+
+      <span className='h6 md:h5 lg:h4 mt-6 md:mt-9 lg:mt-12 mb-3 md:mb-[18px]'>
+        نظرات کاربران
+      </span>
+
+      <Comment/>
     </div>
   )
 }
