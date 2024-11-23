@@ -120,3 +120,46 @@ export const arraySlideBranch = [
   {id:1, img: '/image/ekbatanBranch1.jpg', imgMobile: '/image/ekbatanBranch1Mobile.jpg', alt: 'ekbatan Branch'},
   {id:2, img: '/image/ekbatanBranch1.jpg', imgMobile: '/image/ekbatanBranch1Mobile.jpg', alt: 'ekbatan Branch'}
 ]
+
+export const items = [
+  {
+    id: 1,
+    title: 'پیتزا قارچ',
+    price: '۱۲۵,۰۰۰ تومان',
+    img: '/images/imageFood.jpg', // مسیر تصویر پیتزا
+    rating: 4.5,
+    orders: 32,
+  },
+  {
+    id: 2,
+    title: 'کالزونه اسفناج',
+    price: '۱۷۷,۰۰۰ تومان',
+    img: '/images/imageFood.jpg', // مسیر تصویر کالزونه
+    rating: 4.7,
+    orders: 25,
+  },
+  {
+    id: 3,
+    title: 'بادمجان شکم‌پر',
+    price: '۱۳۶,۰۰۰ تومان',
+    img: '/images/imageFood.jpg', // مسیر تصویر بادمجان
+    rating: 4.3,
+    orders: 19,
+  },
+  {
+    id: 4,
+    title: 'دلمه برگ کلم',
+    price: '۱۰۹,۰۰۰ تومان',
+    img: '/images/imageFood.jpg', // مسیر تصویر دلمه
+    rating: 4.8,
+    orders: 42,
+  },
+  {
+    id: 5,
+    title: 'دلمه برگ کلم',
+    price: '۱۰۹,۰۰۰ تومان',
+    img: '/images/imageFood.jpg', // مسیر تصویر دلمه
+    rating: 4.8,
+    orders: 42,
+  },
+];
