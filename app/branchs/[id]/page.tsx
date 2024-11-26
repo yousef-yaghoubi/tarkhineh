@@ -8,10 +8,12 @@ import SwiperDeatail from './SwiperDeatail';
 import Comment from './Comment';
 import SliderSwiper from './SliderSwiper';
 
+
 async function DynamicBranchs() {
   const cookieStore = await cookies();
   const branchCookie = await cookieStore.get('branchs');
   const branch = branchCookie?.value;
+
 
   const items = [
     {
@@ -63,9 +65,24 @@ async function DynamicBranchs() {
         <SearchBox classes="w-[90%] mt-4 sm:hidden" />
       </div>
 
-      <SliderSwiper theme="White" title="پیشنهاد ویژه" typeOfSlide='Food' slideArray={items}/>
-      <SliderSwiper theme="Primary" title="غذاهای محبوب" typeOfSlide='Food' slideArray={items}/>
-      <SliderSwiper theme="White" title="غذاهای غیر ایرانی" typeOfSlide='Food' slideArray={items}/>
+      <SliderSwiper
+        theme="White"
+        title="پیشنهاد ویژه"
+        typeOfSlide="Food"
+        slideArray={items}
+      />
+      <SliderSwiper
+        theme="Primary"
+        title="غذاهای محبوب"
+        typeOfSlide="Food"
+        slideArray={items}
+      />
+      <SliderSwiper
+        theme="White"
+        title="غذاهای غیر ایرانی"
+        typeOfSlide="Food"
+        slideArray={items}
+      />
       <Button
         btn="stroke"
         btnSize="w-[152px] h-8 md:w-[184px] md:h-10 caption-lg md:button-lg"
@@ -85,7 +102,7 @@ async function DynamicBranchs() {
         نظرات کاربران
       </span>
 
-      <SliderSwiper theme='White' typeOfSlide='Comment' slideArray={items}/>
+      <SliderSwiper theme="White" typeOfSlide="Comment" slideArray={items} />
       <Comment />
     </div>
   );

@@ -8,12 +8,14 @@ import Image from 'next/image';
 import React from 'react';
 
 function Home() {
+
   return (
     <div>
       <SwiperMain slides={arraySlideMain} pagination showBtn/>
       <div className='w-full flex justify-center'>
         <SearchBox classes='w-[90%] mt-4 sm:hidden'/>
       </div>
+      
       <section className="w-full max-w-[1222px] inset-0 m-auto flex items-center flex-col justify-around mt-8 !mb-16">
         <h4 className="h4">منوی رستوران</h4>
         <div className="w-full grid grid-cols-2 justify-items-center sm:grid-cols-4 lg:mt-8">
