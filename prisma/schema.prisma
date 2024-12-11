@@ -9,17 +9,147 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
-  url      = env("DATABASE_URL")
+  provider = "mysql"
+  url      = env("DataBase_URI")
 }
 
 model User {
-  id        Int     @id @default(autoincrement())
-  firstName String?
-  lastName  String?
-  phone     String  @unique
-  nickName  String?
-  email     String?
-  birthday  String?
+  id             Int              @id @default(autoincrement())
+  firstName      String?
+  lastName       String?
+  nickName       String?
+  profile        String?
+  phone          String           @unique
+  email          String?
+  birthDay       DateTime?
+  orderTrack     OrderTracking[]
+  addresses      Addresses[]
+  commentsFood   CommentsFood[]
+  commentsBranch CommentsBranch[]
+  favorite       Favorite?
 }
 
+model Favorite {
+  id     Int     @id @default(autoincrement())
+  userId Int     @unique
+  user   User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  foods  Foods[]
+}
+
+model Addresses {
+  id           Int      @id @default(autoincrement())
+  titleAddress String
+  meReciver    Boolean?
+  phone        Int?
+  nameReciver  String?
+  address      String?
+  userId       Int
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Foods {
+  id                  Int                   @id @default(autoincrement())
+  name                String
+  images              Json
+  desc                String
+  price               Int
+  order               Int?
+  type                TypeFood              @relation(fields: [typeId], references: [id])
+  typeId              Int
+  categorie           CategorieFood         @relation(fields: [categorieId], references: [id])
+  categorieId         Int
+  commentsFood        CommentsFood[]
+  favoriteId          Int?
+  favorite            Favorite?             @relation(fields: [favoriteId], references: [id])
+  branchId            Int
+  branch              Branchs               @relation(fields: [branchId], references: [id])
+  foodOfOrderTracking FoodOfOrderTracking[]
+}
+
+model TypeFood {
+  id   Int     @id @default(autoincrement())
+  name String  @unique
+  food Foods[]
+}
+
+model CategorieFood {
+  id   Int     @id @default(autoincrement())
+  name String
+  food Foods[]
+}
+
+model CommentsFood {
+  id        Int      @id @default(autoincrement())
+  desc      String
+  score     Float
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    Int
+  createdAt DateTime @default(now())
+  public    Boolean? @default(false)
+  food      Foods    @relation(fields: [foodId], references: [id], onDelete: Cascade)
+  foodId    Int
+}
+
+model CommentsBranch {
+  id        Int      @id @default(autoincrement())
+  desc      String   @db.VarChar(255)
+  score     Float
+  userId    Int
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  branchId  Int?
+  branch    Branchs? @relation(fields: [branchId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+}
+
+model Branchs {
+  id             Int              @id @default(autoincrement())
+  name           String           @unique
+  address        String
+  phones         Json
+  openDuration   String
+  images         Json
+  foods          Foods[]
+  commentsBranch CommentsBranch[]
+}
+
+model OrderTracking {
+  id              Int                   @id @default(autoincrement())
+  branchId        Int
+  foods           FoodOfOrderTracking[]
+  userId          Int
+  user            User                  @relation(fields: [userId], references: [id])
+  date            DateTime              @default(now())
+  sendMethodId    Int
+  sendMethod      SendMethod            @relation(fields: [sendMethodId], references: [id])
+  statusId        Int
+  status          StatusOfOrderTracking @relation(fields: [statusId], references: [id])
+  paymentMethodId Int
+  paymentMethod   PaymentMethod         @relation(fields: [paymentMethodId], references: [id])
+}
+
+model SendMethod {
+  id         Int             @id @default(autoincrement())
+  name       String
+  orderTrack OrderTracking[]
+}
+
+model StatusOfOrderTracking {
+  id         Int             @id @default(autoincrement())
+  name       String
+  orderTrack OrderTracking[]
+}
+
+model PaymentMethod {
+  id         Int             @id @default(autoincrement())
+  name       String
+  orderTrack OrderTracking[]
+}
+
+model FoodOfOrderTracking {
+  id           Int           @id @default(autoincrement())
+  foodId       Int
+  food         Foods         @relation(fields: [foodId], references: [id])
+  orderTrackId Int
+  orderTrack   OrderTracking @relation(fields: [orderTrackId], references: [id])
+  quantity     Int
+}
