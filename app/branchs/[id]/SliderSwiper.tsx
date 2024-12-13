@@ -7,13 +7,19 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import CardFoodBranch from '@/components/shared/card/CardFoodBranch';
 import Comment from './Comment';
-interface FoodType {
+interface CountOfCooment{
+  commentsFood: number
+}
+
+interface FoodType{
   id: number;
-  title: string;
+  name: string;
+  image: string;
+  desc : string;
   price: number;
-  img: string; // مسیر تصویر پیتزا
-  rating: number;
-  orders: number;
+  order: number ;
+  rating: number ;
+  _count : CountOfCooment
 }
 interface CommentType {
   user: string;
@@ -23,17 +29,10 @@ interface CommentType {
 interface Props {
   theme: 'Primary' | 'White';
   title?: string;
-  typeOfSlide: 'Food' | 'Comment';
-  slideArray: FoodType[] | CommentType[]
+  foodSlides?: FoodType[];
+  commentSlides?: CommentType[];
 }
-const SliderSwiper = ({
-  theme,
-  title,
-  typeOfSlide,
-  slideArray
-}: Props) => {
-  
-
+const SliderSwiper = ({ theme, title, foodSlides, commentSlides }: Props) => {
   return (
     <div
       className={`w-full h-[301px] md:h-[555px] flex flex-col overflow-hidden ${
@@ -64,7 +63,7 @@ const SliderSwiper = ({
             nextEl: '.nextSlide',
           }}
           pagination={
-            typeOfSlide == 'Comment' && {
+            commentSlides !== undefined && {
               el: '.swiper-pagination',
               clickable: true,
               renderBullet: function (index, className) {
@@ -73,7 +72,7 @@ const SliderSwiper = ({
             }
           }
           breakpoints={
-            typeOfSlide == 'Food'
+            foodSlides !== undefined
               ? {
                   200: {
                     slidesPerView: 1.5,
@@ -107,8 +106,8 @@ const SliderSwiper = ({
                   },
                 }
               : {
-                  200:{
-                    slidesPerView:1.1
+                  200: {
+                    slidesPerView: 1.1,
                   },
                   370: {
                     slidesPerView: 1.3,
@@ -116,27 +115,27 @@ const SliderSwiper = ({
                   480: {
                     slidesPerView: 1.5,
                   },
-                  600:{
-                    slidesPerView:2
+                  600: {
+                    slidesPerView: 2,
                   },
-                  770:{
-                    slidesPerView:1.1
+                  770: {
+                    slidesPerView: 1.1,
                   },
-                  900:{
-                    slidesPerView:1.3
+                  900: {
+                    slidesPerView: 1.3,
                   },
-                  1050:{
-                    slidesPerView:1.5
+                  1050: {
+                    slidesPerView: 1.5,
                   },
-                  1250:{
-                    slidesPerView:1.8
+                  1250: {
+                    slidesPerView: 1.8,
                   },
-                  1500:{
-                    slidesPerView:2.1
+                  1500: {
+                    slidesPerView: 2.1,
                   },
-                  1700:{
-                    slidesPerView:2.5
-                  }
+                  1700: {
+                    slidesPerView: 2.5,
+                  },
                 }
           }
           className="!overflow-visible w-[90%] md:w-11/12 relative"
@@ -155,8 +154,9 @@ const SliderSwiper = ({
               />
             </svg>
           </button>
-          {typeOfSlide == 'Comment'
-            ? slideArray?.map((comment) => (
+
+          {commentSlides !== undefined
+            ? commentSlides?.map((comment) => (
                 <SwiperSlide
                   key={comment.id}
                   className="p-0 !flex justify-center items-center"
@@ -164,12 +164,12 @@ const SliderSwiper = ({
                   <Comment />
                 </SwiperSlide>
               ))
-            : slideArray?.map((item) => (
+            : foodSlides?.map((item) => (
                 <SwiperSlide
                   key={item.id}
                   className="p-0 !flex justify-center items-center"
                 >
-                  <CardFoodBranch />
+                  <CardFoodBranch item={item}/>
                 </SwiperSlide>
               ))}
           <button className="nextSlide absolute left-0 !z-20 top-[55%] bottom-1/2 justify-center items-center translate-y-1/2 disabled:hidden w-10 h-10 bg-white rounded-md p-0 border border-gray-4 hidden md:flex">
@@ -188,7 +188,7 @@ const SliderSwiper = ({
           </button>
           <span
             className={`swiper-pagination !w-[82px] h-[19px] mx-auto inset-0 justify-center items-center !-bottom-8 ${
-              typeOfSlide == 'Comment' ? 'flex' : 'hidden'
+              commentSlides !== undefined ? 'flex' : 'hidden'
             }`}
           ></span>
         </Swiper>

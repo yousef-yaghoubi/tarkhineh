@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --turbo",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
@@ -37,7 +37,8 @@
     "swiper": "^11.1.14",
     "tailwind-merge": "^2.5.3",
     "tailwindcss-animate": "^1.0.7",
-    "twilio": "^5.3.7"
+    "twilio": "^5.3.7",
+    "zod": "^3.24.1"
   },
   "devDependencies": {
     "@types/js-cookie": "^3.0.6",

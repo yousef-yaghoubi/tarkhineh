@@ -50,10 +50,11 @@ model Addresses {
 model Foods {
   id                  Int                   @id @default(autoincrement())
   name                String
-  images              Json
+  image               String                @db.LongText
   desc                String
   price               Int
   order               Int?
+  rating              Float?                @default(0)
   type                TypeFood              @relation(fields: [typeId], references: [id])
   typeId              Int
   categorie           CategorieFood         @relation(fields: [categorieId], references: [id])
@@ -63,6 +64,7 @@ model Foods {
   favorite            Favorite?             @relation(fields: [favoriteId], references: [id])
   branchId            Int
   branch              Branchs               @relation(fields: [branchId], references: [id])
+  specialOffer        Boolean               @default(false)
   foodOfOrderTracking FoodOfOrderTracking[]
 }
 

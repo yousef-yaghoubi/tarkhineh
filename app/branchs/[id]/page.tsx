@@ -7,12 +7,27 @@ import { arraySlideMain } from '@/lib/dataPublic';
 import SwiperDeatail from './SwiperDeatail';
 import Comment from './Comment';
 import SliderSwiper from './SliderSwiper';
+import { GetFoodsSpecial } from '@/app/actions/branchAction';
 
+interface CountOfCooment{
+  commentsFood: number
+}
 
+interface SpecialOff{
+  id: number;
+  name: string;
+  image: string;
+  desc : string;
+  price: number;
+  order: number ;
+  rating: number ;
+  _count : CountOfCooment
+}
 async function DynamicBranchs() {
   const cookieStore = await cookies();
-  const branchCookie = await cookieStore.get('branchs');
-  const branch = branchCookie?.value;
+  const branch = await cookieStore.get('branchs')?.value;
+  
+  const specialOffer: SpecialOff  = await GetFoodsSpecial(branch!)
 
 
   const items = [
@@ -68,10 +83,9 @@ async function DynamicBranchs() {
       <SliderSwiper
         theme="White"
         title="پیشنهاد ویژه"
-        typeOfSlide="Food"
-        slideArray={items}
+        foodSlides={specialOffer}
       />
-      <SliderSwiper
+      {/* <SliderSwiper
         theme="Primary"
         title="غذاهای محبوب"
         typeOfSlide="Food"
@@ -82,7 +96,7 @@ async function DynamicBranchs() {
         title="غذاهای غیر ایرانی"
         typeOfSlide="Food"
         slideArray={items}
-      />
+      /> */}
       <Button
         btn="stroke"
         btnSize="w-[152px] h-8 md:w-[184px] md:h-10 caption-lg md:button-lg"
@@ -93,7 +107,7 @@ async function DynamicBranchs() {
       />
 
       <span className="h6 md:h5 lg:h4 mt-6 md:mt-9 lg:mt-12 mb-3 md:mb-[18px]">
-        {branch}
+        {`شعبه ${branch}`}
       </span>
 
       <SwiperDeatail />
@@ -101,8 +115,10 @@ async function DynamicBranchs() {
       <span className="h6 md:h5 lg:h4 mt-6 md:mt-9 lg:mt-12 mb-3 md:mb-[18px]">
         نظرات کاربران
       </span>
+      
+      {/* <SliderSwiper theme="White" typeOfSlide="Comment" slideArray={items} /> */}
 
-      <SliderSwiper theme="White" typeOfSlide="Comment" slideArray={items} />
+
       <Comment />
     </div>
   );

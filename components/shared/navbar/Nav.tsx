@@ -53,10 +53,10 @@ function Nav({ menuBar }: { menuBar: boolean }) {
       route: '/branchs',
       subMain: [
         // { id: 1, label: 'شعبه', route: '/branchs' },
-        { id: 2, label: 'شعبه ونک', routeQuery: '/branchs/vanak' },
-        { id: 3, label: 'شعبه اکباتان', routeQuery: '/branchs/ekbatan' },
-        { id: 4, label: 'شعبه چالوس', routeQuery: '/branchs/chaloos' },
-        { id: 5, label: 'شعبه اقدسیه', routeQuery: '/branchs/aghdasie' },
+        { id: 2, label: 'ونک', routeQuery: '/branchs/vanak' },
+        { id: 3, label: 'اکباتان', routeQuery: '/branchs/ekbatan' },
+        { id: 4, label: 'چالوس', routeQuery: '/branchs/chaloos' },
+        { id: 5, label: 'اقدسیه', routeQuery: '/branchs/aghdasie' },
       ],
       icon: (
         <svg
@@ -343,7 +343,7 @@ function Nav({ menuBar }: { menuBar: boolean }) {
                         : 'caption-sm sm:body-sm lg:body-xl'
                     }`}
                   >
-                    {(stats.label == 'شعبه' && sessionCookie) ||
+                    {(stats.label == 'شعبه' && sessionCookie && `شعبه ${sessionCookie}`) ||
                       stats.subMain?.find((sub) => sub.routeQuery == pathName)
                         ?.label || stats.label}
                   </NavigationMenuTrigger>

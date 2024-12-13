@@ -52,14 +52,15 @@ export async function POST(req: Request) {
 
 export async function GET() {
   try {
-    const foods = await prisma.user.findMany({
+    const foods = await prisma.foods.findMany({
       include:{
-        commentsBranch: {
-          include:{
-            branch: true
+        branch: {
+          select: {
+            id:true,
+            name:true
           }
         }
-      } 
+      }
     })
 
 
