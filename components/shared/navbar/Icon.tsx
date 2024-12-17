@@ -50,7 +50,7 @@ function Icon({ alt, img, imgActive, isActive, quantity, className }: Props) {
       <Modal
         isOpen={isModalOpen}
         onClose={closeModal}
-        title="جستجو"
+        title={<h3 className="caption-lg md:h7">جستجو</h3>}
         desc="لطفا متن خود را تایپ و سپس دکمه Enter را بزنید."
       >
         <SearchBox classes='w-[90%] max-w-[409px]'/>

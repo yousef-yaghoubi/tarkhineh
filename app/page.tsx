@@ -5,6 +5,7 @@ import SearchBox from '@/components/shared/searchBox/SearchBox';
 import SwiperMain from '@/components/shared/swiper/swiper';
 import { arraySlideMain, branchs, miniCards } from '@/lib/dataPublic';
 import Image from 'next/image';
+import Link from 'next/link';
 import React from 'react';
 
 function Home() {
@@ -122,6 +123,8 @@ function Home() {
             />
           ))}
         </div>
+
+        <Link href={'/login'}> login</Link>
       </section>
     </div>
   );

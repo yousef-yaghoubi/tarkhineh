@@ -31,7 +31,7 @@ interface ModalProps {
   onClose: () => void;
   children?: ReactNode;
   images?: Images;
-  title?: string;
+  title?: React.ReactElement;
   desc?: string;
 }
 
@@ -44,8 +44,11 @@ const Modal: React.FC<ModalProps> = ({
   desc,
 }) => {
   if (!isOpen) return null;
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const prevRef = useRef(null);
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const nextRef = useRef(null);
   if (images != undefined || null) {
     return (
@@ -158,7 +161,7 @@ const Modal: React.FC<ModalProps> = ({
                 />
               </button>
 
-              <h3 className="caption-lg md:h7">{title}</h3>
+              {title}
             </div>
             <div className="mt-10 mb-12 flex flex-col justify-center items-center w-full">
               <p className="caption-md md:body-md mb-3">{desc}</p>

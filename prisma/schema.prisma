@@ -19,8 +19,9 @@ model User {
   lastName       String?
   nickName       String?
   profile        String?
-  phone          String           @unique
-  email          String?
+  phone          String?
+  hashPass       String
+  email          String @unique
   birthDay       DateTime?
   orderTrack     OrderTracking[]
   addresses      Addresses[]

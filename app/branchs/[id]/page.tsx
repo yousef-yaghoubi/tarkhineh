@@ -7,28 +7,50 @@ import { arraySlideMain } from '@/lib/dataPublic';
 import SwiperDeatail from './SwiperDeatail';
 import Comment from './Comment';
 import SliderSwiper from './SliderSwiper';
-import { GetFoodsSpecial } from '@/app/actions/branchAction';
+import {
+  GetBranch,
+  GetFoodsNotIrani,
+  GetFoodsPopular,
+  GetFoodsSpecial,
+} from '@/app/actions/branchAction';
 
-interface CountOfCooment{
-  commentsFood: number
+interface CountOfCooment {
+  commentsFood: number;
 }
 
-interface SpecialOff{
+interface Foods {
   id: number;
   name: string;
   image: string;
-  desc : string;
+  desc: string;
   price: number;
-  order: number ;
-  rating: number ;
-  _count : CountOfCooment
+  order: number;
+  rating: number;
+  _count: CountOfCooment;
+}
+
+interface Branch {
+  id: number;
+  name: string;
+  address: string;
+  images: { mobile: [string]; desktop: [string] };
+  phones: { phones: [string] };
+  commentsBranch: {
+    id: number;
+    desc: string;
+    createdAt: Date;
+    score: number;
+    user: { firstName: string; lastName: string };
+  };
 }
 async function DynamicBranchs() {
-  const cookieStore = await cookies();
-  const branch = await cookieStore.get('branchs')?.value;
-  
-  const specialOffer: SpecialOff  = await GetFoodsSpecial(branch!)
+  const branch = await cookies().get('branchs')?.value;
+  // const branch = await cookieStore.get('branchs')?.value;
 
+  const specialOfferFoods: Foods[] = await GetFoodsSpecial(branch!);
+  const popularFoods: Foods[] = await GetFoodsPopular(branch!);
+  const notIraniFoods: Foods[] = await GetFoodsNotIrani(branch!);
+  const branchAction:Branch = await GetBranch(branch!);
 
   const items = [
     {
@@ -83,20 +105,18 @@ async function DynamicBranchs() {
       <SliderSwiper
         theme="White"
         title="پیشنهاد ویژه"
-        foodSlides={specialOffer}
+        foodSlides={specialOfferFoods}
       />
-      {/* <SliderSwiper
+      <SliderSwiper
         theme="Primary"
         title="غذاهای محبوب"
-        typeOfSlide="Food"
-        slideArray={items}
+        foodSlides={popularFoods}
       />
       <SliderSwiper
         theme="White"
         title="غذاهای غیر ایرانی"
-        typeOfSlide="Food"
-        slideArray={items}
-      /> */}
+        foodSlides={notIraniFoods}
+      />
       <Button
         btn="stroke"
         btnSize="w-[152px] h-8 md:w-[184px] md:h-10 caption-lg md:button-lg"
@@ -115,9 +135,8 @@ async function DynamicBranchs() {
       <span className="h6 md:h5 lg:h4 mt-6 md:mt-9 lg:mt-12 mb-3 md:mb-[18px]">
         نظرات کاربران
       </span>
-      
-      {/* <SliderSwiper theme="White" typeOfSlide="Comment" slideArray={items} /> */}
 
+      {/* <SliderSwiper theme="White" typeOfSlide="Comment" slideArray={items} /> */}
 
       <Comment />
     </div>
