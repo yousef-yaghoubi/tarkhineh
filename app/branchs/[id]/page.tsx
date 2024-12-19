@@ -14,7 +14,7 @@ import {
   GetFoodsSpecial,
 } from '@/app/actions/branchAction';
 
-interface CountOfCooment {
+interface CountOfComment {
   commentsFood: number;
 }
 
@@ -24,9 +24,9 @@ interface Foods {
   image: string;
   desc: string;
   price: number;
-  order: number;
-  rating: number;
-  _count: CountOfCooment;
+  order: number | null;
+  rating: number | null;
+  _count: CountOfComment;
 }
 
 interface Branch {
@@ -35,22 +35,22 @@ interface Branch {
   address: string;
   images: { mobile: [string]; desktop: [string] };
   phones: { phones: [string] };
-  commentsBranch: {
+  commentsBranch: undefined |  {
     id: number;
     desc: string;
     createdAt: Date;
     score: number;
     user: { firstName: string; lastName: string };
   };
-}
+} 
+
 async function DynamicBranchs() {
   const branch = await cookies().get('branchs')?.value;
-  // const branch = await cookieStore.get('branchs')?.value;
 
-  const specialOfferFoods: Foods[] = await GetFoodsSpecial(branch!);
-  const popularFoods: Foods[] = await GetFoodsPopular(branch!);
-  const notIraniFoods: Foods[] = await GetFoodsNotIrani(branch!);
-  const branchAction:Branch = await GetBranch(branch!);
+  const specialOfferFoods: Foods[] | undefined = await GetFoodsSpecial(branch!);
+  const popularFoods : Foods[] | undefined = await GetFoodsPopular(branch!);
+  const notIraniFoods : Foods[] | undefined = await GetFoodsNotIrani(branch!);
+  const branchAction  =  await GetBranch(branch!);
 
   const items = [
     {
@@ -112,6 +112,7 @@ async function DynamicBranchs() {
         title="غذاهای محبوب"
         foodSlides={popularFoods}
       />
+
       <SliderSwiper
         theme="White"
         title="غذاهای غیر ایرانی"

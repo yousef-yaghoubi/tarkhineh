@@ -17,8 +17,8 @@ interface FoodType{
   image: string;
   desc : string;
   price: number;
-  order: number ;
-  rating: number ;
+  order: number | null;
+  rating: number | null;
   _count : CountOfCooment
 }
 interface CommentType {
