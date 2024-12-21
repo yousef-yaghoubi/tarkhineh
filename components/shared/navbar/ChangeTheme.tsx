@@ -11,8 +11,9 @@ import Image from 'next/image';
 
 export function ModeToggle() {
   const { setTheme } = useTheme();
+  
+  const themeLocal = localStorage ? localStorage.theme : 'light';
 
-  const themeLocal = localStorage ? localStorage?.theme : 'dark';
   return (
     <DropdownMenu dir="rtl">
       <DropdownMenuTrigger className="focus:!outline-none" asChild>
