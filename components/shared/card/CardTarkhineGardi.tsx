@@ -133,11 +133,10 @@ function CardTarkhineGardi({
             btn="stroke"
             btnSize="!w-32 !h-8 md:caption-md invisible opacity-0 group-hover:visible sm:group-hover:opacity-100 mt-2"
             theme="Primary"
-            title="صفحه شعبه"
             iconL="/icons/arrow-left-primary.svg"
             iconSize={16}
             link={hrefBTN}
-          />
+          >صفحه شعبه</Button>
         )}
       </div>
     </div>

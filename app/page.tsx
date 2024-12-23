@@ -42,13 +42,12 @@ function Home() {
             <Button
               btn="stroke"
               theme="White"
-              title="اطلاعات بیشتر"
               iconL="/icons/arrow-left-white.svg"
               btnSize="h-[32px] w-[152px] md:w-[184px] md:h-10 mt-8 md:mt-4"
               iconSize={16}
               iconW="w-[16px]"
               iconH="h-[16px]"
-            />
+            >اطلاعات بیشتر</Button>
           </div>
         </div>
 

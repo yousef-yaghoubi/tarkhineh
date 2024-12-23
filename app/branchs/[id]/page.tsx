@@ -124,8 +124,7 @@ async function DynamicBranchs() {
         iconR="/icons/notePrimary.png"
         iconSize={24}
         theme="Primary"
-        title="مشاهده منوی کامل"
-      />
+      >مشاهده منوی کامل</Button>
 
       <span className="h6 md:h5 lg:h4 mt-6 md:mt-9 lg:mt-12 mb-3 md:mb-[18px]">
         {`شعبه ${branch}`}

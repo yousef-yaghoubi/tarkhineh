@@ -3,8 +3,7 @@ import React from 'react'
 
 function loginModal() {
   return (
-    <div className='w-full h-screen bg-slate-100 flex justify-center items-center'>
-      jjjjj
+    <div className='w-full h-screen flex justify-center items-center'>
       <LoginForm/>
     </div>
   )

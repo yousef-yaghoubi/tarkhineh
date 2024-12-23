@@ -20,7 +20,7 @@ model User {
   nickName       String?
   profile        String?
   phone          String?
-  hashPass       String
+  hashPass       String?
   email          String @unique
   birthDay       DateTime?
   orderTrack     OrderTracking[]
@@ -28,7 +28,32 @@ model User {
   commentsFood   CommentsFood[]
   commentsBranch CommentsBranch[]
   favorite       Favorite?
+  accounts       Account[]
+  sessions       Session[]
 }
+
+model Account {
+  id                Int      @id @default(autoincrement())
+  userId            Int
+  provider          String
+  providerAccountId String
+  type              String
+  access_token      String?
+  token_type        String?
+  scope             String?
+  expires_at        Int?
+  refresh_token     String?
+  user              User     @relation(fields: [userId], references: [id])
+}
+
+model Session {
+  id           Int      @id @default(autoincrement()) 
+  sessionToken String   @unique
+  userId       Int
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id])
+}
+
 
 model Favorite {
   id     Int     @id @default(autoincrement())

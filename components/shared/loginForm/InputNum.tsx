@@ -5,13 +5,13 @@ export default function FloatingLabelInput() {
   const [value, setValue] = useState("");
 
   return (
-    <div className="relative w-full max-w-sm flex justify-center">
+    <div className="relative w-full max-w-sm flex justify-center mt-6">
       <input
         type="text"
         id="floatingInput"
         value={value}
         onChange={(e) => setValue(e.target.value)}
-        className="peer w-11/12 max-w-[344px] border border-gray-4 h-10 rounded-md px-2 pt-5 pb-2 text-gray-900 transition-all duration-300 placeholder-transparent focus:outline-none focus:border-primary hover:border-gray-8"
+        className="peer w-11/12 max-w-[344px] border border-gray-4 h-10 rounded-sm px-2 pt-5 pb-5 text-gray-900 transition-all duration-300 placeholder-transparent focus:outline-none focus:border-primary hover:border-gray-8"
         placeholder="ایمیل"
       />
       <label
