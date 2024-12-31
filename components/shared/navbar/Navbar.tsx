@@ -12,6 +12,7 @@ import {
 import { iconDetails } from '@/lib/dataPublic';
 import Link from 'next/link';
 
+
 function Navbar() {
   return (
     <div className="w-full h-16 md:h-[115px] flex flex-row justify-between px-4 md:justify-around md:p-0 items-center">

@@ -5,7 +5,6 @@ import Modal from '../Modal';
 import SearchBox from '../searchBox/SearchBox';
 import { useRouter } from 'next/navigation';
 
-
 interface Props {
   alt: string;
   img: string;
@@ -15,7 +14,7 @@ interface Props {
   className: string;
 }
 function Icon({ alt, img, imgActive, isActive, quantity, className }: Props) {
-  const router = useRouter()
+  const router = useRouter();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const openModal = () => setIsModalOpen(true);
@@ -28,8 +27,8 @@ function Icon({ alt, img, imgActive, isActive, quantity, className }: Props) {
           isActive ? 'bg-primary' : 'bg-tint-1'
         } justify-center flex items-center relative ${className}`}
         onClick={() => {
-          alt == 'profile' && router.push('/login')
-          alt == 'search' && openModal()
+          alt == 'profile' && router.push('/login');
+          alt == 'search' && openModal();
         }}
       >
         {quantity != 0 && (
@@ -59,7 +58,7 @@ function Icon({ alt, img, imgActive, isActive, quantity, className }: Props) {
         title={<h3 className="caption-lg md:h7">جستجو</h3>}
         desc="لطفا متن خود را تایپ و سپس دکمه Enter را بزنید."
       >
-        <SearchBox classes='w-[90%] max-w-[409px]'/>
+        <SearchBox classes="w-[90%] max-w-[409px]" />
       </Modal>
     </>
   );

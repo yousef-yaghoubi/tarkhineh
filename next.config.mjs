@@ -3,6 +3,9 @@ const nextConfig = {
     images: {
         domains: ['res.cloudinary.com']
     },
+    experimental:{
+        middleware: true
+    }
 };
 
 export default nextConfig;

@@ -52,49 +52,6 @@ async function DynamicBranchs() {
   const notIraniFoods : Foods[] | undefined = await GetFoodsNotIrani(branch!);
   const branchAction  =  await GetBranch(branch!);
 
-  const items = [
-    {
-      id: 1,
-      title: 'پیتزا قارچ',
-      price: 125000,
-      img: '/images/imageFood.jpg', // مسیر تصویر پیتزا
-      rating: 4.5,
-      orders: 32,
-    },
-    {
-      id: 2,
-      title: 'کالزونه اسفناج',
-      price: 177000,
-      img: '/images/imageFood.jpg', // مسیر تصویر کالزونه
-      rating: 4.7,
-      orders: 25,
-    },
-    {
-      id: 3,
-      title: 'بادمجان شکم‌پر',
-      price: 136000,
-      img: '/images/imageFood.jpg', // مسیر تصویر بادمجان
-      rating: 4.3,
-      orders: 19,
-    },
-    {
-      id: 4,
-      title: 'دلمه برگ کلم',
-      price: 109000,
-      img: '/images/imageFood.jpg', // مسیر تصویر دلمه
-      rating: 4.8,
-      orders: 42,
-    },
-    {
-      id: 5,
-      title: 'دلمه برگ کلم',
-      price: 19000,
-      img: '/images/imageFood.jpg', // مسیر تصویر دلمه
-      rating: 4.8,
-      orders: 42,
-    },
-  ];
-
   return (
     <div className="flex flex-col items-center">
       <SwiperMain slides={arraySlideMain} pagination showBtn />

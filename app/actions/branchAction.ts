@@ -1,6 +1,6 @@
 'use server';
 
-import prisma from '@/lib/prismaClient';
+import prisma from '@/prisma/prismaClient';
 
 
 export async function GetBranch(branchName: string) {

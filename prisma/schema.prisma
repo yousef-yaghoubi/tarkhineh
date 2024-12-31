@@ -13,6 +13,11 @@ datasource db {
   url      = env("DataBase_URI")
 }
 
+enum Role {
+  USER
+  ADMIN
+}
+
 model User {
   id             Int              @id @default(autoincrement())
   firstName      String?
@@ -21,39 +26,24 @@ model User {
   profile        String?
   phone          String?
   hashPass       String?
-  email          String @unique
+  email          String           @unique
+  role           Role             @default(USER)
   birthDay       DateTime?
   orderTrack     OrderTracking[]
   addresses      Addresses[]
   commentsFood   CommentsFood[]
   commentsBranch CommentsBranch[]
   favorite       Favorite?
-  accounts       Account[]
-  sessions       Session[]
-}
-
-model Account {
-  id                Int      @id @default(autoincrement())
-  userId            Int
-  provider          String
-  providerAccountId String
-  type              String
-  access_token      String?
-  token_type        String?
-  scope             String?
-  expires_at        Int?
-  refresh_token     String?
-  user              User     @relation(fields: [userId], references: [id])
+  session        Session[]
 }
 
 model Session {
-  id           Int      @id @default(autoincrement()) 
+  id           String   @id @default(cuid())
   sessionToken String   @unique
   userId       Int
   expires      DateTime
   user         User     @relation(fields: [userId], references: [id])
 }
-
 
 model Favorite {
   id     Int     @id @default(autoincrement())
