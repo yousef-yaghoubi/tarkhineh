@@ -83,8 +83,9 @@ const Modal: React.FC<ModalProps> = ({
               modules={[FreeMode, Thumbs]}
               className="mySwiper2 w-full h-[441px] relative"
               onInit={(swiper) => {
-                // Assign navigation buttons on initialization
+                // @ts-ignore
                 swiper.params.navigation.prevEl = prevRef.current;
+                // @ts-ignore
                 swiper.params.navigation.nextEl = nextRef.current;
                 swiper.navigation.init();
                 swiper.navigation.update();
@@ -117,6 +118,7 @@ const Modal: React.FC<ModalProps> = ({
             </Swiper>
 
             <Swiper
+              // @ts-ignore
               onSwiper={setThumbsSwiper}
               spaceBetween={10}
               slidesPerView={4}
@@ -147,7 +149,7 @@ const Modal: React.FC<ModalProps> = ({
       <Portal>
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 backdrop-blur-sm">
           <div className="bg-white dark:bg-background-1 rounded-sm shadow-lg  max-w-[800px] w-11/12 relative flex flex-col items-center overflow-hidden">
-            <div className="bg-gray-4 dark:bg-background-2 relative w-full h-14 md:h-[86px] flex justify-center items-center">
+            <div className="bg-gray-3 dark:bg-background-2 relative w-full h-14 md:h-[86px] flex justify-center items-center">
               <button
                 onClick={onClose}
                 className="absolute top-4 left-4 w-6 h-6 sm:h-10 sm:w-10 sm:top-[0.4em] sm:left-[0.4em] md:w-10 md:top-5 md:left-5 text-gray-600 hover:text-gray-800 focus:outline-none"

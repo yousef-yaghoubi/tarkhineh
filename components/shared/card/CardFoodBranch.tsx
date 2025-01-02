@@ -4,19 +4,17 @@ import React from 'react';
 import Button from '../button/Button';
 
 
-interface CountOfCooment{
-  commentsFood: number
-}
-
 interface FoodType{
   id: number;
   name: string;
   image: string;
   desc : string;
   price: number;
-  order: number ;
-  rating: number ;
-  _count : CountOfCooment
+  order: number;
+  rating: number;
+  _count : {
+    commentsFood: number
+  }
 }
 
 
@@ -33,7 +31,7 @@ function CardFoodBranch({item}:{item: FoodType}) {
         <span className="caption-md mt-1 md:h7 md:mt-2">{item.name}</span>
 
         <div className="flex justify-between w-full h-10 md:h-[51px] px-2 mt-1 md:mt-4">
-          <div className="w-full h-full flex flex-col justify-between">
+          <div className="w-1/2 h-full flex flex-col justify-between">
             <div className="relative flex items-center">
               <Image
                 src={'/icons/Heart.svg'}
@@ -77,7 +75,7 @@ function CardFoodBranch({item}:{item: FoodType}) {
               </div>
             </div>
 
-            <div className="w-full h-1/2 caption-sm md:body-md absolute left-0 bottom-0">
+            <div className="w-full h-1/2 caption-sm md:body-md absolute left-0 bottom-0 flex justify-end">
               {item.order !== 0 && convertToPersianNumbers((item.price - (item.price * (item.order / 100))).toLocaleString())}
               {item.order == 0 && convertToPersianNumbers(item.price.toLocaleString())}
               تومان

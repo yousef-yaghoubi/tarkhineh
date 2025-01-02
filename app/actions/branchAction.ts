@@ -15,6 +15,7 @@ export async function GetBranch(branchName: string) {
         address:true,
         images:true,
         phones:true,
+        openDuration:true,
         commentsBranch:{
           select:{
             id:true,

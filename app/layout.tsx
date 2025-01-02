@@ -29,11 +29,10 @@ export default async function RootLayout({
   intercepting: React.ReactNode;
 }) {
   const session = await getServerSession(authOption)
-  console.log(session)
   return (
     <html dir="rtl" lang="fa-Ir">
       <body
-        className={`${estedad.variable} font-estedad antialiased dark:bg-background-1 selection:bg-tint-1 selection:text-gray-7`}
+        className={`font-estedad antialiased dark:bg-background-1 selection:bg-tint-1 selection:text-gray-7`}
       >
         <AuthProvider>
           <ThemeProvider

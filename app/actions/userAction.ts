@@ -22,7 +22,7 @@ export async function GetUser() {
 
     return users;
   } catch (error) {
-    console.log(error);
+    throw new Error(error as string)
   }
 }
 
@@ -79,6 +79,7 @@ export async function LoginOrSignUpUserWithCredential(formData: {
       role: user.role,
     };
   } catch (error) {
+    throw new Error(error as string)
     return null;
   }
 }
@@ -115,6 +116,7 @@ export async function LoginOrSignUpUserWithGoogle(email: typeEmail) {
       role: user.role,
     };
   } catch (error) {
+    throw new Error(error as string)
     return null;
   }
 }
@@ -156,7 +158,7 @@ export async function SubmitNewUser(formData: {
       };
     }
 
-    const newUser = await prisma.user.create({
+    await prisma.user.create({
       data: {
         email,
         hashPass,
@@ -166,6 +168,7 @@ export async function SubmitNewUser(formData: {
     return { status: 201, message: 'با موفقیت ثبت نام شدید.' };
   } catch (error) {
     return { status: 400, message: 'مشکلی پیش آمد، لطفا دوباره تلاش کنید' };
+    throw new Error(error as string)
   }
 }
 
@@ -174,15 +177,19 @@ export async function SignInCredential(data: {
   password: string;
 }) {
   try {
-    const login = await signIn('credentials', {
+    await signIn('credentials', {
       email: data.email,
       password: data.password,
     });
-  } catch (error) {}
+  } catch (error) {
+    throw new Error(error as string)
+  }
 }
 
 export async function SignInGoogle() {
   try {
-    const login = await signIn('google');
-  } catch (error) {}
+    await signIn('google');
+  } catch (error) {
+    throw new Error(error as string)
+  }
 }

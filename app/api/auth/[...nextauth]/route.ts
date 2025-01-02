@@ -1,15 +1,13 @@
-import NextAuth, { NextAuthOptions } from 'next-auth';
+import NextAuth, { AuthOptions } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import GoogleProvider from 'next-auth/providers/google';
-import { PrismaAdapter } from '@next-auth/prisma-adapter';
-import prisma from '@/prisma/prismaClient'; // Prisma client instance
-import bcrypt from 'bcrypt'; // For password hashing
 import {
   LoginOrSignUpUserWithCredential,
   LoginOrSignUpUserWithGoogle,
 } from '@/app/actions/userAction';
-import { use } from 'react';
-export const authOption: NextAuthOptions = {
+
+
+export const authOption: AuthOptions = {
   providers: [
     // Credentials Provider
     CredentialsProvider({
@@ -68,17 +66,17 @@ export const authOption: NextAuthOptions = {
         token.email = user.email;
         token.name = `${user.firstName || 'کاربر'} ${user.lastName || 'ترخینه'}`;
         token.image = user.profile;
-        token.role = user.role;
+        token.role = user.role as string;
       }
       return token;
     },
     // Session Callback: Attach user data to the session object
     async session({ session, token }) {
-      session.user.id = token.id;
-      session.user.email = token.email;
-      session.user.name = token.name;
-      session.user.image = token.image;
-      session.user.role = token.role;
+      session.user!.id = token.id;
+      session.user!.email = token.email;
+      session.user!.name = token.name;
+      session.user!.image = token.image as string | null ;
+      session.user!.role = token.role;
       return session;
     },
   },
@@ -93,6 +91,7 @@ export const authOption: NextAuthOptions = {
   secret: process.env.NEXTAUTH_SECRET as string, // Set a secret for signing JWTs
 }
 const handler = NextAuth(authOption);
+
 
 export { handler as GET, handler as POST }
 

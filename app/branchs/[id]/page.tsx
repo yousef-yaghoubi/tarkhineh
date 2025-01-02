@@ -13,6 +13,7 @@ import {
   GetFoodsPopular,
   GetFoodsSpecial,
 } from '@/app/actions/branchAction';
+import { JsonValue } from '@prisma/client/runtime/library';
 
 interface CountOfComment {
   commentsFood: number;
@@ -24,34 +25,22 @@ interface Foods {
   image: string;
   desc: string;
   price: number;
-  order: number | null;
-  rating: number | null;
-  _count: CountOfComment;
+  order: number;
+  rating: number;
+  _count: { commentsFood: number };
 }
-
-interface Branch {
-  id: number;
-  name: string;
-  address: string;
-  images: { mobile: [string]; desktop: [string] };
-  phones: { phones: [string] };
-  commentsBranch: undefined |  {
-    id: number;
-    desc: string;
-    createdAt: Date;
-    score: number;
-    user: { firstName: string; lastName: string };
-  };
-} 
 
 async function DynamicBranchs() {
   const branch = await cookies().get('branchs')?.value;
 
   const specialOfferFoods: Foods[] | undefined = await GetFoodsSpecial(branch!);
-  const popularFoods : Foods[] | undefined = await GetFoodsPopular(branch!);
-  const notIraniFoods : Foods[] | undefined = await GetFoodsNotIrani(branch!);
-  const branchAction  =  await GetBranch(branch!);
+  const popularFoods: Foods[] | undefined = await GetFoodsPopular(branch!);
+  const notIraniFoods: Foods[] | undefined = await GetFoodsNotIrani(branch!);
+  const branchAction = await GetBranch(branch!);
 
+  {
+    console.log(branchAction);
+  }
   return (
     <div className="flex flex-col items-center">
       <SwiperMain slides={arraySlideMain} pagination showBtn />
@@ -81,13 +70,21 @@ async function DynamicBranchs() {
         iconR="/icons/notePrimary.png"
         iconSize={24}
         theme="Primary"
-      >مشاهده منوی کامل</Button>
+        link="/menu"
+      >
+        مشاهده منوی کامل
+      </Button>
 
       <span className="h6 md:h5 lg:h4 mt-6 md:mt-9 lg:mt-12 mb-3 md:mb-[18px]">
         {`شعبه ${branch}`}
       </span>
 
-      <SwiperDeatail />
+      <SwiperDeatail
+        address={branchAction?.address as string}
+        durition={branchAction?.openDuration as string}
+        images={branchAction?.images as { mobile: string[]; desktop: string[] }}
+        phones={branchAction?.phones as { phones: string[] }}
+      />
 
       <span className="h6 md:h5 lg:h4 mt-6 md:mt-9 lg:mt-12 mb-3 md:mb-[18px]">
         نظرات کاربران

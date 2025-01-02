@@ -69,8 +69,8 @@ model Foods {
   image               String                @db.LongText
   desc                String
   price               Int
-  order               Int?
-  rating              Float?                @default(0)
+  order               Int                  @default(0)
+  rating              Float                @default(0)
   type                TypeFood              @relation(fields: [typeId], references: [id])
   typeId              Int
   categorie           CategorieFood         @relation(fields: [categorieId], references: [id])

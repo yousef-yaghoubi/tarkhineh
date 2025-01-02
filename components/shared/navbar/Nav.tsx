@@ -7,7 +7,8 @@ import {
   AccordionTrigger,
 } from '@/components/ui/accordion';
 import Image from 'next/image';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -18,10 +19,18 @@ import {
   navigationMenuTriggerStyle,
 } from '@/components/ui/navigation-menu';
 import Cookies from 'js-cookie';
+import { useEffect, useState } from 'react';
+import Modal from '../Modal';
+import { branchs } from '@/lib/dataPublic';
+import CardTarkhineGardi from '../card/CardTarkhineGardi';
 
 function Nav({ menuBar }: { menuBar: boolean }) {
+  const router = useRouter();
   const pathName = usePathname();
-
+  const searchParams = useSearchParams();
+  const sessionCookie = Cookies.get('branchs');
+  const [branchName, setBranchName] = useState('شعبه');
+  const [urlMenu, setUrlMenu] = useState<string>();
   const navStats = [
     {
       id: 1,
@@ -91,7 +100,7 @@ function Nav({ menuBar }: { menuBar: boolean }) {
       label: 'منو',
       route: '/menu',
       subMain: [
-        { id: 1, label: 'منو', route: '/menu' },
+        // { id: 1, label: 'منو', route: '/menu' },
         { id: 1, label: 'غذا', routeQuery: '/menu/food' },
         { id: 1, label: 'پیش غذا', routeQuery: '/menu/appetizer' },
         { id: 1, label: 'دسر', routeQuery: '/menu/dessert' },
@@ -242,8 +251,16 @@ function Nav({ menuBar }: { menuBar: boolean }) {
       ),
     },
   ];
-  const sessionCookie = Cookies.get('branchs');
 
+  const [showChooseModal, setShowChooseModal] = useState(false);
+  const openModal = () => setShowChooseModal(true);
+  const closeModal = () => setShowChooseModal(false);
+
+  useEffect(() => {
+    if (!!sessionCookie) setBranchName(`شعبه ${sessionCookie}`);
+  }, [sessionCookie]);
+
+  const pathNameWithQuery = `${pathName}?q=${searchParams.get('q')}`;
   return (
     <div
       className={
@@ -284,10 +301,13 @@ function Nav({ menuBar }: { menuBar: boolean }) {
                   <div className="flex items-center">
                     {stats.icon}
                     <span>
-                      {(stats.label == 'شعبه' && sessionCookie) ||
-                        stats.subMain?.find((sub) => sub.routeQuery == pathName)
-                          ?.label ||
-                        stats.label}
+                      {stats.label == 'شعبه'
+                        ? branchName
+                        : stats.label == 'منو'
+                          ? stats.subMain?.find(
+                              (sub) => sub.routeQuery == pathNameWithQuery
+                            )?.label
+                          : stats.label}
                     </span>
                   </div>
                 </AccordionTrigger>
@@ -298,7 +318,7 @@ function Nav({ menuBar }: { menuBar: boolean }) {
                   {stats.subMain?.map((sub) => (
                     <Link
                       key={sub.id}
-                      href={sub.routeQuery! || sub.route!}
+                      href={sub.routeQuery}
                       className="w-fit mr-2 pt-2 caption-sm sm:body-sm"
                       onClick={() =>
                         stats.label == 'شعبه' &&
@@ -343,48 +363,94 @@ function Nav({ menuBar }: { menuBar: boolean }) {
                         : 'caption-sm sm:body-sm lg:body-xl'
                     }`}
                   >
-                    {(stats.label == 'شعبه' && sessionCookie && `شعبه ${sessionCookie}`) ||
-                      stats.subMain?.find((sub) => sub.routeQuery == pathName)
-                        ?.label || stats.label}
+                    {stats.label == 'شعبه'
+                      ? branchName
+                      : stats.subMain?.find(
+                          (sub) => sub.routeQuery == pathNameWithQuery
+                        )?.label || stats.label}
                   </NavigationMenuTrigger>
 
                   <NavigationMenuContent className="!w-52 flex flex-col py-2 bg-white dark:bg-background-2">
-                    {stats.subMain?.map((sub) => (
-                      <NavigationMenuLink
-                        href={sub.routeQuery || sub.route}
-                        key={sub.label}
-                        className="py-1  px-5 hover:bg-slate-100 dark:hover:bg-background-1"
-                        onClick={() =>
-                          stats.label == 'شعبه' &&
-                          Cookies.set('branchs', `${sub.label}`, { path: '/' })
-                        }
-                      >
-                        {sub.label}
-                      </NavigationMenuLink>
-                    ))}
+                    {stats.subMain?.map((sub) =>
+                      stats.label == 'منو' ? (
+                        <button
+                          // href={sub.routeQuery || sub.route}
+                          key={sub.label}
+                          className="py-[7px] px-5 hover:bg-slate-100 dark:hover:bg-background-1 flex"
+                          onClick={() => {
+                            setUrlMenu(sub.routeQuery),
+                              !!sessionCookie
+                                ? router.push(sub.routeQuery)
+                                : setShowChooseModal(true);
+                          }}
+                        >
+                          {sub.label}
+                        </button>
+                      ) : (
+                        <NavigationMenuLink
+                          href={sub.routeQuery}
+                          key={sub.label}
+                          className="py-1 px-5 hover:bg-slate-100 dark:hover:bg-background-1"
+                          onClick={() =>
+                            stats.label == 'شعبه' &&
+                            Cookies.set('branchs', `${sub.label}`, {
+                              path: '/',
+                            })
+                          }
+                        >
+                          {sub.label}
+                        </NavigationMenuLink>
+                      )
+                    )}
                   </NavigationMenuContent>
                 </NavigationMenuItem>
               ) : (
                 <NavigationMenuItem key={stats.id}>
-                  <Link href={stats.route} legacyBehavior passHref>
-                    <NavigationMenuLink
-                      className={`${navigationMenuTriggerStyle()} md:border-0 mx-4 md:mx-0 ${
-                        stats.id == 6 ? 'border-0' : 'border-b border-gray-4 '
-                      } ${
-                        stats.route == pathName
-                          ? 'caption-md sm:body-lg activeLink lg:activeLink !border-b border-primary'
-                          : 'caption-sm sm:body-sm lg:!body-xl'
-                      }`}
-                    >
-                      {stats.label}
-                    </NavigationMenuLink>
-                  </Link>
+                  {/* <Link href={stats.route} legacyBehavior passHref> */}
+                  <NavigationMenuLink
+                    className={`${navigationMenuTriggerStyle()} md:border-0 mx-4 md:mx-0 ${
+                      stats.id == 6 ? 'border-0' : 'border-b border-gray-4 '
+                    } ${
+                      stats.route == pathName
+                        ? 'caption-md sm:body-lg activeLink lg:activeLink !border-b border-primary'
+                        : 'caption-sm sm:body-sm lg:!body-xl'
+                    }`}
+                    href={stats.route}
+                  >
+                    {stats.label}
+                  </NavigationMenuLink>
+                  {/* </Link> */}
                 </NavigationMenuItem>
               )
             )}
           </NavigationMenuList>
         </NavigationMenu>
       )}
+
+      <Modal
+        isOpen={showChooseModal}
+        onClose={closeModal}
+        title={<h3 className="caption-lg md:h7">انتخاب شعبه</h3>}
+        desc="برای دیدن منوی رستوران، لطفا شعبه مدنظر خود را انتخاب کنید:"
+      >
+        <div className="flex flex-col md:flex-row justify-evenly items-center w-full">
+          {branchs.map((branch) => (
+            <CardTarkhineGardi
+              key={branch.id}
+              smallShow
+              desc={branch.desc}
+              title={branch.title}
+              img={branch.images[0].src}
+              id={branch.id}
+              click={() => {
+                Cookies.set('branchs', branch.title);
+                closeModal();
+                router.push(urlMenu as string);
+              }}
+            />
+          ))}
+        </div>
+      </Modal>
     </div>
   );
 }

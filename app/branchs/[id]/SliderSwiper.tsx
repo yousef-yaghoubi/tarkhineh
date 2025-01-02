@@ -1,4 +1,4 @@
-'use client';
+'use client'
 import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination } from 'swiper/modules';
@@ -7,9 +7,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import CardFoodBranch from '@/components/shared/card/CardFoodBranch';
 import Comment from './Comment';
-interface CountOfCooment{
-  commentsFood: number
-}
+
 
 interface FoodType{
   id: number;
@@ -17,9 +15,11 @@ interface FoodType{
   image: string;
   desc : string;
   price: number;
-  order: number | null;
-  rating: number | null;
-  _count : CountOfCooment
+  order: number;
+  rating: number;
+  _count : {
+    commentsFood: number
+  }
 }
 interface CommentType {
   user: string;

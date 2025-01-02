@@ -1,6 +1,6 @@
 'use client';
 import Image from 'next/image';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Modal from '../Modal';
 import SearchBox from '../searchBox/SearchBox';
 import { useRouter } from 'next/navigation';
@@ -16,9 +16,10 @@ interface Props {
 function Icon({ alt, img, imgActive, isActive, quantity, className }: Props) {
   const router = useRouter();
   const [isModalOpen, setIsModalOpen] = useState(false);
-
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
+
+
 
   return (
     <>
@@ -42,12 +43,12 @@ function Icon({ alt, img, imgActive, isActive, quantity, className }: Props) {
             {quantity}
           </div>
         )}
-        <div className="w-6 h-6 flex justify-center items-center">
+        <div className="w-[18px] md:w-6 h-[18px] md:h-6 flex justify-center items-center relative">
           <Image
             src={isActive ? imgActive : img}
             alt={alt}
-            width={window.innerWidth < 770 ? 18 : 24}
-            height={window.innerWidth < 770 ? 18 : 24}
+            className='w-[18px] md:w-6 h-[18px] md:h-6'
+            fill
           />
         </div>
       </button>
