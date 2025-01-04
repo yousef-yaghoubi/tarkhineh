@@ -24,6 +24,7 @@ export async function GetBranch(branchName: string) {
             score:true,
             user:{
               select:{
+                profile: true,
                 firstName:true,
                 lastName:true
               }
@@ -55,7 +56,8 @@ export async function GetFoodsSpecial(branchName:string) {
       where: {
         branch :{
           name: branchName
-        }
+        },
+        specialOffer: true
       },
       select:{
         id:true,

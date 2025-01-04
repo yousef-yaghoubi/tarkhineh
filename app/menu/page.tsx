@@ -1,7 +1,15 @@
 import React from 'react';
 
-async function page() {
-  return <div>hello</div>;
+interface PropsSearchParams {
+  searchParams: {
+    q?: string;
+  };
+}
+async function page({ searchParams }: PropsSearchParams) {
+  const { q } = searchParams;
+
+  
+  return <div>{q || 'all'}</div>;
 }
 
 export default page;

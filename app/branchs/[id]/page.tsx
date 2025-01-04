@@ -5,7 +5,6 @@ import Button from '@/components/shared/button/Button';
 import { cookies } from 'next/headers';
 import { arraySlideMain } from '@/lib/dataPublic';
 import SwiperDeatail from './SwiperDeatail';
-import Comment from './Comment';
 import SliderSwiper from './SliderSwiper';
 import {
   GetBranch,
@@ -13,11 +12,7 @@ import {
   GetFoodsPopular,
   GetFoodsSpecial,
 } from '@/app/actions/branchAction';
-import { JsonValue } from '@prisma/client/runtime/library';
-
-interface CountOfComment {
-  commentsFood: number;
-}
+import { CommentType } from '@/lib/type/Comment';
 
 interface Foods {
   id: number;
@@ -38,9 +33,6 @@ async function DynamicBranchs() {
   const notIraniFoods: Foods[] | undefined = await GetFoodsNotIrani(branch!);
   const branchAction = await GetBranch(branch!);
 
-  {
-    console.log(branchAction);
-  }
   return (
     <div className="flex flex-col items-center">
       <SwiperMain slides={arraySlideMain} pagination showBtn />
@@ -82,7 +74,16 @@ async function DynamicBranchs() {
       <SwiperDeatail
         address={branchAction?.address as string}
         durition={branchAction?.openDuration as string}
-        images={branchAction?.images as { mobile: string[]; desktop: string[] }}
+        images={
+          branchAction?.images as {
+            images: {
+              id: number;
+              alt: string;
+              img: string;
+              imgMobile: string;
+            }[];
+          }
+        }
         phones={branchAction?.phones as { phones: string[] }}
       />
 
@@ -90,9 +91,14 @@ async function DynamicBranchs() {
         نظرات کاربران
       </span>
 
-      {/* <SliderSwiper theme="White" typeOfSlide="Comment" slideArray={items} /> */}
-
-      <Comment />
+      {branchAction?.commentsBranch.length != 0 ? (
+        <SliderSwiper
+          theme="White"
+          commentSlides={branchAction?.commentsBranch as CommentType[]}
+        />
+      ) : (
+        <div className="h-16 mt-10">کامنتی وجود ندارد</div>
+      )}
     </div>
   );
 }

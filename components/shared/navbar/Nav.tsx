@@ -8,7 +8,6 @@ import {
 } from '@/components/ui/accordion';
 import Image from 'next/image';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -100,11 +99,11 @@ function Nav({ menuBar }: { menuBar: boolean }) {
       label: 'منو',
       route: '/menu',
       subMain: [
-        // { id: 1, label: 'منو', route: '/menu' },
-        { id: 1, label: 'غذا', routeQuery: '/menu/food' },
-        { id: 1, label: 'پیش غذا', routeQuery: '/menu/appetizer' },
-        { id: 1, label: 'دسر', routeQuery: '/menu/dessert' },
-        { id: 1, label: 'نوشیدنی', routeQuery: '/menu/drink' },
+        { id: 0, label: 'منو', routeQuery: '/menu' },
+        { id: 1, label: 'غذا', routeQuery: '/menu?q=food' },
+        { id: 2, label: 'پیش غذا', routeQuery: '/menu?q=appetizer' },
+        { id: 3, label: 'دسر', routeQuery: '/menu?q=dessert' },
+        { id: 4, label: 'نوشیدنی', routeQuery: '/menu?q=drink' },
       ],
       icon: (
         <svg
@@ -303,19 +302,17 @@ function Nav({ menuBar }: { menuBar: boolean }) {
                     <span>
                       {stats.label == 'شعبه'
                         ? branchName
-                        : stats.label == 'منو'
-                          ? stats.subMain?.find(
-                              (sub) => sub.routeQuery == pathNameWithQuery
-                            )?.label
-                          : stats.label}
+                        : stats.subMain?.find(
+                            (sub) => sub.routeQuery == pathNameWithQuery
+                          )?.label || stats.label}
                     </span>
                   </div>
                 </AccordionTrigger>
-                <AccordionContent
-                  dir="rtl"
-                  className="flex justify-start flex-col"
-                >
-                  {stats.subMain?.map((sub) => (
+                  <AccordionContent
+                    dir="rtl"
+                    className="flex justify-start flex-col"
+                    >
+                    {stats.subMain?.map((sub) => (
                     <Link
                       key={sub.id}
                       href={sub.routeQuery}
@@ -327,7 +324,7 @@ function Nav({ menuBar }: { menuBar: boolean }) {
                     >
                       {sub.label}
                     </Link>
-                  ))}
+                ))}
                 </AccordionContent>
               </AccordionItem>
             </Accordion>

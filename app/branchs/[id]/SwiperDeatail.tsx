@@ -20,7 +20,7 @@ function SwiperDeatail({ address, images, phones, durition }: Details) {
   return (
     <div className="w-full flex flex-col items-center relative h-[14.2em] md:h-[27.2em]">
       <SwiperMain slides={images.images} />
-      <div className="w-11/12 max-w-80 h-[60px] md:max-w-[810px] md:h-[130px] md:top-[303px] top-[166px] rounded-sm border border-primary bg-white absolute z-20 p-2 grid grid-cols-2 md:grid-cols-3">
+      <div className="w-11/12 max-w-80 h-[60px] md:max-w-[810px] md:h-[130px] md:top-[303px] top-[166px] rounded-sm border md:border-[3px] border-primary bg-white absolute z-20 p-2 grid grid-cols-2 md:grid-cols-3">
         <div className="flex col-span-2 md:col-span-1 md:flex-col items-center">
           <svg
             width="16"

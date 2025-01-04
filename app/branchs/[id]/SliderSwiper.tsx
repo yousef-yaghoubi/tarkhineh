@@ -6,7 +6,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import CardFoodBranch from '@/components/shared/card/CardFoodBranch';
-import Comment from './Comment';
+import Comment from '@/components/shared/comment/Comment';
 
 
 interface FoodType{
@@ -22,10 +22,17 @@ interface FoodType{
   }
 }
 interface CommentType {
-  user: string;
-  id: number;
-  desc: string;
+  id:number,
+  desc:string,
+  createdAt: Date,
+  score: number,
+  user: {
+    profile: string,
+    firstName:string,
+    lastName: string
+  };
 }
+
 interface Props {
   theme: 'Primary' | 'White';
   title?: string;
@@ -35,7 +42,7 @@ interface Props {
 const SliderSwiper = ({ theme, title, foodSlides, commentSlides }: Props) => {
   return (
     <div
-      className={`w-full h-[301px] md:h-[555px] flex flex-col overflow-hidden ${
+      className={`w-full ${commentSlides !== undefined ? 'h-52 md:h-64' : 'h-[301px] md:h-[555px]'} flex flex-col overflow-hidden ${
         theme == 'Primary' ? 'bg-primary' : 'bg-white dark:bg-background-1'
       }`}
     >
@@ -161,7 +168,7 @@ const SliderSwiper = ({ theme, title, foodSlides, commentSlides }: Props) => {
                   key={comment.id}
                   className="p-0 !flex justify-center items-center"
                 >
-                  <Comment />
+                  <Comment id={comment.id} createdAt={comment.createdAt} desc={comment.desc} score={comment.score} user={comment.user}/>
                 </SwiperSlide>
               ))
             : foodSlides?.map((item) => (

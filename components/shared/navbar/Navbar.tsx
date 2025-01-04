@@ -12,7 +12,6 @@ import {
 import { iconDetails } from '@/lib/dataPublic';
 import Link from 'next/link';
 
-
 function Navbar() {
   return (
     <div className="w-full h-16 md:h-[115px] flex flex-row justify-between px-4 md:justify-around md:p-0 items-center">
@@ -22,10 +21,10 @@ function Navbar() {
         </SheetTrigger>
         <SheetContent className="bg-white dark:bg-[#1c1b22] border-none p-0 menuMobile">
           <SheetHeader>
+          </SheetHeader>
             <div className="flex flex-col justify-start">
               <Nav menuBar={true} />
             </div>
-          </SheetHeader>
         </SheetContent>
       </Sheet>
       <div className="w-[102px] h-8 lg:w-[155px] lg:h-[51px]">
