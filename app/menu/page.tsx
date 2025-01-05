@@ -1,15 +1,22 @@
+import SearchBox from '@/components/shared/searchBox/SearchBox';
+import SwiperMain from '@/components/shared/swiper/swiper';
+import { arraySlideMain } from '@/lib/dataPublic';
 import React from 'react';
+import HeaderMenu from './HeaderMenu';
 
 interface PropsSearchParams {
   searchParams: {
-    q?: string;
+    type?: string;
   };
 }
-async function page({ searchParams }: PropsSearchParams) {
-  const { q } = searchParams;
+async function page() {
 
-  
-  return <div>{q || 'all'}</div>;
+  return (
+    <div>
+      <SwiperMain slides={arraySlideMain} pagination />
+      <HeaderMenu/>
+    </div>
+  );
 }
 
 export default page;

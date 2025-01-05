@@ -4,6 +4,7 @@ export const miniCards = [
   { id: 2, img: '/image/miniCardDecer.png', title: 'دسر' },
   { id: 1, img: '/image/miniCardDrink.png', title: 'نوشیدنی' },
 ];
+
 interface image {
   id: number;
   src: string;
@@ -121,46 +122,56 @@ export const arraySlideBranch = [
   {id:2, img: '/image/ekbatanBranch1.jpg', imgMobile: '/image/ekbatanBranch1Mobile.jpg', alt: 'ekbatan Branch'}
 ]
 
-export const items = [
+
+export const navStats = [
   {
     id: 1,
-    title: 'پیتزا قارچ',
-    price: '۱۲۵,۰۰۰ تومان',
-    img: '/images/imageFood.jpg', // مسیر تصویر پیتزا
-    rating: 4.5,
-    orders: 32,
+    label: 'صفحه اصلی',
+    route: '/',
+    icon: 'navMain',
   },
   {
     id: 2,
-    title: 'کالزونه اسفناج',
-    price: '۱۷۷,۰۰۰ تومان',
-    img: '/images/imageFood.jpg', // مسیر تصویر کالزونه
-    rating: 4.7,
-    orders: 25,
+    label: 'شعبه',
+    route: '/branchs',
+    subMain: [
+      // { id: 1, label: 'شعبه', route: '/branchs' },
+      { id: 2, label: 'ونک', routeQuery: '/branchs/vanak' },
+      { id: 3, label: 'اکباتان', routeQuery: '/branchs/ekbatan' },
+      { id: 4, label: 'چالوس', routeQuery: '/branchs/chaloos' },
+      { id: 5, label: 'اقدسیه', routeQuery: '/branchs/aghdasie' },
+    ],
+    icon: 'navBranchs'
   },
   {
     id: 3,
-    title: 'بادمجان شکم‌پر',
-    price: '۱۳۶,۰۰۰ تومان',
-    img: '/images/imageFood.jpg', // مسیر تصویر بادمجان
-    rating: 4.3,
-    orders: 19,
+    label: 'منو',
+    route: '/menu',
+    subMain: [
+      { id: 0, label: 'منو', routeQuery: 'all' },
+      { id: 1, label: 'غذا اصلی', routeQuery: 'food' },
+      { id: 2, label: 'پیش غذا', routeQuery: 'appetizer' },
+      { id: 3, label: 'دسر', routeQuery: 'dessert' },
+      { id: 4, label: 'نوشیدنی', routeQuery: 'drink' },
+    ],
+    icon: 'navMenu',
   },
   {
     id: 4,
-    title: 'دلمه برگ کلم',
-    price: '۱۰۹,۰۰۰ تومان',
-    img: '/images/imageFood.jpg', // مسیر تصویر دلمه
-    rating: 4.8,
-    orders: 42,
+    label: 'اعطای نمایندگی',
+    route: '/represent',
+    icon: 'navRepresent'
   },
   {
     id: 5,
-    title: 'دلمه برگ کلم',
-    price: '۱۰۹,۰۰۰ تومان',
-    img: '/images/imageFood.jpg', // مسیر تصویر دلمه
-    rating: 4.8,
-    orders: 42,
+    label: 'درباره ما',
+    route: '/about',
+    icon: 'navAbout',
+  },
+  {
+    id: 6,
+    label: 'تماس با ما',
+    route: '/call',
+    icon: 'navCall'
   },
 ];
-
