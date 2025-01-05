@@ -9,13 +9,7 @@ interface PropsBadge {
 }
 function Badge(prop: PropsBadge) {
   const searchParams = useSearchParams();
-  const pathName = usePathname();
-  const params =
-    searchParams.get('type') !== null && searchParams.get('type') !== undefined
-      ? `?type=${searchParams.get('type')}`
-      : '';
   const query = Object.fromEntries(searchParams.entries());
-  const pathNameWithQuery = `${pathName}${params}`;
   const categorieQuery = searchParams.get('categorie');
 
   return (

@@ -1,8 +1,7 @@
 'use client';
 import { navStats } from '@/lib/dataPublic';
 import Link from 'next/link';
-import { usePathname, useSearchParams } from 'next/navigation';
-import React, { useEffect } from 'react';
+import { useSearchParams } from 'next/navigation';
 
 function Tab() {
   const searchParams = useSearchParams();

@@ -40,7 +40,6 @@ function Nav({ menuBar }: { menuBar: boolean }) {
     if (!!sessionCookie) setBranchName(`شعبه ${sessionCookie}`);
   }, [sessionCookie]);
 
-  const pathNameWithQuery = `${pathName}?type=${searchParams.get('type')}`;
   return (
     <div
       className={
