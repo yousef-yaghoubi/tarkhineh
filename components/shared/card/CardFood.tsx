@@ -2,6 +2,8 @@ import { convertToPersianNumbers } from '@/lib/convertNumberToPersian';
 import Image from 'next/image';
 import React from 'react';
 import Button from '../button/Button';
+import { ClassArray } from 'clsx';
+import { ClassNameValue } from 'tailwind-merge';
 
 interface FoodType {
   id: number;
@@ -16,16 +18,32 @@ interface FoodType {
   };
 }
 
-function PriceOrder({ price }: { price: number }) {
+function PriceOrder({
+  price,
+  classCustom,
+}: {
+  price: number;
+  classCustom?: string;
+}) {
   return (
-    <span className="text-[10px] line-through text-gray-5">
+    <span
+      className={`text-[10px] line-through text-gray-5 ${classCustom && classCustom} `}
+    >
       {convertToPersianNumbers(price.toString())}
     </span>
   );
 }
-function OrderBadge({ order }: { order: number }) {
+function OrderBadge({
+  order,
+  classCustom,
+}: {
+  order: number;
+  classCustom?: string;
+}) {
   return (
-    <div className="w-8 h-4 bg-error-extralight rounded-md caption-sm text-error flex justify-center items-center">
+    <div
+      className={`w-8 h-4 bg-error-extralight rounded-md caption-sm text-error flex justify-center items-center ${classCustom}`}
+    >
       %{convertToPersianNumbers(order.toString())}
     </div>
   );
@@ -144,51 +162,73 @@ function CardFood({
     const arrayStarFill = Array.from({ length: starFill }, (_, i) => i + 1);
     const arrayStarStroke = Array.from({ length: starStroke }, (_, i) => i + 1);
     return (
-      <div className="w-4/5 min-w-80 h-[100px] md:w-3/5 md:h-[158px] max-w-[600px] border border-gray-4 rounded flex relative overflow-hidden">
+      <div className="w-4/5 min-w-80 h-[100px] md:w-3/5 md:h-[158px] md:min-w-[600px] border border-gray-4 rounded flex relative overflow-hidden">
         <Image
           src={'/image/imageFood.jpg'}
           alt="food"
           fill
           className="!w-[92px] !h-full md:!w-[169px]"
         />
-        <div className="w-[calc(100%_-_92px)] md:w-[calc(100%_-_169px)] absolute left-0 h-full p-2">
+        <div className="w-[calc(100%_-_92px)] md:w-[calc(100%_-_169px)] absolute left-0 h-full p-2 md:pr-8 md:py-2 md:pl-4">
           <div className="flex justify-between items-center">
-            <span>{item.name}</span>
+            <span className="caption-md md:h7">{item.name}</span>
             <div
-              className={`${item.order !== 0 ? 'flex' : 'hidden'} w-16 gap-1 items-center justify-between`}
+              className={`${item.order !== 0 ? 'flex md:hidden' : 'hidden'} w-16 gap-1 items-center justify-between`}
             >
               <PriceOrder price={item.price} />
               <OrderBadge order={item.order} />
             </div>
-          </div>
-          <div className="mt-2 flex justify-between">
-            <p className="caption-sm text-gray-8 w-8/12 whitespace-nowrap overflow-hidden text-ellipsis">
-              {item.desc}
-            </p>
-            <span className="caption-sm text-gray-8">
-              <Price order={item.order} price={item.price} />
-            </span>
-          </div>
-          <div className="flex items-center justify-between mt-2">
             <svg
-              width="16"
-              height="17"
+              width="24"
+              height="24"
               viewBox="0 0 16 17"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
-              className=""
+              className="hidden md:flex"
             >
               <path
                 d="M8.00016 14.9336C7.7935 14.9336 7.5935 14.9069 7.42683 14.8469C4.88016 13.9736 0.833496 10.8736 0.833496 6.29356C0.833496 3.96023 2.72016 2.06689 5.04016 2.06689C6.16683 2.06689 7.22016 2.50689 8.00016 3.29356C8.78016 2.50689 9.8335 2.06689 10.9602 2.06689C13.2802 2.06689 15.1668 3.96689 15.1668 6.29356C15.1668 10.8802 11.1202 13.9736 8.5735 14.8469C8.40683 14.9069 8.20683 14.9336 8.00016 14.9336ZM5.04016 3.06689C3.2735 3.06689 1.8335 4.51356 1.8335 6.29356C1.8335 10.8469 6.2135 13.3802 7.7535 13.9069C7.8735 13.9469 8.1335 13.9469 8.2535 13.9069C9.78683 13.3802 14.1735 10.8536 14.1735 6.29356C14.1735 4.51356 12.7335 3.06689 10.9668 3.06689C9.9535 3.06689 9.0135 3.54023 8.40683 4.36023C8.22016 4.61356 7.7935 4.61356 7.60683 4.36023C6.98683 3.53356 6.0535 3.06689 5.04016 3.06689Z"
                 fill="#ADADAD"
               />
             </svg>
-            <div className='flex items-center'>
-              <div className="flex w-20 ml-2">
+          </div>
+          <div className="mt-2 md:mt-0 flex justify-between">
+            <p className="caption-sm md:body-sm text-gray-8 w-8/12 whitespace-nowrap overflow-hidden text-ellipsis md:whitespace-normal md:overflow-auto md:text-balance">
+              {item.desc}
+            </p>
+            <div className="text-gray-8 flex flex-col items-end">
+              <div
+                className={`${item.order !== 0 ? 'hidden md:flex' : 'hidden'} w-16 md:w-[5.5em] items-center justify-between`}
+              >
+                <PriceOrder price={item.price} classCustom="!text-base" />
+                <OrderBadge order={item.order} classCustom="md:caption-md" />
+              </div>
+              <span className="caption-sm md:body-lg">
+                <Price order={item.order} price={item.price} />
+              </span>
+            </div>
+          </div>
+          <div className="flex items-center justify-between mt-1">
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 16 17"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              className="md:hidden"
+            >
+              <path
+                d="M8.00016 14.9336C7.7935 14.9336 7.5935 14.9069 7.42683 14.8469C4.88016 13.9736 0.833496 10.8736 0.833496 6.29356C0.833496 3.96023 2.72016 2.06689 5.04016 2.06689C6.16683 2.06689 7.22016 2.50689 8.00016 3.29356C8.78016 2.50689 9.8335 2.06689 10.9602 2.06689C13.2802 2.06689 15.1668 3.96689 15.1668 6.29356C15.1668 10.8802 11.1202 13.9736 8.5735 14.8469C8.40683 14.9069 8.20683 14.9336 8.00016 14.9336ZM5.04016 3.06689C3.2735 3.06689 1.8335 4.51356 1.8335 6.29356C1.8335 10.8469 6.2135 13.3802 7.7535 13.9069C7.8735 13.9469 8.1335 13.9469 8.2535 13.9069C9.78683 13.3802 14.1735 10.8536 14.1735 6.29356C14.1735 4.51356 12.7335 3.06689 10.9668 3.06689C9.9535 3.06689 9.0135 3.54023 8.40683 4.36023C8.22016 4.61356 7.7935 4.61356 7.60683 4.36023C6.98683 3.53356 6.0535 3.06689 5.04016 3.06689Z"
+                fill="#ADADAD"
+              />
+            </svg>
+            <div className="flex items-center md:w-full md:justify-between">
+              <div className="flex w-20 md:w-28 ml-2">
                 {arrayStarStroke.map((star) => (
                   <svg
                     width="16"
                     height="16"
+                    className="!w-4 !h-4 md:!w-6 md:!h-6"
                     viewBox="0 0 16 17"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
@@ -203,6 +243,7 @@ function CardFood({
                   <svg
                     width="16"
                     height="16"
+                    className="!w-4 !h-4 md:!w-6 md:!h-6"
                     viewBox="0 0 16 17"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
@@ -220,7 +261,7 @@ function CardFood({
               <Button
                 btn="fill"
                 theme="Primary"
-                btnSize="w-[100px] h-8 caption-sm"
+                btnSize="w-[100px] md:w-[244px] h-8 md:h-10 caption-sm md:button-lg"
               >
                 افزودن به سبدخرید
               </Button>

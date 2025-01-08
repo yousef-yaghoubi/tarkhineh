@@ -33,7 +33,7 @@ async function page() {
       <SwiperMain slides={arraySlideMain} pagination />
       <HeaderMenu />
       <div className="h-10 w-full bg-white">test</div>
-      <div className="flex flex-col justify-center items-center sm:grid grid-cols-2">
+      <div className="flex flex-col justify-center items-center gap-y-4">
         {foodTest?.map((item) => (
           <CardFood isShowForMenu item={item} />
         ))}
