@@ -3,7 +3,7 @@ import { arraySlideMain } from '@/lib/dataPublic';
 import React from 'react';
 import HeaderMenu from './HeaderMenu';
 import CardFood from '@/components/shared/card/CardFood';
-import { GetFoodsNotIrani } from '../actions/branchAction';
+import { GetFoodsNotIrani, GetFoodsPopular } from '../actions/branchAction';
 import { cookies } from 'next/headers';
 
 interface PropsSearchParams {
@@ -26,14 +26,14 @@ interface FoodType {
 }
 async function page() {
   const cookie = await cookies().get('branchs')?.value;
-  const foodTest: FoodType[] | undefined = await GetFoodsNotIrani(cookie!);
+  const foodTest: FoodType[] | undefined = await GetFoodsPopular(cookie!);
 
   return (
     <div>
       <SwiperMain slides={arraySlideMain} pagination />
       <HeaderMenu />
-      <div className="h-10 w-full bg-white">test</div>
-      <div className="flex flex-col justify-center items-center gap-y-4">
+      
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 xl:grid-cols-2 justify-items-center gap-y-4 mt-10">
         {foodTest?.map((item) => (
           <CardFood isShowForMenu item={item} />
         ))}

@@ -3,7 +3,7 @@ import React from 'react';
 
 function SearchBox({classes} : {classes: string}) {
   return (
-    <div className={`h-8 md:h-10 border rounded-sm border-gray-4 md:hover:border-gray-8 md:dark:hover:border-gray-6 relative flex items-center focus-within:border-primary ${classes}`}>
+    <div className={`h-8 md:h-10 border rounded-sm border-gray-4 dark:border-zinc-600 md:hover:border-gray-8 md:dark:hover:border-gray-6 relative flex items-center focus-within:border-primary ${classes}`}>
       <Input
         type="text"
         className="w-11/12 h-full border-none caption-sm md:caption-md text-gray-8 dark:text-gray-5"

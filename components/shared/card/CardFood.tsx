@@ -56,6 +56,7 @@ function Price({ price, order }: { price: number; order: number }) {
         convertToPersianNumbers(
           (price - price * (order / 100)).toLocaleString()
         )}
+        {' '}
       {order == 0 && convertToPersianNumbers(price.toLocaleString())}
       تومان
     </>
@@ -148,7 +149,7 @@ function CardFood({
           <Button
             btn="fill"
             theme="Primary"
-            btnSize="w-[152px] h-8 caption-sm mt-3 md:mt-4 md:w-[256px] md:h-10"
+            btnSize="w-[152px] h-8 caption-sm md:button-lg mt-3 md:mt-4 md:w-[256px] md:h-10"
           >
             افزودن به سبد خرید
           </Button>
@@ -162,7 +163,7 @@ function CardFood({
     const arrayStarFill = Array.from({ length: starFill }, (_, i) => i + 1);
     const arrayStarStroke = Array.from({ length: starStroke }, (_, i) => i + 1);
     return (
-      <div className="w-4/5 min-w-80 h-[100px] md:w-3/5 md:h-[158px] md:min-w-[600px] border border-gray-4 rounded flex relative overflow-hidden">
+      <div className="w-4/5 min-w-80 h-[100px] md:w-4/5 md:h-[158px] md:min-w-[600px] border border-gray-4 dark:border-background-2 rounded flex relative overflow-hidden">
         <Image
           src={'/image/imageFood.jpg'}
           alt="food"
@@ -193,10 +194,10 @@ function CardFood({
             </svg>
           </div>
           <div className="mt-2 md:mt-0 flex justify-between">
-            <p className="caption-sm md:body-sm text-gray-8 w-8/12 whitespace-nowrap overflow-hidden text-ellipsis md:whitespace-normal md:overflow-auto md:text-balance">
+            <p className="caption-sm md:body-sm text-gray-8 dark:text-gray-4 w-8/12 whitespace-nowrap overflow-hidden text-ellipsis md:whitespace-normal md:overflow-auto md:text-balance">
               {item.desc}
             </p>
-            <div className="text-gray-8 flex flex-col items-end">
+            <div className="text-gray-8 dark:text-gray-4 flex flex-col items-end">
               <div
                 className={`${item.order !== 0 ? 'hidden md:flex' : 'hidden'} w-16 md:w-[5.5em] items-center justify-between`}
               >

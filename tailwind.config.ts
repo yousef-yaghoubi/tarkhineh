@@ -21,7 +21,7 @@ const config: Config = {
           '0px 42px 17px rgba(0, 0, 0, 0.01), 0px 24px 14px rgba(0, 0, 0, 0.05), 0px 11px 11px rgba(0, 0, 0, 0.09), 0px 3px 6px rgba(0, 0, 0, 0.1), 0px 0px 0px rgba(0, 0, 0, 0.1)',
         cards:
           '0px 16px 6px rgba(0, 0, 0, 0.01), 0px 9px 5px rgba(0, 0, 0, 0.05), 0px 4px 4px rgba(0, 0, 0, 0.09), 0px 1px 2px rgba(0, 0, 0, 0.1), 0px 0px 0px rgba(0, 0, 0, 0.1)',
-        
+        cardFood: '0 2px 2px rgba(0,0,0,25%),  4px 4px rgba(0,0,0,25%), 0 6px 6px rgba(0,0,0,25%), 0 8px 8px rgba(0,0,0,25%), 0 12px 12px rgba(0,0,0,25%), 0 16px 16px rgba(0,0,0,25%)',
         'shadow-10': '0 0 10px rgba(0,0,0,15%)',
       },
       dropShadow: {
