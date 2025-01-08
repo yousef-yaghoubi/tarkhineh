@@ -71,7 +71,7 @@ function CardFood({
 }) {
   if (isShowForMenu !== true) {
     return (
-      <div className="w-[168px] md:w-72 h-[231px] md:h-[417px] overflow-hidden rounded-sm relative hover:md:shadow-shadow-10  flex flex-col items-center bg-white dark:bg-background-1">
+      <div className="w-[168px] md:w-72 h-[231px] md:h-[417px] overflow-hidden rounded-sm relative hover:shadow-shadow-10 transition-shadow duration-300 flex flex-col items-center bg-white dark:bg-background-1">
         <Image
           src="/image/imageFood.jpg"
           alt="food"
@@ -163,7 +163,7 @@ function CardFood({
     const arrayStarFill = Array.from({ length: starFill }, (_, i) => i + 1);
     const arrayStarStroke = Array.from({ length: starStroke }, (_, i) => i + 1);
     return (
-      <div className="w-4/5 min-w-80 h-[100px] md:w-4/5 md:h-[158px] md:min-w-[600px] border border-gray-4 dark:border-background-2 rounded flex relative overflow-hidden">
+      <div className="w-4/5 min-w-80 h-[100px] md:w-4/5 md:h-[158px] md:min-w-[600px] border border-gray-4 dark:border-background-2 rounded flex relative overflow-hidden hover:shadow-cardFood transition-shadow duration-300">
         <Image
           src={'/image/imageFood.jpg'}
           alt="food"
