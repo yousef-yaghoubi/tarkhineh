@@ -39,7 +39,7 @@ function CardFoodLoading({
         );
       } else {
         return (
-          <div className="w-4/5 min-w-80 h-[100px] md:w-4/5 md:h-[158px] md:min-w-[600px] border border-gray-4 dark:border-background-2 rounded flex relative overflow-hidden hover:shadow-cardFood transition-shadow duration-300">
+          <div className="w-4/5 min-w-80 h-[100px] md:w-4/5 md:h-[158px] md:min-w-[600px] border border-gray-4/20 dark:border-background-2 rounded flex relative overflow-hidden">
             <Skeleton
               className="!w-[92px] !h-full md:!w-[169px]"
             />
@@ -60,9 +60,9 @@ function CardFoodLoading({
 
                 <div className="flex flex-col items-end">
                   <Skeleton
-                    className='hidden md:flex md:w-[5.5em] h-6'
+                    className='hidden md:flex md:w-[5.5em] h-6 mt-2'
                   />
-                  <Skeleton className="w-24 h-8 md:h-5"/>
+                  <Skeleton className="w-24 h-8 md:h-5 mt-2"/>
                 </div>
               </div>
               <div className="flex items-center justify-between mt-1">
@@ -70,7 +70,7 @@ function CardFoodLoading({
                   className="md:hidden w-6 h-6"
                 />
                 <div className="flex items-center md:w-full md:justify-between">
-                  <Skeleton className="flex w-20 md:w-28 ml-2"/>
+                  <Skeleton className="flex w-20 h-7 md:w-28 ml-2"/>
     
                   <Skeleton className='w-[100px] md:w-[244px] h-8 md:h-10'/>
                 </div>

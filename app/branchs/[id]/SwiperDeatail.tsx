@@ -67,7 +67,7 @@ function SwiperDeatail({ address, images, phones, durition }: Details) {
             />
           </svg>
           {phones.phones.map((num, i) => (
-          <span className={`caption-sm md:body-md text-center md:mt-2 ${i == 1 ? 'hidden md:flex' : 'flex'} dark:text-background-1`}>
+          <span className={`caption-sm md:body-md text-center md:mt-2 ${i == 1 ? 'hidden md:flex' : 'flex'} dark:text-background-1`} key={num}>
             {convertToPersianNumbers(num)}
           </span>
           ))}

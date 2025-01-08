@@ -4,7 +4,6 @@ import React from 'react';
 import Button from '../button/Button';
 import { FoodType } from '@/lib/indexType';
 
-
 function PriceOrder({
   price,
   classCustom,
@@ -42,8 +41,7 @@ function Price({ price, order }: { price: number; order: number }) {
       {order !== 0 &&
         convertToPersianNumbers(
           (price - price * (order / 100)).toLocaleString()
-        )}
-        {' '}
+        )}{' '}
       {order == 0 && convertToPersianNumbers(price.toLocaleString())}
       تومان
     </>
@@ -71,13 +69,6 @@ function CardFood({
           <div className="flex justify-between w-full h-10 md:h-[51px] px-2 mt-1 md:mt-4">
             <div className="w-1/2 h-full flex flex-col justify-between">
               <div className="relative flex items-center">
-                {/* <Image
-                  src={'/icons/Heart.svg'}
-                  alt="like"
-                  width={16}
-                  height={16}
-                  className="!w-4 !h-4 ml-1"
-                /> */}
                 <svg
                   width="16"
                   height="17"
@@ -214,6 +205,7 @@ function CardFood({
               <div className="flex w-20 md:w-28 ml-2">
                 {arrayStarStroke.map((star) => (
                   <svg
+                    key={star}
                     width="16"
                     height="16"
                     className="!w-4 !h-4 md:!w-6 md:!h-6"
@@ -229,6 +221,7 @@ function CardFood({
                 ))}
                 {arrayStarFill.map((star) => (
                   <svg
+                    key={star}
                     width="16"
                     height="16"
                     className="!w-4 !h-4 md:!w-6 md:!h-6"

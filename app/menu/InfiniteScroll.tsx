@@ -1,15 +1,15 @@
 'use client';
 import dynamic from 'next/dynamic';
-// import CardFood from '@/components/shared/card/CardFood';
 import Cookies from 'js-cookie';
 import { GetAllFoods } from '../actions/branchAction';
 import { useEffect, useState, Suspense } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { FoodType } from '@/lib/indexType';
 import CardFoodLoading from '@/components/shared/card/CardFoodLoading';
+import { randomUUID } from 'crypto';
 
 const CardFood = dynamic(() => import('@/components/shared/card/CardFood'),{
-    loading: ()=> <CardFoodLoading isShowForMenu/>
+    loading: ()=> <CardFoodLoading isShowForMenu key={Math.random()}/>
 })
 
 function InfiniteScroll({
@@ -27,7 +27,7 @@ function InfiniteScroll({
   async function loadMoreMovies() {
     const next = page + 1;
     const food = await GetAllFoods({ branchName: cookie!, page });
-    if (food?.length) {
+    if (food?.length ) {
       setPage(next);
       setFoods((prev: FoodType[] | undefined) => [
         ...(prev?.length ? prev : []),
@@ -45,7 +45,7 @@ function InfiniteScroll({
   return (
     <>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 xl:grid-cols-2 justify-items-center gap-y-4 mt-10">
-        {foods?.map((item) => <CardFood isShowForMenu item={item} />)}
+        {foods?.map((item, index) => <CardFood isShowForMenu item={item} key={index}/>)}
       </div>
       <div className="w-full flex justify-center items-center mt-10 mb-40">
         <div

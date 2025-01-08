@@ -8,8 +8,14 @@ import 'swiper/css/pagination';
 import Comment from '@/components/shared/comment/Comment';
 import { NavBadgeMenu } from '@/lib/dataPublic';
 import Badge from '@/app/menu/Badge';
-import CardFood from '@/components/shared/card/CardFood';
+
 import { FoodType } from '@/lib/indexType';
+import dynamic from 'next/dynamic';
+import CardFoodLoading from '../card/CardFoodLoading';
+
+const CardFood = dynamic(() => import('@/components/shared/card/CardFood'),{
+  loading: ()=> <CardFoodLoading/>
+})
 
 interface CommentType {
   id: number;
