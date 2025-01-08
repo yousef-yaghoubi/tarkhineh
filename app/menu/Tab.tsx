@@ -8,7 +8,7 @@ function Tab() {
   const query = Object.fromEntries(searchParams.entries());
 
   return (
-    <div className="w-full bg-gray-3 h-10 md:h-16 px-[21px] md:px-[108px] flex gap-4 md:gap-8 items-center">
+    <div className="w-full bg-gray-3 dark:bg-background-2 h-10 md:h-16 px-[21px] md:px-[108px] flex gap-4 md:gap-8 items-center">
       {navStats.at(2)?.subMain?.map((link) => (
         <Link
           href={{

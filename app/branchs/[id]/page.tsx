@@ -5,14 +5,15 @@ import Button from '@/components/shared/button/Button';
 import { cookies } from 'next/headers';
 import { arraySlideMain } from '@/lib/dataPublic';
 import SwiperDeatail from './SwiperDeatail';
-import SliderSwiper from './SliderSwiper';
+import SliderSwiper from '../../../components/shared/swiper/SliderSwiper';
 import {
   GetBranch,
   GetFoodsNotIrani,
   GetFoodsPopular,
   GetFoodsSpecial,
 } from '@/app/actions/branchAction';
-import { CommentType } from '@/lib/type/Comment';
+import { CommentType } from '@/lib/MenuPage';
+
 
 interface Foods {
   id: number;

@@ -1,6 +1,7 @@
 'use server';
 
 import prisma from '@/prisma/prismaClient';
+import { revalidatePath } from 'next/cache';
 
 
 export async function GetBranch(branchName: string) {
@@ -141,7 +142,6 @@ export async function GetFoodsNotIrani(branchName:string) {
       },
       take: 10
     });
-
     return foods;
   } catch (error) {
     console.log(error);

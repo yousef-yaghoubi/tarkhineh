@@ -229,7 +229,7 @@ function Nav({ menuBar }: { menuBar: boolean }) {
               click={() => {
                 Cookies.set('branchs', branch.title);
                 closeModal();
-                router.push(urlMenu as string);
+                router.push(`/menu?type=${urlMenu}`);
               }}
             />
           ))}

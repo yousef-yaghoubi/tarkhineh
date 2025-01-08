@@ -1,3 +1,5 @@
+import { BadgeType } from "./MenuPage";
+
 export const miniCards = [
   { id: 4, img: '/image/miniCardFood.png', title: 'غذای اصلی' },
   { id: 3, img: '/image/miniCardAppetizer.png', title: 'پیش غذا' },
@@ -176,11 +178,11 @@ export const navStats = [
   },
 ];
 
-export const NavBadgeMenu = [
+export const NavBadgeMenu: BadgeType[] = [
   { id: 1, title: 'غذاهای ایرانی', url: 'irani' },
   { id: 2, title: 'غذاهای غیر ایرانی', url: 'non-Iranian' },
   { id: 3, title: 'پیتزاها', url: 'pizzas' },
-  { id: 4, title: 'ساندویچ ها', url: 'سandwiches' },
+  { id: 4, title: 'ساندویچ ها', url: 'sandwiches' },
   { id: 5, title: 'پرفروش ترین', url: 'bestSeller' },
   { id: 6, title: 'اقتصادی ترین', url: 'mostEconomical' },
   { id: 7, title: 'محبوب ترین', url: 'mostPopular' },
