@@ -1,48 +1,46 @@
 'use client';
-import CardFood from '@/components/shared/card/CardFood';
+import dynamic from 'next/dynamic';
+// import CardFood from '@/components/shared/card/CardFood';
 import Cookies from 'js-cookie';
 import { GetAllFoods } from '../actions/branchAction';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, Suspense } from 'react';
 import { useInView } from 'react-intersection-observer';
+import { FoodType } from '@/lib/indexType';
+import CardFoodLoading from '@/components/shared/card/CardFoodLoading';
 
-interface FoodType {
-  id: number;
-  name: string;
-  image: string;
-  desc: string;
-  price: number;
-  order: number;
-  rating: number;
-  _count: {
-    commentsFood: number;
-  };
-}
+const CardFood = dynamic(() => import('@/components/shared/card/CardFood'),{
+    loading: ()=> <CardFoodLoading isShowForMenu/>
+})
 
-function InfiniteScroll({ initialFood }: { initialFood: FoodType[] | undefined }) {
+function InfiniteScroll({
+  initialFood,
+}: {
+  initialFood: FoodType[] | undefined;
+}) {
   const [foods, setFoods] = useState(initialFood);
   const [page, setPage] = useState(1);
   const [ref, inView] = useInView({
-    threshold: 1
+    threshold: 1,
   });
   const cookie = Cookies.get('branchs');
 
   async function loadMoreMovies() {
-    const next = page + 1
-    const food = await GetAllFoods({branchName: cookie!, page})
+    const next = page + 1;
+    const food = await GetAllFoods({ branchName: cookie!, page });
     if (food?.length) {
-      setPage(next)
+      setPage(next);
       setFoods((prev: FoodType[] | undefined) => [
         ...(prev?.length ? prev : []),
-        ...food
-      ])
+        ...food,
+      ]);
     }
   }
 
-  useEffect(()=>{
-    if(inView){
-        loadMoreMovies()
+  useEffect(() => {
+    if (inView) {
+      loadMoreMovies();
     }
-  },[inView])
+  }, [inView]);
 
   return (
     <>

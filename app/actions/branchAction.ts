@@ -103,10 +103,10 @@ export async function GetAllFoods({
         },
       },
       take: take,
-      skip: skip
+      skip: skip,
     });
 
-    revalidatePath('/')
+    revalidatePath('/menu');
     return foods;
   } catch (error) {
     console.log(error);

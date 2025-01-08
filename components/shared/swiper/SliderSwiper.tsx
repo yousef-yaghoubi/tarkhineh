@@ -9,19 +9,8 @@ import Comment from '@/components/shared/comment/Comment';
 import { NavBadgeMenu } from '@/lib/dataPublic';
 import Badge from '@/app/menu/Badge';
 import CardFood from '@/components/shared/card/CardFood';
+import { FoodType } from '@/lib/indexType';
 
-interface FoodType {
-  id: number;
-  name: string;
-  image: string;
-  desc: string;
-  price: number;
-  order: number;
-  rating: number;
-  _count: {
-    commentsFood: number;
-  };
-}
 interface CommentType {
   id: number;
   desc: string;

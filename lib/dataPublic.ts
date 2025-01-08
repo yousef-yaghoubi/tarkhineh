@@ -1,4 +1,4 @@
-import { BadgeType } from "./MenuPage";
+import { BadgeType } from "./indexType";
 
 export const miniCards = [
   { id: 4, img: '/image/miniCardFood.png', title: 'غذای اصلی' },

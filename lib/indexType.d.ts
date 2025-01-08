@@ -22,3 +22,16 @@ export interface CommentType {
     lastName: string;
   };
 }
+
+export interface FoodType {
+  id: number;
+  name: string;
+  image: string;
+  desc: string;
+  price: number;
+  order: number;
+  rating: number;
+  _count: {
+    commentsFood: number;
+  };
+}

@@ -2,21 +2,8 @@ import { convertToPersianNumbers } from '@/lib/convertNumberToPersian';
 import Image from 'next/image';
 import React from 'react';
 import Button from '../button/Button';
-import { ClassArray } from 'clsx';
-import { ClassNameValue } from 'tailwind-merge';
+import { FoodType } from '@/lib/indexType';
 
-interface FoodType {
-  id: number;
-  name: string;
-  image: string;
-  desc: string;
-  price: number;
-  order: number;
-  rating: number;
-  _count: {
-    commentsFood: number;
-  };
-}
 
 function PriceOrder({
   price,

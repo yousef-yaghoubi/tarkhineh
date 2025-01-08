@@ -12,7 +12,7 @@ import {
   GetFoodsPopular,
   GetFoodsSpecial,
 } from '@/app/actions/branchAction';
-import { CommentType } from '@/lib/MenuPage';
+import { CommentType } from '@/lib/indexType';
 
 
 interface Foods {
