@@ -6,45 +6,48 @@ import { useEffect, useState, Suspense } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { FoodType } from '@/lib/indexType';
 import CardFoodLoading from '@/components/shared/card/CardFoodLoading';
+import { useSearchParams } from 'next/navigation';
 
 const CardFood = dynamic(() => import('@/components/shared/card/CardFood'), {
   loading: () => <CardFoodLoading isShowForMenu key={Math.random()} />,
 });
 
-let page = 2
-function InfiniteScroll({
-  initialFood,
-}: {
-  initialFood:
-    | { foods: FoodType[]; numberOfFood: number | undefined }
-    | undefined;
-}) {
-  const [foods, setFoods] = useState(initialFood?.foods);
-  // const [page, setPage] = useState(1);
-  const {ref, inView} = useInView();
 
-  const cookie = Cookies.get('branchs');
 
-  async function loadMoreMovies() {
-    // const next = page + 1;
-    const food: { foods: FoodType[]; numberOfFood: number | undefined } | undefined = await GetAllFoods({ branchName: cookie!, page });
-    let foodsLength = (food?.foods.length as number + foods!.length as number)
-    console.log(foodsLength, initialFood?.numberOfFood)
+function InfiniteScroll(){
+  const [foods, setFoods] = useState<FoodType[]>([]);
+  const [numberOfAllFood, setNumberOfAllFood] = useState<number>(1)
+  const [page, setPage] = useState<number>(1);
+  const { ref, inView } = useInView();
+  const cookieBranch = Cookies.get('branchs');
+  const queryType = useSearchParams().get('type') || 'all'
 
-    if (food?.foods.length) {
-      setFoods((prev: FoodType[] | undefined) => [
-        ...(prev?.length ? prev : []),
-        ...food.foods,
-      ]);
-      page++;
-    }
-  }
 
   useEffect(() => {
     if (inView) {
       loadMoreMovies();
     }
   }, [inView, foods]);
+
+  useEffect(()=>{
+    setFoods([])
+    setPage(1)
+    setNumberOfAllFood(1)
+  },[queryType])
+  
+  async function loadMoreMovies() {
+    // const next = page + 1;
+    const food: { foods: FoodType[]; numberOfFood: number | undefined } | undefined = await GetAllFoods({ branchName: cookieBranch!, page, categorie: queryType });
+    setNumberOfAllFood(food!.foods.length)
+    if (food?.foods.length) {
+      setFoods((prev: FoodType[] | undefined) => [
+        ...(prev?.length ? prev : []),
+        ...food.foods,
+      ]);
+      setPage((prev)=> prev + 1)
+    }
+  }
+
 
   return (
     <>
@@ -54,10 +57,10 @@ function InfiniteScroll({
         ))}
       </div>
       <div
-        className={`w-full ${foods?.length !== initialFood?.numberOfFood ? 'flex' : 'hidden'} justify-center items-center mt-10 mb-40`}
+        className={`w-full ${numberOfAllFood !== 0 ? 'flex' : 'hidden'} justify-center items-center mt-10 mb-40`}
       >
         <div
-          className={`${foods?.length !== initialFood?.numberOfFood ? 'inline-block' : 'hidden'} text-primary h-14 w-14 animate-spin rounded-full border-[6px] border-solid border-current border-e-transparent align-[-0.125em] text-surface motion-reduce:animate-[spin_1.5s_linear_infinite]`}
+          className={`${numberOfAllFood !== 0 ? 'inline-block' : 'hidden'} text-primary h-14 w-14 animate-spin rounded-full border-[6px] border-solid border-current border-e-transparent align-[-0.125em] text-surface motion-reduce:animate-[spin_1.5s_linear_infinite]`}
           role="status"
           ref={ref}
         >
