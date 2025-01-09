@@ -11,7 +11,7 @@ import { FoodType } from '@/lib/indexType';
 
 async function page() {
   const cookie = await cookies().get('branchs')?.value;
-  const foodTest: FoodType[] | undefined = await GetAllFoods({
+  const foodTest: {foods:FoodType[], numberOfFood: number | undefined} | undefined = await GetAllFoods({
     branchName: cookie!,
     page: 1,
   });

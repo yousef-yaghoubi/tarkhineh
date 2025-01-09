@@ -47,6 +47,8 @@ function Price({ price, order }: { price: number; order: number }) {
     </>
   );
 }
+
+
 function CardFood({
   item,
   isShowForMenu,

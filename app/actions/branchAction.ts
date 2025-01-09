@@ -82,6 +82,19 @@ export async function GetAllFoods({
   try {
     const take = 5;
     const skip = (page - 1) * take;
+    const quantityFood = await prisma.branchs.findUnique({
+      where: {
+        name: branchName,
+      },
+      select: {
+        _count: {
+          select: {
+            foods: true,
+          },
+        },
+      },
+    });
+
     const foods = await prisma.foods.findMany({
       where: {
         branch: {
@@ -102,12 +115,12 @@ export async function GetAllFoods({
           },
         },
       },
-      take: take,
       skip: skip,
+      take: take
     });
 
-    revalidatePath('/menu');
-    return foods;
+    revalidatePath('/menu')
+    return { foods: foods, numberOfFood: quantityFood?._count.foods };
   } catch (error) {
     console.log(error);
   }
