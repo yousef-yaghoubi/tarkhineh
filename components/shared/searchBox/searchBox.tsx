@@ -15,20 +15,19 @@ function SearchBox({ classes }: { classes: string }) {
   const pathname = usePathname();
   const search = searchParams.get('search');
 
-  const handleKeyDown = async (
+  const handleKeyDown = (
     event: React.KeyboardEvent<HTMLInputElement>
   ) => {
     if (event.key === 'Enter') {
-      const query = await new URLSearchParams({
-        search: inputValue!,
-      }).toString();
-      await router.push(`/search?${query}`);
-      await handleRefreshPage();
+      handleSearchQuery()
     }
   };
 
-  const handleRefreshPage = () => {
-    window.location.reload();
+  const handleSearchQuery = async () => {
+    const query = await new URLSearchParams({
+      search: inputValue!,
+    }).toString();
+    router.push(`/search?${query}`);
   };
 
   return (
@@ -75,8 +74,9 @@ function SearchBox({ classes }: { classes: string }) {
         height="24"
         viewBox="0 0 16 16"
         fill="none"
+        onClick={()=> handleSearchQuery()}
         xmlns="http://www.w3.org/2000/svg"
-        className="absolute left-4"
+        className="absolute left-4 !w-4 !h-4 md:!w-6 md:!h-6"
       >
         <path
           d="M7.66732 14.5002C3.90065 14.5002 0.833984 11.4335 0.833984 7.66683C0.833984 3.90016 3.90065 0.833496 7.66732 0.833496C11.434 0.833496 14.5007 3.90016 14.5007 7.66683C14.5007 11.4335 11.434 14.5002 7.66732 14.5002ZM7.66732 1.8335C4.44732 1.8335 1.83398 4.4535 1.83398 7.66683C1.83398 10.8802 4.44732 13.5002 7.66732 13.5002C10.8873 13.5002 13.5007 10.8802 13.5007 7.66683C13.5007 4.4535 10.8873 1.8335 7.66732 1.8335Z"

@@ -29,7 +29,7 @@ function Icon({ alt, img, imgActive, isActive, quantity, className }: Props) {
         } justify-center flex items-center relative ${className}`}
         onClick={() => {
           alt == 'profile' && router.push('/login');
-          alt == 'search' && router.push('/search');
+          alt == 'search' && openModal();
         }}
       >
         {quantity != 0 && (
