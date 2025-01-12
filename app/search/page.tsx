@@ -38,7 +38,7 @@ async function page({ searchParams }: { searchParams: SearchParams }) {
           className="mt-14 mb-12 px-4"
         />
       ) : (
-        <section className='mt-12 grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-2 w-full justify-items-center gap-y-4 md:gap-y-8'>{foods.map((food)=> (
+        <section className='mt-12 grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-2 lg:grid-cols-3 w-full sm:max-w-[90%] justify-items-center gap-y-4 md:gap-y-8 mb-10'>{foods.map((food)=> (
           <CardFood item={food} key={food.id}/>
         ))}</section>
       )}

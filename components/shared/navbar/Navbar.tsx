@@ -14,7 +14,7 @@ import Link from 'next/link';
 
 function Navbar() {
   return (
-    <div className="w-full h-16 md:h-[115px] flex flex-row justify-between px-4 md:justify-around md:p-0 items-center">
+    <div className="w-full h-16 md:h-[115px] flex flex-row justify-between px-4 md:justify-around md:p-0 items-center shadow-shadow-10">
       <Sheet>
         <SheetTrigger className="md:!hidden" asChild>
           <Image src="/icons/menu.svg" alt="menu" width={24} height={24} />
@@ -58,7 +58,6 @@ function Navbar() {
             alt={icon.alt}
             img={icon.img}
             imgActive={icon.imgActive}
-            isActive={icon.isActive}
             quantity={icon.quantity}
             key={icon.id}
             className={icon.class}

@@ -3,23 +3,33 @@ import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
 import Modal from '../Modal';
 import SearchBox from '../searchBox/SearchBox';
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 
 interface Props {
   alt: string;
   img: string;
   imgActive: string;
-  isActive: boolean;
+  // isActive: boolean;
   quantity: number;
   className: string;
 }
-function Icon({ alt, img, imgActive, isActive, quantity, className }: Props) {
+function Icon({ alt, img, imgActive, quantity, className }: Props) {
   const router = useRouter();
+  const pathName = usePathname();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
+  let isActive = false;
 
+  useEffect(() => {
+    if (pathName == '/search') {
+      closeModal();
+    }
+  }, [isModalOpen, openModal, closeModal]);
 
+  if (pathName.slice(1) == alt) {
+    isActive = true;
+  }
 
   return (
     <>
@@ -47,7 +57,7 @@ function Icon({ alt, img, imgActive, isActive, quantity, className }: Props) {
           <Image
             src={isActive ? imgActive : img}
             alt={alt}
-            className='w-[18px] md:w-6 h-[18px] md:h-6'
+            className="w-[18px] md:w-6 h-[18px] md:h-6"
             fill
           />
         </div>
