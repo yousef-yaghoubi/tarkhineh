@@ -11,6 +11,13 @@ import Image from 'next/image';
 
 export function ModeToggle() {
   const { theme ,setTheme } = useTheme();
+  const [themeSite, setThemeSite] = useState<string>()
+
+  useEffect(()=>{
+    if(theme){
+      setThemeSite(theme)
+    }
+  },[theme])
   
   return (
     <DropdownMenu dir="rtl">
@@ -26,14 +33,15 @@ export function ModeToggle() {
             className={`w-6 h-6 md:!w-10 md:!h-10 rounded bg-tint-1 justify-center flex items-center relative`}
           >
             <div className="w-[18px] md:w-6 h-[18px] md:h-6 flex justify-center items-center relative">
-              {theme == 'dark' ? (
+              {themeSite == 'dark' ? (
                 <Image
                   src="/icons/moon.svg"
                   alt="moon"
                   className="w-[18px] md:w-6 h-[18px] md:h-6"
                   fill
                 />
-              ) : (
+              ) :
+              (
                 <Image
                   src="/icons/sun.svg"
                   alt="sun"

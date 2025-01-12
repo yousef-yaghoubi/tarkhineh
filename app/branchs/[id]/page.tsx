@@ -13,6 +13,8 @@ import {
   GetFoodsSpecial,
 } from '@/app/actions/branchAction';
 import { CommentType } from '@/lib/indexType';
+import CardFoodLoading from '@/components/shared/card/CardFoodLoading';
+import { GetAllFoods } from '@/app/actions/foodAction';
 
 
 interface Foods {
@@ -29,13 +31,13 @@ interface Foods {
 async function DynamicBranchs() {
   const branch = await cookies().get('branchs')?.value;
 
-  const specialOfferFoods: Foods[] | undefined = await GetFoodsSpecial(branch!);
-  const popularFoods: Foods[] | undefined = await GetFoodsPopular(branch!);
-  const notIraniFoods: Foods[] | undefined = await GetFoodsNotIrani(branch!);
+  const specialOfferFoods: Foods[] | undefined = await GetAllFoods({branchName: branch!, filter: 'specialOffer', page: 1});
+  const popularFoods: Foods[] | undefined = await GetAllFoods({branchName: branch!, filter:'mostPopular', page: 1});
+  const notIraniFoods: Foods[] | undefined = await GetAllFoods({branchName: branch!, filter:'non-Iranian', page: 1});
   const branchAction = await GetBranch(branch!);
 
   return (
-    <div className="flex flex-col items-center">
+    <section className="flex flex-col items-center">
       <SwiperMain slides={arraySlideMain} pagination showBtn />
       <div className="w-full flex justify-center">
         <SearchBox classes="w-[90%] mt-4 sm:hidden" />
@@ -100,7 +102,7 @@ async function DynamicBranchs() {
       ) : (
         <div className="h-16 mt-10">کامنتی وجود ندارد</div>
       )}
-    </div>
+    </section>
   );
 }
 

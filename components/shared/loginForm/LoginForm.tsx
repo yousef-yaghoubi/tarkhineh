@@ -1,8 +1,6 @@
 'use client';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import React from 'react';
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
 import Button from '../button/Button';
 import Link from 'next/link';
 import { useForm } from 'react-hook-form';
@@ -10,9 +8,8 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import ErrorMessage from './ErrorMessage';
 import { SchemaLogin, SchemaRegister } from '@/lib/zod';
-import { SignInGoogle, SubmitNewUser } from '@/app/actions/userAction';
-import { toast } from 'sonner';
 import { signIn } from 'next-auth/react';
+import ButtonBack from '../button/ButtonBack';
 
 type loginType = z.infer<typeof SchemaLogin>;
 type registerType = z.infer<typeof SchemaRegister>;
@@ -26,15 +23,6 @@ function LoginForm() {
     resolver: zodResolver(SchemaLogin),
   });
 
-  // const {
-  //   register: registerRegister,
-  //   handleSubmit: handleSubmitRegister,
-  //   formState: { errors: errorsRegister },
-  // } = useForm<registerType>({
-  //   resolver: zodResolver(SchemaRegister),
-  // });
-
-  const router = useRouter();
 
   const submitFormLogin = async (e: { email: string; password: string }) => {
     // SignInCredential(e)
@@ -44,21 +32,6 @@ function LoginForm() {
       callbackUrl: '/',
     });
   };
-
-  // const submitFormRegister = async (e:{ email: string; password: string; repassword: string }) => {
-  //   const Registration = await SubmitNewUser(e);
-
-  //   const message = Registration?.message;
-  //   const status = Registration?.status;
-
-  //   {
-  //     Registration?.status == 201
-  //       ? toast.success(<h4>{message}</h4>)
-  //       : toast.error(<h4>{message}</h4>);
-  //   }
-
-  //   {Registration?.status == 201 && await signIn('credentials', {email:e.email, password: e.password, callbackUrl:"/"})}
-  // };
 
   return (
     <div className="bg-white dark:bg-background-1 rounded-md w-11/12 max-w-[392px] h-[30em] flex flex-col items-center overflow-hidden relative">
@@ -71,17 +44,14 @@ function LoginForm() {
           className="h-9"
         />
 
-        <button
-          className="w-fit top-3 left-3 absolute"
-          onClick={() => router.back()}
-        >
+        <ButtonBack>
           <Image
             src="/icons/CloseIcon.png"
             alt="close"
             width={24}
             height={24}
           />
-        </button>
+        </ButtonBack>
       </div>
 
       <div className="flex flex-col justify-center items-center" dir="rtl">
@@ -121,7 +91,7 @@ function LoginForm() {
             id="InputPass"
           >
             <input
-              dir='ltr'
+              dir="ltr"
               type="password"
               id="InputPassLogin"
               {...registerLogin('password')}

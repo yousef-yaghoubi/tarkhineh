@@ -11,7 +11,7 @@ interface PropsBadge {
 function Badge(prop: PropsBadge) {
   const searchParams = useSearchParams();
   const query = Object.fromEntries(searchParams.entries());
-  const categorieQuery = searchParams.get('categorie');
+  const categorieQuery = searchParams.get('categorie') || 'all';
 
   return (
     <Link

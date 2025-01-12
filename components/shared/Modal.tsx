@@ -50,7 +50,7 @@ const Modal: React.FC<ModalProps> = ({
   const prevRef = useRef(null);
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const nextRef = useRef(null);
-  if (images != undefined || null) {
+  if (images !== undefined) {
     return (
       <Portal>
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 backdrop-blur-sm">

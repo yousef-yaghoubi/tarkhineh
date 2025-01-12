@@ -39,7 +39,7 @@ export default async function RootLayout({
             attribute="class"
             defaultTheme="light"
             enableSystem
-            disableTransitionOnChange
+            
           >
             <>
               {session?.user?.name}

@@ -81,6 +81,7 @@ model Foods {
   branchId            Int
   branch              Branchs               @relation(fields: [branchId], references: [id])
   specialOffer        Boolean               @default(false)
+  numberOfSell        Int                   @default(0)
   foodOfOrderTracking FoodOfOrderTracking[]
 }
 

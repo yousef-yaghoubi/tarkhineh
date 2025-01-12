@@ -121,8 +121,6 @@ async function Home() {
             />
           ))}
         </div>
-
-        <Link href={'/login'}> login</Link>
       </section>
     </div>
   );
