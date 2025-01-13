@@ -10,6 +10,10 @@ export interface BadgeType {
   url: string;
   title: string;
 }
+export interface ProfileRoutes extends BadgeType {
+  icon: string
+}
+
 
 export interface CommentType {
   id: number;

@@ -12,8 +12,11 @@ import {
 import { iconDetails } from '@/lib/dataPublic';
 import Link from 'next/link';
 import IconMap from '../IconMap';
+import { getServerSession } from 'next-auth';
+import { authOption } from '@/app/api/auth/[...nextauth]/route';
 
-function Navbar() {
+async function Navbar() {
+  const session = await getServerSession(authOption)
   return (
     <div className="w-full h-16 md:h-[115px] flex flex-row justify-between px-4 md:justify-around md:p-0 items-center shadow-shadow-10">
       <Sheet>
@@ -52,7 +55,7 @@ function Navbar() {
         <Nav menuBar={false} />
       </div>
 
-      <div className="flex w-24 sm:w-[140px] md:w-[185px] justify-around">
+      <div className={`flex w-24 sm:w-[140px] justify-around ${session ? 'md:w-52' : 'md:w-[185px]'}`}>
         <ModeToggle />
         {iconDetails.map((icon) => (
           <Icon

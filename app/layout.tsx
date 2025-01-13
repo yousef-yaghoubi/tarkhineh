@@ -42,7 +42,6 @@ export default async function RootLayout({
             
           >
             <>
-              {session?.user?.name}
               <Navbar />
               {children}
               {intercepting}

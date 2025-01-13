@@ -1,4 +1,5 @@
-import { BadgeType } from "./indexType";
+import { title } from "process";
+import { BadgeType, ProfileRoutes } from "./indexType";
 
 export const miniCards = [
   { id: 4, img: '/image/miniCardFood.png', title: 'غذای اصلی' },
@@ -188,3 +189,11 @@ export const NavBadgeMenu: BadgeType[] = [
   { id: 7, title: 'اقتصادی ترین', url: 'mostEconomical' },
   { id: 8, title: 'محبوب ترین', url: 'mostPopular' },
 ];
+
+export const ProfileRoute: ProfileRoutes[] = [
+  {id:1, title: 'پروفایل',icon: 'profile-black', url: '/user'},
+  {id:2, title: 'پیگیری سفارش',icon: 'orderTracking', url: '/order-tracking'},
+  {id:3, title: 'علاقه مندی ها',icon: 'heart', url: '/favorites'},
+  {id:4, title: 'آدرس های من',icon: 'location', url: '/myAddresses'},
+  {id:5, title: 'خروج از حساب',icon: 'logout', url: '/logOut'},
+]
