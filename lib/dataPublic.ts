@@ -69,8 +69,8 @@ export const iconDetails = [
   {
     id: 1,
     alt: 'search',
-    img: '/icons/search-icon.svg',
-    imgActive: '/icons/search-icon-active.svg',
+    img: 'iconSearch',
+    imgActive: 'iconSearhActive',
     isActive: false,
     quantity: 0,
     class: 'hidden sm:flex',
@@ -78,8 +78,8 @@ export const iconDetails = [
   {
     id: 2,
     alt: 'shopping',
-    img: '/icons/shopping-icon.svg',
-    imgActive: '/icons/shopping-icon-active.svg',
+    img: 'iconShopingCard',
+    imgActive: 'iconShopingCardActive',
     isActive: false,
     quantity: 0,
     class: '',
@@ -87,8 +87,8 @@ export const iconDetails = [
   {
     id: 3,
     alt: 'profile',
-    img: '/icons/profile-icon.svg',
-    imgActive: '',
+    img: 'iconProfile',
+    imgActive: 'iconProfileActive',
     isActive: false,
     quantity: 0,
     class: '',

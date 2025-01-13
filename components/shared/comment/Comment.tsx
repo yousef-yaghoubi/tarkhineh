@@ -1,8 +1,8 @@
 import { convertToPersianNumbers } from '@/lib/convertNumberToPersian';
-import { CommentType } from '@/lib/type/Comment';
 import Image from 'next/image';
 import React from 'react';
 import moment from 'jalali-moment';
+import { CommentType } from '@/lib/indexType';
 
 function Comment(comment: CommentType) {
   const date = moment(comment.createdAt).locale('fa').format('DD MMMM YYYY');

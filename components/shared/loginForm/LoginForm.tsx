@@ -10,6 +10,7 @@ import ErrorMessage from './ErrorMessage';
 import { SchemaLogin, SchemaRegister } from '@/lib/zod';
 import { signIn } from 'next-auth/react';
 import ButtonBack from '../button/ButtonBack';
+import IconMap from '../IconMap';
 
 type loginType = z.infer<typeof SchemaLogin>;
 type registerType = z.infer<typeof SchemaRegister>;
@@ -45,12 +46,7 @@ function LoginForm() {
         />
 
         <ButtonBack>
-          <Image
-            src="/icons/CloseIcon.png"
-            alt="close"
-            width={24}
-            height={24}
-          />
+          <IconMap icon='closeIcon'/>
         </ButtonBack>
       </div>
 
@@ -111,7 +107,6 @@ function LoginForm() {
             btn="fill"
             theme="Primary"
             btnSize="w-[344px] max-w-[90%] h-10 mt-4"
-            type="submit"
           >
             ورود / ثبت نام
           </Button>

@@ -14,6 +14,7 @@ import 'swiper/css/thumbs';
 // import required modules
 import { FreeMode, Navigation, Thumbs } from 'swiper/modules';
 import SwiperCore from 'swiper';
+import IconMap from './IconMap';
 
 SwiperCore.use([Navigation]);
 interface ImgArray {
@@ -59,23 +60,13 @@ const Modal: React.FC<ModalProps> = ({
               ref={prevRef}
               className="custom-prev absolute right-0 bottom-[1.1em] w-12 flex justify-center items-center h-[74px] z-20 text-white bg-black/0 bg-gradient-to-l from-black/75 to-transparent disabled:hidden sm:hidden"
             >
-              <Image
-                src="/icons/arrowRightBack.png"
-                alt="prev"
-                width={24}
-                height={24}
-              />
+              <IconMap icon='arrowRightBack'/>
             </button>
             <button
               ref={nextRef}
               className="custom-next absolute left-0 bottom-[1.1em] w-12 flex justify-center items-center h-[74px] z-20 text-white bg-black/0 bg-gradient-to-r from-black/75 to-transparent disabled:hidden sm:hidden"
             >
-              <Image
-                src="/icons/arrowLeftBack.png"
-                alt="next"
-                width={24}
-                height={24}
-              />
+              <IconMap icon='arrowLeftBack'/>
             </button>
             <Swiper
               spaceBetween={10}
@@ -96,12 +87,13 @@ const Modal: React.FC<ModalProps> = ({
                 className="absolute top-4 z-50 left-4 w-6 h-6 sm:h-10 sm:w-10 sm:top-[0.4em] sm:left-[0.4em] md:w-10 md:top-5 md:left-5 text-gray-600 hover:text-gray-800 focus:outline-none bg-gray-8 md:bg-transparent rounded-full"
                 aria-label="Close Modal"
               >
-                <Image
-                  src={'/icons/CloseIconDark.png'}
+                {/* <Image
+                  src={'/icons/CloseIcon.png'}
                   width={40}
                   height={40}
                   alt="close"
-                />
+                /> */}
+              <IconMap icon='closeIconDark'/>
               </button>
 
               {images?.images.map((img) => (
@@ -155,12 +147,7 @@ const Modal: React.FC<ModalProps> = ({
                 className="absolute top-4 left-4 w-6 h-6 sm:h-10 sm:w-10 sm:top-[0.4em] sm:left-[0.4em] md:w-10 md:top-5 md:left-5 text-gray-600 hover:text-gray-800 focus:outline-none"
                 aria-label="Close Modal"
               >
-                <Image
-                  src={'/icons/CloseIcon.png'}
-                  width={40}
-                  height={40}
-                  alt="close"
-                />
+                <IconMap icon='closeIcon'/>
               </button>
 
               {title}

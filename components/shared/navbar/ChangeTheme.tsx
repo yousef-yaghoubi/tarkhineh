@@ -8,6 +8,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import Image from 'next/image';
+import IconMap from '../IconMap';
 
 export function ModeToggle() {
   const { theme ,setTheme } = useTheme();
@@ -34,20 +35,10 @@ export function ModeToggle() {
           >
             <div className="w-[18px] md:w-6 h-[18px] md:h-6 flex justify-center items-center relative">
               {themeSite == 'dark' ? (
-                <Image
-                  src="/icons/moon.svg"
-                  alt="moon"
-                  className="w-[18px] md:w-6 h-[18px] md:h-6"
-                  fill
-                />
+                <IconMap icon='iconMoon'/>
               ) :
               (
-                <Image
-                  src="/icons/sun.svg"
-                  alt="sun"
-                  className="w-[18px] md:w-6 h-[18px] md:h-6"
-                  fill
-                />
+                <IconMap icon='iconSun'/>
               )}
             </div>
           </div>

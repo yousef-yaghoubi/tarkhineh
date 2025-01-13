@@ -11,13 +11,14 @@ import {
 } from '@/components/ui/sheet';
 import { iconDetails } from '@/lib/dataPublic';
 import Link from 'next/link';
+import IconMap from '../IconMap';
 
 function Navbar() {
   return (
     <div className="w-full h-16 md:h-[115px] flex flex-row justify-between px-4 md:justify-around md:p-0 items-center shadow-shadow-10">
       <Sheet>
         <SheetTrigger className="md:!hidden" asChild>
-          <Image src="/icons/menu.svg" alt="menu" width={24} height={24} />
+          <IconMap icon='navbarMenu' key={'navbarMenu'}/>
         </SheetTrigger>
         <SheetContent className="bg-white dark:bg-[#1c1b22] border-none p-0 menuMobile">
           <SheetHeader>

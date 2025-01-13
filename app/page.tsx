@@ -1,6 +1,7 @@
 import Button from '@/components/shared/button/Button';
 import CardTarkhineGardi from '@/components/shared/card/CardTarkhineGardi';
 import MiniCardMenu from '@/components/shared/card/MiniCardMenu';
+import IconMap from '@/components/shared/IconMap';
 import SearchBox from '@/components/shared/searchBox/SearchBox';
 import SwiperMain from '@/components/shared/swiper/swiper';
 import { arraySlideMain, branchs, miniCards } from '@/lib/dataPublic';
@@ -11,11 +12,11 @@ import React from 'react';
 async function Home() {
   return (
     <div>
-      <SwiperMain slides={arraySlideMain} pagination showBtn/>
-      <div className='w-full flex justify-center'>
-        <SearchBox classes='w-[90%] mt-4 sm:hidden'/>
+      <SwiperMain slides={arraySlideMain} pagination showBtn />
+      <div className="w-full flex justify-center">
+        <SearchBox classes="w-[90%] mt-4 sm:hidden" />
       </div>
-      
+
       <section className="w-full max-w-[1222px] inset-0 m-auto flex items-center flex-col justify-around mt-8 !mb-16">
         <h4 className="h4">منوی رستوران</h4>
         <div className="w-full grid grid-cols-2 justify-items-center sm:grid-cols-4 lg:mt-8">
@@ -41,63 +42,40 @@ async function Home() {
             <Button
               btn="stroke"
               theme="White"
-              iconL="/icons/arrow-left-white.svg"
+              iconL="arrow-left-white"
               btnSize="h-[32px] w-[152px] md:w-[184px] md:h-10 mt-8 md:mt-4"
-              iconSize={16}
-              iconW="w-[16px]"
-              iconH="h-[16px]"
-            >اطلاعات بیشتر</Button>
+              iconW="w-4 md:w-6"
+              iconH="h-4 md:h-6"
+            >
+              اطلاعات بیشتر
+            </Button>
           </div>
         </div>
 
         <div className="grid grid-cols-2 text-white gap-y-4">
           <div className="flex flex-col justify-center items-center">
-            <Image
-              src="/icons/profile-white.svg"
-              width={24}
-              height={24}
-              alt="profile"
-              className="w-6 h-6 md:w-12 md:h-12"
-            />
+            <IconMap icon="profile-white" />
             <span className="caption-md md:caption-lg lg:body-xl mt-1">
               پرسنلی مجرب و حرفه‌ای
             </span>
           </div>
 
           <div className="flex flex-col justify-center items-center">
-            <Image
-              src="/icons/diagram.png"
-              width={24}
-              height={24}
-              alt="profile"
-              className="w-6 h-6 md:w-12 md:h-12"
-            />
+            <IconMap icon='diagram'/>
             <span className="caption-md md:caption-lg lg:body-xl mt-1">
               کیفیت بالای غذا ها
             </span>
           </div>
 
           <div className="flex flex-col justify-center items-center">
-            <Image
-              src="/icons/home-wifi.png"
-              width={24}
-              height={24}
-              alt="profile"
-              className="w-6 h-6 md:w-12 md:h-12"
-            />
+            <IconMap icon='home-wifi'/>
             <span className="caption-md md:caption-lg lg:body-xl mt-1">
               محیطی دلنشین و آرام
             </span>
           </div>
 
           <div className="flex flex-col justify-center items-center">
-            <Image
-              src="/icons/menu-board.png"
-              width={24}
-              height={24}
-              alt="profile"
-              className="w-6 h-6 md:w-12 md:h-12"
-            />
+            <IconMap icon='menu-board'/>
             <span className="caption-md md:caption-lg lg:body-xl mt-1">
               منوی متنوع
             </span>

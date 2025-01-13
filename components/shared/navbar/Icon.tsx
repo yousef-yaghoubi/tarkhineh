@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import Modal from '../Modal';
 import SearchBox from '../searchBox/SearchBox';
 import { usePathname, useRouter } from 'next/navigation';
+import IconMap from '../IconMap';
 
 interface Props {
   alt: string;
@@ -54,12 +55,7 @@ function Icon({ alt, img, imgActive, quantity, className }: Props) {
           </div>
         )}
         <div className="w-[18px] md:w-6 h-[18px] md:h-6 flex justify-center items-center relative">
-          <Image
-            src={isActive ? imgActive : img}
-            alt={alt}
-            className="w-[18px] md:w-6 h-[18px] md:h-6"
-            fill
-          />
+          <IconMap icon={isActive ? imgActive : img} key={isActive ? imgActive : img}/>
         </div>
       </button>
 

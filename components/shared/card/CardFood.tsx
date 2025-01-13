@@ -3,6 +3,7 @@ import Image from 'next/image';
 import React from 'react';
 import Button from '../button/Button';
 import { FoodType } from '@/lib/indexType';
+import IconMap from '../IconMap';
 
 function PriceOrder({
   price,
@@ -91,13 +92,7 @@ function CardFood({
               </div>
 
               <div className="w-full h-1/2 flex items-center">
-                <Image
-                  src={'/icons/starRate.svg'}
-                  alt="rate"
-                  width={16}
-                  height={16}
-                  className="!w-4 !h-4"
-                />
+              <IconMap icon='starRate' key={'starRate'}/>
                 <span className="caption-sm md:button-sm flex">
                   {convertToPersianNumbers(item.rating.toString())}
                   &nbsp;
