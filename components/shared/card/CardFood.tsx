@@ -5,50 +5,7 @@ import Button from '../button/Button';
 import { FoodType } from '@/lib/indexType';
 import IconMap from '../IconMap';
 import Link from 'next/link';
-
-function PriceOrder({
-  price,
-  classCustom,
-}: {
-  price: number;
-  classCustom?: string;
-}) {
-  return (
-    <span
-      className={`text-[10px] line-through text-gray-5 ${classCustom && classCustom} `}
-    >
-      {convertToPersianNumbers(price.toString())}
-    </span>
-  );
-}
-function OrderBadge({
-  order,
-  classCustom,
-}: {
-  order: number;
-  classCustom?: string;
-}) {
-  return (
-    <div
-      className={`w-8 h-4 bg-error-extralight rounded-md caption-sm text-error flex justify-center items-center ${classCustom}`}
-    >
-      %{convertToPersianNumbers(order.toString())}
-    </div>
-  );
-}
-
-function Price({ price, order }: { price: number; order: number }) {
-  return (
-    <>
-      {order !== 0 &&
-        convertToPersianNumbers(
-          (price - price * (order / 100)).toLocaleString()
-        )}{' '}
-      {order == 0 && convertToPersianNumbers(price.toLocaleString())}
-      تومان
-    </>
-  );
-}
+import { OrderBadge, Price, PriceOrder } from './CardFoodNecessary';
 
 function CardFood({
   item,
@@ -113,7 +70,7 @@ function CardFood({
 
             <div className="flex flex-col justify-between items-end relative w-1/2">
               <div
-                className={`w-[68px] h-1/2 items-center justify-between ${item.order == 0 ? 'hidden' : 'flex'} absolute top-0 left-0`}
+                className={`w-[4em] h-1/2 items-center justify-between ${item.order == 0 ? 'hidden' : 'flex'} absolute top-0 left-0`}
               >
                 <PriceOrder price={item.price} />
                 <OrderBadge order={item.order} />
@@ -183,7 +140,7 @@ function CardFood({
             </p>
             <div className="text-gray-8 dark:text-gray-4 flex flex-col items-end">
               <div
-                className={`${item.order !== 0 ? 'hidden md:flex' : 'hidden'} w-16 md:w-[5.5em] items-center justify-between`}
+                className={`${item.order !== 0 ? 'hidden md:flex' : 'hidden'} w-24 md:w-[5.5em] items-center justify-between`}
               >
                 <PriceOrder price={item.price} classCustom="!text-base" />
                 <OrderBadge order={item.order} classCustom="md:caption-md" />

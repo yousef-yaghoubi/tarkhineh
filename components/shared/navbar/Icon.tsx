@@ -70,11 +70,9 @@ function Icon({ alt, img, imgActive, className }: Props) {
       >
         {alt == 'shopingCart' && cart.length !== 0 &&(
           <div
-            className={`absolute -top-1.5 -right-1 ${
-              isActive ? 'bg-withe' : 'bg-tint-6'
-            } rounded-full w-4 h-4 text-xs flex justify-center items-center ${
-              isActive ? 'text-primary' : 'text-white'
-            }`}
+            className={`absolute -top-1.5 -right-1 md:top-[2px] md:right-[2px] ${
+              isActive ? 'bg-tint-6 text-white' : 'bg-white text-primary'
+            } rounded-full w-4 h-4 text-xs flex justify-center items-center z-10`}
           >
             {convertToPersianNumbers(cart.length.toString())}
           </div>

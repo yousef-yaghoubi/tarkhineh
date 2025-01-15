@@ -189,3 +189,12 @@ export async function GetDemoUniqueFood(id: IdType) {
     console.log(error)
   }
 }
+
+
+export async function GetFoodForShopingCart(ids:number[]) {
+  try {
+    
+  } catch (error) {
+    
+  }
+}

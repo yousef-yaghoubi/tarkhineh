@@ -3,50 +3,8 @@ import { convertToPersianNumbers } from '@/lib/convertNumberToPersian';
 import Image from 'next/image';
 import React from 'react';
 import QuantityFood from './QuantityFood';
+import { OrderBadge, Price, PriceOrder } from '@/components/shared/card/CardFoodNecessary';
 
-function PriceOrder({
-  price,
-  classCustom,
-}: {
-  price: number;
-  classCustom?: string;
-}) {
-  return (
-    <span
-      className={`text-[16px] line-through text-gray-5 ${classCustom && classCustom} `}
-    >
-      {convertToPersianNumbers(price.toString())}
-    </span>
-  );
-}
-function OrderBadge({
-  order,
-  classCustom,
-}: {
-  order: number;
-  classCustom?: string;
-}) {
-  return (
-    <div
-      className={`w-8 h-4 bg-error-extralight rounded-md caption-sm text-error flex justify-center items-center ${classCustom}`}
-    >
-      %{convertToPersianNumbers(order.toString())}
-    </div>
-  );
-}
-
-function Price({ price, order }: { price: number; order: number }) {
-  return (
-    <>
-      {order !== 0 &&
-        convertToPersianNumbers(
-          (price - price * (order / 100)).toLocaleString()
-        )}{' '}
-      {order == 0 && convertToPersianNumbers(price.toLocaleString())}
-      تومان
-    </>
-  );
-}
 
 
 function CardFoodShopingCard() {
@@ -57,7 +15,7 @@ function CardFoodShopingCard() {
   const arrayStarStroke = Array.from({ length: starStroke }, (_, i) => i + 1);
 
   return (
-    <div className="bg-withe dark:bg-background-2 w-11/12 max-w-[656px] rounded-md h-[158px] overflow-hidden relative">
+    <div className="bg-withe dark:bg-background-2 w-full max-w-[656px] rounded-md  overflow-clip !h-[158px] relative border border-gray-4">
       <Image
         src={'/image/imageFood.jpg'}
         alt="food"
@@ -80,7 +38,7 @@ function CardFoodShopingCard() {
         <div
           className={`h-full flex items-center justify-end`}
         >
-          <div className={` ${true ? 'flex' : 'hidden'} gap-1 items-center justify-between`}>
+          <div className={` ${true ? 'flex' : 'hidden'} gap-1 w-[4.2em] items-center justify-between`}>
             <PriceOrder price={13000} />
             <OrderBadge order={2} />
           </div>
