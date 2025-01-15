@@ -12,21 +12,23 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+import { useCart } from '../shopingCardProvider';
+import { convertToPersianNumbers } from '@/lib/convertNumberToPersian';
 
 interface Props {
   alt: string;
   img: string;
   imgActive: string;
-  quantity: number;
-  className: string;
+  className?: string;
 }
-function Icon({ alt, img, imgActive, quantity, className }: Props) {
+function Icon({ alt, img, imgActive, className }: Props) {
   const { status } = useSession();
   const router = useRouter();
   const pathName = usePathname();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isProfile, setIsProfile] = useState(false);
   const [isShowMenuProfile, setIsShowMenuProfile] = useState(false);
+  const { cart } = useCart();
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
   let isActive = false;
@@ -63,9 +65,10 @@ function Icon({ alt, img, imgActive, quantity, className }: Props) {
         onClick={() => {
           !isLogin && alt == 'profile' && router.push('/login');
           alt == 'search' && openModal();
+          alt == 'shopingCart' && router.push('/shopingCart')
         }}
       >
-        {quantity != 0 && (
+        {alt == 'shopingCart' && cart.length !== 0 &&(
           <div
             className={`absolute -top-1.5 -right-1 ${
               isActive ? 'bg-withe' : 'bg-tint-6'
@@ -73,7 +76,7 @@ function Icon({ alt, img, imgActive, quantity, className }: Props) {
               isActive ? 'text-primary' : 'text-white'
             }`}
           >
-            {quantity}
+            {convertToPersianNumbers(cart.length.toString())}
           </div>
         )}
         <div className="w-[18px] md:w-6 h-[18px] md:h-6 flex justify-center items-center relative">
@@ -83,7 +86,10 @@ function Icon({ alt, img, imgActive, quantity, className }: Props) {
               key={isActive ? imgActive : img}
             />
           ) : isLogin ? (
-            <DropdownMenu open={isShowMenuProfile !== false} onOpenChange={setIsShowMenuProfile}>
+            <DropdownMenu
+              open={isShowMenuProfile !== false}
+              onOpenChange={setIsShowMenuProfile}
+            >
               <DropdownMenuTrigger
                 className="focus:!outline-none focus:!border-none !outline-none !border-none flex items-center"
                 onMouseEnter={() => setIsShowMenuProfile((prev) => !prev)}
@@ -104,8 +110,9 @@ function Icon({ alt, img, imgActive, quantity, className }: Props) {
               >
                 {ProfileRoute.map((route) => (
                   <DropdownMenuItem
-                    onClick={()=> router.push(route.url)}
+                    onClick={() => router.push(route.url)}
                     dir="rtl"
+                    key={route.id}
                     className={`${route.id !== 5 ? 'border-b border-gray-3 dark:border-background-1' : ''} hover:!bg-slate-100 dark:hover:!bg-background-1`}
                   >
                     <IconMap icon={route.icon} />

@@ -62,7 +62,6 @@ async function Navbar() {
             alt={icon.alt}
             img={icon.img}
             imgActive={icon.imgActive}
-            quantity={icon.quantity}
             key={icon.id}
             className={icon.class}
           />

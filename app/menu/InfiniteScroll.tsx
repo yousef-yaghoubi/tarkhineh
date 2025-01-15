@@ -49,7 +49,6 @@ function InfiniteScroll() {
       ]);
     }
     setPage((prev) => prev + 1);
-    console.log(food)
   }
 
   return (

@@ -35,8 +35,8 @@ export default async function RootLayout({
       <body
         className={`font-estedad antialiased dark:bg-background-1 selection:bg-tint-1 selection:text-gray-7`}
       >
-        <CartProvider>
-          <AuthProvider>
+        <AuthProvider>
+          <CartProvider>
             <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
               <>
                 <Navbar />
@@ -52,8 +52,8 @@ export default async function RootLayout({
                 <Footer />
               </>
             </ThemeProvider>
-          </AuthProvider>
-        </CartProvider>
+          </CartProvider>
+        </AuthProvider>
       </body>
     </html>
   );

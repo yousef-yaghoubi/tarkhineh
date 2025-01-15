@@ -50,7 +50,6 @@ function Price({ price, order }: { price: number; order: number }) {
   );
 }
 
-
 function CardFood({
   item,
   isShowForMenu,
@@ -60,15 +59,19 @@ function CardFood({
 }) {
   if (isShowForMenu !== true) {
     return (
-      <Link href={`/product/${item.id}`} className="w-[168px] md:w-72 h-[231px] md:h-[417px] overflow-hidden rounded-sm relative hover:shadow-shadow-10 transition-shadow duration-300 flex flex-col items-center bg-white dark:bg-background-1">
-        <Image
-          src="/image/imageFood.jpg"
-          alt="food"
-          fill
-          className="w-full !h-[109px] md:!h-[240px]"
-        />
+      <div className="w-[168px] md:w-72 h-[231px] md:h-[417px] overflow-hidden rounded-sm relative hover:shadow-shadow-10 transition-shadow duration-300 flex flex-col items-center bg-white dark:bg-background-1">
+        <Link href={`/product/${item.id}`}>
+          <Image
+            src="/image/imageFood.jpg"
+            alt="food"
+            fill
+            className="w-full !h-[109px] md:!h-[240px]"
+          />
+        </Link>
         <div className="absolute bottom-0 h-[calc(100%_-_109px)] md:h-[calc(100%_-_240px)] w-full flex flex-col items-center border border-gray-4 dark:border-background-2 !border-t-0 rounded-b">
-          <span className="caption-md mt-1 md:h7 md:mt-2">{item.name}</span>
+          <Link href={`/product/${item.id}`}>
+            <span className="caption-md mt-1 md:h7 md:mt-2">{item.name}</span>
+          </Link>
 
           <div className="flex justify-between w-full h-10 md:h-[51px] px-2 mt-1 md:mt-4">
             <div className="w-1/2 h-full flex flex-col justify-between">
@@ -93,7 +96,7 @@ function CardFood({
               </div>
 
               <div className="w-full h-1/2 flex items-center">
-              <IconMap icon='starRate' key={'starRate'}/>
+                <IconMap icon="starRate" key={'starRate'} />
                 <span className="caption-sm md:button-sm flex">
                   {convertToPersianNumbers(item.rating.toString())}
                   &nbsp;
@@ -131,7 +134,7 @@ function CardFood({
             افزودن به سبد خرید
           </Button>
         </div>
-      </Link>
+      </div>
     );
   } else {
     const starFill = Math.round(item.rating);
@@ -141,15 +144,19 @@ function CardFood({
     const arrayStarStroke = Array.from({ length: starStroke }, (_, i) => i + 1);
     return (
       <div className="w-4/5 min-w-80 h-[100px] md:w-4/5 md:h-[158px] md:min-w-[600px] border border-gray-4 dark:border-background-2 rounded flex relative overflow-hidden hover:shadow-cardFood transition-shadow duration-300">
+        <Link href={`/product/${item.id}`}> 
         <Image
           src={'/image/imageFood.jpg'}
           alt="food"
           fill
           className="!w-[92px] !h-full md:!w-[169px]"
-        />
+          />
+          </Link>
         <div className="w-[calc(100%_-_92px)] md:w-[calc(100%_-_169px)] absolute left-0 h-full p-2 md:pr-8 md:py-2 md:pl-4">
           <div className="flex justify-between items-center">
+            <Link href={`/product/${item.id}`}>
             <span className="caption-md md:h7">{item.name}</span>
+            </Link>
             <div
               className={`${item.order !== 0 ? 'flex md:hidden' : 'hidden'} w-16 gap-1 items-center justify-between`}
             >
@@ -187,14 +194,14 @@ function CardFood({
             </div>
           </div>
           <div className="flex items-center justify-between mt-1">
-            <IconMap icon='heartGray'/>
+            <IconMap icon="heartGray" />
             <div className="flex items-center md:w-full md:justify-between">
               <div className="flex w-20 md:w-28 ml-2">
                 {arrayStarStroke.map((star) => (
-                  <IconMap icon='starStrokeLg' key={star}/>
+                  <IconMap icon="starStrokeLg" key={star} />
                 ))}
                 {arrayStarFill.map((star) => (
-                  <IconMap icon='starRateLg' key={star}/>
+                  <IconMap icon="starRateLg" key={star} />
                 ))}
               </div>
 
