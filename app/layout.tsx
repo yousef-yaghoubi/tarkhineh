@@ -9,6 +9,7 @@ import { Toaster } from '@/components/ui/sonner';
 import { getServerSession } from 'next-auth';
 import { authOption } from './api/auth/[...nextauth]/route';
 import AuthProvider from '@/components/shared/authProvider';
+import { CartProvider } from '@/components/shared/shopingCardProvider';
 
 const estedad = localFont({
   src: './fonts/Estedad[KSHD,wght].woff2',
@@ -28,34 +29,31 @@ export default async function RootLayout({
   children: React.ReactNode;
   intercepting: React.ReactNode;
 }) {
-  const session = await getServerSession(authOption)
+  const session = await getServerSession(authOption);
   return (
     <html dir="rtl" lang="fa-Ir">
       <body
         className={`font-estedad antialiased dark:bg-background-1 selection:bg-tint-1 selection:text-gray-7`}
       >
-        <AuthProvider>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="light"
-            enableSystem
-            
-          >
-            <>
-              <Navbar />
-              {children}
-              {intercepting}
-              <Toaster
-                richColors
-                closeButton
-                dir="rtl"
-                className="font-estedad"
-                position="top-right"
-              />
-              <Footer />
-            </>
-          </ThemeProvider>
-        </AuthProvider>
+        <CartProvider>
+          <AuthProvider>
+            <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
+              <>
+                <Navbar />
+                {children}
+                {intercepting}
+                <Toaster
+                  richColors
+                  closeButton
+                  dir="rtl"
+                  className="font-estedad"
+                  position="top-right"
+                />
+                <Footer />
+              </>
+            </ThemeProvider>
+          </AuthProvider>
+        </CartProvider>
       </body>
     </html>
   );

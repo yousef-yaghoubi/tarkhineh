@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import React from 'react';
 import IconMap from '../IconMap';
+import { useCart } from '../shopingCardProvider';
 
 interface Props {
   btn: 'text' | 'stroke' | 'fill';
@@ -16,7 +17,8 @@ interface Props {
   link?: string;
   iconW?: string;
   iconH?: string;
-  onClickCustom?: Function;
+  onClickReload?: boolean;
+  shopingCard?: number
 }
 function Button({
   btn,
@@ -30,9 +32,11 @@ function Button({
   link,
   iconW,
   iconH,
-  onClickCustom,
+  onClickReload,
+  shopingCard
 }: Props) {
   const router = useRouter();
+  const {addToCart} = useCart() 
   if (btn == 'fill') {
     return (
       <button
@@ -44,7 +48,8 @@ function Button({
               : 'bg-gray-7 text-white hover:bg-gray-8'
         } rounded-sm md:rounded-md flex items-center justify-around relative ${btnSize}`}
         onClick={() => {
-          onClickCustom && onClickCustom();
+          shopingCard && addToCart(shopingCard)
+          onClickReload && window.location.reload();
           link && router.push(link);
         }}
         disabled={disabled !== true ? false : true}
@@ -97,7 +102,7 @@ function Button({
               : 'text-gray-7 border-gray-7 hover:border-gray-8 hover:text-gray-8 selection:text-black selection:border-blatext-black'
         } rounded-sm flex items-center justify-around relative ${btnSize}`}
         onClick={() => {
-          onClickCustom && onClickCustom();
+          onClickReload && window.location.reload();
           link && router.push(link);
         }}
         disabled={disabled !== true ? false : true}
@@ -136,7 +141,7 @@ function Button({
               : 'text-gray-7 hover:text-gray-8 selection:text-black'
         } rounded-sm md:rounded-md flex items-center justify-around relative ${btnSize}`}
         onClick={() => {
-          onClickCustom && onClickCustom();
+          onClickReload && window.location.reload();
           link && router.push(link);
         }}
         disabled={disabled !== true ? false : true}

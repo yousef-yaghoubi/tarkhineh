@@ -34,15 +34,6 @@ model User {
   commentsFood   CommentsFood[]
   commentsBranch CommentsBranch[]
   favorite       Favorite?
-  session        Session[]
-}
-
-model Session {
-  id           String   @id @default(cuid())
-  sessionToken String   @unique
-  userId       Int
-  expires      DateTime
-  user         User     @relation(fields: [userId], references: [id])
 }
 
 model Favorite {

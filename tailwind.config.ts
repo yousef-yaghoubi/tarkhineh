@@ -10,6 +10,10 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      gridTemplateColumns:{
+        'customCardShopingCard': '1fr,1fr,1fr,1fr,1fr'
+        // 'customCardShopingCard': 'auto, auto'
+      },
       position: {
         unset: 'unset',
       },

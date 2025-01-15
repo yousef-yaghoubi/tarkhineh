@@ -168,26 +168,6 @@ function CardTarkhineGardi({
           </div>
         </div>
 
-        {/* <Modal
-        isOpen={isModalOpen}
-        onClose={closeModal}
-        title="انتخاب شعبه"
-        desc="برای دیدن منوی رستوران، لطفا شعبه مدنظر خود را انتخاب کنید:"
-      >
-        <div className="flex flex-col sm:grid sm:grid-cols-2 sm:gap-6 md:grid-cols-4">
-          {branchs.map((branch) => (
-            <CardTarkhineGardi
-              title={branch.title}
-              desc={branch.desc}
-              hrefBTN=""
-              img={branch.images[0].src}
-              key={branch.id}
-              classCustom="md:!w-[155px] lg:!w-[175px]"
-            />
-          ))}
-        </div>
-      </Modal> */}
-
         <Modal
           isOpen={isModalOpen}
           onClose={closeModal}

@@ -4,6 +4,7 @@ import React from 'react';
 import Button from '../button/Button';
 import { FoodType } from '@/lib/indexType';
 import IconMap from '../IconMap';
+import Link from 'next/link';
 
 function PriceOrder({
   price,
@@ -59,7 +60,7 @@ function CardFood({
 }) {
   if (isShowForMenu !== true) {
     return (
-      <div className="w-[168px] md:w-72 h-[231px] md:h-[417px] overflow-hidden rounded-sm relative hover:shadow-shadow-10 transition-shadow duration-300 flex flex-col items-center bg-white dark:bg-background-1">
+      <Link href={`/product/${item.id}`} className="w-[168px] md:w-72 h-[231px] md:h-[417px] overflow-hidden rounded-sm relative hover:shadow-shadow-10 transition-shadow duration-300 flex flex-col items-center bg-white dark:bg-background-1">
         <Image
           src="/image/imageFood.jpg"
           alt="food"
@@ -125,11 +126,12 @@ function CardFood({
             btn="fill"
             theme="Primary"
             btnSize="w-[152px] h-8 caption-sm md:button-lg mt-3 md:mt-4 md:w-[256px] md:h-10"
+            shopingCard={item.id}
           >
             افزودن به سبد خرید
           </Button>
         </div>
-      </div>
+      </Link>
     );
   } else {
     const starFill = Math.round(item.rating);
@@ -185,54 +187,14 @@ function CardFood({
             </div>
           </div>
           <div className="flex items-center justify-between mt-1">
-            <svg
-              width="16"
-              height="16"
-              viewBox="0 0 16 17"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              className="md:hidden"
-            >
-              <path
-                d="M8.00016 14.9336C7.7935 14.9336 7.5935 14.9069 7.42683 14.8469C4.88016 13.9736 0.833496 10.8736 0.833496 6.29356C0.833496 3.96023 2.72016 2.06689 5.04016 2.06689C6.16683 2.06689 7.22016 2.50689 8.00016 3.29356C8.78016 2.50689 9.8335 2.06689 10.9602 2.06689C13.2802 2.06689 15.1668 3.96689 15.1668 6.29356C15.1668 10.8802 11.1202 13.9736 8.5735 14.8469C8.40683 14.9069 8.20683 14.9336 8.00016 14.9336ZM5.04016 3.06689C3.2735 3.06689 1.8335 4.51356 1.8335 6.29356C1.8335 10.8469 6.2135 13.3802 7.7535 13.9069C7.8735 13.9469 8.1335 13.9469 8.2535 13.9069C9.78683 13.3802 14.1735 10.8536 14.1735 6.29356C14.1735 4.51356 12.7335 3.06689 10.9668 3.06689C9.9535 3.06689 9.0135 3.54023 8.40683 4.36023C8.22016 4.61356 7.7935 4.61356 7.60683 4.36023C6.98683 3.53356 6.0535 3.06689 5.04016 3.06689Z"
-                fill="#ADADAD"
-              />
-            </svg>
+            <IconMap icon='heartGray'/>
             <div className="flex items-center md:w-full md:justify-between">
               <div className="flex w-20 md:w-28 ml-2">
                 {arrayStarStroke.map((star) => (
-                  <svg
-                    key={star}
-                    width="16"
-                    height="16"
-                    className="!w-4 !h-4 md:!w-6 md:!h-6"
-                    viewBox="0 0 16 17"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M8 2.11803L9.32058 6.18237L9.43284 6.52786H9.79611H14.0696L10.6123 9.03976L10.3184 9.25329L10.4306 9.59878L11.7512 13.6631L8.29389 11.1512L8 10.9377L7.70611 11.1512L4.24877 13.6631L5.56936 9.59878L5.68162 9.25329L5.38772 9.03976L1.93039 6.52786H6.20389H6.56716L6.67942 6.18237L8 2.11803Z"
-                      stroke="#F4B740"
-                    />
-                  </svg>
+                  <IconMap icon='starStrokeLg' key={star}/>
                 ))}
                 {arrayStarFill.map((star) => (
-                  <svg
-                    key={star}
-                    width="16"
-                    height="16"
-                    className="!w-4 !h-4 md:!w-6 md:!h-6"
-                    viewBox="0 0 16 17"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M8 0.904509L9.67723 6.06649L9.70529 6.15286H9.79611H15.2237L10.8327 9.34315L10.7592 9.39653L10.7873 9.4829L12.4645 14.6449L8.07347 11.4546L8 11.4012L7.92653 11.4546L3.53548 14.6449L5.21271 9.4829L5.24078 9.39653L5.1673 9.34315L0.776258 6.15286H6.20389H6.29471L6.32277 6.06649L8 0.904509Z"
-                      fill="#F4B740"
-                      stroke="#CBCBCB"
-                      strokeWidth="0.25"
-                    />
-                  </svg>
+                  <IconMap icon='starRateLg' key={star}/>
                 ))}
               </div>
 
@@ -240,6 +202,7 @@ function CardFood({
                 btn="fill"
                 theme="Primary"
                 btnSize="w-[100px] md:w-[244px] h-8 md:h-10 caption-sm md:button-lg"
+                shopingCard={item.id}
               >
                 افزودن به سبدخرید
               </Button>
