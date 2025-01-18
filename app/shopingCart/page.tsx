@@ -1,17 +1,14 @@
 import React from 'react';
 import ProgressShoping from './ProgressShoping';
-import CardFoodShopingCard from './CardFoodShopingCard';
+
 import RenderCardFoods from './RenderCardFoods';
-import { convertToPersianNumbers } from '@/lib/convertNumberToPersian';
-import WithoutCart from './WithoutCart';
 
 function page() {
   return (
     <div className="flex flex-col items-center">
       <ProgressShoping />
 
-      <section className="flex justify-around w-11/12 max-w-[1300px] mb-12">
-        {/* <WithoutCart/> */}
+      <section className="flex flex-col xl:flex-row justify-around items-center xl:items-start w-11/12 max-w-[1300px] mb-12">
         <RenderCardFoods/>
       </section>
     </div>
