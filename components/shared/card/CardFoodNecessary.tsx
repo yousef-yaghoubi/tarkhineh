@@ -40,6 +40,7 @@ export function Price({ price, order }: { price: number; order: number }) {
           (price - price * (order / 100)).toLocaleString()
         )}{' '}
       {order == 0 && convertToPersianNumbers(price.toLocaleString())}
+      {' '}
       تومان
     </>
   );

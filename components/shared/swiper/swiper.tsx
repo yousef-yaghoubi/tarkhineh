@@ -91,7 +91,7 @@ function SwiperMain({
                 <Button
                   btn="fill"
                   theme="Primary"
-                  btnSize="h-[24px] w-[91px] sm:h-[32px] sm:w-[120px] md:w-[184px] md:h-10 mt-8 md:mt-16 caption-sm sm:caption-md md:button-lg"
+                  classCustom="h-[24px] w-[91px] sm:h-[32px] sm:w-[120px] md:w-[184px] md:h-10 mt-8 md:mt-16 caption-sm sm:caption-md md:button-lg"
                 >سفارش آنلاین غذا</Button>
               )}
             </div>

@@ -40,3 +40,7 @@ export interface FoodType extends DemoFoodModalType{
   price: number;
   order: number;
 }
+
+interface CartFoodForShopingCart extends FoodType{
+  quantity : number
+}

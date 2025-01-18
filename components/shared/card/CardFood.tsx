@@ -19,7 +19,7 @@ function CardFood({
       <div className="w-[168px] md:w-72 h-[231px] md:h-[417px] overflow-hidden rounded-sm relative hover:shadow-shadow-10 transition-shadow duration-300 flex flex-col items-center bg-white dark:bg-background-1">
         <Link href={`/product/${item.id}`}>
           <Image
-            src="/image/imageFood.jpg"
+            src={item.image}
             alt="food"
             fill
             className="w-full !h-[109px] md:!h-[240px]"
@@ -85,8 +85,8 @@ function CardFood({
           <Button
             btn="fill"
             theme="Primary"
-            btnSize="w-[152px] h-8 caption-sm md:button-lg mt-3 md:mt-4 md:w-[256px] md:h-10"
-            shopingCard={item.id}
+            classCustom="w-[152px] h-8 caption-sm md:button-lg mt-3 md:mt-4 md:w-[256px] md:h-10"
+            shopingCard={item}
           >
             افزودن به سبد خرید
           </Button>
@@ -103,7 +103,7 @@ function CardFood({
       <div className="w-4/5 min-w-80 h-[100px] md:w-4/5 md:h-[158px] md:min-w-[600px] border border-gray-4 dark:border-background-2 rounded flex relative overflow-hidden hover:shadow-cardFood transition-shadow duration-300">
         <Link href={`/product/${item.id}`}> 
         <Image
-          src={'/image/imageFood.jpg'}
+          src={item.image}
           alt="food"
           fill
           className="!w-[92px] !h-full md:!w-[169px]"
@@ -165,8 +165,8 @@ function CardFood({
               <Button
                 btn="fill"
                 theme="Primary"
-                btnSize="w-[100px] md:w-[244px] h-8 md:h-10 caption-sm md:button-lg"
-                shopingCard={item.id}
+                classCustom="w-[100px] md:w-[244px] h-8 md:h-10 caption-sm md:button-lg"
+                shopingCard={item}
               >
                 افزودن به سبدخرید
               </Button>

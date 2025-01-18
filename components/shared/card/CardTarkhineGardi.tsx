@@ -192,7 +192,7 @@ function CardTarkhineGardi({
           {showBTN !== undefined && (
             <Button
               btn="stroke"
-              btnSize="!w-32 !h-8 md:caption-md invisible opacity-0 group-hover:visible sm:group-hover:opacity-100 mt-2"
+              classCustom="!w-32 !h-8 md:caption-md invisible opacity-0 group-hover:visible sm:group-hover:opacity-100 mt-2"
               theme="Primary"
               iconL="arrow-left-primary"
               link={hrefBTN}

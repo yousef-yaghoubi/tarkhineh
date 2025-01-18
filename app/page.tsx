@@ -43,7 +43,7 @@ async function Home() {
               btn="stroke"
               theme="White"
               iconL="arrow-left-white"
-              btnSize="h-[32px] w-[152px] md:w-[184px] md:h-10 mt-8 md:mt-4"
+              classCustom="h-[32px] w-[152px] md:w-[184px] md:h-10 mt-8 md:mt-4"
               iconW="w-4 md:w-6"
               iconH="h-4 md:h-6"
             >

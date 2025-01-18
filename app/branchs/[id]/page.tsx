@@ -61,7 +61,7 @@ async function DynamicBranchs() {
       />
       <Button
         btn="stroke"
-        btnSize="w-[152px] h-8 md:w-[184px] md:h-10 caption-lg md:button-lg"
+        classCustom="w-[152px] h-8 md:w-[184px] md:h-10 caption-lg md:button-lg"
         iconR="/icons/notePrimary.png"
         theme="Primary"
         link="/menu"

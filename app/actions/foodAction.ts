@@ -108,6 +108,7 @@ export async function GetAllFoods({
     });
 
     revalidatePath('/menu');
+    revalidatePath('/branchs');
     // @ts-ignore
     return foods;
   } catch (error) {
@@ -183,8 +184,6 @@ export async function GetDemoUniqueFood(id: IdType) {
     }
 
     return {status: 200, message: 'کالای مورد نظر پیدا شد.' ,food: food}
-
-    console.log(food)
   } catch (error) {
     console.log(error)
   }

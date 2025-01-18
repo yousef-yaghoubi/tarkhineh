@@ -1,23 +1,9 @@
 'use client';
 import React, { ReactNode, useRef, useState } from 'react';
 import Portal from './Portal';
-import Image from 'next/image';
-
-import { Swiper, SwiperSlide } from 'swiper/react';
-
-// Import Swiper styles
-import 'swiper/css';
-import 'swiper/css/free-mode';
-import 'swiper/css/navigation';
-import 'swiper/css/thumbs';
-
-// import required modules
-import { FreeMode, Navigation, Thumbs } from 'swiper/modules';
-import SwiperCore from 'swiper';
 import IconMap from './IconMap';
 import SwiperImagesModal from './swiper/SwiperImagesModal';
 
-SwiperCore.use([Navigation]);
 interface ImgArray {
   id: number;
   src: string;
@@ -35,6 +21,7 @@ interface ModalProps {
   images?: Images;
   title?: React.ReactElement;
   desc?: string;
+  removeShopingCart?: boolean;
 }
 
 const Modal: React.FC<ModalProps> = ({
@@ -44,6 +31,7 @@ const Modal: React.FC<ModalProps> = ({
   images,
   title,
   desc,
+  removeShopingCart,
 }) => {
   if (!isOpen) return null;
   if (images !== undefined) {
@@ -51,7 +39,7 @@ const Modal: React.FC<ModalProps> = ({
       <Portal>
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 backdrop-blur-sm">
           <div className="bg-white dark:bg-background-1 rounded-sm sm:rounded-md shadow-lg  max-w-[800px] w-11/12 relative flex flex-col items-center overflow-hidden">
-            <SwiperImagesModal images={images} onClose={onClose}/>
+            <SwiperImagesModal images={images} onClose={onClose} />
           </div>
         </div>
       </Portal>
@@ -60,14 +48,27 @@ const Modal: React.FC<ModalProps> = ({
     return (
       <Portal>
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 backdrop-blur-sm">
-          <div className="bg-white dark:bg-background-1 rounded-sm shadow-lg  max-w-[800px] w-11/12 relative flex flex-col items-center overflow-hidden">
-            <div className="bg-gray-3 dark:bg-background-2 relative w-full h-14 md:h-[86px] flex justify-center items-center">
+          <div
+            className={`bg-white dark:bg-background-1 rounded-sm shadow-lg  max-w-[800px] ${removeShopingCart == true ? '!w-[392px] h-56' : 'w-11/12'}  relative flex flex-col items-center overflow-hidden`}
+          >
+            <div
+              className={` ${removeShopingCart == true ? 'bg-gray-1 h-16 items-center' : 'bg-gray-3 dark:bg-background-2 h-14 md:h-[86px]'} relative w-full flex justify-center items-center`}
+            >
               <button
                 onClick={onClose}
-                className="absolute top-4 left-4 w-6 h-6 sm:h-10 sm:w-10 sm:top-[0.4em] sm:left-[0.4em] md:w-10 md:top-5 md:left-5 text-gray-600 hover:text-gray-800 focus:outline-none"
+                className={`absolute ${removeShopingCart == true ? 'top-[0.8em]' : 'top-4 md:top-5 '} left-4 w-6 h-6 sm:h-10 sm:w-10 sm:top-[0.4em] sm:left-[0.4em] md:w-10 md:left-5 text-gray-600 hover:text-gray-800 focus:outline-none`}
                 aria-label="Close Modal"
               >
-                <IconMap icon='closeIcon'/>
+                <span
+                  className={`flex ${removeShopingCart == true ? 'md:flex' : 'md:hidden'}`}
+                >
+                  <IconMap icon="closeIcon" />
+                </span>
+                <span
+                  className={`${removeShopingCart == true ? 'hidden' : 'hidden md:flex'}`}
+                >
+                  <IconMap icon="closeIconLg" />
+                </span>
               </button>
 
               {title}

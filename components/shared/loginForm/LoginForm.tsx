@@ -106,7 +106,7 @@ function LoginForm() {
           <Button
             btn="fill"
             theme="Primary"
-            btnSize="w-[344px] max-w-[90%] h-10 mt-4"
+            classCustom="w-[344px] max-w-[90%] h-10 mt-4"
           >
             ورود / ثبت نام
           </Button>

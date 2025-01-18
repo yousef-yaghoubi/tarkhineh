@@ -5,7 +5,13 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { FreeMode, Navigation, Thumbs } from 'swiper/modules';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
+import SwiperCore from 'swiper';
+import 'swiper/css';
+import 'swiper/css/free-mode';
+import 'swiper/css/navigation';
+import 'swiper/css/thumbs';
 
+SwiperCore.use([Navigation]);
 interface Images {
   id: number;
   desc: string;

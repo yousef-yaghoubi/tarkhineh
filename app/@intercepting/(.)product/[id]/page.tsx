@@ -4,7 +4,7 @@ import ButtonBack from '@/components/shared/button/ButtonBack';
 import IconMap from '@/components/shared/IconMap';
 import Portal from '@/components/shared/Portal';
 import { convertToPersianNumbers } from '@/lib/convertNumberToPersian';
-import Image from 'next/image';;
+import Image from 'next/image';
 import React from 'react';
 
 async function page({ params }: { params: { id: number } }) {
@@ -30,7 +30,7 @@ async function page({ params }: { params: { id: number } }) {
             </div>
             <div className="!w-full !h-96 relative">
               <Image
-                src={'/image/imageFood.jpg'}
+                src={food.food!.image}
                 alt={food.food!.name}
                 fill
                 className="!bg-cover !w-fit justify-self-center !rounded-sm"
@@ -40,10 +40,10 @@ async function page({ params }: { params: { id: number } }) {
               <span className="body-sm md:h7">{food.food!.name}</span>
               <div className="flex justify-end">
                 {arrayStarStroke.map((star) => (
-                  <IconMap icon='starStrokeLg' key={star}/>
+                  <IconMap icon="starStrokeLg" key={star} />
                 ))}
                 {arrayStarFill.map((star) => (
-                  <IconMap icon='starRateLg' key={star}/>
+                  <IconMap icon="starRateLg" key={star} />
                 ))}
               </div>
               <span className="caption-sm md:body-sm">{food.food!.desc}</span>
@@ -53,8 +53,15 @@ async function page({ params }: { params: { id: number } }) {
                 )
               </span>
             </div>
-            <div className='w-full flex justify-center mb-4'>
-              <Button btn='fill' theme='Primary' btnSize='w-56 h-10' onClickReload>دیدن جزئیات بیشتر</Button>
+            <div className="w-full flex justify-center mb-4">
+              <Button
+                btn="fill"
+                theme="Primary"
+                classCustom="w-56 h-10"
+                onClickReload
+              >
+                دیدن جزئیات بیشتر
+              </Button>
             </div>
           </section>
         ) : (
