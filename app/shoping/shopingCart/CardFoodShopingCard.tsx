@@ -9,8 +9,10 @@ import {
   PriceOrder,
 } from '@/components/shared/card/CardFoodNecessary';
 import { CartFoodForShopingCart } from '@/lib/indexType';
+import { useCart } from '@/components/shared/shopingCardProvider';
 
 function CardFoodShopingCard({ item }: { item: CartFoodForShopingCart }) {
+  const {removeFromCart} = useCart()
   const starFill = Math.round(item.rating);
   const starStroke = 5 - starFill;
 
@@ -30,7 +32,7 @@ function CardFoodShopingCard({ item }: { item: CartFoodForShopingCart }) {
 
         <div className="w-[calc(100%_-_169px)] h-full absolute left-0 top-0 grid grid-cols-customCardShopingCard px-8 py-4  text-gray-8 dark:text-gray-2">
           <span className="h-full h7 col-start-1 col-end-4">{item.name}</span>
-          <span className="h-full justify-end flex col-start-4 col-end-6">
+          <span className="h-full justify-end flex col-start-4 col-end-6 cursor-pointer" onClick={()=> removeFromCart(item.id)}>
             <IconMap icon="removeIcon" />
           </span>
           <p className="h-full body-sm flex items-center col-start-1 col-end-5">

@@ -77,7 +77,7 @@ export const iconDetails = [
   },
   {
     id: 2,
-    alt: 'shopingCart',
+    alt: 'shoping',
     img: 'iconShopingCard',
     imgActive: 'iconShopingCardActive',
     isActive: false,

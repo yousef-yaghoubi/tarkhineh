@@ -40,7 +40,7 @@ function Icon({ alt, img, imgActive, className }: Props) {
     }
   }, [isModalOpen, openModal, closeModal]);
 
-  if (pathName.slice(1) == alt) {
+  if (pathName.includes(alt)) {
     isActive = true;
   }
 
@@ -65,10 +65,10 @@ function Icon({ alt, img, imgActive, className }: Props) {
         onClick={() => {
           !isLogin && alt == 'profile' && router.push('/login');
           alt == 'search' && openModal();
-          alt == 'shopingCart' && router.push('/shopingCart')
+          alt == 'shoping' && router.push('/shoping/shopingCart')
         }}
       >
-        {alt == 'shopingCart' && cart.length !== 0 &&(
+        {alt == 'shoping' && cart.length !== 0 &&(
           <div
             className={`absolute -top-1.5 -right-1 md:top-[2px] md:right-[2px] ${
               isActive ? 'bg-tint-6 text-white' : 'bg-white text-primary'
