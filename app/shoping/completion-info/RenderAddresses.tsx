@@ -20,7 +20,7 @@ function RenderAddresses() {
             <span className="body-sm md:body-md">افزودن آدرس</span>
           </span>
         </p>
-        <div className="relative flex flex-col md:flex-row justify-center items-center h-full w-full p-3 gap-2">
+        <div className="relative flex flex-col md:flex-row xl:flex-col 2xl:flex-row justify-center items-center h-full w-full py-3 gap-2">
           {empty ? (
             <>
               <Image

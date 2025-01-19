@@ -11,7 +11,7 @@ function page() {
     <div className="flex flex-col items-center">
       <ProgressShoping />
 
-      <section className="flex flex-col xl:flex-row justify-around items-center xl:items-start w-11/12 max-w-[1300px] mb-12">
+      <section className="flex flex-col xl:flex-row justify-around items-center xl:items-start w-11/12 max-w-[1500px] mb-12">
         <main className="w-full xl:w-1/2 h-[490px]">
           <div className="w-full h-[133px] rounded-md border flex flex-col md:flex-row md:justify-between md:items-center border-gray-4 px-4 py-2">
             <h3 className="py-2 border-b md:border-0 border-gray-4 flex gap-x-1 items-center md:w-1/3">
