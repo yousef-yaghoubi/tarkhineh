@@ -93,7 +93,7 @@ const SliderSwiper = ({
               ? {
                   200: {
                     slidesPerView: 1.5,
-                  },
+                  }, 
                   400: {
                     slidesPerView: 2,
                   },

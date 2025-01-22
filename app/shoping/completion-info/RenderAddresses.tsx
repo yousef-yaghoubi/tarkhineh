@@ -6,7 +6,7 @@ import Address from './Address';
 function RenderAddresses() {
   const empty = false;
   return (
-    <div className="flex w-full h-fit rounded-md border border-gray-4 p-4 mt-3">
+    <div className="flex w-full h-fit rounded-md border border-gray-4 p-4 mt-3 md:mt-6">
       <div className="w-full">
         <p className="flex justify-between border-b border-gray-4 pb-2">
           <span className="flex items-center gap-1">

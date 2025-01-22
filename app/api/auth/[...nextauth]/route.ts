@@ -6,7 +6,6 @@ import {
   LoginOrSignUpUserWithGoogle,
 } from '@/app/actions/userAction';
 
-
 export const authOption: AuthOptions = {
   providers: [
     // Credentials Provider
@@ -17,7 +16,9 @@ export const authOption: AuthOptions = {
         password: { label: 'Password', type: 'password' },
       },
       async authorize(credentials) {
-        const { email, password } = credentials!;
+
+        if (credentials == null || credentials == undefined) return null;
+        const { email, password } = credentials;
 
         // Check if the user exists in the database
         const user: null | {
@@ -38,8 +39,8 @@ export const authOption: AuthOptions = {
       clientId: process.env.AUTH_GOOGLE_ID as string,
       clientSecret: process.env.AUTH_GOOGLE_SECRET as string,
       async profile(profile) {
-        const prof = await profile
-      
+        const prof = await profile;
+
         //Check if the user already exists based on Google email
         const user: null | {
           id: number;
@@ -50,17 +51,16 @@ export const authOption: AuthOptions = {
           role: string;
         } = await LoginOrSignUpUserWithGoogle(prof);
 
-
         return user;
       },
-      httpOptions:{
-        timeout: 100000
-      }
+      httpOptions: {
+        timeout: 100000,
+      },
     }),
   ],
   callbacks: {
     // JWT Callback: Store user data in JWT token
-    async jwt({ token, user}) {
+    async jwt({ token, user }) {
       if (user) {
         token.id = user.id;
         token.email = user.email;
@@ -75,7 +75,7 @@ export const authOption: AuthOptions = {
       session.user!.id = token.id;
       session.user!.email = token.email;
       session.user!.name = token.name;
-      session.user!.image = token.image as string | null ;
+      session.user!.image = token.image as string | null;
       session.user!.role = token.role;
       return session;
     },
@@ -83,17 +83,11 @@ export const authOption: AuthOptions = {
   session: {
     strategy: 'jwt', // Use JWT for session management
   },
-  pages:{
-    signIn: '/login'
+  pages: {
+    signIn: '/login',
   },
-  debug:true,
-   // Use Prisma adapter to store users in DB
-  secret: process.env.NEXTAUTH_SECRET as string, // Set a secret for signing JWTs
-}
+  secret: process.env.NEXTAUTH_SECRET as string,
+};
 const handler = NextAuth(authOption);
 
-
-export { handler as GET, handler as POST }
-
-
-
+export { handler as GET, handler as POST };
