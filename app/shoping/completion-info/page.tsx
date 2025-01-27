@@ -6,6 +6,7 @@ import { Label } from '@/components/ui/label';
 import IconMap from '@/components/shared/IconMap';
 import RenderAddresses from './RenderAddresses';
 import TextAreaInfo from './TextAreaInfo';
+import AsideFoodsForShopingCart from '@/components/shared/shopingCart/AsideFoodsForShopingCart';
 
 function page() {
   return (
@@ -59,11 +60,11 @@ function page() {
             </RadioGroup>
           </div>
           <RenderAddresses />
-          
-          <TextAreaInfo/>
+
+          <TextAreaInfo />
         </main>
 
-        <aside className="w-1/2 h-full bg-slate-500"></aside>
+        <AsideFoodsForShopingCart hiddenSection={[1,2]} />
       </section>
     </div>
   );

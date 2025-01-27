@@ -10,7 +10,6 @@ export default function QuantityFood({
   id: number;
 }) {
   const { addQuantity, minuseQuantity, removeFromCart, cart, clearCart } = useCart();
-  console.log(cart.length)
   return (
     <div className="w-14 h-8 bg-tint-1 text-primary rounded mr-6 flex justify-around items-center">
       <i onClick={() => addQuantity(id)} className=" cursor-pointer">

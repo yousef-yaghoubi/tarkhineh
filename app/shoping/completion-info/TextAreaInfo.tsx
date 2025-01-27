@@ -6,7 +6,6 @@ function TextAreaInfo() {
   const ref = useRef<HTMLTextAreaElement>(null);
   const [focusIsTextArea, setFocusIsTextArea] = useState(false);
 
-  
   return (
     <div
       className={`w-full mt-3 md:mt-6 rounded-md h-36 border ${focusIsTextArea ? 'border-primary' : 'border-gray-4 dark:border-background-2 hover:border-black'} transition-colors duration-300 px-3 py-4 md:p-4 relative group`}
@@ -16,11 +15,11 @@ function TextAreaInfo() {
       </i>
 
       <span
-        className={`right-8 md:right-11 flex items-center bg-white ${focusIsTextArea ? 'text-primary' : ' text-gray-7 group-hover:text-black'} ${focusIsTextArea || (ref.current && ref.current.value.length > 0) ? 'top-[-1em] caption-sm' : 'top-[10px] md:top-[14px] body-sm peer-focus:top-0'} md:body-md absolute z-50 transition-all duration-300`}
+        className={`right-8 md:right-11 flex items-center bg-white ${focusIsTextArea ? 'text-primary' : ' text-gray-7 group-hover:text-black'} ${focusIsTextArea || (ref.current && ref.current.value.replace(/\s+/g, " ").trim().length > 0) ? 'top-[-1em] caption-sm' : 'top-[10px] md:top-[14px] body-sm peer-focus:top-0'} md:body-md absolute z-50 transition-all duration-300`}
       >
         توضیحات سفارش &nbsp;
         <span
-          className={`caption-sm md:caption-md ${focusIsTextArea || (ref.current && ref.current.value.length > 0) ? 'hidden' : 'flex'}`}
+          className={`caption-sm md:caption-md ${focusIsTextArea || (ref.current && ref.current.value.replace(/\s+/g, " ").trim().length > 0) ? 'hidden' : 'flex'}`}
         >
           (اختیاری)
         </span>
