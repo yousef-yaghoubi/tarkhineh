@@ -15,7 +15,7 @@ function TextAreaInfo() {
       </i>
 
       <span
-        className={`right-8 md:right-11 flex items-center bg-white ${focusIsTextArea ? 'text-primary' : ' text-gray-7 group-hover:text-black'} ${focusIsTextArea || (ref.current && ref.current.value.replace(/\s+/g, " ").trim().length > 0) ? 'top-[-1em] caption-sm' : 'top-[10px] md:top-[14px] body-sm peer-focus:top-0'} md:body-md absolute z-50 transition-all duration-300`}
+        className={`right-8 md:right-11 flex items-center bg-white dark:bg-background-1 ${focusIsTextArea ? 'text-primary' : ' text-gray-7 group-hover:text-black group-hover:dark:text-gray-2'} ${focusIsTextArea || (ref.current && ref.current.value.replace(/\s+/g, " ").trim().length > 0) ? 'top-[-1em] caption-sm' : 'top-[10px] md:top-[14px] body-sm peer-focus:top-0'} md:body-md absolute z-50 transition-all duration-300`}
       >
         توضیحات سفارش &nbsp;
         <span
@@ -27,7 +27,7 @@ function TextAreaInfo() {
 
       <textarea
         ref={ref}
-        className="peer outline-none z-10 w-full !h-[calc(100%_-_1em)] body-sm resize-none absolute top-[5px] right-0 px-8 py-2 md:p-4 md:pr-12"
+        className="peer bg-transparent outline-none z-10 w-full !h-[calc(100%_-_1em)] body-sm resize-none absolute top-[5px] right-0 px-8 py-2 md:p-4 md:pr-12"
         onFocus={() => setFocusIsTextArea(true)}
         onBlur={() => setFocusIsTextArea(false)}
       ></textarea>

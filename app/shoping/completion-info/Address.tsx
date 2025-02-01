@@ -5,7 +5,7 @@ import React from 'react';
 function Address() {
     let number = '09058972658'
   return (
-    <div className="min-w-72 md:min-w-80 w-full md:h-[115px] h-24 p-4 rounded border border-gray-4 selection:border-primary bg-gray-3 flex flex-col relative">
+    <div className="min-w-72 md:min-w-80 w-full md:h-[115px] h-24 p-4 rounded border border-gray-4 dark:border-background-2 selection:border-primary bg-gray-3 dark:bg-background-2 flex flex-col relative">
       <div className='flex justify-between'>
         <p className='caption-sm md:body-sm'>تهران: اقدسیه، بزرگراه ارتش، مجتمع شمیران سنتر، طبقه ۱۰</p>
         <span className='w-11 flex justify-between'>

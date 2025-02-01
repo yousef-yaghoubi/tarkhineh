@@ -48,6 +48,7 @@ function AsideFoodsForShopingCart({
   const { cart, clearCart } = useCart();
   const { status } = useSession();
   const [isOpenModal, setIsOpenModel] = useState(false);
+  
   return (
     <aside className=" w-full md:w-11/12 max-w-[704px] xl:max-w-[496px] h-fit flex flex-col mt-10 xl:mt-0 border border-gray-4 dark:border-background-2 rounded-md p-6 text-gray-8 dark:text-gray-1">
       <div
@@ -113,7 +114,7 @@ function AsideFoodsForShopingCart({
           <Button
             btn="fill"
             theme="Primary"
-            classCustom="w-full h-10 mt-5"
+            className="w-full h-10 mt-5"
             link="/login"
           >
             <span
@@ -143,7 +144,7 @@ function AsideFoodsForShopingCart({
           <Button
             btn="fill"
             theme="Primary"
-            classCustom="w-full h-10 mt-5"
+            className="w-full h-10 mt-5"
             link="/shoping/completion-info"
           >
             <span
@@ -158,7 +159,7 @@ function AsideFoodsForShopingCart({
           <Button
             btn="fill"
             theme="Primary"
-            classCustom="w-full h-10 mt-5"
+            className="w-full h-10 mt-5"
             loading
           >
             ''

@@ -85,7 +85,7 @@ function CardFood({
           <Button
             btn="fill"
             theme="Primary"
-            classCustom="w-[152px] h-8 caption-sm md:button-lg mt-3 md:mt-4 md:w-[256px] md:h-10"
+            className="w-[152px] h-8 caption-sm md:button-lg mt-3 md:mt-4 md:w-[256px] md:h-10"
             shopingCard={item}
           >
             افزودن به سبد خرید
@@ -142,8 +142,8 @@ function CardFood({
               <div
                 className={`${item.order !== 0 ? 'hidden md:flex' : 'hidden'} w-24 md:w-[5.5em] items-center justify-between`}
               >
-                <PriceOrder price={item.price} classCustom="!text-base" />
-                <OrderBadge order={item.order} classCustom="md:caption-md" />
+                <PriceOrder price={item.price} className="!text-base" />
+                <OrderBadge order={item.order} className="md:caption-md" />
               </div>
               <span className="caption-sm md:body-lg">
                 <Price order={item.order} price={item.price} />
@@ -165,7 +165,7 @@ function CardFood({
               <Button
                 btn="fill"
                 theme="Primary"
-                classCustom="w-[100px] md:w-[244px] h-8 md:h-10 caption-sm md:button-lg"
+                className="w-[100px] md:w-[244px] h-8 md:h-10 caption-sm md:button-lg"
                 shopingCard={item}
               >
                 افزودن به سبدخرید

@@ -1,7 +1,7 @@
 'use client';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import React from 'react';
+import React, { ComponentProps } from 'react';
 import IconMap from '../IconMap';
 import { useCart } from '../shopingCardProvider';
 import { FoodType } from '@/lib/indexType';
@@ -9,7 +9,7 @@ import clsx from 'clsx';
 
 interface Props {
   btn: 'text' | 'stroke' | 'fill';
-  classCustom: string;
+  className: ComponentProps<"button">["className"];
   theme: 'Primary' | 'White' | 'Black';
   disabled?: boolean;
   loading?: boolean;
@@ -24,7 +24,7 @@ interface Props {
 }
 function Button({
   btn,
-  classCustom,
+  className,
   theme,
   disabled,
   loading,
@@ -49,7 +49,7 @@ function Button({
               : theme === 'White'
                 ? 'bg-tint-1 text-primary hover:bg-tint-2'
                 : 'bg-gray-7 text-white hover:bg-gray-8'
-          } rounded-sm md:rounded-md flex items-center justify-around relative ${classCustom}`
+          } rounded-sm md:rounded-md flex items-center justify-around ${className}`
         )}
         onClick={() => {
           shopingCard && addToCart(shopingCard);
@@ -91,7 +91,7 @@ function Button({
               : theme === 'White'
                 ? 'text-white border-white hover:border-gray-2 hover:text-gray-2 selection:text-gray-3 selection:border-gray-3'
                 : 'text-gray-7 border-gray-7 hover:border-gray-8 hover:text-gray-8 selection:text-black selection:border-blatext-black'
-          } rounded-sm flex items-center justify-around relative ${classCustom}`
+          } rounded-sm flex items-center justify-around ${className}`
         )}
         onClick={() => {
           onClickReload && window.location.reload();
@@ -132,7 +132,7 @@ function Button({
               : theme === 'White'
                 ? 'text-white hover:text-gray-1 selection:text-gray-3'
                 : 'text-gray-7 hover:text-gray-8 selection:text-black'
-          } rounded-sm md:rounded-md flex items-center justify-around relative ${classCustom}`
+          } rounded-sm md:rounded-md flex items-center justify-around ${className}`
         )}
         onClick={() => {
           onClickReload && window.location.reload();

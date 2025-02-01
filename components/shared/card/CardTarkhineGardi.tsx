@@ -1,6 +1,6 @@
 'use client';
 import Image from 'next/image';
-import React, { MouseEventHandler, useState } from 'react';
+import React, { ComponentProps, MouseEventHandler, useState } from 'react';
 import Button from '../button/Button';
 import Modal from '../Modal';
 import { branchs } from '@/lib/dataPublic';
@@ -12,7 +12,7 @@ interface Props {
   desc: string;
   img: string;
   hrefBTN?: string;
-  classCustom?: string;
+  className?: ComponentProps<"div">["className"];
   showBTN?: boolean;
   id: number;
   smallShow?: boolean;
@@ -23,7 +23,7 @@ function CardTarkhineGardi({
   desc,
   img,
   hrefBTN,
-  classCustom,
+  className,
   showBTN,
   id,
   smallShow,
@@ -111,7 +111,7 @@ function CardTarkhineGardi({
   } else {
     return (
       <div
-        className={`w-full ${classCustom}  h-[85px] rounded-sm border-gray-4 dark:border-[rgb(64,65,66)]  ${
+        className={`w-full ${className}  h-[85px] rounded-sm border-gray-4 dark:border-[rgb(64,65,66)]  ${
           showBTN !== undefined ? 'group' : ''
         } selection:border-primary transition-all overflow-hidden border flex justify-between mt-3 hover:shadow-cards duration-300 ${
           showBTN !== undefined
@@ -192,7 +192,7 @@ function CardTarkhineGardi({
           {showBTN !== undefined && (
             <Button
               btn="stroke"
-              classCustom="!w-32 !h-8 md:caption-md invisible opacity-0 group-hover:visible sm:group-hover:opacity-100 mt-2"
+              className="!w-32 !h-8 md:caption-md invisible opacity-0 group-hover:visible sm:group-hover:opacity-100 mt-2"
               theme="Primary"
               iconL="arrow-left-primary"
               link={hrefBTN}

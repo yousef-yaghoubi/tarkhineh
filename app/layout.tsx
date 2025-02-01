@@ -10,6 +10,7 @@ import { getServerSession } from 'next-auth';
 import { authOption } from './api/auth/[...nextauth]/route';
 import AuthProvider from '@/components/shared/authProvider';
 import { CartProvider } from '@/components/shared/shopingCardProvider';
+import 'leaflet/dist/leaflet.css';
 
 const estedad = localFont({
   src: './fonts/Estedad[KSHD,wght].woff2',

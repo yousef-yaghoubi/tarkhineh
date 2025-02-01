@@ -1,15 +1,16 @@
 import { convertToPersianNumbers } from "@/lib/convertNumberToPersian";
+import { ComponentProps } from "react";
 
 export function PriceOrder({
   price,
-  classCustom,
+  className,
 }: {
   price: number;
-  classCustom?: string;
+  className?: ComponentProps<"div">["className"];
 }) {
   return (
     <span
-      className={`text-[10px] line-through text-gray-5 ${classCustom && classCustom} `}
+      className={`text-[10px] line-through text-gray-5 ${className && className} `}
     >
       {convertToPersianNumbers(price.toLocaleString())}
     </span>
@@ -18,14 +19,14 @@ export function PriceOrder({
 
 export function OrderBadge({
   order,
-  classCustom,
+  className,
 }: {
   order: number;
-  classCustom?: string;
+  className?: ComponentProps<"div">["className"];
 }) {
   return (
     <div
-      className={`w-8 h-4 bg-error-extralight rounded-md caption-sm text-error flex justify-center items-center ${classCustom}`}
+      className={`w-8 h-4 bg-error-extralight rounded-md caption-sm text-error flex justify-center items-center ${className}`}
     >
       %{convertToPersianNumbers(order.toString())}
     </div>

@@ -65,9 +65,13 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     });
   };
 
-  const removeFromCart = (id: number) =>
-    setCart((prev) => prev.filter((item) => item.id !== id));
-
+  const removeFromCart = (id: number) => {
+    if(cart.length == 1){
+      clearCart()
+    } else{
+      setCart((prev) => prev.filter((item) => item.id !== id));
+    }
+  };
   const clearCart = () => {
     localStorage.setItem('cart', JSON.stringify([]));
     setCart([]);
