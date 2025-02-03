@@ -1,6 +1,4 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getServerSession } from "next-auth";
-import Cookies from 'js-cookie';
 
 export async function middleware(req: NextRequest ) {
   // const session = await getServerSession(authOption)
@@ -8,7 +6,7 @@ export async function middleware(req: NextRequest ) {
   const isPrivateRoute = req.nextUrl.pathname.startsWith("/login");
   const token = await req.cookies.get("next-auth.session-token"); // Check the session token
   const Menu = req.nextUrl.pathname.startsWith("/menu")
-  const tokenName = req.cookies.get('branchs')?.value
+  const tokenName = req.cookies.get('branch')?.value
 
   if(!tokenName && Menu){
     const url = req.nextUrl.clone();

@@ -3,7 +3,11 @@ import Image from 'next/image';
 import React from 'react';
 import Address from './Address';
 import Button from '@/components/shared/button/Button';
+import dynamic from 'next/dynamic';
 
+const Map = dynamic(()=> import ('@/components/shared/map/ShowMap'), {
+  ssr: false
+})
 function RenderAddresses({
   sendDataToParent,
   showAddressBranch,
@@ -53,7 +57,7 @@ function RenderAddresses({
           )}
         </div>
       ) : (
-        <div className="flex px-4 justify-between">
+        <div className="w-full flex px-4 justify-between">
           <div>
             <h3 className='flex body-sm md:body-md'>
               <IconMap icon="locationShoping" />
@@ -69,7 +73,9 @@ function RenderAddresses({
               مشاهده در نقشه
             </Button>
           </div>
-          <div></div>
+          <div className='w-1/2 h-full'>
+            <Map showMiniMap/>
+          </div>
         </div>
       )}
     </div>

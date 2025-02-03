@@ -81,7 +81,7 @@ export async function GetAllFoods({
     const foods = await prisma.foods.findMany({
       where: {
         branch: {
-          name: branchName,
+          nickName: branchName,
         },
         typeId: typeIdFoods,
         categorieId: categorieFilter,

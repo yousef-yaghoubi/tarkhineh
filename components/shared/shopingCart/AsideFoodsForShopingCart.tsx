@@ -8,6 +8,7 @@ import { useCart } from '../shopingCardProvider';
 import { useSession } from 'next-auth/react';
 import { CartFoodForShopingCart } from '@/lib/indexType';
 import QuantityFood from '@/app/shoping/shopingCart/QuantityFood';
+import Modal from '../Modal';
 
 const calcOffPrice = (cart: CartFoodForShopingCart[]) => {
   const offerCart = cart.filter((item) => item.order !== 0);
@@ -166,6 +167,13 @@ function AsideFoodsForShopingCart({
           </Button>
         )}
       </div>
+      <Modal isOpen={isOpenModal} onClose={() => setIsOpenModel(false)} state='removeShopingCart' title={<h3 className='caption-lg md:h7'>حذف محصولات</h3>} desc='همه محصولات سبد خرید شما حذف شود؟'>
+        <div className='flex justify-between gap-4 md:gap-5'>
+          {/* <Button btn='stroke' theme='Primary' className='w-32 h-8 md:w-[117px] md:h-10'>بازگشت</Button> */}
+          <button className='w-32 h-8 md:w-[117px] md:h-10 rounded border border-primary text-primary' onClick={()=> setIsOpenModel(false)}>بازگشت</button>
+          <button className='w-32 h-8 md:w-[117px] md:h-10 !bg-error-extralight rounded text-error' onClick={()=> clearCart()}>حذف</button>
+        </div>
+      </Modal>
     </aside>
   );
 }

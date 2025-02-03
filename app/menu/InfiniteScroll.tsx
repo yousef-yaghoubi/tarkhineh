@@ -17,7 +17,7 @@ function InfiniteScroll() {
   const [numberOfAllFood, setNumberOfAllFood] = useState<number>(1);
   const [page, setPage] = useState<number>(1);
   const { ref, inView } = useInView();
-  const cookieBranch = Cookies.get('branchs');
+  const cookieBranch = Cookies.get('branch');
   const queryType = useSearchParams().get('type') || 'all';
   const queryFilter = useSearchParams().get('categorie') || 'all';
 

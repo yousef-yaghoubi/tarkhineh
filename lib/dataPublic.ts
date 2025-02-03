@@ -15,6 +15,7 @@ interface image {
 interface branchType {
   id: number;
   images: image[];
+  nickName: string
   title: string;
   desc: string;
 }
@@ -28,6 +29,7 @@ export const branchs: branchType[] = [
       { id: 4, src: '/image/aghdasie1.jpg' },
     ],
     title: 'اکباتان',
+    nickName: 'ekbatan',
     desc: 'شهرک اکباتان، فاز ۳، مجتمع تجاری کوروش، طبقه سوم',
   },
   {
@@ -39,6 +41,7 @@ export const branchs: branchType[] = [
       { id: 4, src: '/image/ekbatan1.jpg' },
     ],
     title: 'چالوس',
+    nickName: 'chaloos',
     desc: 'چالوس، خیابان ۱۷ شهریور، بعد کوچه کوروش، جنب داروخانه دکتر میلانی',
   },
   {
@@ -50,6 +53,7 @@ export const branchs: branchType[] = [
       { id: 4, src: '/image/ekbatan1.jpg' },
     ],
     title: 'اقدسیه',
+    nickName: 'aghdasie',
     desc: 'خیابان اقدسیه ، نرسیده به میدان خیام، پلاک ۸',
   },
   {
@@ -61,6 +65,7 @@ export const branchs: branchType[] = [
       { id: 4, src: '/image/ekbatan1.jpg' },
     ],
     title: 'ونک',
+    nickName: 'vanak',
     desc: 'میدان ونک، خیابان فردوسی، نبش کوچه نیلوفر، پلاک ۲۶',
   },
 ];

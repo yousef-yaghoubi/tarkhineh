@@ -114,6 +114,7 @@ model CommentsBranch {
 model Branchs {
   id             Int              @id @default(autoincrement())
   name           String           @unique
+  nickName       String @unique
   address        String
   phones         Json
   openDuration   String

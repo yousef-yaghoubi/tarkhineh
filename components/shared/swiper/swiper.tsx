@@ -62,7 +62,7 @@ function SwiperMain({
           />
         </svg>
       </div>
-      {slides.map((slide) => (
+      {slides?.map((slide) => (
         <SwiperSlide
           className="text-center text-lg flex justify-center items-center"
           key={slide.id}

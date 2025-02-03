@@ -17,28 +17,23 @@ import {
   NavigationMenuItem,
   navigationMenuTriggerStyle,
 } from '@/components/ui/navigation-menu';
-import Cookies from 'js-cookie';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Modal from '../Modal';
 import { branchs, navStats } from '@/lib/dataPublic';
 import CardTarkhineGardi from '../card/CardTarkhineGardi';
 import IconMap from '../IconMap';
-
+import { useBranchContext } from '../branchProvider';
+import Cookies from 'js-cookie';
 function Nav({ menuBar }: { menuBar: boolean }) {
   const router = useRouter();
   const pathName = usePathname();
   const searchParams = useSearchParams();
-  const sessionCookie = Cookies.get('branchs');
-  const [branchName, setBranchName] = useState('شعبه');
+  const { branch, setBranch } = useBranchContext();
   const [urlMenu, setUrlMenu] = useState<string>();
   const query = Object.fromEntries(searchParams.entries());
   const [showChooseModal, setShowChooseModal] = useState(false);
-  const openModal = () => setShowChooseModal(true);
   const closeModal = () => setShowChooseModal(false);
 
-  useEffect(() => {
-    if (!!sessionCookie) setBranchName(`شعبه ${sessionCookie}`);
-  }, [sessionCookie]);
 
   return (
     <div
@@ -81,7 +76,7 @@ function Nav({ menuBar }: { menuBar: boolean }) {
                     <IconMap icon={stats.icon} key={stats.icon} />
                     <span>
                       {stats.label == 'شعبه'
-                        ? branchName
+                        ? branch == 'شعبه'
                         : stats.subMain?.find(
                             (sub) => sub.routeQuery == searchParams.get('type')
                           )?.label || stats.label}
@@ -104,10 +99,10 @@ function Nav({ menuBar }: { menuBar: boolean }) {
                             }
                       }
                       className="w-fit mr-2 pt-2 caption-sm sm:body-sm"
-                      onClick={() =>
-                        stats.label == 'شعبه' &&
-                        Cookies.set('branchs', `${sub.label}`, { path: '/' })
-                      }
+                      // onClick={() =>
+                      //   stats.label == 'شعبه' &&
+                      //   Cookies.set('branch', `${sub.label}`, { path: '/' })
+                      // }
                     >
                       {sub.label}
                     </Link>
@@ -148,7 +143,7 @@ function Nav({ menuBar }: { menuBar: boolean }) {
                     }`}
                   >
                     {stats.label == 'شعبه'
-                      ? branchName
+                      ? branch
                       : stats.subMain?.find(
                           (sub) => sub.routeQuery == searchParams.get('type')
                         )?.label || stats.label}
@@ -158,12 +153,11 @@ function Nav({ menuBar }: { menuBar: boolean }) {
                     {stats.subMain?.map((sub) =>
                       stats.label == 'منو' ? (
                         <button
-                          // href={sub.routeQuery || sub.route}
                           key={sub.label}
                           className="py-[7px] px-5 hover:bg-slate-100 dark:hover:bg-background-1 flex"
                           onClick={() => {
                             setUrlMenu(sub.routeQuery),
-                              !!sessionCookie
+                              branch !== 'شعبه'
                                 ? router.push(`/menu?type=${sub.routeQuery}`)
                                 : setShowChooseModal(true);
                           }}
@@ -175,12 +169,12 @@ function Nav({ menuBar }: { menuBar: boolean }) {
                           href={sub.routeQuery}
                           key={sub.label}
                           className="py-1 px-5 hover:bg-slate-100 dark:hover:bg-background-1"
-                          onClick={() =>
-                            stats.label == 'شعبه' &&
-                            Cookies.set('branchs', `${sub.label}`, {
-                              path: '/',
-                            })
-                          }
+                          // onClick={() =>
+                          //   stats.label == 'شعبه' &&
+                          //   Cookies.set('branch', `${sub.label}`, {
+                          //     path: '/',
+                          //   })
+                          // }
                         >
                           {sub.label}
                         </NavigationMenuLink>
@@ -227,7 +221,7 @@ function Nav({ menuBar }: { menuBar: boolean }) {
               img={branch.images[0].src}
               id={branch.id}
               click={() => {
-                Cookies.set('branchs', branch.title);
+                Cookies.set('branch', branch.nickName)
                 closeModal();
                 router.push(`/menu?type=${urlMenu}`);
               }}

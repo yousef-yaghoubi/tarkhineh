@@ -5,11 +5,27 @@ import prisma from '@/prisma/prismaClient';
 import { TypeFood } from '@prisma/client';
 import { revalidatePath } from 'next/cache';
 
+export async function GetNameBranch(nickName: string) {
+  try {
+    const branchName = await prisma.branchs.findUnique({
+      where:{
+        nickName
+      },
+      select:{
+        name: true
+      }
+    })
+
+    return branchName?.name
+  } catch (error) {
+    console.log(error)
+  }
+}
 export async function GetBranch(branchName: string) {
   try {
     const branch = await prisma.branchs.findUnique({
       where: {
-        name: branchName,
+        nickName: branchName,
       },
       select: {
         id: true,
@@ -47,7 +63,7 @@ export async function GetFoodsSpecial(branchName: string) {
     const foods = await prisma.foods.findMany({
       where: {
         branch: {
-          name: branchName,
+          nickName: branchName,
         },
         specialOffer: true,
       },
@@ -79,7 +95,7 @@ export async function GetFoodsPopular(branchName: string) {
     const foods = await prisma.foods.findMany({
       where: {
         branch: {
-          name: branchName,
+          nickName: branchName,
         },
       },
       select: {
@@ -113,7 +129,7 @@ export async function GetFoodsNotIrani(branchName: string) {
     const foods = await prisma.foods.findMany({
       where: {
         branch: {
-          name: branchName,
+          nickName: branchName,
         },
         categorieId: 2,
       },

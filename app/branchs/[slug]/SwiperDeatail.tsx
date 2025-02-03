@@ -19,7 +19,7 @@ interface Details {
 function SwiperDeatail({ address, images, phones, durition }: Details) {
   return (
     <div className="w-full flex flex-col items-center relative h-[14.2em] md:h-[27.2em]">
-      <SwiperMain slides={images.images} />
+      <SwiperMain slides={images?.images} />
       <div className="w-11/12 max-w-80 h-[60px] md:max-w-[810px] md:h-[130px] md:top-[303px] top-[166px] rounded-sm border md:border-[3px] border-primary bg-white absolute z-20 p-2 grid grid-cols-2 md:grid-cols-3">
         <div className="flex col-span-2 md:col-span-1 md:flex-col items-center">
           <svg
@@ -66,7 +66,7 @@ function SwiperDeatail({ address, images, phones, durition }: Details) {
               fill="#353535"
             />
           </svg>
-          {phones.phones.map((num, i) => (
+          {phones?.phones.map((num, i) => (
           <span className={`caption-sm md:body-md text-center md:mt-2 ${i == 1 ? 'hidden md:flex' : 'flex'} dark:text-background-1`} key={num}>
             {convertToPersianNumbers(num)}
           </span>

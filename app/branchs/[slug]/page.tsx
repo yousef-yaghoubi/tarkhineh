@@ -15,7 +15,9 @@ import {
 import { CommentType } from '@/lib/indexType';
 import CardFoodLoading from '@/components/shared/card/CardFoodLoading';
 import { GetAllFoods } from '@/app/actions/foodAction';
-
+import { setCookie } from '@/app/actions/setCookieAction';
+import Cookies from 'js-cookie';
+import SetCookie from './SetCookie';
 
 interface Foods {
   id: number;
@@ -28,16 +30,15 @@ interface Foods {
   _count: { commentsFood: number };
 }
 
-async function DynamicBranchs() {
-  const branch = await cookies().get('branchs')?.value;
-
-  const specialOfferFoods: Foods[] | undefined = await GetAllFoods({branchName: branch!, filter: 'specialOffer', page: 1});
-  const popularFoods: Foods[] | undefined = await GetAllFoods({branchName: branch!, filter:'mostPopular', page: 1});
-  const notIraniFoods: Foods[] | undefined = await GetAllFoods({branchName: branch!, filter:'non-Iranian', page: 1});
-  const branchAction = await GetBranch(branch!);
+async function DynamicBranchs({ params }: { params: { slug: string } }) {
+  const specialOfferFoods: Foods[] | undefined = await GetAllFoods({branchName: params.slug, filter: 'specialOffer', page: 1});
+  const popularFoods: Foods[] | undefined = await GetAllFoods({branchName: params.slug, filter:'mostPopular', page: 1});
+  const notIraniFoods: Foods[] | undefined = await GetAllFoods({branchName: params.slug, filter:'non-Iranian', page: 1});
+  const branchAction = await GetBranch(params.slug);
 
   return (
     <section className="flex flex-col items-center">
+      <SetCookie value={params.slug}/>
       <SwiperMain slides={arraySlideMain} pagination showBtn />
       <div className="w-full flex justify-center">
         <SearchBox classes="w-[90%] mt-4 sm:hidden" />
@@ -61,7 +62,7 @@ async function DynamicBranchs() {
       />
       <Button
         btn="stroke"
-        classCustom="w-[152px] h-8 md:w-[184px] md:h-10 caption-lg md:button-lg"
+        className="w-[152px] h-8 md:w-[184px] md:h-10 caption-lg md:button-lg"
         iconR="/icons/notePrimary.png"
         theme="Primary"
         link="/menu"
@@ -70,7 +71,7 @@ async function DynamicBranchs() {
       </Button>
 
       <span className="h6 md:h5 lg:h4 mt-6 md:mt-9 lg:mt-12 mb-3 md:mb-[18px]">
-        {`شعبه ${branch}`}
+        {`شعبه ${branchAction?.name}`}
       </span>
 
       <SwiperDeatail

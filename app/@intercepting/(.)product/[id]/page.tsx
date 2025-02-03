@@ -57,7 +57,7 @@ async function page({ params }: { params: { id: number } }) {
               <Button
                 btn="fill"
                 theme="Primary"
-                classCustom="w-56 h-10"
+                className="w-56 h-10"
                 onClickReload
               >
                 دیدن جزئیات بیشتر
