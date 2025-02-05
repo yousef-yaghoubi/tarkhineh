@@ -1,8 +1,7 @@
 'use client';
 import Cookies from 'js-cookie';
-function SetCookie({ value }: { value: string }) {
+function SetCookie(value: string ) {
   Cookies.set('branch', value);
-  return null;
 }
 
 export default SetCookie;

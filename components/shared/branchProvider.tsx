@@ -25,8 +25,10 @@ export const BranchProvider = ({ children }: { children: ReactNode }) => {
 
   const cookie = Cookies.get('branch') as string;
   async function GetBranch() {
-    const nameBranch = await GetNameBranch(cookie);
-    setBranch(nameBranch ? `شعبه ${nameBranch}` : 'شعبه');
+    if(cookie){
+      const nameBranch = await GetNameBranch(cookie);
+      setBranch(nameBranch ? `شعبه ${nameBranch}` : 'شعبه');
+    }
   }
 
   useEffect(() => {

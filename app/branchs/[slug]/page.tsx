@@ -17,7 +17,7 @@ import CardFoodLoading from '@/components/shared/card/CardFoodLoading';
 import { GetAllFoods } from '@/app/actions/foodAction';
 import { setCookie } from '@/app/actions/setCookieAction';
 import Cookies from 'js-cookie';
-import SetCookie from './SetCookie';
+
 
 interface Foods {
   id: number;
@@ -31,14 +31,21 @@ interface Foods {
 }
 
 async function DynamicBranchs({ params }: { params: { slug: string } }) {
+  // const sertterCookie = async ()=>{
+  //   'use server';
+    
+  //   const cooki = cookies()
+  //   cooki.set('branch', params.slug, {httpOnly: false})
+  // }
+  
+  // await sertterCookie()
   const specialOfferFoods: Foods[] | undefined = await GetAllFoods({branchName: params.slug, filter: 'specialOffer', page: 1});
   const popularFoods: Foods[] | undefined = await GetAllFoods({branchName: params.slug, filter:'mostPopular', page: 1});
   const notIraniFoods: Foods[] | undefined = await GetAllFoods({branchName: params.slug, filter:'non-Iranian', page: 1});
   const branchAction = await GetBranch(params.slug);
-
+  
   return (
     <section className="flex flex-col items-center">
-      <SetCookie value={params.slug}/>
       <SwiperMain slides={arraySlideMain} pagination showBtn />
       <div className="w-full flex justify-center">
         <SearchBox classes="w-[90%] mt-4 sm:hidden" />

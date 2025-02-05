@@ -43,8 +43,10 @@ const calcAllPrice = (cart: CartFoodForShopingCart[]) => {
 
 function AsideFoodsForShopingCart({
   hiddenSection,
+  linkBTN
 }: {
   hiddenSection?: number[];
+  linkBTN: string
 }) {
   const { cart, clearCart } = useCart();
   const { status } = useSession();
@@ -146,7 +148,7 @@ function AsideFoodsForShopingCart({
             btn="fill"
             theme="Primary"
             className="w-full h-10 mt-5"
-            link="/shoping/completion-info"
+            link={linkBTN}
           >
             <span
               className="flex items-center gap-2

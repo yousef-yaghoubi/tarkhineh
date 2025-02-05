@@ -171,9 +171,7 @@ function Nav({ menuBar }: { menuBar: boolean }) {
                           className="py-1 px-5 hover:bg-slate-100 dark:hover:bg-background-1"
                           // onClick={() =>
                           //   stats.label == 'شعبه' &&
-                          //   Cookies.set('branch', `${sub.label}`, {
-                          //     path: '/',
-                          //   })
+                          //   setBranch(`شعبه ${branch.}`)
                           // }
                         >
                           {sub.label}

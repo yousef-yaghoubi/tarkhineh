@@ -50,16 +50,13 @@ function RenderAddresses({
           ) : (
             <div className="relative grid grid-cols-1 md:grid-cols-2 xl:grid-cols-1 2xl:grid-cols-2 justify-center items-center h-full w-full py-3 gap-2">
               <Address />
-              <Address />
-              <Address />
-              <Address />
             </div>
           )}
         </div>
       ) : (
-        <div className="w-full flex px-4 justify-between">
-          <div>
-            <h3 className='flex body-sm md:body-md'>
+        <div className="w-full flex flex-col sm:flex-row justify-between">
+          <div> 
+            <h3 className='flex body-sm md:body-md items-center gap-1 border-b pb-1'>
               <IconMap icon="locationShoping" />
               آدرس شعبه اکباتان
             </h3>
@@ -69,11 +66,11 @@ function RenderAddresses({
               <li>شماره تماس ۲: ۱۲۵۵ ۵۴۸۹ -۰۲۱ </li>
               <li>ساعت کاری: همه‌روزه از ساعت ۱۲ تا ۲۳ بجز روزهای تعطیل</li>
             </ul>
-            <Button btn='stroke' theme='Black' className='w-[152px] h-8 caption-md m-auto'>
+            <Button btn='stroke' theme='Black' className='w-[152px] h-8 caption-md m-auto hidden md:flex'>
               مشاهده در نقشه
             </Button>
           </div>
-          <div className='w-1/2 h-full'>
+          <div className='w-1/2 h-full hidden md:flex'>
             <Map showMiniMap/>
           </div>
         </div>

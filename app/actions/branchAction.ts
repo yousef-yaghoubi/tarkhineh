@@ -5,11 +5,11 @@ import prisma from '@/prisma/prismaClient';
 import { TypeFood } from '@prisma/client';
 import { revalidatePath } from 'next/cache';
 
-export async function GetNameBranch(nickName: string) {
+export async function GetNameBranch(branchname: string) {
   try {
     const branchName = await prisma.branchs.findUnique({
       where:{
-        nickName
+        nickName: branchname
       },
       select:{
         name: true

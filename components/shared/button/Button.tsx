@@ -85,7 +85,7 @@ function Button({
     return (
       <button
         className={clsx(
-          `bg-transparent border duration-300 disabled:border-gray-4 disabled:text-gray-4 ${
+          `bg-transparent relative border duration-300 disabled:border-gray-4 disabled:text-gray-4 ${
             theme === 'Primary'
               ? 'text-primary border-primary hover:border-shade-2 hover:text-shade-2 selection:text-shade-3 selection:border-shade-3'
               : theme === 'White'

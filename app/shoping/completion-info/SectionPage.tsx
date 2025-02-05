@@ -77,7 +77,7 @@ function SectionPage() {
         <TextAreaInfo />
       </main>
 
-      <AsideFoodsForShopingCart hiddenSection={[1, 2]} />
+      <AsideFoodsForShopingCart hiddenSection={[]} linkBTN='/shoping/payment'/>
 
       <Modal
         isOpen={isOpenModal}
