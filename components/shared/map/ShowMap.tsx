@@ -21,7 +21,7 @@ function LocationMarker({
   return null;
 }
 
-export default function ShowMap({ showMiniMap }: { showMiniMap?: boolean }) {
+export default function ShowMap({ showMiniMap }: { showMiniMap?: LatLngExpression }) {
   const mapRef = useRef<Map>(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [userLocation, setUserLocation] = useState<LatLngExpression>();
@@ -108,10 +108,10 @@ export default function ShowMap({ showMiniMap }: { showMiniMap?: boolean }) {
           attribution="tarkhine"
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        {showMiniMap ? (
+        {showMiniMap !== undefined ? (
           <>
             <Marker
-              position={[35.71164720878694, 51.31006836891175]}
+              position={showMiniMap}
               icon={customIcon}
             />
           </>
@@ -126,7 +126,7 @@ export default function ShowMap({ showMiniMap }: { showMiniMap?: boolean }) {
       </MapContainer>
 
       <div
-        className={`bg-withe dark:bg-background-2 rounded caption-md md:button-lg w-28 md:w-[156px] text-primary h-8 md:h-10 ${showMiniMap == true ? 'hidden' : 'flex'} items-center justify-center z-[1000] absolute top-4 right-4 cursor-pointer`}
+        className={`bg-withe dark:bg-background-2 rounded caption-md md:button-lg w-28 md:w-[156px] text-primary h-8 md:h-10 ${showMiniMap !== undefined ? 'hidden' : 'flex'} items-center justify-center z-[1000] absolute top-4 right-4 cursor-pointer`}
         onClick={() => getUserLocation()}
       >
         <IconMap icon="gps" />
@@ -134,7 +134,7 @@ export default function ShowMap({ showMiniMap }: { showMiniMap?: boolean }) {
       </div>
 
       <div
-        className={`absolute z-[1000] ${showMiniMap == true ? 'hidden' : 'flex'} bottom-[68px] px-1 items-center bg-white dark:bg-background-2 md:bottom-[88px] right-1/2 left-1/2 translate-x-1/2 !w-11/12 max-w-[409px] h-8 md:h-10 rounded overflow-hidden shadow-content-cards`}
+        className={`absolute z-[1000] ${showMiniMap !== undefined  ? 'hidden' : 'flex'} bottom-[68px] px-1 items-center bg-white dark:bg-background-2 md:bottom-[88px] right-1/2 left-1/2 translate-x-1/2 !w-11/12 max-w-[409px] h-8 md:h-10 rounded overflow-hidden shadow-content-cards`}
       >
         <IconMap icon="locationShopingGray" />
         <input
@@ -146,10 +146,11 @@ export default function ShowMap({ showMiniMap }: { showMiniMap?: boolean }) {
           className="outline-none caption-md md:body-sm !w-full !h-full px-2 bg-transparent"
         />
       </div>
+
       <Button
         btn="fill"
         theme="Primary"
-        className={`absolute z-[1000] ${showMiniMap == true ? 'hidden' : 'flex'} w-[152px] md:w-[266px] h-8 md:h-10 bottom-6 caption-md md:button-lg !rounded right-1/2 left-1/2 translate-x-1/2`}
+        className={`absolute z-[1000] ${showMiniMap !== undefined ? 'hidden' : 'flex'} w-[152px] md:w-[266px] h-8 md:h-10 bottom-6 caption-md md:button-lg !rounded right-1/2 left-1/2 translate-x-1/2`}
       >
         ثبت موقعیت
       </Button>

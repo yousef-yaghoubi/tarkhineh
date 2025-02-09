@@ -4,11 +4,9 @@ import SectionPage from './SectionPage';
 
 function page() {
   return (
-    <div className="flex flex-col items-center">
-      <ProgressShoping />
-
+    <>
       <SectionPage/>
-    </div>
+    </>
   );
 }
 

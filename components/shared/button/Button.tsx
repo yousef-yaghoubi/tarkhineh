@@ -22,6 +22,7 @@ interface Props {
   onClickReload?: boolean;
   shopingCard?: FoodType;
 }
+
 function Button({
   btn,
   className,

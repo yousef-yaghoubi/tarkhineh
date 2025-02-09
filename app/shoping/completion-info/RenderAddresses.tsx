@@ -71,7 +71,7 @@ function RenderAddresses({
             </Button>
           </div>
           <div className='w-1/2 h-full hidden md:flex'>
-            <Map showMiniMap/>
+            <Map showMiniMap={[35.71164720878694, 51.31006836891175]}/>
           </div>
         </div>
       )}

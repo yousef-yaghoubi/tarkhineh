@@ -8,7 +8,7 @@ function TextAreaInfo() {
 
   return (
     <div
-      className={`w-full mt-3 md:mt-6 rounded-md h-36 border ${focusIsTextArea ? 'border-primary' : 'border-gray-4 dark:border-background-2 hover:border-black'} transition-colors duration-300 px-3 py-4 md:p-4 relative group`}
+      className={`w-full mt-3 md:mt-6 rounded-md h-36 border ${focusIsTextArea ? 'border-primary' : 'border-gray-4 dark:border-background-2 hover:border-black dark:hover:border-gray-6'} transition-colors duration-300 px-3 py-4 md:p-4 relative group`}
     >
       <i className="absolute z-50">
         <IconMap icon="document-normal" />
