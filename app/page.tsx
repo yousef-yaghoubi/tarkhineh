@@ -12,7 +12,7 @@ import React from 'react';
 async function Home() {
   return (
     <div>
-      <SwiperMain slides={arraySlideMain} pagination showBtn />
+      <SwiperMain slides={arraySlideMain} pagination showBtn/>
       <div className="w-full flex justify-center">
         <SearchBox classes="w-[90%] mt-4 sm:hidden" />
       </div>

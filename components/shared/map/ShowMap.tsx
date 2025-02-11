@@ -21,7 +21,7 @@ function LocationMarker({
   return null;
 }
 
-export default function ShowMap({ showMiniMap }: { showMiniMap?: LatLngExpression }) {
+export default function ShowMap({ showMiniMap, setStateShow }: { showMiniMap?: LatLngExpression, setStateShow?: Dispatch<SetStateAction<number>>; }) {
   const mapRef = useRef<Map>(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [userLocation, setUserLocation] = useState<LatLngExpression>();
@@ -151,6 +151,7 @@ export default function ShowMap({ showMiniMap }: { showMiniMap?: LatLngExpressio
         btn="fill"
         theme="Primary"
         className={`absolute z-[1000] ${showMiniMap !== undefined ? 'hidden' : 'flex'} w-[152px] md:w-[266px] h-8 md:h-10 bottom-6 caption-md md:button-lg !rounded right-1/2 left-1/2 translate-x-1/2`}
+        onClickCustom={()=> setStateShow ? setStateShow(2) : null}
       >
         ثبت موقعیت
       </Button>

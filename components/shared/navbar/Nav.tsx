@@ -40,202 +40,202 @@ function Nav({ menuBar }: { menuBar: boolean }) {
   }, [sessionCookie]);
 
   return (
-      <div
-          className={
-            !menuBar
-                ? 'flex flex-row justify-between font-normal text-xs md:text-base w-full text-gray-7 dark:text-gray-4'
-                : 'flex flex-col justify-start text-gray-7 dark:text-gray-4 overflow-y-scroll'
-          }
-      >
-        <Image
-            src={'/image/topFrameMenuMobile.jpg'}
-            alt="header menu"
-            fill
-            className="w-full !h-[94px] md:hidden !relative mb-2 z-10"
-        />
+    <div
+      className={
+        !menuBar
+          ? 'flex flex-row justify-between font-normal text-xs md:text-base w-full text-gray-7 dark:text-gray-4'
+          : 'flex flex-col justify-start text-gray-7 dark:text-gray-4 overflow-y-scroll'
+      }
+    >
+      <Image
+        src={'/image/topFrameMenuMobile.jpg'}
+        alt="header menu"
+        fill
+        className="w-full !h-[94px] md:hidden !relative mb-2 z-10"
+      />
 
-        {menuBar ? (
-            navStats.map((stats) =>
-                stats.subMain ? (
-                    <Accordion
-                        type="single"
-                        collapsible
-                        dir="rtl"
-                        className="mx-4"
-                        key={stats.id}
-                    >
-                      <AccordionItem
-                          value="item-1"
-                          className="border-none hover:!no-underline"
-                      >
-                        <AccordionTrigger
-                            className={`pt-3 pb-2 hover:!no-underline border-b md:border-0 ${
-                                stats.subMain?.find((sub) => sub.routeQuery == pathName) ||
-                                stats.route == pathName
-                                    ? '!border-b border-primary caption-md sm:body-md text-primary'
-                                    : 'caption-sm border-gray-4 sm:body-sm '
-                            }`}
-                        >
-                          <div className="flex items-center">
-                            <IconMap icon={stats.icon} key={stats.icon} />
-                            <span>
+      {menuBar ? (
+        navStats.map((stats) =>
+          stats.subMain ? (
+            <Accordion
+              type="single"
+              collapsible
+              dir="rtl"
+              className="mx-4"
+              key={stats.id}
+            >
+              <AccordionItem
+                value="item-1"
+                className="border-none hover:!no-underline"
+              >
+                <AccordionTrigger
+                  className={`pt-3 pb-2 hover:!no-underline border-b md:border-0 ${
+                    stats.subMain?.find((sub) => sub.routeQuery == pathName) ||
+                    stats.route == pathName
+                      ? '!border-b border-primary caption-md sm:body-md text-primary'
+                      : 'caption-sm border-gray-4 sm:body-sm '
+                  }`}
+                >
+                  <div className="flex items-center">
+                    <IconMap icon={stats.icon} key={stats.icon} />
+                    <span>
                       {stats.label == 'شعبه'
-                          ? branchName
-                          : stats.subMain?.find(
-                          (sub) => sub.routeQuery == searchParams.get('type')
-                      )?.label || stats.label}
+                        ? branchName
+                        : stats.subMain?.find(
+                            (sub) => sub.routeQuery == searchParams.get('type')
+                          )?.label || stats.label}
                     </span>
-                          </div>
-                        </AccordionTrigger>
-                        <AccordionContent
-                            dir="rtl"
-                            className="flex justify-start flex-col"
-                        >
-                          {stats.subMain?.map((sub) => (
-                              <Link
-                                  key={sub.id}
-                                  href={
-                                    stats.label == 'شعبه'
-                                        ? sub.routeQuery
-                                        : {
-                                          pathname: '/menu',
-                                          query: { ...query, type: sub.routeQuery },
-                                        }
-                                  }
-                                  className="w-fit mr-2 pt-2 caption-sm sm:body-sm"
-                                  onClick={() =>
-                                      stats.label == 'شعبه' &&
-                                      Cookies.set('branchs', `${sub.label}`, { path: '/' })
-                                  }
-                              >
-                                {sub.label}
-                              </Link>
-                          ))}
-                        </AccordionContent>
-                      </AccordionItem>
-                    </Accordion>
-                ) : (
+                  </div>
+                </AccordionTrigger>
+                <AccordionContent
+                  dir="rtl"
+                  className="flex justify-start flex-col"
+                >
+                  {stats.subMain?.map((sub) => (
                     <Link
-                        href={stats.route}
-                        key={stats.id}
-                        className={`md:border-0 mx-4 md:mx-0 flex h-[39px] justify-start items-center ${
-                            stats.id == 6 ? 'border-0' : 'border-b border-gray-4 '
-                        } ${
-                            stats.route == pathName
-                                ? 'caption-md sm:body-lg activeLink lg:activeLink !border-b border-primary'
-                                : 'caption-sm sm:body-sm lg:body-xl'
-                        }`}
+                      key={sub.id}
+                      href={
+                        stats.label == 'شعبه'
+                          ? sub.routeQuery
+                          : {
+                              pathname: '/menu',
+                              query: { ...query, type: sub.routeQuery },
+                            }
+                      }
+                      className="w-fit mr-2 pt-2 caption-sm sm:body-sm"
+                      onClick={() =>
+                        stats.label == 'شعبه' &&
+                        Cookies.set('branchs', `${sub.label}`, { path: '/' })
+                      }
                     >
-                      <IconMap icon={stats.icon} key={stats.icon} />
-                      {stats.label}
+                      {sub.label}
                     </Link>
-                )
-            )
-        ) : (
-            <NavigationMenu dir="rtl" className="max-w-full">
-              <NavigationMenuList className="justify-around">
-                {navStats.map((stats) =>
-                    stats.subMain ? (
-                        <NavigationMenuItem key={stats.id} defaultValue={'aa'}>
-                          <NavigationMenuTrigger
-                              className={`rounded-none ${
-                                  stats.subMain?.find(
-                                      (sub) => sub.routeQuery == pathName
-                                  ) || stats.route == pathName
-                                      ? 'caption-md sm:body-lg activeLink lg:activeLink !border-b border-primary'
-                                      : 'caption-sm sm:body-sm lg:body-xl'
-                              }`}
-                          >
-                            {stats.label == 'شعبه'
-                                ? branchName
-                                : stats.subMain?.find(
-                                (sub) => sub.routeQuery == searchParams.get('type')
-                            )?.label || stats.label}
-                          </NavigationMenuTrigger>
+                  ))}
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
+          ) : (
+            <Link
+              href={stats.route}
+              key={stats.id}
+              className={`md:border-0 mx-4 md:mx-0 flex h-[39px] justify-start items-center ${
+                stats.id == 6 ? 'border-0' : 'border-b border-gray-4 '
+              } ${
+                stats.route == pathName
+                  ? 'caption-md sm:body-lg activeLink lg:activeLink !border-b border-primary'
+                  : 'caption-sm sm:body-sm lg:body-xl'
+              }`}
+            >
+              <IconMap icon={stats.icon} key={stats.icon} />
+              {stats.label}
+            </Link>
+          )
+        )
+      ) : (
+        <NavigationMenu dir="rtl" className="max-w-full">
+          <NavigationMenuList className="justify-around">
+            {navStats.map((stats) =>
+              stats.subMain ? (
+                <NavigationMenuItem key={stats.id} defaultValue={'aa'}>
+                  <NavigationMenuTrigger
+                    className={`rounded-none ${
+                      stats.subMain?.find(
+                        (sub) => sub.routeQuery == pathName
+                      ) || stats.route == pathName
+                        ? 'caption-md sm:body-lg activeLink lg:activeLink !border-b border-primary'
+                        : 'caption-sm sm:body-sm lg:body-xl'
+                    }`}
+                  >
+                    {stats.label == 'شعبه'
+                      ? branchName
+                      : stats.subMain?.find(
+                          (sub) => sub.routeQuery == searchParams.get('type')
+                        )?.label || stats.label}
+                  </NavigationMenuTrigger>
 
-                          <NavigationMenuContent className="!w-52 flex flex-col py-2 bg-white dark:bg-background-2">
-                            {stats.subMain?.map((sub) =>
-                                stats.label == 'منو' ? (
-                                    <button
-                                        // href={sub.routeQuery || sub.route}
-                                        key={sub.label}
-                                        className="py-[7px] px-5 hover:bg-slate-100 dark:hover:bg-background-1 flex"
-                                        onClick={() => {
-                                          // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-                                              !!sessionCookie
-                                                  ? router.push(`/menu?type=${sub.routeQuery}`)
-                                                  : setShowChooseModal(true);
-                                          setUrlMenu(sub.routeQuery)
-                                        }}
-                                    >
-                                      {sub.label}
-                                    </button>
-                                ) : (
-                                    <NavigationMenuLink
-                                        href={sub.routeQuery}
-                                        key={sub.label}
-                                        className="py-1 px-5 hover:bg-slate-100 dark:hover:bg-background-1"
-                                        onClick={() =>
-                                            stats.label == 'شعبه' &&
-                                            Cookies.set('branchs', `${sub.label}`, {
-                                              path: '/',
-                                            })
-                                        }
-                                    >
-                                      {sub.label}
-                                    </NavigationMenuLink>
-                                )
-                            )}
-                          </NavigationMenuContent>
-                        </NavigationMenuItem>
-                    ) : (
-                        <NavigationMenuItem key={stats.id}>
-                          {/* <Link href={stats.route} legacyBehavior passHref> */}
-                          <NavigationMenuLink
-                              className={`${navigationMenuTriggerStyle()} md:border-0 mx-4 md:mx-0 ${
-                                  stats.id == 6 ? 'border-0' : 'border-b border-gray-4 '
-                              } ${
-                                  stats.route == pathName
-                                      ? 'caption-md sm:body-lg activeLink lg:activeLink !border-b border-primary'
-                                      : 'caption-sm sm:body-sm lg:!body-xl'
-                              }`}
-                              href={stats.route}
-                          >
-                            {stats.label}
-                          </NavigationMenuLink>
-                          {/* </Link> */}
-                        </NavigationMenuItem>
-                    )
-                )}
-              </NavigationMenuList>
-            </NavigationMenu>
-        )}
+                  <NavigationMenuContent className="!w-52 flex flex-col py-2 bg-white dark:bg-background-2">
+                    {stats.subMain?.map((sub) =>
+                      stats.label == 'منو' ? (
+                        <button
+                          // href={sub.routeQuery || sub.route}
+                          key={sub.label}
+                          className="py-[7px] px-5 hover:bg-slate-100 dark:hover:bg-background-1 flex"
+                          onClick={() => {
+                            // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+                            !!sessionCookie
+                              ? router.push(`/menu?type=${sub.routeQuery}`)
+                              : setShowChooseModal(true);
+                            setUrlMenu(sub.routeQuery);
+                          }}
+                        >
+                          {sub.label}
+                        </button>
+                      ) : (
+                        <NavigationMenuLink
+                          href={sub.routeQuery}
+                          key={sub.label}
+                          className="py-1 px-5 hover:bg-slate-100 dark:hover:bg-background-1"
+                          onClick={() =>
+                            stats.label == 'شعبه' &&
+                            Cookies.set('branchs', `${sub.label}`, {
+                              path: '/',
+                            })
+                          }
+                        >
+                          {sub.label}
+                        </NavigationMenuLink>
+                      )
+                    )}
+                  </NavigationMenuContent>
+                </NavigationMenuItem>
+              ) : (
+                <NavigationMenuItem key={stats.id}>
+                  {/* <Link href={stats.route} legacyBehavior passHref> */}
+                  <NavigationMenuLink
+                    className={`${navigationMenuTriggerStyle()} md:border-0 mx-4 md:mx-0 ${
+                      stats.id == 6 ? 'border-0' : 'border-b border-gray-4 '
+                    } ${
+                      stats.route == pathName
+                        ? 'caption-md sm:body-lg activeLink lg:activeLink !border-b border-primary'
+                        : 'caption-sm sm:body-sm lg:!body-xl'
+                    }`}
+                    href={stats.route}
+                  >
+                    {stats.label}
+                  </NavigationMenuLink>
+                  {/* </Link> */}
+                </NavigationMenuItem>
+              )
+            )}
+          </NavigationMenuList>
+        </NavigationMenu>
+      )}
 
-        <Modal
-            isOpen={showChooseModal}
-            onClose={closeModal}
-            title={<h3 className="caption-lg md:h7">انتخاب شعبه</h3>}
-            desc="برای دیدن منوی رستوران، لطفا شعبه مدنظر خود را انتخاب کنید:"
-        >
-          <div className="flex flex-col md:flex-row justify-evenly items-center w-full">
-            {branchs.map((branch) => (
-                <CardTarkhineGardi
-                    key={branch.id}
-                    smallShow
-                    desc={branch.desc}
-                    title={branch.title}
-                    img={branch.images[0].src}
-                    id={branch.id}
-                    click={() => {
-                      Cookies.set('branchs', branch.title);
-                      closeModal();
-                      router.push(`/menu?type=${urlMenu}`);
-                    }}
-                />
-            ))}
-          </div>
-        </Modal>
-      </div>
+      <Modal
+        isOpen={showChooseModal}
+        onClose={closeModal}
+        title={<h3 className="caption-lg md:h7">انتخاب شعبه</h3>}
+        desc="برای دیدن منوی رستوران، لطفا شعبه مدنظر خود را انتخاب کنید:"
+      >
+        <div className="flex flex-col md:flex-row justify-evenly items-center w-full">
+          {branchs.map((branch) => (
+            <CardTarkhineGardi
+              key={branch.id}
+              smallShow
+              desc={branch.desc}
+              title={branch.title}
+              img={branch.images[0].src}
+              id={branch.id}
+              click={() => {
+                Cookies.set('branchs', branch.title);
+                closeModal();
+                router.push(`/menu?type=${urlMenu}`);
+              }}
+            />
+          ))}
+        </div>
+      </Modal>
+    </div>
   );
 }
 

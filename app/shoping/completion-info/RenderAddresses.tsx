@@ -18,7 +18,7 @@ function RenderAddresses({
   const empty = false;
   return (
     <div className="flex w-full h-fit rounded-md border border-gray-4 dark:border-background-2 p-4 mt-3 md:mt-6">
-      {showAddressBranch !== true ? (
+      {!showAddressBranch ? (
         <div className="w-full h-fit">
           <p className="flex justify-between border-b border-gray-4 dark:border-background-2 pb-2">
             <span className="flex items-center gap-1">

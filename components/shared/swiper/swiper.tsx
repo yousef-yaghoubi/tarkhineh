@@ -1,16 +1,14 @@
 'use client';
-import React from 'react';
-// Import Swiper React components
-import { Swiper, SwiperSlide } from 'swiper/react';
 
-// Import Swiper styles
+import React from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
-// import required modules
 import { Pagination, Navigation } from 'swiper/modules';
 import Button from '../button/Button';
 import Image from 'next/image';
+
 interface Slide {
   id: number;
   title?: string;
@@ -47,13 +45,13 @@ function SwiperMain({
       modules={[Pagination, Navigation]}
       className="mySwiper w-full h-[176px] md:h-[336px] drop-shadow-shadow-4"
     >
-      <div className={`${pagination == true ? 'hidden' : 'flex'} sm:flex bg-gradient-to-r from-[rgba(0,0,0,0.75)] to-transparent w-[48px] md:w-[136px] h-full text-white absolute top-1/2 left-4 md:left-16 z-20 transform -translate-x-1/2 -translate-y-1/2 items-center`}>
+      <div className={`${pagination ? 'hidden' : 'flex'} sm:flex bg-gradient-to-r from-[rgba(0,0,0,0.75)] to-transparent w-[48px] md:w-[136px] h-full text-white absolute top-1/2 left-4 md:left-16 z-20 transform -translate-x-1/2 -translate-y-1/2 items-center`}>
         <svg
           width="24"
           height="24"
           viewBox="0 0 24 24"
           fill="none"
-          className={`${pagination == true ? 'hidden' : 'flex'} sm:flex next cursor-pointer !w-6 !h-6 md:!w-12 md:!h-12 absolute left-4`}
+          className={`${pagination ? 'hidden' : 'flex'} sm:flex next cursor-pointer !w-6 !h-6 md:!w-12 md:!h-12 absolute left-4`}
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
@@ -87,25 +85,27 @@ function SwiperMain({
                   {slide?.title}
                 </span>
               )}
+
               {showBtn && (
                 <Button
                   btn="fill"
                   theme="Primary"
-                  className="h-[24px] w-[91px] sm:h-[32px] sm:w-[120px] md:w-[184px] md:h-10 mt-8 md:mt-16 caption-sm sm:caption-md md:button-lg"
+                  className="h-[24px] w-[91px] sm:h-[32px] sm:w-[120px] md:w-[184px] md:h-10 mt-8 md:mt-16 caption-sm sm:caption-md md:button-lg z-10"
                 >سفارش آنلاین غذا</Button>
               )}
+
             </div>
           </div>
         </SwiperSlide>
       ))}
 
-      <div className={`${pagination == true ? 'hidden' : 'flex'} bg-gradient-to-l from-[rgba(0,0,0,0.75)] to-transparent sm:flex w-[136px] h-full text-white absolute top-1/2 right-[-4.25em] z-20 transform -translate-x-1/2 -translate-y-1/2 items-center`}>
+      <div className={`${pagination ? 'hidden' : 'flex'} bg-gradient-to-l from-[rgba(0,0,0,0.75)] to-transparent sm:flex w-[136px] h-full text-white absolute top-1/2 right-[-4.25em] z-20 transform -translate-x-1/2 -translate-y-1/2 items-center`}>
         <svg
           width="24"
           height="24"
           viewBox="0 0 24 24"
           fill="none"
-          className={`${pagination == true ? 'hidden' : 'flex'} sm:flex !w-6 !h-6 md:!w-12 md:!h-12 prev cursor-pointer absolute right-4`}
+          className={`${pagination ? 'hidden' : 'flex'} sm:flex !w-6 !h-6 md:!w-12 md:!h-12 prev cursor-pointer absolute right-4`}
           xmlns="http://www.w3.org/2000/svg"
         >
           <path

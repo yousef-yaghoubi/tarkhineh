@@ -10,7 +10,7 @@ import React from 'react';
 async function page({ params }: { params: { id: number } }) {
   const { id } = params;
   const food = await GetDemoUniqueFood(Number(id));
-  const starFill = Math.round(food?.food?.rating!);
+  const starFill = Math.round(food?.food?.rating as number);
   const starStroke = 5 - starFill;
 
   const arrayStarFill = Array.from({ length: starFill }, (_, i) => i + 1);
@@ -58,7 +58,7 @@ async function page({ params }: { params: { id: number } }) {
                 btn="fill"
                 theme="Primary"
                 className="w-56 h-10"
-                onClickReload
+                onClickCustom="reload"
               >
                 دیدن جزئیات بیشتر
               </Button>

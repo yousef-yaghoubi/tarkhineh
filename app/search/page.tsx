@@ -8,7 +8,7 @@ import dynamic from 'next/dynamic';
 import CardFoodLoading from '@/components/shared/card/CardFoodLoading';
 
 const CardFood = dynamic(()=> import('@/components/shared/card/CardFood'),{
-  loading: ()=> <CardFoodLoading/>
+  loading: ()=> <CardFoodLoading/>,
 })
 interface SearchParams {
   search: string;

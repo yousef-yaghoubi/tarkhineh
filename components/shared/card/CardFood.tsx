@@ -1,3 +1,5 @@
+'use client';
+
 import { convertToPersianNumbers } from '@/lib/convertNumberToPersian';
 import Image from 'next/image';
 import React from 'react';
@@ -6,6 +8,7 @@ import { FoodType } from '@/lib/indexType';
 import IconMap from '../IconMap';
 import Link from 'next/link';
 import { OrderBadge, Price, PriceOrder } from './CardFoodNecessary';
+import {useCart} from "@/components/shared/shopingCardProvider";
 
 function CardFood({
   item,
@@ -14,7 +17,8 @@ function CardFood({
   item: FoodType;
   isShowForMenu?: boolean;
 }) {
-  if (isShowForMenu !== true) {
+  const { addToCart } = useCart();
+  if (!isShowForMenu) {
     return (
       <div className="w-[168px] md:w-72 h-[231px] md:h-[417px] overflow-hidden rounded-sm relative hover:shadow-shadow-10 transition-shadow duration-300 flex flex-col items-center bg-white dark:bg-background-1">
         <Link href={`/product/${item.id}`}>
@@ -86,7 +90,7 @@ function CardFood({
             btn="fill"
             theme="Primary"
             className="w-[152px] h-8 caption-sm md:button-lg mt-3 md:mt-4 md:w-[256px] md:h-10"
-            shopingCard={item}
+            onClickCustom={()=> addToCart(item)}
           >
             افزودن به سبد خرید
           </Button>

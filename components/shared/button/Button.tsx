@@ -1,5 +1,5 @@
 'use client';
-import Image from 'next/image';
+
 import { useRouter } from 'next/navigation';
 import React, { ComponentProps } from 'react';
 import IconMap from '../IconMap';
@@ -19,8 +19,8 @@ interface Props {
   link?: string;
   iconW?: string;
   iconH?: string;
-  onClickReload?: boolean;
-  shopingCard?: FoodType;
+  onClickCustom?: (()=> void) | 'reload';
+  shopingCard?: FoodType | undefined;
 }
 
 function Button({
@@ -35,7 +35,7 @@ function Button({
   link,
   iconW,
   iconH,
-  onClickReload,
+                  onClickCustom,
   shopingCard,
 }: Props) {
   const router = useRouter();
@@ -53,11 +53,19 @@ function Button({
           } rounded-sm md:rounded-md flex items-center justify-around ${className}`
         )}
         onClick={() => {
-          shopingCard && addToCart(shopingCard);
-          onClickReload && window.location.reload();
-          link && router.push(link);
+          if(shopingCard){
+            addToCart(shopingCard);
+          }
+          if (onClickCustom == "reload") {
+            window.location.reload();
+          } else if (onClickCustom) {
+            onClickCustom();
+          }
+          if (link) {
+            router.push(link);
+          }
         }}
-        disabled={disabled !== true ? false : true}
+        disabled={disabled === true}
       >
         {loading !== true ? (
           <>
@@ -95,10 +103,16 @@ function Button({
           } rounded-sm flex items-center justify-around ${className}`
         )}
         onClick={() => {
-          onClickReload && window.location.reload();
-          link && router.push(link);
+          if (onClickCustom == "reload") {
+            window.location.reload();
+          } else if (onClickCustom) {
+            onClickCustom();
+          }
+          if (link) {
+            router.push(link);
+          }
         }}
-        disabled={disabled !== true ? false : true}
+        disabled={disabled === true}
       >
         {loading !== true ? (
           <>
@@ -136,10 +150,16 @@ function Button({
           } rounded-sm md:rounded-md flex items-center justify-around ${className}`
         )}
         onClick={() => {
-          onClickReload && window.location.reload();
-          link && router.push(link);
+          if (onClickCustom == "reload") {
+            window.location.reload();
+          } else if (onClickCustom) {
+            onClickCustom();
+          }
+          if (link) {
+            router.push(link);
+          }
         }}
-        disabled={disabled !== true ? false : true}
+        disabled={disabled === true}
       >
         {loading !== true ? (
           <>
