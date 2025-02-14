@@ -196,6 +196,7 @@ function CardTarkhineGardi({
               theme="Primary"
               iconL="arrow-left-primary"
               link={hrefBTN}
+              onClickCustom={()=> Cookies.set('branchs', `${title}`)}
             >
               صفحه شعبه
             </Button>

@@ -1,11 +1,13 @@
 import React from 'react';
-import ProgressShoping from '../shopingCart/ProgressShoping';
 import SectionPage from './SectionPage';
+import { GetAddressUser } from '@/app/actions/address';
 
-function page() {
+async function page() {
+  const addressUser = await GetAddressUser();
+  console.log(addressUser?.addresses)
   return (
     <>
-      <SectionPage/>
+      <SectionPage userAddress={addressUser?.addresses}/>
     </>
   );
 }

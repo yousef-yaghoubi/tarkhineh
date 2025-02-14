@@ -1,22 +1,25 @@
 import IconMap from '@/components/shared/IconMap';
 import { convertToPersianNumbers } from '@/lib/convertNumberToPersian';
+import { AddressUserProps } from '@/lib/indexType';
+import { getSession, useSession } from 'next-auth/react';
 import React from 'react';
 
-function Address() {
-    let number = '09058972658'
+function Address(prop: AddressUserProps) {
+  const {data:session} = useSession()
+
   return (
     <div className="min-w-72 md:min-w-80 w-full md:h-[115px] h-24 p-4 rounded border border-gray-4 dark:border-background-2 selection:border-primary bg-gray-3 dark:bg-background-2 flex flex-col relative">
       <div className='flex justify-between'>
-        <p className='caption-sm md:body-sm'>تهران: اقدسیه، بزرگراه ارتش، مجتمع شمیران سنتر، طبقه ۱۰</p>
+        <p className='caption-sm md:body-sm'>{prop.address}</p>
         <span className='w-11 flex justify-between'>
             <i><IconMap icon='editShoping'/></i>
             <i><IconMap icon='removeIconShoping'/></i>
         </span>
       </div>
       <div className='caption-sm md:body-sm text-gray-7 flex justify-between mt-2 absolute bottom-4 w-11/12'>
-        <span>محل کار</span>
-        <span>نام و نام خانوادگی</span>
-        <span>{convertToPersianNumbers(number)}</span>
+        <span>{prop.titleAddress}</span>
+        <span>{prop.meReciver ? session?.user.name : prop.nameReciver}</span>
+        <span>{convertToPersianNumbers(prop.phone)}</span>
       </div>
     </div>
   );

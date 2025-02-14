@@ -35,7 +35,7 @@ function Button({
   link,
   iconW,
   iconH,
-                  onClickCustom,
+  onClickCustom,
   shopingCard,
 }: Props) {
   const router = useRouter();
@@ -43,6 +43,7 @@ function Button({
   if (btn == 'fill') {
     return (
       <button
+        type='submit'
         className={clsx(
           `duration-300 disabled:bg-gray-3 disabled:text-gray-4 ${
             theme === 'Primary'
@@ -140,6 +141,7 @@ function Button({
   } else {
     return (
       <button
+          type="submit"
         className={clsx(
           `bg-transparent disabled:text-gray-4 ${
             theme === 'Primary'

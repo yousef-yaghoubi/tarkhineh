@@ -6,6 +6,7 @@ import {
   LoginOrSignUpUserWithGoogle,
 } from '@/app/actions/userAction';
 
+
 export const authOption: AuthOptions = {
   providers: [
     // Credentials Provider
@@ -72,11 +73,11 @@ export const authOption: AuthOptions = {
     },
     // Session Callback: Attach user data to the session object
     async session({ session, token }) {
-      session.user!.id = token.id;
-      session.user!.email = token.email;
-      session.user!.name = token.name;
+      session.user!.id = token.id as string;
+      session.user!.email = token.email as string;
+      session.user!.name = token.name as string;
       session.user!.image = token.image as string | null;
-      session.user!.role = token.role;
+      session.user!.role = token.role as string;
       return session;
     },
   },

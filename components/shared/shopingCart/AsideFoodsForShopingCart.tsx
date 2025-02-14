@@ -70,7 +70,7 @@ function AsideFoodsForShopingCart({
       >
         <div className='overflow-auto h-full'> 
           {cart.map((food) => (
-            <div className="w-full flex justify-between px-2 items-center even:bg-gray-3 bg-gray-1 dark:bg-background-1 odd:dark:bg-background-2 h-14">
+            <div key={food.name} className="w-full flex justify-between px-2 items-center even:bg-gray-3 bg-gray-1 dark:bg-background-1 odd:dark:bg-background-2 h-14">
               <div className="flex flex-col">
                 <span className="caption-md">{food.name}</span>
                 <span className="caption-sm text-gray-7 dark:text-gray-5">
@@ -115,6 +115,7 @@ function AsideFoodsForShopingCart({
         </div>
         {status == 'unauthenticated' ? (
           <Button
+            key={"button for login"}
             btn="fill"
             theme="Primary"
             className="w-full h-10 mt-5"
@@ -145,6 +146,7 @@ function AsideFoodsForShopingCart({
           </Button>
         ) : status == 'authenticated' ? (
           <Button
+            key={"button for completion"}
             btn="fill"
             theme="Primary"
             className="w-full h-10 mt-5"
@@ -160,6 +162,7 @@ function AsideFoodsForShopingCart({
           </Button>
         ) : (
           <Button
+            key={"button for loading"}
             btn="fill"
             theme="Primary"
             className="w-full h-10 mt-5"

@@ -5,8 +5,6 @@ import IconMap from '@/components/shared/IconMap';
 import SearchBox from '@/components/shared/searchBox/SearchBox';
 import SwiperMain from '@/components/shared/swiper/swiper';
 import { arraySlideMain, branchs, miniCards } from '@/lib/dataPublic';
-import Image from 'next/image';
-import Link from 'next/link';
 import React from 'react';
 
 async function Home() {
@@ -90,7 +88,7 @@ async function Home() {
             <CardTarkhineGardi
               title={branch.title}
               desc={branch.desc}
-              hrefBTN=""
+              hrefBTN={`/branchs/${branch.nickName}`}
               img={branch.images[0].src}
               key={branch.id}
               id={branch.id}

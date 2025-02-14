@@ -4,6 +4,7 @@ import React from 'react';
 import Address from './Address';
 import Button from '@/components/shared/button/Button';
 import dynamic from 'next/dynamic';
+import { AddressUserProps } from '@/lib/indexType';
 
 const Map = dynamic(()=> import ('@/components/shared/map/ShowMap'), {
   ssr: false
@@ -11,9 +12,11 @@ const Map = dynamic(()=> import ('@/components/shared/map/ShowMap'), {
 function RenderAddresses({
   sendDataToParent,
   showAddressBranch,
+  addressesUser
 }: {
   sendDataToParent: (child: boolean) => void;
   showAddressBranch: boolean;
+  addressesUser: AddressUserProps[] | undefined
 }) {
   const empty = false;
   return (
@@ -35,7 +38,7 @@ function RenderAddresses({
               <span className="body-sm md:body-md">افزودن آدرس</span>
             </span>
           </p>
-          {empty ? (
+          {!addressesUser ? (
             <div className="relative flex flex-col md:flex-row xl:flex-col 2xl:flex-row justify-center items-center h-full w-full py-3 gap-2">
               <Image
                 src={'/image/EmptyPage.png'}
@@ -49,7 +52,9 @@ function RenderAddresses({
             </div>
           ) : (
             <div className="relative grid grid-cols-1 md:grid-cols-2 xl:grid-cols-1 2xl:grid-cols-2 justify-center items-center h-full w-full py-3 gap-2">
-              <Address />
+              {addressesUser?.map((address) => (
+                <Address {...address}/>
+              ))}
             </div>
           )}
         </div>

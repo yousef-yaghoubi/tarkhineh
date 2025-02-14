@@ -4,7 +4,7 @@ import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react';
 import { MapContainer, Marker, TileLayer, useMapEvents } from 'react-leaflet';
 import { OpenStreetMapProvider } from 'leaflet-geosearch';
 import L, { Icon, LatLngExpression, Map } from 'leaflet';
-import { GetAddresss } from '@/app/actions/address';
+import { GetAddress } from '@/app/actions/address';
 import IconMap from '../IconMap';
 import Button from '../button/Button';
 
@@ -21,28 +21,53 @@ function LocationMarker({
   return null;
 }
 
-export default function ShowMap({ showMiniMap, setStateShow }: { showMiniMap?: LatLngExpression, setStateShow?: Dispatch<SetStateAction<number>>; }) {
+interface MapProp {
+  showMiniMap?: LatLngExpression;
+  setStateShow?: Dispatch<SetStateAction<number>>;
+  stateAddress?: string;
+  setStateAddress?: Dispatch<SetStateAction<string>>;
+}
+
+export default function ShowMap({
+  showMiniMap,
+  setStateShow,
+  stateAddress,
+  setStateAddress,
+}: MapProp) {
   const mapRef = useRef<Map>(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [userLocation, setUserLocation] = useState<LatLngExpression>();
 
   useEffect(() => {
-    if (Array.isArray(userLocation)) {
-      getAddress(userLocation[0], userLocation[1]);
+    async function getAd() {
+      if (Array.isArray(userLocation)) {
+        const addressUser: string = await getAddress(
+          userLocation[0],
+          userLocation[1]
+        );
+        if (addressUser && setStateAddress) {
+          setStateAddress(addressUser);
+        }
+      }
     }
+    getAd();
   }, [userLocation]);
+
+  useEffect(()=>{
+    if(stateAddress) setSearchQuery(stateAddress)
+  }, [stateAddress])
 
   const getAddress = async (lat: number, lon: number) => {
     try {
-      const data = await GetAddresss(lat, lon);
+      const data = await GetAddress(lat, lon);
       if (data && data.address) {
-        setSearchQuery(
-          data.display_name
-            .split(', ')
-            .reverse()
-            .join(', ')
-            .replace(/,\s*\d+-\d+\s*,/g, ', ')
-        );
+        let address = data.display_name
+          .split(', ')
+          .reverse()
+          .join(', ')
+          .replace(/,\s*\d+-\d+\s*,/g, ', ');
+        setSearchQuery(address);
+        return address;
       } else {
         setSearchQuery('آدرس یافت نشد');
       }
@@ -110,10 +135,7 @@ export default function ShowMap({ showMiniMap, setStateShow }: { showMiniMap?: L
         />
         {showMiniMap !== undefined ? (
           <>
-            <Marker
-              position={showMiniMap}
-              icon={customIcon}
-            />
+            <Marker position={showMiniMap} icon={customIcon} />
           </>
         ) : (
           <>
@@ -134,7 +156,7 @@ export default function ShowMap({ showMiniMap, setStateShow }: { showMiniMap?: L
       </div>
 
       <div
-        className={`absolute z-[1000] ${showMiniMap !== undefined  ? 'hidden' : 'flex'} bottom-[68px] px-1 items-center bg-white dark:bg-background-2 md:bottom-[88px] right-1/2 left-1/2 translate-x-1/2 !w-11/12 max-w-[409px] h-8 md:h-10 rounded overflow-hidden shadow-content-cards`}
+        className={`absolute z-[1000] ${showMiniMap !== undefined ? 'hidden' : 'flex'} bottom-[68px] px-1 items-center bg-white dark:bg-background-2 md:bottom-[88px] right-1/2 left-1/2 translate-x-1/2 !w-11/12 max-w-[409px] h-8 md:h-10 rounded overflow-hidden shadow-content-cards`}
       >
         <IconMap icon="locationShopingGray" />
         <input
@@ -146,12 +168,12 @@ export default function ShowMap({ showMiniMap, setStateShow }: { showMiniMap?: L
           className="outline-none caption-md md:body-sm !w-full !h-full px-2 bg-transparent"
         />
       </div>
-
       <Button
         btn="fill"
         theme="Primary"
+        disabled={stateAddress?.length == 0 ? true : false}
         className={`absolute z-[1000] ${showMiniMap !== undefined ? 'hidden' : 'flex'} w-[152px] md:w-[266px] h-8 md:h-10 bottom-6 caption-md md:button-lg !rounded right-1/2 left-1/2 translate-x-1/2`}
-        onClickCustom={()=> setStateShow ? setStateShow(2) : null}
+        onClickCustom={() => (setStateShow ? setStateShow(2) : null)}
       >
         ثبت موقعیت
       </Button>

@@ -44,3 +44,13 @@ export interface FoodType extends DemoFoodModalType{
 interface CartFoodForShopingCart extends FoodType{
   quantity : number
 }
+
+export interface AddressUserProps {
+  id: number;
+  address: string;
+  phone: string;
+  titleAddress: string;
+  meReciver: boolean | null;
+  nameReciver: string | null;
+  userId: number;
+}

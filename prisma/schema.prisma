@@ -47,9 +47,9 @@ model Addresses {
   id           Int      @id @default(autoincrement())
   titleAddress String
   meReciver    Boolean?
-  phone        Int?
+  phone        String
   nameReciver  String?
-  address      String?
+  address      String
   userId       Int
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
