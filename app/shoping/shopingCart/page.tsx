@@ -1,5 +1,5 @@
 import React from 'react';
-import ProgressShoping from './ProgressShoping';
+import ProgressShoping from '../ProgressShoping';
 
 import RenderCardFoods from './RenderCardFoods';
 

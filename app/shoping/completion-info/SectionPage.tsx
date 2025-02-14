@@ -22,19 +22,20 @@ import { z } from 'zod';
 // import Address from './Address';
 import { SendAddress } from '@/app/actions/address';
 import { AddressUserProps } from '@/lib/indexType';
+import { toast } from 'sonner';
 
 type AddressFormType = z.infer<typeof SchemaAddress>;
 
-function SectionPage({userAddress}: {userAddress: AddressUserProps[] | undefined}) {
+function SectionPage({
+  userAddress,
+}: {
+  userAddress: AddressUserProps[] | undefined;
+}) {
   const [isOpenModal, setIsOpenModel] = useState(false);
   const [showAddressBranch, setShowAddressBranch] = useState(false);
   const [stepShowAddAddress, setStepShowAddAddress] = useState(1);
   const [checkedInput, setCheckedInput] = useState(false);
   const [addressUser, setAddressUser] = useState<string>('');
-  const handleDataFromChild = (child: boolean) => {
-    setIsOpenModel(child);
-  };
-  console.log(userAddress)
   const {
     register,
     handleSubmit,
@@ -43,13 +44,21 @@ function SectionPage({userAddress}: {userAddress: AddressUserProps[] | undefined
     resolver: zodResolver(SchemaAddress),
     defaultValues: {
       checkbox: checkedInput,
-    }
+    },
   });
 
-  const handleSS = (e: AddressFormType) => {
-    SendAddress(e)
+  const handleDataFromChild = (child: boolean) => {
+    setIsOpenModel(child);
   };
-  // const watchs = getValues('checkbox')
+  const submitAddress = async (e: AddressFormType) => {
+    const submitAdd = await SendAddress(e);
+    setIsOpenModel(false);
+    if (submitAdd.status == 200) {
+      toast.success(submitAdd.message);
+    } else {
+      toast.warning(submitAdd.message);
+    }
+  };
 
   return (
     <section className="flex flex-col xl:flex-row justify-around items-center xl:items-start w-11/12 max-w-[1500px] mb-12">
@@ -61,18 +70,20 @@ function SectionPage({userAddress}: {userAddress: AddressUserProps[] | undefined
           </h3>
 
           <RadioGroup
-            defaultValue="default"
+            defaultValue="online"
             dir="rtl"
             className="mt-4 md:mt-0 md:w-2/3 flex flex-col md:flex-row md:justify-around md:items-center"
           >
-            <div
-              className="flex items-center gap-2"
-              onClick={() => setShowAddressBranch(false)}
-            >
-              <RadioGroupItem value="default" id="r1" />
+            <div className="flex items-center gap-2">
+              <RadioGroupItem
+                value="online"
+                id="r1"
+                onClick={() => setShowAddressBranch(false)}
+              />
               <Label
+                onClick={() => setShowAddressBranch(false)}
                 htmlFor="r1"
-                className="flex gap-1 text-gray-7 dark:text-gray-4 items-center caption-md md:body-sm"
+                className="flex gap-1 cursor-pointer text-gray-7 dark:text-gray-4 items-center caption-md md:body-sm"
               >
                 <div>
                   <span>ارسال توسط پیک</span>
@@ -88,10 +99,15 @@ function SectionPage({userAddress}: {userAddress: AddressUserProps[] | undefined
               className="flex items-center gap-2 mt-2 md:mt-0"
               onClick={() => setShowAddressBranch(true)}
             >
-              <RadioGroupItem value="comfortable" id="r2" />
+              <RadioGroupItem
+                value="inPerson"
+                id="r2"
+                onClick={() => setShowAddressBranch(true)}
+              />
               <Label
+                onClick={() => setShowAddressBranch(true)}
                 htmlFor="r2"
-                className="flex gap-1 text-gray-7 dark:text-gray-4 items-center caption-md md:body-sm"
+                className="flex gap-1 cursor-pointer text-gray-7 dark:text-gray-4 items-center caption-md md:body-sm"
               >
                 <div>
                   <span>تحویل حضوری</span>
@@ -120,7 +136,11 @@ function SectionPage({userAddress}: {userAddress: AddressUserProps[] | undefined
         />
       </main>
 
-      <AsideFoodsForShopingCart hiddenSection={[]} key={'aside food for shopingCard'} linkBTN="/shoping/payment" />
+      <AsideFoodsForShopingCart
+        hiddenSection={[]}
+        key={'aside food for shopingCard'}
+        linkBTN="/shoping/payment"
+      />
 
       <Modal
         isOpen={isOpenModal}
@@ -138,15 +158,15 @@ function SectionPage({userAddress}: {userAddress: AddressUserProps[] | undefined
           </div>
         ) : (
           <form
-            key={"form"}
+            key={'form'}
             className={
               'w-full h-full flex flex-col items-center p-6 relative overflow-auto'
             }
-            onSubmit={handleSubmit(handleSS)}
+            onSubmit={handleSubmit(submitAddress)}
           >
             <InputCustom
               type={'text'}
-              key={"titleAddress"}
+              key={'titleAddress'}
               id={'titleAddress'}
               width={'w-full md:max-w-[552px]'}
               placeholder={'عنوان آدرس'}
@@ -156,7 +176,7 @@ function SectionPage({userAddress}: {userAddress: AddressUserProps[] | undefined
             />
             <div className={'mb-2 mt-3 md:mt-4 w-full'}>
               <input
-              key={"checkbox"}
+                key={'checkbox'}
                 type={'checkbox'}
                 checked={checkedInput}
                 {...register('checkbox')}
@@ -220,7 +240,7 @@ function SectionPage({userAddress}: {userAddress: AddressUserProps[] | undefined
 
             <TextAreaInfo
               id={'accurate-address'}
-              key={"address"}
+              key={'address'}
               placeholder={'آدرس دقیق شما'}
               {...register('address')}
               value={addressUser}
@@ -246,6 +266,7 @@ function SectionPage({userAddress}: {userAddress: AddressUserProps[] | undefined
               >
                 ویرایش آدرس انتخابی
               </Button>
+
               <Button
                 btn={'fill'}
                 className={'h-8 md:h-10 !w-5/12 md:min-w-[266px]'}

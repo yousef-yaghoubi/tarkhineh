@@ -1,10 +1,13 @@
 import IconMap from '@/components/shared/IconMap';
 import Image from 'next/image';
-import React from 'react';
+import React, { useState } from 'react';
 import Address from './Address';
 import Button from '@/components/shared/button/Button';
 import dynamic from 'next/dynamic';
 import { AddressUserProps } from '@/lib/indexType';
+import Modal from '@/components/shared/Modal';
+import { toast } from 'sonner';
+import { DeleteAddress } from '@/app/actions/address';
 
 const Map = dynamic(()=> import ('@/components/shared/map/ShowMap'), {
   ssr: false
@@ -18,7 +21,8 @@ function RenderAddresses({
   showAddressBranch: boolean;
   addressesUser: AddressUserProps[] | undefined
 }) {
-  const empty = false;
+  const [isOpenModal, setIsOpenModel] = useState(false);
+  const [idAddress, setIdAddress] = useState<number | null>(null);
   return (
     <div className="flex w-full h-fit rounded-md border border-gray-4 dark:border-background-2 p-4 mt-3 md:mt-6">
       {!showAddressBranch ? (
@@ -53,14 +57,14 @@ function RenderAddresses({
           ) : (
             <div className="relative grid grid-cols-1 md:grid-cols-2 xl:grid-cols-1 2xl:grid-cols-2 justify-center items-center h-full w-full py-3 gap-2">
               {addressesUser?.map((address) => (
-                <Address {...address}/>
+                <Address key={address.id} prop={address} setIsOpenModel={setIsOpenModel} setIdAddress={setIdAddress}/>
               ))}
             </div>
           )}
         </div>
       ) : (
         <div className="w-full flex flex-col sm:flex-row justify-between">
-          <div> 
+          <div>
             <h3 className='flex body-sm md:body-md items-center gap-1 border-b pb-1'>
               <IconMap icon="locationShoping" />
               آدرس شعبه اکباتان
@@ -80,6 +84,27 @@ function RenderAddresses({
           </div>
         </div>
       )}
+
+      <Modal isOpen={isOpenModal} onClose={()=> setIsOpenModel(false)} state='removeShopingCart' title={<h6 className='h7'>حذف آدرس</h6>} desc='آیا از حذف این آدرس مطمئن هستید؟'>
+      <div className="flex w-64 justify-between">
+          <button
+            className="w-[117px] h-10 rounded border border-primary text-primary"
+            onClick={() => setIsOpenModel(false)}
+          >
+            بازگشت
+          </button>
+          <button
+            className="w-[117px] h-10 rounded bg-error-extralight text-error"
+            onClick={() => {
+              DeleteAddress && DeleteAddress(idAddress as number);
+              setIsOpenModel(false);
+              toast.success('آدرس شما پاک شد');
+            }}
+          >
+            حذف
+          </button>
+        </div>
+      </Modal>
     </div>
   );
 }

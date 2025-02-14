@@ -1,5 +1,5 @@
 import React from 'react';
-import ProgressShoping from './shopingCart/ProgressShoping';
+import ProgressShoping from './ProgressShoping';
 
 function ShopingLayout({ children }: { children: React.ReactNode }) {
   return (
