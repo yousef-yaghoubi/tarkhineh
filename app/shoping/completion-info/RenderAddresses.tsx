@@ -55,7 +55,7 @@ function RenderAddresses({
               </p>
             </div>
           ) : (
-            <div className="relative grid grid-cols-1 md:grid-cols-2 xl:grid-cols-1 2xl:grid-cols-2 justify-center items-center h-full w-full py-3 gap-2">
+            <div className="relative grid grid-cols-1 md:grid-cols-2 xl:grid-cols-1 2xl:grid-cols-2 justify-center h-full w-full py-3 gap-2">
               {addressesUser?.map((address) => (
                 <Address key={address.id} prop={address} setIsOpenModel={setIsOpenModel} setIdAddress={setIdAddress}/>
               ))}
@@ -75,7 +75,7 @@ function RenderAddresses({
               <li>شماره تماس ۲: ۱۲۵۵ ۵۴۸۹ -۰۲۱ </li>
               <li>ساعت کاری: همه‌روزه از ساعت ۱۲ تا ۲۳ بجز روزهای تعطیل</li>
             </ul>
-            <Button btn='stroke' theme='Black' className='w-[152px] h-8 caption-md m-auto hidden md:flex'>
+            <Button btn='stroke' theme='Black' className='w-[152px] h-8 caption-md m-auto hidden md:flex' onClickCustom={()=> toast.warning('این عمل در دسترس نیست.')}>
               مشاهده در نقشه
             </Button>
           </div>

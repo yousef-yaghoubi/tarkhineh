@@ -61,12 +61,14 @@ function RenderCardFoods() {
               <CardFoodShopingCard item={food} />
             ))}
           </main>
+
           <div className="flex md:hidden justify-center items-center w-full h-full">
             <AsideFoodsForShopingCart hiddenSection={[1]} linkBTN='/shoping/completion-info'/>
           </div>
           <div className="hidden md:flex justify-center items-center">
             <AsideFoodsForShopingCart hiddenSection={[2]} linkBTN='/shoping/completion-info'/>
           </div>
+          
         </>
       )}
 

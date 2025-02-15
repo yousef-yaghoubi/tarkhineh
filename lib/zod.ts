@@ -116,7 +116,7 @@ export const SchemaAddressWithRecipient = z.object({
     .transform((val) => val.trim()).optional(),
   address: z
     .string()
-    .min(3, 'حداقل باید 3 حرف باشد')
+    .min(30, 'حداقل باید 30 حرف باشد')
     .max(400, 'حداکثر باید 400 حرف باشد'),
 });
 

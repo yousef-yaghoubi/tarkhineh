@@ -23,6 +23,7 @@ import { z } from 'zod';
 import { SendAddress } from '@/app/actions/address';
 import { AddressUserProps } from '@/lib/indexType';
 import { toast } from 'sonner';
+import BoxOfMain from '../BoxOfMain';
 
 type AddressFormType = z.infer<typeof SchemaAddress>;
 
@@ -63,16 +64,12 @@ function SectionPage({
   return (
     <section className="flex flex-col xl:flex-row justify-around items-center xl:items-start w-11/12 max-w-[1500px] mb-12">
       <main className="w-full xl:w-1/2 h-full">
-        <div className="w-full h-[133px] rounded-md border flex flex-col md:flex-row md:justify-between md:items-center border-gray-4 dark:border-background-2 px-4 py-2">
-          <h3 className="py-2 border-b md:border-0 border-gray-4 dark:border-background-2 flex gap-x-1 items-center md:w-1/3">
-            <IconMap icon="truk" />
-            روش تحویل سفارش
-          </h3>
-
+ 
+        <BoxOfMain icon="truk" title="روش تحویل سفارش">
           <RadioGroup
             defaultValue="online"
             dir="rtl"
-            className="mt-4 md:mt-0 md:w-2/3 flex flex-col md:flex-row md:justify-around md:items-center"
+            className="mt-4 md:mt-0 w-full flex flex-col md:flex-row md:justify-around md:items-center"
           >
             <div className="flex items-center gap-2">
               <RadioGroupItem
@@ -95,10 +92,7 @@ function SectionPage({
               </Label>
             </div>
 
-            <div
-              className="flex items-center gap-2 mt-2 md:mt-0"
-              onClick={() => setShowAddressBranch(true)}
-            >
+            <div className="flex items-center gap-2 mt-2 md:mt-0">
               <RadioGroupItem
                 value="inPerson"
                 id="r2"
@@ -120,7 +114,7 @@ function SectionPage({
               </Label>
             </div>
           </RadioGroup>
-        </div>
+        </BoxOfMain>
 
         <RenderAddresses
           showAddressBranch={showAddressBranch}
@@ -136,11 +130,7 @@ function SectionPage({
         />
       </main>
 
-      <AsideFoodsForShopingCart
-        hiddenSection={[]}
-        key={'aside food for shopingCard'}
-        linkBTN="/shoping/payment"
-      />
+      <AsideFoodsForShopingCart hiddenSection={[]} linkBTN="/shoping/payment" />
 
       <Modal
         isOpen={isOpenModal}
@@ -244,6 +234,7 @@ function SectionPage({
               placeholder={'آدرس دقیق شما'}
               {...register('address')}
               value={addressUser}
+              onChange={(e) => setAddressUser(e.target.value)}
               className={
                 'w-full h-[100px] md:h-[165px] mt-3 md:mt-4 px-1 py-4 md:p-1 rounded'
               }
