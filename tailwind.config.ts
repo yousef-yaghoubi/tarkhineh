@@ -27,6 +27,7 @@ const config: Config = {
           '0px 16px 6px rgba(0, 0, 0, 0.01), 0px 9px 5px rgba(0, 0, 0, 0.05), 0px 4px 4px rgba(0, 0, 0, 0.09), 0px 1px 2px rgba(0, 0, 0, 0.1), 0px 0px 0px rgba(0, 0, 0, 0.1)',
         cardFood: '0 25px 7px 0 rgba(0,0,0,0%), 0 16px 6px 0 rgba(0,0,0,1%),0 9px 5px 0 rgba(0,0,0,5%),  0 4px 4px 0 rgba(0,0,0,9%), 0 1px 2px 0 rgba(0,0,0,10%), 0 0 0 0 rgba(0,0,0,10%)',
         'shadow-10': '0 0 10px 0 rgba(0,0,0,15%)',
+        'bank-primary': '0 0 4px 0 rgba(124,188,145,100%)',
       },
       dropShadow: {
         'shadow-2': '0 2px 2px rgba(0,0,0,25%)',
