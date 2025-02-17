@@ -7,6 +7,7 @@ import L, { Icon, LatLngExpression, Map } from 'leaflet';
 import { GetAddress } from '@/app/actions/address';
 import IconMap from '../IconMap';
 import Button from '../button/Button';
+import { useOrder } from '@/app/shoping/ShopingProvider';
 
 function LocationMarker({
   setLocation,
@@ -25,7 +26,7 @@ interface MapProp {
   showMiniMap?: LatLngExpression;
   setStateShow?: Dispatch<SetStateAction<number>>;
   stateAddress?: string;
-  setStateAddress?: Dispatch<SetStateAction<string>>;
+  setStateAddress?: boolean;
 }
 
 export default function ShowMap({
@@ -37,6 +38,7 @@ export default function ShowMap({
   const mapRef = useRef<Map>(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [userLocation, setUserLocation] = useState<LatLngExpression>();
+  const {updateDelivery} = useOrder()
 
   useEffect(() => {
     async function getAd() {
@@ -46,7 +48,7 @@ export default function ShowMap({
           userLocation[1]
         );
         if (addressUser && setStateAddress) {
-          setStateAddress(addressUser);
+          updateDelivery({ type: 'delivery', address: addressUser });
         }
       }
     }

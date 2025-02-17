@@ -2,7 +2,7 @@
 import IconMap from '@/components/shared/IconMap';
 import { Label } from '@/components/ui/label';
 import { RadioGroupItem, RadioGroup } from '@/components/ui/radio-group';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import RenderAddresses from './RenderAddresses';
 import TextAreaInfo from './TextAreaInfo';
 import AsideFoodsForShopingCart from '@/components/shared/shopingCart/AsideFoodsForShopingCart';
@@ -24,6 +24,7 @@ import { SendAddress } from '@/app/actions/address';
 import { AddressUserProps } from '@/lib/indexType';
 import { toast } from 'sonner';
 import BoxOfMain from '../BoxOfMain';
+import { useOrder } from '../ShopingProvider';
 
 type AddressFormType = z.infer<typeof SchemaAddress>;
 
@@ -36,7 +37,7 @@ function SectionPage({
   const [showAddressBranch, setShowAddressBranch] = useState(false);
   const [stepShowAddAddress, setStepShowAddAddress] = useState(1);
   const [checkedInput, setCheckedInput] = useState(false);
-  const [addressUser, setAddressUser] = useState<string>('');
+  // const [addressUser, setAddressUser] = useState<string>('');
   const {
     register,
     handleSubmit,
@@ -47,6 +48,7 @@ function SectionPage({
       checkbox: checkedInput,
     },
   });
+  const { order, updateDelivery, updatePayment } = useOrder();
 
   const handleDataFromChild = (child: boolean) => {
     setIsOpenModel(child);
@@ -64,21 +66,26 @@ function SectionPage({
   return (
     <section className="flex flex-col xl:flex-row justify-around items-center xl:items-start w-11/12 max-w-[1500px] mb-12">
       <main className="w-full xl:w-1/2 h-full">
- 
         <BoxOfMain icon="truk" title="روش تحویل سفارش">
           <RadioGroup
-            defaultValue="online"
+            defaultValue="delivery"
             dir="rtl"
             className="mt-4 md:mt-0 w-full flex flex-col md:flex-row md:justify-around md:items-center"
           >
             <div className="flex items-center gap-2">
               <RadioGroupItem
-                value="online"
+                value="delivery"
                 id="r1"
-                onClick={() => setShowAddressBranch(false)}
+                onClick={() => {
+                  setShowAddressBranch(false);
+                  updateDelivery({ type: 'delivery', address: '' });
+                }}
               />
               <Label
-                onClick={() => setShowAddressBranch(false)}
+                onClick={() => {
+                  setShowAddressBranch(false);
+                  updateDelivery({ type: 'delivery', address: '' });
+                }}
                 htmlFor="r1"
                 className="flex gap-1 cursor-pointer text-gray-7 dark:text-gray-4 items-center caption-md md:body-sm"
               >
@@ -96,10 +103,16 @@ function SectionPage({
               <RadioGroupItem
                 value="inPerson"
                 id="r2"
-                onClick={() => setShowAddressBranch(true)}
+                onClick={() => {
+                  setShowAddressBranch(true);
+                  updateDelivery({ type: 'pickup', branch: 'ekbatan' });
+                }}
               />
               <Label
-                onClick={() => setShowAddressBranch(true)}
+                onClick={() => {
+                  setShowAddressBranch(true);
+                  updateDelivery({ type: 'pickup', branch: 'ekbatan' });
+                }}
                 htmlFor="r2"
                 className="flex gap-1 cursor-pointer text-gray-7 dark:text-gray-4 items-center caption-md md:body-sm"
               >
@@ -142,8 +155,8 @@ function SectionPage({
           <div className="w-full h-full">
             <LeafletMap
               setStateShow={setStepShowAddAddress}
-              stateAddress={addressUser}
-              setStateAddress={setAddressUser}
+              stateAddress={order.delivery.type === 'delivery' ? order.delivery.address : ''}
+              setStateAddress={true}
             />
           </div>
         ) : (
@@ -233,8 +246,8 @@ function SectionPage({
               key={'address'}
               placeholder={'آدرس دقیق شما'}
               {...register('address')}
-              value={addressUser}
-              onChange={(e) => setAddressUser(e.target.value)}
+              value={order.delivery.type === 'delivery' ? order.delivery.address : ''}
+              onChange={(e) => updateDelivery({ type: 'delivery', address: e.target.value })}
               className={
                 'w-full h-[100px] md:h-[165px] mt-3 md:mt-4 px-1 py-4 md:p-1 rounded'
               }

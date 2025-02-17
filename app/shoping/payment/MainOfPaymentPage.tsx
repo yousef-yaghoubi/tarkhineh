@@ -1,15 +1,23 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import BoxOfMain from '../BoxOfMain';
 import ButtonDisabeld from '../ButtonDisabeld';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
 import IconMap from '@/components/shared/IconMap';
 import ImageGrayscale from './ImageGrayscale';
+import { useCart } from '@/components/shared/shopingCardProvider';
+import { useOrder } from '../ShopingProvider';
 
 function MainOfPaymentPage() {
   const [isHoverBank, setIsHoverBank] = useState('');
   const [sendMethodOnline, setSendMethodOnline] = useState(true);
+  const {updatePayment, order} = useOrder()
+
+
+  useEffect(()=>{
+    console.log(order)
+  },[order])
   return (
     <main className="w-full xl:w-1/2 h-full">
       <BoxOfMain icon="dicountShape" title="کد تخفیف">
@@ -38,10 +46,16 @@ function MainOfPaymentPage() {
               <RadioGroupItem
                 value="online"
                 id="r1"
-                onClick={() => setSendMethodOnline(true)}
+                onClick={() => {
+                  setSendMethodOnline(true)
+                  updatePayment('online')
+                }}
               />
               <Label
-                onClick={() => setSendMethodOnline(true)}
+                onClick={() => {
+                  setSendMethodOnline(true)
+                  updatePayment('online')
+                }}
                 htmlFor="r1"
                 className="flex gap-1 cursor-pointer text-gray-7 dark:text-gray-4 items-center caption-md md:body-sm"
               >
@@ -57,12 +71,18 @@ function MainOfPaymentPage() {
 
             <div className="flex items-center gap-2 mt-2 md:mt-0">
               <RadioGroupItem
-                value="inPerson"
+                value="cash_on_delivery"
                 id="r2"
-                onClick={() => setSendMethodOnline(false)}
+                onClick={() => {
+                  setSendMethodOnline(false)
+                  updatePayment('cash_on_delivery')
+                }}
               />
               <Label
-                onClick={() => setSendMethodOnline(false)}
+                onClick={() => {
+                  setSendMethodOnline(false)
+                  updatePayment('cash_on_delivery')
+                }}
                 htmlFor="r2"
                 className="flex gap-1 cursor-pointer text-gray-7 dark:text-gray-4 items-center caption-md md:body-sm"
               >

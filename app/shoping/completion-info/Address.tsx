@@ -5,20 +5,29 @@ import { AddressUserProps } from '@/lib/indexType';
 import { getSession, useSession } from 'next-auth/react';
 import React, { Dispatch, SetStateAction, useState } from 'react';
 import { toast } from 'sonner';
+import { useOrder } from '../ShopingProvider';
 
 function Address({
   prop,
   setIsOpenModel,
   setIdAddress,
+  idSelectedAddress,
+  setIdSelectedAddress
 }: {
   prop: AddressUserProps;
   setIsOpenModel?: Dispatch<SetStateAction<boolean>>;
   setIdAddress?: Dispatch<SetStateAction<number | null>>;
+  idSelectedAddress?: number | null;
+  setIdSelectedAddress?: Dispatch<SetStateAction<number | null>>;
 }) {
   const { data: session } = useSession();
+  const {updateDelivery, updatePayment} = useOrder()
 
   return (
-    <div className="min-w-72 md:min-w-80 w-full h-fit p-4 rounded border border-gray-4 dark:border-background-2 selection:border-primary bg-gray-3 dark:bg-background-2 flex flex-col relative">
+    <div className={`min-w-72 md:min-w-80 w-full h-fit p-4 cursor-pointer rounded border ${prop.id == idSelectedAddress ? 'border-primary' : 'border-gray-4 dark:border-background-2'} bg-gray-3 dark:bg-background-2 flex flex-col relative`} onClick={() => {
+      setIdSelectedAddress && setIdSelectedAddress(prop.id),
+      updateDelivery({type: "delivery", address: prop.address})
+      }}>
       <div className="flex justify-between">
         <p className="caption-sm md:body-sm">{prop.address}</p>
         <span className="w-11 flex justify-between">

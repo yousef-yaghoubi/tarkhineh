@@ -22,7 +22,8 @@ function RenderAddresses({
   addressesUser: AddressUserProps[] | undefined
 }) {
   const [isOpenModal, setIsOpenModel] = useState(false);
-  const [idAddress, setIdAddress] = useState<number | null>(null);
+  const [idAddressForRemove, setIdAddressForRemove] = useState<number | null>(null);
+  const [idAddressForSelect, setIdAddressForSelect] = useState<number | null>(null);
   return (
     <div className="flex w-full h-fit rounded-md border border-gray-4 dark:border-background-2 p-4 mt-3 md:mt-6">
       {!showAddressBranch ? (
@@ -57,7 +58,7 @@ function RenderAddresses({
           ) : (
             <div className="relative grid grid-cols-1 md:grid-cols-2 xl:grid-cols-1 2xl:grid-cols-2 justify-center h-full w-full py-3 gap-2">
               {addressesUser?.map((address) => (
-                <Address key={address.id} prop={address} setIsOpenModel={setIsOpenModel} setIdAddress={setIdAddress}/>
+                <Address key={address.id} prop={address} setIsOpenModel={setIsOpenModel} setIdAddress={setIdAddressForRemove} idSelectedAddress={idAddressForSelect} setIdSelectedAddress={setIdAddressForSelect}/>
               ))}
             </div>
           )}
@@ -96,7 +97,7 @@ function RenderAddresses({
           <button
             className="w-[117px] h-10 rounded bg-error-extralight text-error"
             onClick={() => {
-              DeleteAddress && DeleteAddress(idAddress as number);
+              DeleteAddress && DeleteAddress(idAddressForRemove as number);
               setIsOpenModel(false);
               toast.success('آدرس شما پاک شد');
             }}

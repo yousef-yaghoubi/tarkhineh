@@ -159,7 +159,7 @@ model PaymentMethod {
 model FoodOfOrderTracking {
   id           Int           @id @default(autoincrement())
   foodId       Int
-  food         Foods         @relation(fields: [foodId], references: [id])
+  food         Foods        @relation(fields: [foodId], references: [id])
   orderTrackId Int
   orderTrack   OrderTracking @relation(fields: [orderTrackId], references: [id])
   quantity     Int
