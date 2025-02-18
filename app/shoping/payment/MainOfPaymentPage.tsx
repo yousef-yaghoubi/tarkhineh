@@ -138,7 +138,7 @@ function MainOfPaymentPage() {
           </div>
         </BoxOfMain>
       ) : (
-        <BoxOfMain icon='warning' title='قابل توجه' className="mt-3 md:mt-6 bg-gray-1">
+        <BoxOfMain icon='warning' title='قابل توجه' className="mt-3 md:mt-6 bg-gray-1 dark:bg-background-2">
             <p className='caption-sm text-gray-7'>
             هزینه سفارش شما در حین تحویل کالا دریافت خواهد شد. لطفا قبل از تحویل کالا کارت بانکی یا پول نقد همراه خود داشته باشید و از درخواست برای پرداخت در زمان بعدی یا نسیه خودداری فرمایید. با تشکر از همراهی شما.
             </p>
