@@ -1,7 +1,7 @@
 'use client';
 import dynamic from 'next/dynamic';
 import Cookies from 'js-cookie';
-import { useEffect, useState, Suspense } from 'react';
+import { useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { FoodType } from '@/lib/indexType';
 import CardFoodLoading from '@/components/shared/card/CardFoodLoading';

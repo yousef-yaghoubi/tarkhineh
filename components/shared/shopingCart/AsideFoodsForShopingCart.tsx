@@ -44,11 +44,13 @@ const calcAllPrice = (cart: CartFoodForShopingCart[]) => {
 function AsideFoodsForShopingCart({
   hiddenSection,
   linkBTN,
-  onClickCustom
+  onClickCustom,
+  BtnDisabeld
 }: {
   hiddenSection?: number[];
   linkBTN: string,
-  onClickCustom?: ()=>void
+  onClickCustom?: ()=>void,
+  BtnDisabeld?: boolean
 }) {
   const { cart, clearCart } = useCart();
   const { status } = useSession();
@@ -153,6 +155,7 @@ function AsideFoodsForShopingCart({
             theme="Primary"
             className="w-full h-10 mt-5"
             link={linkBTN}
+            disabled={BtnDisabeld}
             onClickCustom={()=> onClickCustom && onClickCustom()}
           >
             <span

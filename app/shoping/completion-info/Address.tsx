@@ -1,9 +1,8 @@
 import IconMap from '@/components/shared/IconMap';
-import Modal from '@/components/shared/Modal';
 import { convertToPersianNumbers } from '@/lib/convertNumberToPersian';
 import { AddressUserProps } from '@/lib/indexType';
-import { getSession, useSession } from 'next-auth/react';
-import React, { Dispatch, SetStateAction, useState } from 'react';
+import { useSession } from 'next-auth/react';
+import React, { Dispatch, SetStateAction } from 'react';
 import { toast } from 'sonner';
 import { useOrder } from '../ShopingProvider';
 
@@ -21,10 +20,10 @@ function Address({
   setIdSelectedAddress?: Dispatch<SetStateAction<number | null>>;
 }) {
   const { data: session } = useSession();
-  const {updateDelivery, updatePayment} = useOrder()
+  const {order ,updateDelivery} = useOrder()
 
   return (
-    <div className={`min-w-72 md:min-w-80 w-full h-fit p-4 cursor-pointer rounded border ${prop.id == idSelectedAddress ? 'border-primary' : 'border-gray-4 dark:border-background-2'} bg-gray-3 dark:bg-background-2 flex flex-col relative`} onClick={() => {
+    <div className={`min-w-72 md:min-w-80 w-full h-fit p-4 cursor-pointer rounded border ${order.delivery.type == 'delivery' && order.delivery.address == prop.address ? 'border-primary' : 'border-gray-4 dark:border-background-2'} bg-gray-3 dark:bg-background-2 flex flex-col relative`} onClick={() => {
       setIdSelectedAddress && setIdSelectedAddress(prop.id),
       updateDelivery({type: "delivery", address: prop.address})
       }}>

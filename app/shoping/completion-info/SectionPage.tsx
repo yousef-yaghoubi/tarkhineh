@@ -7,11 +7,6 @@ import RenderAddresses from './RenderAddresses';
 import TextAreaInfo from './TextAreaInfo';
 import AsideFoodsForShopingCart from '@/components/shared/shopingCart/AsideFoodsForShopingCart';
 import Modal from '@/components/shared/Modal';
-
-const LeafletMap = dynamic(() => import('@/components/shared/map/ShowMap'), {
-  ssr: false,
-});
-
 import dynamic from 'next/dynamic';
 import InputCustom from '@/components/shared/input/InputCustom';
 import Button from '@/components/shared/button/Button';
@@ -19,12 +14,16 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { SchemaAddress } from '@/lib/zod';
 import { z } from 'zod';
-// import Address from './Address';
 import { SendAddress } from '@/app/actions/address';
 import { AddressUserProps } from '@/lib/indexType';
 import { toast } from 'sonner';
 import BoxOfMain from '../BoxOfMain';
 import { useOrder } from '../ShopingProvider';
+
+const LeafletMap = dynamic(() => import('@/components/shared/map/ShowMap'), {
+  ssr: false,
+});
+
 
 type AddressFormType = z.infer<typeof SchemaAddress>;
 
@@ -37,7 +36,7 @@ function SectionPage({
   const [showAddressBranch, setShowAddressBranch] = useState(false);
   const [stepShowAddAddress, setStepShowAddAddress] = useState(1);
   const [checkedInput, setCheckedInput] = useState(false);
-  // const [addressUser, setAddressUser] = useState<string>('');
+  const { order, updateDelivery } = useOrder();
   const {
     register,
     handleSubmit,
@@ -48,7 +47,6 @@ function SectionPage({
       checkbox: checkedInput,
     },
   });
-  const { order, updateDelivery, updatePayment } = useOrder();
 
   const handleDataFromChild = (child: boolean) => {
     setIsOpenModel(child);
@@ -62,6 +60,8 @@ function SectionPage({
       toast.warning(submitAdd.message);
     }
   };
+
+
 
   return (
     <section className="flex flex-col xl:flex-row justify-around items-center xl:items-start w-11/12 max-w-[1500px] mb-12">
@@ -143,7 +143,7 @@ function SectionPage({
         />
       </main>
 
-      <AsideFoodsForShopingCart hiddenSection={[]} linkBTN="/shoping/payment" />
+      <AsideFoodsForShopingCart hiddenSection={[]} linkBTN="/shoping/payment" BtnDisabeld={order.delivery.type == 'delivery' && order.delivery.address == '' ? true : false}/>
 
       <Modal
         isOpen={isOpenModal}

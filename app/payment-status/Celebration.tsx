@@ -1,14 +1,15 @@
 'use client';
 import React, { useEffect, useState } from 'react';
 import Confetti from 'react-confetti';
-import useWindowSize from 'react-use/lib/useWindowSize';
 
-const TestConfetti = () => {
+const Celebrate = () => {
+  const [isClient, setClient] = useState(false);
   const [dimensions, setDimensions] = useState({
     width: 0,
     height: 0,
   });
-  const [isClient, setClient] = useState(false);
+
+
   useEffect(() => {
     const { innerWidth: width, innerHeight: height } = window;
     setDimensions({
@@ -20,6 +21,7 @@ const TestConfetti = () => {
         setClient(false);
     }, 5000);
   }, []);
+  
   return (
     <>
       {isClient && (
@@ -29,4 +31,4 @@ const TestConfetti = () => {
   );
 };
 
-export default TestConfetti;
+export default Celebrate;

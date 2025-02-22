@@ -6,18 +6,12 @@ import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
 import IconMap from '@/components/shared/IconMap';
 import ImageGrayscale from './ImageGrayscale';
-import { useCart } from '@/components/shared/shopingCardProvider';
 import { useOrder } from '../ShopingProvider';
 
 function MainOfPaymentPage() {
-  const [isHoverBank, setIsHoverBank] = useState('');
   const [sendMethodOnline, setSendMethodOnline] = useState(true);
   const {updatePayment, order} = useOrder()
 
-
-  useEffect(()=>{
-    console.log(order)
-  },[order])
   return (
     <main className="w-full xl:w-1/2 h-full">
       <BoxOfMain icon="dicountShape" title="کد تخفیف">
@@ -48,13 +42,13 @@ function MainOfPaymentPage() {
                 id="r1"
                 onClick={() => {
                   setSendMethodOnline(true)
-                  updatePayment('online')
+                  updatePayment({type: 'online', banck: 'saman'})
                 }}
               />
               <Label
                 onClick={() => {
                   setSendMethodOnline(true)
-                  updatePayment('online')
+                  updatePayment({type: 'online', banck: 'saman'})
                 }}
                 htmlFor="r1"
                 className="flex gap-1 cursor-pointer text-gray-7 dark:text-gray-4 items-center caption-md md:body-sm"
@@ -75,13 +69,13 @@ function MainOfPaymentPage() {
                 id="r2"
                 onClick={() => {
                   setSendMethodOnline(false)
-                  updatePayment('cash_on_delivery')
+                  updatePayment({type: 'cash_on_delivery'})
                 }}
               />
               <Label
                 onClick={() => {
                   setSendMethodOnline(false)
-                  updatePayment('cash_on_delivery')
+                  updatePayment({type: 'cash_on_delivery'})
                 }}
                 htmlFor="r2"
                 className="flex gap-1 cursor-pointer text-gray-7 dark:text-gray-4 items-center caption-md md:body-sm"
@@ -111,20 +105,14 @@ function MainOfPaymentPage() {
               <ImageGrayscale
                 src="/image/tejaratBank.png"
                 id="tejarat"
-                isHover={isHoverBank}
-                setIsHover={setIsHoverBank}
               />
               <ImageGrayscale
                 src="/image/saderatBank.png"
                 id="saderat"
-                isHover={isHoverBank}
-                setIsHover={setIsHoverBank}
               />
               <ImageGrayscale
                 src="/image/samanBank.png"
                 id="saman"
-                isHover={isHoverBank}
-                setIsHover={setIsHoverBank}
               />
             </div>
             <p className="flex flex-col items-center mt-2 md:mt-1">
