@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react';
 import Modal from '../Modal';
 import SearchBox from '../searchBox/SearchBox';
 import { usePathname, useRouter } from 'next/navigation';
-import IconMap from '../IconMap';
 import { ProfileRoute } from '@/lib/dataPublic';
 import { useSession } from 'next-auth/react';
 import {
@@ -14,14 +13,17 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { useCart } from '../shopingCardProvider';
 import { convertToPersianNumbers } from '@/lib/convertNumberToPersian';
+import clsx from 'clsx';
+import IconArrowDown from '@icons/arrow-down.svg';
+import { icons, iconsProfile } from '@/lib/indexIcon';
 
 interface Props {
   alt: string;
-  img: string;
-  imgActive: string;
+  icon: keyof typeof icons;
   className?: string;
 }
-function Icon({ alt, img, imgActive, className }: Props) {
+
+function Icon({ alt, icon, className }: Props) {
   const { status } = useSession();
   const router = useRouter();
   const pathName = usePathname();
@@ -37,7 +39,7 @@ function Icon({ alt, img, imgActive, className }: Props) {
     if (pathName == '/search') {
       closeModal();
     }
-  }, [isModalOpen, openModal, closeModal]);
+  }, [isModalOpen, pathName]);
 
   if (pathName.includes(alt)) {
     isActive = true;
@@ -54,13 +56,16 @@ function Icon({ alt, img, imgActive, className }: Props) {
   if (status == 'authenticated') {
     isLogin = true;
   }
-
+  const IconComponent = icons[icon];
   return (
     <>
       <div
-        className={`rounded ${alt == 'profile' && isLogin ? 'w-8 !h-6 md:!w-14 md:!h-10' : 'w-6 md:!w-10 md:!h-10'} ${
-          isActive ? 'bg-primary' : 'bg-tint-1'
-        } justify-center flex items-center relative ${className}`}
+        className={clsx(
+          `${alt == 'profile' && isLogin ? 'w-8 !h-6 md:!w-14 md:!h-10' : 'w-6 md:!w-10 md:!h-10'}
+          ${isActive ? 'bg-primary' : 'bg-tint-1'}
+          justify-center flex items-center relative rounded cursor-pointer
+          ${className}`
+        )}
         onClick={() => {
           !isLogin && alt == 'profile' && router.push('/login');
           alt == 'search' && openModal();
@@ -78,44 +83,56 @@ function Icon({ alt, img, imgActive, className }: Props) {
         )}
         <div className="w-[18px] md:w-6 h-[18px] md:h-6 flex justify-center items-center relative">
           {!isProfile ? (
-            <IconMap
-              icon={isActive ? imgActive : img}
-              key={isActive ? imgActive : img}
+            <IconComponent
+              fill={isActive ? 'white' : '#417F56'}
+              width="24"
+              height="24"
             />
           ) : isLogin ? (
             <>
               <DropdownMenu>
                 <DropdownMenuTrigger className="focus:!outline-none focus:!border-none !outline-none !border-none flex items-center">
                   <div className="w-[18px] md:w-6 h-[18px] md:h-6 flex justify-center items-center relative">
-                    <IconMap
-                      icon={isActive ? imgActive : img}
-                      key={isActive ? imgActive : img}
+                    <IconComponent
+                      fill={isActive ? 'white' : '#417F56'}
+                      width="24"
+                      height="24"
                     />
                   </div>
-                  <IconMap icon="arrow-down" />
+                  <IconArrowDown
+                    fill={isActive ? 'white' : '#417F56'}
+                    width="16"
+                    height="16"
+                  />
                 </DropdownMenuTrigger>
                 <DropdownMenuContent
                   className={`bg-white dark:bg-background-2 dark:border-background-1 ml-4 mt-2`}
                 >
-                  {ProfileRoute.map((route) => (
-                    <DropdownMenuItem
-                      onClick={() => router.push(route.url)}
-                      dir="rtl"
-                      key={route.id}
-                      className={`${route.id !== 5 ? 'border-b border-gray-3 dark:border-background-1' : ''} hover:!bg-slate-100 dark:hover:!bg-background-1`}
-                    >
-                      <IconMap icon={route.icon} />
-                      <span className="pr-1">{route.title}</span>
-                    </DropdownMenuItem>
-                  ))}
+                  {ProfileRoute.map((route) => {
+                    const IconProf = iconsProfile[route.icon as keyof typeof iconsProfile] as React.ElementType;
+                    return (
+                      <DropdownMenuItem
+                        onClick={() => router.push(route.url)}
+                        dir="rtl"
+                        key={route.id}
+                        className="hover:!bg-slate-100 dark:hover:!bg-background-1"
+                      >
+                        {IconProf && (
+                          <IconProf
+                            className="fill-black dark:fill-white"
+                            width="16"
+                            height="16"
+                          />
+                        )}
+                        <span className="pr-1">{route.title}</span>
+                      </DropdownMenuItem>
+                    );
+                  })}
                 </DropdownMenuContent>
               </DropdownMenu>
             </>
           ) : (
-            <IconMap
-              icon={isActive ? imgActive : img}
-              key={isActive ? imgActive : img}
-            />
+            <IconComponent fill={isActive ? 'white' : '#417F56'} />
           )}
         </div>
       </div>

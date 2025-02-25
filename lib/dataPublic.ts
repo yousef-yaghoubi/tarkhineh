@@ -75,24 +75,21 @@ export const iconDetails = [
   {
     id: 1,
     alt: 'search',
-    img: 'iconSearch',
-    imgActive: 'iconSearhActive',
+    icon: 'IconSearch',
     isActive: false,
     class: 'hidden sm:flex',
   },
   {
     id: 2,
     alt: 'shoping',
-    img: 'iconShopingCard',
-    imgActive: 'iconShopingCardActive',
+    icon: 'IconShopingCard',
     isActive: false,
     class: '',
   },
   {
     id: 3,
     alt: 'profile',
-    img: 'iconProfile',
-    imgActive: 'iconProfileActive',
+    icon: 'IconProfile',
     quantity: 0,
     class: '',
   },
@@ -193,9 +190,9 @@ export const NavBadgeMenu: BadgeType[] = [
 ];
 
 export const ProfileRoute: ProfileRoutes[] = [
-  {id:1, title: 'پروفایل',icon: 'profile-black', url: '/user'},
-  {id:2, title: 'پیگیری سفارش',icon: 'orderTracking', url: '/order-tracking'},
-  {id:3, title: 'علاقه مندی ها',icon: 'heart', url: '/favorites'},
-  {id:4, title: 'آدرس های من',icon: 'location', url: '/myAddresses'},
-  {id:5, title: 'خروج از حساب',icon: 'logout', url: '/logOut'},
+  {id:1, title: 'پروفایل',icon: 'IconProfile', url: '/user/profile'},
+  {id:2, title: 'پیگیری سفارش',icon: 'IconOrderTracking', url: '/user/order-tracking'},
+  {id:3, title: 'علاقه مندی ها',icon: 'IconHeart', url: '/user/favorites'},
+  {id:4, title: 'آدرس های من',icon: 'IconLocation', url: '/user/myAddresses'},
+  {id:5, title: 'خروج',icon: 'IconLogout', url: '/user/logOut'},
 ]

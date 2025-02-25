@@ -7,7 +7,6 @@ import {
   DropdownMenu,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import Image from 'next/image';
 import IconMap from '../IconMap';
 
 export function ModeToggle() {
@@ -24,7 +23,7 @@ export function ModeToggle() {
     <DropdownMenu dir="rtl">
       <DropdownMenuTrigger className="focus:!outline-none" asChild>
         <Button
-          className={`w-6 h-6 md:w-10 md:h-10 rounded !bg-primary justify-center flex items-center relative`}
+          className={`w-6 h-6 md:w-10 md:h-10 rounded !bg-primary justify-center flex items-center relative shadow-none`}
           size="icon"
           onClick={() =>
             theme == 'light' ? setTheme('dark') : setTheme('light')

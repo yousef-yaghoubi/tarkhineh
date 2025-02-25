@@ -6,7 +6,10 @@ import SearchBox from '@/components/shared/searchBox/SearchBox';
 import SwiperMain from '@/components/shared/swiper/swiper';
 import { arraySlideMain, branchs, miniCards } from '@/lib/dataPublic';
 import React from 'react';
-
+import IconProfile from "@icons/profileIcon.svg"
+import IconDiagram from "@icons/diagram.svg"
+import IconHomeWifi from "@icons/home-wifi.svg"
+import IconMenuBoard from "@icons/menu-board.svg"
 async function Home() {
   return (
     <div>
@@ -52,28 +55,28 @@ async function Home() {
 
         <div className="grid grid-cols-2 text-white gap-y-4">
           <div className="flex flex-col justify-center items-center">
-            <IconMap icon="profile-white" />
+            <IconProfile fill="white" className="w-6 h-6 md:w-12 md:h-12"/>
             <span className="caption-md md:caption-lg lg:body-xl mt-1">
               پرسنلی مجرب و حرفه‌ای
             </span>
           </div>
 
           <div className="flex flex-col justify-center items-center">
-            <IconMap icon='diagram'/>
+            <IconDiagram fill="white" className="w-6 h-6 md:w-12 md:h-12"/>
             <span className="caption-md md:caption-lg lg:body-xl mt-1">
               کیفیت بالای غذا ها
             </span>
           </div>
 
           <div className="flex flex-col justify-center items-center">
-            <IconMap icon='home-wifi'/>
+            <IconHomeWifi fill="white" className="w-6 h-6 md:w-12 md:h-12"/>
             <span className="caption-md md:caption-lg lg:body-xl mt-1">
               محیطی دلنشین و آرام
             </span>
           </div>
 
           <div className="flex flex-col justify-center items-center">
-            <IconMap icon='menu-board'/>
+            <IconMenuBoard fill="white" className="w-6 h-6 md:w-12 md:h-12"/>
             <span className="caption-md md:caption-lg lg:body-xl mt-1">
               منوی متنوع
             </span>

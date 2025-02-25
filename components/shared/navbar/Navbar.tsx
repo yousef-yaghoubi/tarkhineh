@@ -60,8 +60,7 @@ async function Navbar() {
         {iconDetails.map((icon) => (
           <Icon
             alt={icon.alt}
-            img={icon.img}
-            imgActive={icon.imgActive}
+            icon={icon.icon as "IconShopingCard" | "IconSearch" | "IconProfile"}
             key={icon.id}
             className={icon.class}
           />
