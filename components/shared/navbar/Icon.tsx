@@ -32,7 +32,7 @@ function Icon({ alt, icon, className }: Props) {
   const { cart } = useCart();
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
-  let isActive = false;
+  let isActive = pathName.includes(alt)
   let isLogin = false;
 
   useEffect(() => {
@@ -41,12 +41,12 @@ function Icon({ alt, icon, className }: Props) {
     }
   }, [isModalOpen, pathName]);
 
-  if (pathName.includes(alt)) {
-    isActive = true;
-  }
+  // if (pathName.includes(alt)) {
+  //   isActive = true;
+  // }
 
   useEffect(() => {
-    if (alt === 'profile') {
+    if (alt == 'user') {
       setIsProfile(true);
     } else {
       setIsProfile(false);
@@ -61,13 +61,13 @@ function Icon({ alt, icon, className }: Props) {
     <>
       <div
         className={clsx(
-          `${alt == 'profile' && isLogin ? 'w-8 !h-6 md:!w-14 md:!h-10' : 'w-6 md:!w-10 md:!h-10'}
+          `${alt == 'user' && isLogin ? 'w-8 !h-6 md:!w-14 md:!h-10' : 'w-6 md:!w-10 md:!h-10'}
           ${isActive ? 'bg-primary' : 'bg-tint-1'}
           justify-center flex items-center relative rounded cursor-pointer
           ${className}`
         )}
         onClick={() => {
-          !isLogin && alt == 'profile' && router.push('/login');
+          !isLogin && alt == 'user' && router.push('/login');
           alt == 'search' && openModal();
           alt == 'shoping' && router.push('/shoping/shopingCart');
         }}

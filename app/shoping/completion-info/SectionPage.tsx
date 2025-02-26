@@ -17,7 +17,7 @@ import { z } from 'zod';
 import { SendAddress } from '@/app/actions/address';
 import { AddressUserProps } from '@/lib/indexType';
 import { toast } from 'sonner';
-import BoxOfMain from '../BoxOfMain';
+import BoxOfMain from '../../../components/shared/shopingCart/BoxOfMain';
 import { useOrder } from '../ShopingProvider';
 
 const LeafletMap = dynamic(() => import('@/components/shared/map/ShowMap'), {

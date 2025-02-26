@@ -3,10 +3,10 @@ import MenuBar from './MenuBar';
 
 function UserLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div>
-      <MenuBar/>
+    <section className="mx-8 md:mx-16 lg:mx-[108px] my-12 flex gap-6">
+      <MenuBar />
       {children}
-    </div>
+    </section>
   );
 }
 

@@ -1,6 +1,6 @@
 'use client';
 import React, { useEffect, useState } from 'react';
-import BoxOfMain from '../BoxOfMain';
+import BoxOfMain from '../../../components/shared/shopingCart/BoxOfMain';
 import ButtonDisabeld from '../ButtonDisabeld';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';

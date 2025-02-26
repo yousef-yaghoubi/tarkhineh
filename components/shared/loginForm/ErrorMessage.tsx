@@ -3,7 +3,7 @@ import type { FieldError } from 'react-hook-form';
 
 function ErrorMessage({forInput}: {forInput: FieldError | undefined}) {
   return (
-    <p className="w-11/12 flex justify-start">
+    <p className="w-11/12 flex justify-start mt-[2px]">
       {forInput && (
         <span className="text-red-500 text-xs" dir="rtl">
           {forInput?.message}

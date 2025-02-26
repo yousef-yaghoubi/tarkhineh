@@ -113,14 +113,44 @@ export const SchemaAddressWithRecipient = z.object({
     .min(11, 'شماره باید 11 رقم باشد')
     .max(11, 'شماره باید 11 رقم باشد')
     .regex(/^\d+$/, 'فقط مجاز هستید عدد وارد کنید')
-    .transform((val) => val.trim()).optional(),
+    .transform((val) => val.trim())
+    .optional(),
   address: z
     .string()
     .min(30, 'حداقل باید 30 حرف باشد')
     .max(400, 'حداکثر باید 400 حرف باشد'),
 });
 
-export const SchemaAddress = z.discriminatedUnion("checkbox", [
+export const SchemaAddress = z.discriminatedUnion('checkbox', [
   SchemaAddressWithRecipient,
-  SchemaAddressWithPhone
-])
+  SchemaAddressWithPhone,
+]);
+
+export const SchemaEditProfile = z.object({
+  firstName: z
+    .string()
+    .min(3, 'حداقل 3 حرف وارد کنید')
+    .max(25, 'بیشتر از 25 حرف نباید وارد کنید'),
+  lastName: z
+    .string()
+    .min(3, 'حداقل 3 حرف وارد کنید')
+    .max(25, 'بیشتر از 25 حرف نباید وارد کنید'),
+  email: z
+    .string()
+    .email('ایمیل نامعتبر است')
+    .refine((val) => val.endsWith('@gmail.com'), {
+      message: 'ایمیل باید با @gmail.com تمام شود',
+    }),
+  phone: z
+    .string()
+    .min(11, 'شماره باید 11 رقم باشد')
+    .max(11, 'شماره باید 11 رقم باشد')
+    .regex(/^\d+$/, 'فقط مجاز هستید عدد وارد کنید')
+    .transform((val) => val.trim())
+    .optional(),
+  birthDay: z.string().optional(),
+  nickName: z
+    .string()
+    .min(3, 'حداقل 3 حرف وارد کنید')
+    .max(25, 'بیشتر از 25 حرف نباید وارد کنید'),
+});

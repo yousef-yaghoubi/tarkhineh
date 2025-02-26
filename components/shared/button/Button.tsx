@@ -7,9 +7,9 @@ import { useCart } from '../shopingCardProvider';
 import { FoodType } from '@/lib/indexType';
 import clsx from 'clsx';
 
-interface Props {
+interface ButtonProps extends React.ButtonHTMLAttributes <HTMLButtonElement> {
   btn: 'text' | 'stroke' | 'fill';
-  className: ComponentProps<"button">["className"];
+  className: ComponentProps<'button'>['className'];
   theme: 'Primary' | 'White' | 'Black';
   disabled?: boolean;
   loading?: boolean;
@@ -19,17 +19,16 @@ interface Props {
   link?: string;
   iconW?: string;
   iconH?: string;
-  onClickCustom?: (()=> void) | 'reload';
+  onClickCustom?: (() => void) | 'reload';
   shopingCard?: FoodType | undefined;
 }
 
-function Button({
+const Button: React.FC<ButtonProps> = ({
   btn,
   className,
   theme,
   disabled,
   loading,
-  children,
   iconR,
   iconL,
   link,
@@ -37,13 +36,15 @@ function Button({
   iconH,
   onClickCustom,
   shopingCard,
-}: Props) {
+  children,
+  ...rest
+}) => {
   const router = useRouter();
   const { addToCart } = useCart();
   if (btn == 'fill') {
     return (
       <button
-        type='submit'
+        {...rest}
         className={clsx(
           `duration-300 disabled:bg-gray-3 disabled:text-gray-4 ${
             theme === 'Primary'
@@ -51,13 +52,13 @@ function Button({
               : theme === 'White'
                 ? 'bg-tint-1 text-primary hover:bg-tint-2'
                 : 'bg-gray-7 text-white hover:bg-gray-8'
-          } rounded-sm md:rounded-md flex items-center justify-around ${className}`
+          } rounded flex items-center justify-around ${className}`
         )}
         onClick={() => {
-          if(shopingCard){
+          if (shopingCard) {
             addToCart(shopingCard);
           }
-          if (onClickCustom == "reload") {
+          if (onClickCustom == 'reload') {
             window.location.reload();
           } else if (onClickCustom) {
             onClickCustom();
@@ -94,6 +95,7 @@ function Button({
   } else if (btn == 'stroke') {
     return (
       <button
+        {...rest}
         className={clsx(
           `bg-transparent relative border duration-300 disabled:border-gray-4 disabled:text-gray-4 ${
             theme === 'Primary'
@@ -104,7 +106,7 @@ function Button({
           } rounded-sm flex items-center justify-around ${className}`
         )}
         onClick={() => {
-          if (onClickCustom == "reload") {
+          if (onClickCustom == 'reload') {
             window.location.reload();
           } else if (onClickCustom) {
             onClickCustom();
@@ -141,7 +143,7 @@ function Button({
   } else {
     return (
       <button
-          type="submit"
+        {...rest}
         className={clsx(
           `bg-transparent disabled:text-gray-4 ${
             theme === 'Primary'
@@ -152,7 +154,7 @@ function Button({
           } rounded-sm md:rounded-md flex items-center justify-around ${className}`
         )}
         onClick={() => {
-          if (onClickCustom == "reload") {
+          if (onClickCustom == 'reload') {
             window.location.reload();
           } else if (onClickCustom) {
             onClickCustom();
@@ -187,6 +189,6 @@ function Button({
       </button>
     );
   }
-}
+};
 
 export default Button;

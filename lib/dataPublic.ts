@@ -88,7 +88,7 @@ export const iconDetails = [
   },
   {
     id: 3,
-    alt: 'profile',
+    alt: 'user',
     icon: 'IconProfile',
     quantity: 0,
     class: '',
