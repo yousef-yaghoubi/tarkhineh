@@ -9,7 +9,7 @@ type PropsTextArea = {
   id: string;
 } & Partial<React.TextareaHTMLAttributes<HTMLTextAreaElement>>;
 
-// ✅ حذف error و بهینه‌سازی کامپوننت
+
 const TextAreaInfo = forwardRef<HTMLTextAreaElement, PropsTextArea>(
   ({ showIcon, placeholder, className, id, ...rest }, ref) => {
     return (
@@ -21,7 +21,7 @@ const TextAreaInfo = forwardRef<HTMLTextAreaElement, PropsTextArea>(
       >
         {showIcon && (
           <i className="absolute z-50">
-            <IconDocument className="w-4 h-4 md:w-6 md:h-6 transition-colors duration-300 dark:group-hover:fill-black group-hover:fill-black peer-focus:fill-primary fill-gray-7"/>
+            <IconDocument className="w-4 h-4 md:w-6 md:h-6 transition-colors duration-300 dark:group-hover:fill-gray-6 group-hover:fill-black peer-focus:fill-primary fill-gray-7"/>
           </i>
         )}
 

@@ -34,7 +34,7 @@ const Button: React.FC<ButtonProps> = ({
       <button
         {...rest}
         className={clsx(
-          `duration-300 disabled:bg-gray-3 disabled:text-gray-4 ${
+          `duration-300 disabled:bg-gray-3 disabled:text-gray-4 dark:disabled:bg-gray-8 ${
             theme === 'Primary'
               ? 'bg-primary text-white hover:bg-shade-2 selection:bg-shade-3'
               : theme === 'White'
