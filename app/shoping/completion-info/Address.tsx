@@ -1,11 +1,12 @@
-import IconMap from '@/components/shared/IconMap';
+
 import { convertToPersianNumbers } from '@/lib/convertNumberToPersian';
 import { AddressUserProps } from '@/lib/indexType';
 import { useSession } from 'next-auth/react';
 import React, { Dispatch, SetStateAction } from 'react';
 import { toast } from 'sonner';
 import { useOrder } from '../ShopingProvider';
-
+import IconEdit from "@icons/edit-2.svg"
+import IconRemove from "@icons/remove.svg"
 function Address({
   prop,
   setIsOpenModel,
@@ -31,7 +32,7 @@ function Address({
         <p className="caption-sm md:body-sm">{prop.address}</p>
         <span className="w-11 flex justify-between">
           <i onClick={()=> toast.warning('این عمل در دسترس نیست.')} className='cursor-pointer h-fit'>
-            <IconMap icon="editShoping" />
+            <IconEdit width="24" height="24" className="!fill-[#353535] dark:!fill-gray-2"/>
           </i>
           <i className='cursor-pointer h-fit'
             onClick={() => {
@@ -39,7 +40,7 @@ function Address({
               setIsOpenModel && setIsOpenModel(true);
             }}
           >
-            <IconMap icon="removeIconShoping" />
+            <IconRemove width="24" height="24" className="!fill-[#353535] dark:!fill-gray-2"/>
           </i>
         </span>
       </div>

@@ -1,11 +1,14 @@
 'use client'
-import IconMap from '@/components/shared/IconMap';
 import Modal from '@/components/shared/Modal';
 import { useCart } from '@/components/shared/shopingCardProvider';
 import { usePathname, useRouter } from 'next/navigation';
 import React, { useState } from 'react';
 import { toast } from 'sonner';
-
+import IconShopingCard from "@icons/shopping-icon.svg"
+import IconTickSquare from "@icons/tick-square.svg"
+import IconWallet from "@icons/wallet-2.svg"
+import IconArrowRight from "@icons/arrow-right.svg"
+import IconRemove from "@icons/remove.svg"
 function ProgressShoping() {
   const router = useRouter()
   const pathname = usePathname()
@@ -20,9 +23,9 @@ function ProgressShoping() {
           className={`w-36 ${pathname == '/shoping/shopingCart' ? 'h6' : 'body-sm text-gray-4'} text-primary flex gap-2 justify-center items-center`}
         >
           {pathname == '/shoping/shopingCart' ? (
-            <IconMap icon="iconShopingCardActiveLg" />
+            <IconShopingCard width="32" height="32"/>
           ) : (
-            <IconMap icon="iconShopingCard" />
+            <IconShopingCard width="24" height="24"/>
           )}
           سبد خرید
         </p>
@@ -36,11 +39,11 @@ function ProgressShoping() {
           className={`w-48 ${pathname == '/shoping/completion-info' ? 'h6 text-primary' : pathname == '/shoping/payment' ? 'body-sm text-primary' : 'body-sm text-gray-4'} flex gap-2 justify-center items-center`}
         >
           {pathname == '/shoping/completion-info' ? (
-            <IconMap icon="tickSquareActiveLg" />
+            <IconTickSquare width="32" height="32" className="fill-[#417F56]"/>
           ) : pathname == '/shoping/payment' ? (
-            <IconMap icon="tickSquareActive" />
+            <IconTickSquare width="24" height="24" className="fill-[#417F56]"/>
           ) : (
-            <IconMap icon="tick-square" />
+            <IconTickSquare width="24" heaight="24"/>
           )}
           تکمیل اطلاعات
         </p>
@@ -56,22 +59,22 @@ function ProgressShoping() {
           className={`w-32 ${pathname == '/shoping/payment' ? 'h6 text-primary' : 'body-sm text-gray-4'} flex gap-2 justify-center items-center`}
         >
           {pathname == '/shoping/payment' ? (
-            <IconMap icon="walletActiveLg" />
+            <IconWallet width="32" height="32" className="fill-[#417F56]"/>
           ) : (
-            <IconMap icon="wallet" />
+            <IconWallet width="24" height="24"/>
           )}
           پرداخت
         </p>
       </div>
       <div className="w-11/12 h-full md:hidden flex justify-between items-center">
         <span onClick={()=> router.back()} className='cursor-pointer'>
-          <IconMap icon="arrow-right-white" />
+          <IconArrowRight width="24" height="24" className="fill-black dark:fill-white"/>
         </span>
         <span>
           {pathname == '/shoping/shopingCart' ? 'سبد خرید' : pathname == '/shoping/completion-info' ? 'تکمیل اطلاعات' : 'پرداخت'}
         </span>
         <span className='cursor-pointer' onClick={()=> setIsOpenModel(true)}>
-          <IconMap icon="removeIcon" />
+          <IconRemove width="24" height="24" className="fill-black dark:fill-white"/>
         </span>
       </div>
     </div>
@@ -81,7 +84,7 @@ function ProgressShoping() {
         onClose={() => setIsOpenModel(false)}
         title={<h6 className="h7">حذف محصولات</h6>}
         desc="همه محصولات سبد خرید شما حذف شود؟"
-        removeShopingCart
+        state='removeShopingCart'
       >
         <div className="flex w-64 justify-between">
           <button

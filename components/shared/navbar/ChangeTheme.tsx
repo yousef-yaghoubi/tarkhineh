@@ -1,13 +1,13 @@
 'use client';
 import React, { useEffect, useState } from 'react';
 import { useTheme } from 'next-themes';
-
+import IconMoon from "@icons/moon.svg"
+import IconSun from "@icons/sun.svg"
 import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import IconMap from '../IconMap';
 
 export function ModeToggle() {
   const { theme ,setTheme } = useTheme();
@@ -34,10 +34,10 @@ export function ModeToggle() {
           >
             <div className="w-[18px] md:w-6 h-[18px] md:h-6 flex justify-center items-center relative">
               {themeSite == 'dark' ? (
-                <IconMap icon='iconMoon'/>
+                <IconMoon width="24" height="24"/>
               ) :
               (
-                <IconMap icon='iconSun'/>
+                <IconSun width="24" height="24" className="fill-transparent"/>
               )}
             </div>
           </div>

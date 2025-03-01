@@ -14,7 +14,6 @@ function page() {
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm<TypeOfFormEditProfile>({
     resolver: zodResolver(SchemaEditProfile),

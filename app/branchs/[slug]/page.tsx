@@ -17,7 +17,7 @@ import CardFoodLoading from '@/components/shared/card/CardFoodLoading';
 import { GetAllFoods } from '@/app/actions/foodAction';
 import { setCookie } from '@/app/actions/setCookieAction';
 import Cookies from 'js-cookie';
-
+import IconNote from '@icons/note.svg';
 
 interface Foods {
   id: number;
@@ -33,17 +33,29 @@ interface Foods {
 async function DynamicBranchs({ params }: { params: { slug: string } }) {
   // const sertterCookie = async ()=>{
   //   'use server';
-    
+
   //   const cooki = cookies()
   //   cooki.set('branch', params.slug, {httpOnly: false})
   // }
-  
+
   // await sertterCookie()
-  const specialOfferFoods: Foods[] | undefined = await GetAllFoods({branchName: params.slug, filter: 'specialOffer', page: 1});
-  const popularFoods: Foods[] | undefined = await GetAllFoods({branchName: params.slug, filter:'mostPopular', page: 1});
-  const notIraniFoods: Foods[] | undefined = await GetAllFoods({branchName: params.slug, filter:'non-Iranian', page: 1});
+  const specialOfferFoods: Foods[] | undefined = await GetAllFoods({
+    branchName: params.slug,
+    filter: 'specialOffer',
+    page: 1,
+  });
+  const popularFoods: Foods[] | undefined = await GetAllFoods({
+    branchName: params.slug,
+    filter: 'mostPopular',
+    page: 1,
+  });
+  const notIraniFoods: Foods[] | undefined = await GetAllFoods({
+    branchName: params.slug,
+    filter: 'non-Iranian',
+    page: 1,
+  });
   const branchAction = await GetBranch(params.slug);
-  
+
   return (
     <section className="flex flex-col items-center">
       <SwiperMain slides={arraySlideMain} pagination showBtn />
@@ -70,11 +82,13 @@ async function DynamicBranchs({ params }: { params: { slug: string } }) {
       <Button
         btn="stroke"
         className="w-[152px] h-8 md:w-[184px] md:h-10 caption-lg md:button-lg"
-        iconR="/icons/notePrimary.png"
         theme="Primary"
         link="/menu"
       >
-        مشاهده منوی کامل
+        <span className='flex items-center'>
+          <IconNote className="w-4 h-4 md:w-6 md:h-6 fill-primary" />
+          مشاهده منوی کامل
+        </span>
       </Button>
 
       <span className="h6 md:h5 lg:h4 mt-6 md:mt-9 lg:mt-12 mb-3 md:mb-[18px]">

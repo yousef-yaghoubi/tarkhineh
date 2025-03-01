@@ -1,5 +1,3 @@
-import IconMap from '@/components/shared/IconMap';
-import { convertToPersianNumbers } from '@/lib/convertNumberToPersian';
 import Image from 'next/image';
 import React from 'react';
 import QuantityFood from './QuantityFood';
@@ -10,9 +8,12 @@ import {
 } from '@/components/shared/card/CardFoodNecessary';
 import { CartFoodForShopingCart } from '@/lib/indexType';
 import { useCart } from '@/components/shared/shopingCardProvider';
+import IconRemove from '@icons/remove.svg';
+import IconStar from '@icons/StarRate.svg';
+import IconStarStroke from "@icons/StarStroke.svg"
 
 function CardFoodShopingCard({ item }: { item: CartFoodForShopingCart }) {
-  const {removeFromCart} = useCart()
+  const { removeFromCart } = useCart();
   const starFill = Math.round(item.rating);
   const starStroke = 5 - starFill;
 
@@ -32,8 +33,15 @@ function CardFoodShopingCard({ item }: { item: CartFoodForShopingCart }) {
 
         <div className="w-[calc(100%_-_169px)] h-full absolute left-0 top-0 grid grid-cols-customCardShopingCard px-8 py-4  text-gray-8 dark:text-gray-2">
           <span className="h-full h7 col-start-1 col-end-4">{item.name}</span>
-          <span className="h-full justify-end flex col-start-4 col-end-6 cursor-pointer" onClick={()=> removeFromCart(item.id)}>
-            <IconMap icon="removeIcon" />
+          <span
+            className="h-full justify-end flex col-start-4 col-end-6 cursor-pointer"
+            onClick={() => removeFromCart(item.id)}
+          >
+            <IconRemove
+              width="24"
+              height="24"
+              className="!fill-[#353535] dark:!fill-gray-2"
+            />
           </span>
           <p className="h-full body-sm flex items-center col-start-1 col-end-5">
             {item.desc}
@@ -50,10 +58,10 @@ function CardFoodShopingCard({ item }: { item: CartFoodForShopingCart }) {
 
           <div className="h-full flex col-start-1 col-end-4 items-center">
             {arrayStarStroke.map((star) => (
-              <IconMap icon="starStrokeLg" key={star} />
+              <IconStarStroke className="!w-4 !h-4 md:!w-6 md:!h-6 fill-white dark:fill-background-2"/>
             ))}
             {arrayStarFill.map((star) => (
-              <IconMap icon="starRateLg" key={star} />
+            <IconStar className="!w-4 !h-4 md:!w-6 md:!h-6" />
             ))}
             <QuantityFood quantity={item.quantity} id={item.id} />
           </div>

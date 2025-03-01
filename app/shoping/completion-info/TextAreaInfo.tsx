@@ -1,9 +1,7 @@
 "use client";
-
-import IconMap from "@/components/shared/IconMap";
 import React, { ComponentProps, forwardRef } from "react";
 import { clsx } from "clsx";
-
+import IconDocument from "@icons/document-normal.svg"
 type PropsTextArea = {
   showIcon?: boolean;
   placeholder: string;
@@ -23,13 +21,13 @@ const TextAreaInfo = forwardRef<HTMLTextAreaElement, PropsTextArea>(
       >
         {showIcon && (
           <i className="absolute z-50">
-            <IconMap icon="document-normal" />
+            <IconDocument className="w-4 h-4 md:w-6 md:h-6 transition-colors duration-300 dark:group-hover:fill-black group-hover:fill-black peer-focus:fill-primary fill-gray-7"/>
           </i>
         )}
 
         <textarea
           id={id}
-          ref={ref} // ✅ اتصال به ref برای سازگاری با register
+          ref={ref}
           {...rest}
           className={clsx(
             `peer placeholder-transparent bg-transparent outline-none z-10 w-full h-[calc(100%_-_1em)] body-sm resize-none absolute top-[5px] right-0`,

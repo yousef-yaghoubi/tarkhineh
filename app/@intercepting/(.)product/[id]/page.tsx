@@ -1,11 +1,13 @@
 import { GetDemoUniqueFood } from '@/app/actions/foodAction';
 import Button from '@/components/shared/button/Button';
 import ButtonBack from '@/components/shared/button/ButtonBack';
-import IconMap from '@/components/shared/IconMap';
 import Portal from '@/components/shared/Portal';
 import { convertToPersianNumbers } from '@/lib/convertNumberToPersian';
 import Image from 'next/image';
 import React from 'react';
+import IconClose from "@icons/CloseIcon.svg"
+import IconStarStroke from "@icons/StarStroke.svg"
+import IconStar from "@icons/StarRate.svg"
 
 async function page({ params }: { params: { id: number } }) {
   const { id } = params;
@@ -25,7 +27,7 @@ async function page({ params }: { params: { id: number } }) {
               <h3 className="h7">اطلاعات محصول</h3>
 
               <ButtonBack>
-                <IconMap icon="closeIcon" />
+                <IconClose/>
               </ButtonBack>
             </div>
             <div className="!w-full !h-96 relative">
@@ -40,10 +42,10 @@ async function page({ params }: { params: { id: number } }) {
               <span className="body-sm md:h7">{food.food!.name}</span>
               <div className="flex justify-end">
                 {arrayStarStroke.map((star) => (
-                  <IconMap icon="starStrokeLg" key={star} />
+                  <IconStar/>
                 ))}
                 {arrayStarFill.map((star) => (
-                  <IconMap icon="starRateLg" key={star} />
+                  <IconStarStroke/>
                 ))}
               </div>
               <span className="caption-sm md:body-sm">{food.food!.desc}</span>

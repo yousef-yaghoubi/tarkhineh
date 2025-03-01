@@ -11,17 +11,16 @@ import {
 } from '@/components/ui/sheet';
 import { iconDetails } from '@/lib/dataPublic';
 import Link from 'next/link';
-import IconMap from '../IconMap';
 import { getServerSession } from 'next-auth';
 import { authOption } from '@/app/api/auth/[...nextauth]/route';
-
+import IconNavbar from "@icons/menu.svg"
 async function Navbar() {
   const session = await getServerSession(authOption)
   return (
     <div className="w-full h-16 md:h-[115px] flex flex-row justify-between px-4 md:justify-around md:p-0 items-center shadow-shadow-10">
       <Sheet>
         <SheetTrigger className="md:!hidden" asChild>
-          <IconMap icon='navbarMenu' key={'navbarMenu'}/>
+          <IconNavbar width="24" height="24" className="fill-primary"/>
         </SheetTrigger>
         <SheetContent className="bg-white dark:bg-[#1c1b22] border-none p-0 menuMobile">
           <SheetHeader>

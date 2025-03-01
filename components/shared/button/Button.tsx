@@ -1,24 +1,16 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import React, { ComponentProps } from 'react';
-import IconMap from '../IconMap';
+import React from 'react';
 import { useCart } from '../shopingCardProvider';
 import { FoodType } from '@/lib/indexType';
 import clsx from 'clsx';
 
 interface ButtonProps extends React.ButtonHTMLAttributes <HTMLButtonElement> {
   btn: 'text' | 'stroke' | 'fill';
-  className: ComponentProps<'button'>['className'];
   theme: 'Primary' | 'White' | 'Black';
-  disabled?: boolean;
   loading?: boolean;
-  children: string | React.ReactNode;
-  iconR?: string;
-  iconL?: string;
   link?: string;
-  iconW?: string;
-  iconH?: string;
   onClickCustom?: (() => void) | 'reload';
   shopingCard?: FoodType | undefined;
 }
@@ -29,11 +21,7 @@ const Button: React.FC<ButtonProps> = ({
   theme,
   disabled,
   loading,
-  iconR,
-  iconL,
   link,
-  iconW,
-  iconH,
   onClickCustom,
   shopingCard,
   children,
@@ -71,19 +59,7 @@ const Button: React.FC<ButtonProps> = ({
       >
         {loading !== true ? (
           <>
-            {iconR && (
-              <i className={`${iconH} ${iconW} absolute right-1`}>
-                <IconMap icon={iconR} key={iconR} />
-              </i>
-            )}
-
             {children}
-
-            {iconL && (
-              <span className={`${iconH} ${iconW} absolute left-1`}>
-                <IconMap icon={iconL} key={iconL} />
-              </span>
-            )}
           </>
         ) : (
           <>
@@ -119,19 +95,9 @@ const Button: React.FC<ButtonProps> = ({
       >
         {loading !== true ? (
           <>
-            {iconR && (
-              <i className={`${iconH} ${iconW} absolute right-1`}>
-                <IconMap icon={iconR} key={iconR} />
-              </i>
-            )}
 
             {children}
 
-            {iconL && (
-              <span className={`${iconH} ${iconW} absolute left-1`}>
-                <IconMap icon={iconL} key={iconL} />
-              </span>
-            )}
           </>
         ) : (
           <>
@@ -167,19 +133,9 @@ const Button: React.FC<ButtonProps> = ({
       >
         {loading !== true ? (
           <>
-            {iconR && (
-              <i className={`${iconH} ${iconW} absolute right-1`}>
-                <IconMap icon={iconR} key={iconR} />
-              </i>
-            )}
 
             {children}
 
-            {iconL && (
-              <span className={`${iconH} ${iconW} absolute left-1`}>
-                <IconMap icon={iconL} key={iconL} />
-              </span>
-            )}
           </>
         ) : (
           <>

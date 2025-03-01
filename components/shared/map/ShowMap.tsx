@@ -5,10 +5,10 @@ import { MapContainer, Marker, TileLayer, useMapEvents } from 'react-leaflet';
 import { OpenStreetMapProvider } from 'leaflet-geosearch';
 import L, { Icon, LatLngExpression, Map } from 'leaflet';
 import { GetAddress } from '@/app/actions/address';
-import IconMap from '../IconMap';
 import Button from '../button/Button';
 import { useOrder } from '@/app/shoping/ShopingProvider';
-
+import IconGps from "@icons/gps.svg"
+import IconLocation from "@icons/location.svg"
 function LocationMarker({
   setLocation,
 }: {
@@ -153,14 +153,14 @@ export default function ShowMap({
         className={`bg-withe dark:bg-background-2 rounded caption-md md:button-lg w-28 md:w-[156px] text-primary h-8 md:h-10 ${showMiniMap !== undefined ? 'hidden' : 'flex'} items-center justify-center z-[1000] absolute top-4 right-4 cursor-pointer`}
         onClick={() => getUserLocation()}
       >
-        <IconMap icon="gps" />
+        <IconGps width="24" height="24" className="fill-[#417F56]"/>
         <span className="mr-2">موقعیت من</span>
       </div>
 
       <div
         className={`absolute z-[1000] ${showMiniMap !== undefined ? 'hidden' : 'flex'} bottom-[68px] px-1 items-center bg-white dark:bg-background-2 md:bottom-[88px] right-1/2 left-1/2 translate-x-1/2 !w-11/12 max-w-[409px] h-8 md:h-10 rounded overflow-hidden shadow-content-cards`}
       >
-        <IconMap icon="locationShopingGray" />
+        <IconLocation className="fill-[#717171] dark:fill-white w-4 h-4 md:w-6 md:h-6"/>
         <input
           type="text"
           placeholder="جستجوی آدرس..."

@@ -5,11 +5,12 @@ import Image from 'next/image';
 import React from 'react';
 import Button from '../button/Button';
 import { FoodType } from '@/lib/indexType';
-import IconMap from '../IconMap';
 import Link from 'next/link';
 import { OrderBadge, Price, PriceOrder } from './CardFoodNecessary';
 import {useCart} from "@/components/shared/shopingCardProvider";
-
+import IconStar from "@icons/StarRate.svg"
+import IconStarStroke from "@icons/StarStroke.svg"
+import IconHeart from "@icons/Heart.svg"
 function CardFood({
   item,
   isShowForMenu,
@@ -57,7 +58,7 @@ function CardFood({
               </div>
 
               <div className="w-full h-1/2 flex items-center">
-                <IconMap icon="starRate" key={'starRate'} />
+                <IconStar className="w-4 h-4"/>
                 <span className="caption-sm md:button-sm flex">
                   {convertToPersianNumbers(item.rating.toString())}
                   &nbsp;
@@ -155,14 +156,14 @@ function CardFood({
             </div>
           </div>
           <div className="flex items-center justify-between mt-1">
-            <IconMap icon="heartGray" />
+            <IconHeart width="16" height="16" fill="#ADADAD" className="md:hidden"/>
             <div className="flex items-center md:w-full md:justify-between">
               <div className="flex w-20 md:w-28 ml-2">
                 {arrayStarStroke.map((star) => (
-                  <IconMap icon="starStrokeLg" key={star} />
+                  <IconStarStroke width="24" height="24" className="fill-white dark:fill-background-2"/>
                 ))}
                 {arrayStarFill.map((star) => (
-                  <IconMap icon="starRateLg" key={star} />
+                  <IconStar width="24" height="24"/>
                 ))}
               </div>
 

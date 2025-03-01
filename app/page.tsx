@@ -1,7 +1,6 @@
 import Button from '@/components/shared/button/Button';
 import CardTarkhineGardi from '@/components/shared/card/CardTarkhineGardi';
 import MiniCardMenu from '@/components/shared/card/MiniCardMenu';
-import IconMap from '@/components/shared/IconMap';
 import SearchBox from '@/components/shared/searchBox/SearchBox';
 import SwiperMain from '@/components/shared/swiper/swiper';
 import { arraySlideMain, branchs, miniCards } from '@/lib/dataPublic';
@@ -10,6 +9,7 @@ import IconProfile from "@icons/profileIcon.svg"
 import IconDiagram from "@icons/diagram.svg"
 import IconHomeWifi from "@icons/home-wifi.svg"
 import IconMenuBoard from "@icons/menu-board.svg"
+import IconArrowLeft from "@icons/arrow-left.svg"
 async function Home() {
   return (
     <div>
@@ -43,12 +43,13 @@ async function Home() {
             <Button
               btn="stroke"
               theme="White"
-              iconL="arrow-left-white"
               className="h-[32px] w-[152px] md:w-[184px] md:h-10 mt-8 md:mt-4"
-              iconW="w-4 md:w-6"
-              iconH="h-4 md:h-6"
+              
             >
+              <span className='flex items-center'>
               اطلاعات بیشتر
+              <IconArrowLeft className="w-4 h-4 md:w-6 md:h-6 fill-white"/>
+              </span>
             </Button>
           </div>
         </div>

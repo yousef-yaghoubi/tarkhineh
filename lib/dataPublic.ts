@@ -130,7 +130,7 @@ export const navStats = [
     id: 1,
     label: 'صفحه اصلی',
     route: '/',
-    icon: 'navMain',
+    icon: 'IconNavMain',
   },
   {
     id: 2,
@@ -143,7 +143,7 @@ export const navStats = [
       { id: 4, label: 'چالوس', routeQuery: '/branchs/chaloos' },
       { id: 5, label: 'اقدسیه', routeQuery: '/branchs/aghdasie' },
     ],
-    icon: 'navBranchs'
+    icon: 'IconNavBranch'
   },
   {
     id: 3,
@@ -156,25 +156,25 @@ export const navStats = [
       { id: 3, label: 'دسر', routeQuery: 'dessert' },
       { id: 4, label: 'نوشیدنی', routeQuery: 'drink' },
     ],
-    icon: 'navMenu',
+    icon: 'IconNavMenu',
   },
   {
     id: 4,
     label: 'اعطای نمایندگی',
     route: '/represent',
-    icon: 'navRepresent'
+    icon: 'IconNavRepresent'
   },
   {
     id: 5,
     label: 'درباره ما',
     route: '/about',
-    icon: 'navAbout',
+    icon: 'IconNavAbout',
   },
   {
     id: 6,
     label: 'تماس با ما',
     route: '/call',
-    icon: 'navCall'
+    icon: 'IconCallCalling'
   },
 ];
 

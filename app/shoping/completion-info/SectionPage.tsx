@@ -1,5 +1,4 @@
 'use client';
-import IconMap from '@/components/shared/IconMap';
 import { Label } from '@/components/ui/label';
 import { RadioGroupItem, RadioGroup } from '@/components/ui/radio-group';
 import React, { useEffect, useState } from 'react';
@@ -19,7 +18,9 @@ import { AddressUserProps } from '@/lib/indexType';
 import { toast } from 'sonner';
 import BoxOfMain from '../../../components/shared/shopingCart/BoxOfMain';
 import { useOrder } from '../ShopingProvider';
-
+import IconTrukFast from "@icons/truck-fast.svg"
+import IconShopingBag from "@icons/shopping-bag.svg"
+import IconTruk from "@icons/truck.svg"
 const LeafletMap = dynamic(() => import('@/components/shared/map/ShowMap'), {
   ssr: false,
 });
@@ -66,7 +67,7 @@ function SectionPage({
   return (
     <section className="flex flex-col xl:flex-row justify-around items-center xl:items-start w-11/12 max-w-[1500px] mb-12">
       <main className="w-full xl:w-1/2 h-full">
-        <BoxOfMain icon="truk" title="روش تحویل سفارش">
+        <BoxOfMain title={<span className='flex items-center'><IconTruk className="w-4 h-4 md:w-6 md:h-6"/> روش تحویل سفارش</span>}>
           <RadioGroup
             defaultValue="delivery"
             dir="rtl"
@@ -95,7 +96,7 @@ function SectionPage({
                     توسط پیک رستوران ارسال شود.
                   </span>
                 </div>
-                <IconMap icon="trukFast" />
+                <IconTrukFast className="w-4 md:w-6 h-4 md:h-6 fill-[#717171] dark:fill-[#cbcbcb]"/>
               </Label>
             </div>
 
@@ -123,7 +124,7 @@ function SectionPage({
                   </span>
                 </div>
 
-                <IconMap icon="shopingBag" />
+                <IconShopingBag className="w-4 md:w-6 h-4 md:h-6 fill-[#717171] dark:fill-[#cbcbcb]"/>
               </Label>
             </div>
           </RadioGroup>

@@ -5,7 +5,7 @@ import Button from '../button/Button';
 import Modal from '../Modal';
 import { branchs } from '@/lib/dataPublic';
 import Cookies from 'js-cookie';
-
+import IconArrowLeft from "@icons/arrow-left.svg"
 
 interface Props {
   title: string;
@@ -194,11 +194,13 @@ function CardTarkhineGardi({
               btn="stroke"
               className="!w-32 !h-8 md:caption-md invisible opacity-0 group-hover:visible sm:group-hover:opacity-100 mt-2"
               theme="Primary"
-              iconL="arrow-left-primary"
               link={hrefBTN}
               onClickCustom={()=> Cookies.set('branchs', `${title}`)}
-            >
+            > 
+            <span className='flex items-center'>
               صفحه شعبه
+              <IconArrowLeft className="w-4 h-4 md:w-6 md:h-6 fill-primary"/>
+            </span>
             </Button>
           )}
         </div>

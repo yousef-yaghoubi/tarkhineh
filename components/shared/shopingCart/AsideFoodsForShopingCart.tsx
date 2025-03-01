@@ -2,13 +2,15 @@
 import { convertToPersianNumbers } from '@/lib/convertNumberToPersian';
 import React, { useState } from 'react';
 import { Price } from '../card/CardFoodNecessary';
-import IconMap from '../IconMap';
 import Button from '../button/Button';
 import { useCart } from '../shopingCardProvider';
 import { useSession } from 'next-auth/react';
 import { CartFoodForShopingCart } from '@/lib/indexType';
 import QuantityFood from '@/app/shoping/shopingCart/QuantityFood';
 import Modal from '../Modal';
+import IconRemove from "@icons/remove.svg"
+import IconWarning from "@icons/warning-2.svg"
+import IconArrowLeft from "@icons/arrow-left.svg"
 
 const calcOffPrice = (cart: CartFoodForShopingCart[]) => {
   const offerCart = cart.filter((item) => item.order !== 0);
@@ -65,7 +67,7 @@ function AsideFoodsForShopingCart({
           سبد خرید ({convertToPersianNumbers(cart.length.toString())})
         </span>
         <span onClick={() => setIsOpenModel(true)} className="cursor-pointer">
-          <IconMap icon="removeIcon" />
+          <IconRemove className="w-6 h-6"/>
         </span>
       </div>
 
@@ -102,7 +104,7 @@ function AsideFoodsForShopingCart({
           </span>
         </div>
         <div className="caption-sm text-warning flex mt-2">
-          <IconMap icon="warningLg" />
+          <IconWarning width="24" height="24" className="fill-[#A9791C]"/>
           <p className="mr-2">
             هزینه ارسال در ادامه بر اساس آدرس، زمان و نحوه ارسال انتخابی شما
             محاسبه و به این مبلغ اضافه خواهد شد.
@@ -163,7 +165,7 @@ function AsideFoodsForShopingCart({
             "
             >
               <span>تکمیل اطلاعات</span>
-              <IconMap icon="arrow-left-white" />
+              <IconArrowLeft width="24" height="24" fill="white"/>
             </span>
           </Button>
         ) : (

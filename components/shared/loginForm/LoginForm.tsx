@@ -10,7 +10,7 @@ import ErrorMessage from './ErrorMessage';
 import { SchemaLogin } from '@/lib/zod';
 import { signIn } from 'next-auth/react';
 import ButtonBack from '../button/ButtonBack';
-import IconMap from '../IconMap';
+import IconClose from "@icons/CloseIcon.svg"
 
 type loginType = z.infer<typeof SchemaLogin>;
 
@@ -45,7 +45,7 @@ function LoginForm() {
         />
 
         <ButtonBack>
-          <IconMap icon='closeIcon'/>
+          <IconClose className="w-6 h-6 fill-[#717171]"/>
         </ButtonBack>
       </div>
 

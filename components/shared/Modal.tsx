@@ -1,9 +1,8 @@
 'use client';
-import React, { ReactNode, useRef, useState } from 'react';
+import React, { ReactNode} from 'react';
 import Portal from './Portal';
-import IconMap from './IconMap';
 import SwiperImagesModal from './swiper/SwiperImagesModal';
-
+import IconClose from "@icons/CloseIcon.svg"
 interface ImgArray {
   id: number;
   src: string;
@@ -22,8 +21,6 @@ interface ModalProps {
   title?: React.ReactElement;
   desc?: string;
   state?: 'removeShopingCart' | 'showMap' 
-  removeShopingCart?: boolean;
-  showMap?: boolean
 }
 
 const Modal: React.FC<ModalProps> = ({
@@ -34,8 +31,6 @@ const Modal: React.FC<ModalProps> = ({
   title,
   desc,
   state,
-  removeShopingCart,
-  showMap
 }) => {
   if (!isOpen) return null;
   if (images !== undefined) {
@@ -63,15 +58,8 @@ const Modal: React.FC<ModalProps> = ({
                 className={`absolute ${state && state == 'removeShopingCart' ? 'top-[0.8em]' : 'top-4 md:top-5 '} left-4 w-6 h-6 sm:h-10 sm:w-10 sm:top-[0.4em] sm:left-[0.4em] md:w-10 md:left-5 text-gray-600 hover:text-gray-800 focus:outline-none`}
                 aria-label="Close Modal"
               >
-                <span
-                  className={`flex ${state && state == 'removeShopingCart' ? 'md:flex' : 'md:hidden'}`}
-                >
-                  <IconMap icon="closeIcon" />
-                </span>
-                <span
-                  className={`${state && state == 'removeShopingCart' ? 'hidden' : 'hidden md:flex'}`}
-                >
-                  <IconMap icon="closeIconLg" />
+                <span>
+                  <IconClose className="w-6 h-6 md:w-10 md:h-10 fill-gray-7"/>
                 </span>
               </button>
               {title}
