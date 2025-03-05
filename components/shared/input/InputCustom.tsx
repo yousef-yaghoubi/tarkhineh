@@ -6,8 +6,7 @@ import { FieldError } from 'react-hook-form';
 type PropsInput = {
   type: React.ComponentProps<'input'>['type'];
   placeholder: string;
-  className?: React.ComponentProps<'div'>['className'];
-  width: React.ComponentProps<'div'>['className'];
+  classNameParent: React.ComponentProps<'div'>['className'];
   id: string;
   error?: FieldError | undefined;
   disabled?: React.ComponentProps<'input'>['disabled'];
@@ -15,13 +14,13 @@ type PropsInput = {
 
 const InputCustom = forwardRef<HTMLInputElement, PropsInput>(
   (
-    { type, placeholder, className, width, id, error, disabled, ...rest },
+    { type, placeholder, className, classNameParent, id, error, disabled, ...rest },
     ref
   ) => {
     return (
       <div
         className={clsx(
-          `relative flex flex-col justify-center items-center ${width}`
+          `relative flex flex-col justify-center items-center ${classNameParent}`
         )}
       >
         <input

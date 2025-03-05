@@ -1,6 +1,6 @@
 import React from 'react';
 import Tab from './Tab';
-import Badge from './Badge';
+import Badge from '../../components/shared/badge/Badge';
 import SearchBox from '@/components/shared/searchBox/SearchBox';
 import { NavBadgeMenu } from '@/lib/dataPublic';
 import SliderSwiper from '@/components/shared/swiper/SliderSwiper';

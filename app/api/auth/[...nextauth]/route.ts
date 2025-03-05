@@ -61,23 +61,34 @@ export const authOption: AuthOptions = {
   ],
   callbacks: {
     // JWT Callback: Store user data in JWT token
-    async jwt({ token, user }) {
+    async jwt({ token, user, trigger, session } : any) {
       if (user) {
         token.id = user.id;
         token.email = user.email;
         token.name = `${user.firstName || 'کاربر'} ${user.lastName || 'ترخینه'}`;
         token.image = user.profile;
+        token.phone = user.phone;
         token.role = user.role as string;
       }
+
+      if( trigger === "update"){
+        token.email = session.email;
+        token.name = `${session.firstName || 'کاربر'} ${session.lastName || 'ترخینه'}`;
+        token.image = session.profile;
+        token.phone = session.phone;
+        token.role = session.role
+      }
+      
       return token;
     },
     // Session Callback: Attach user data to the session object
     async session({ session, token }) {
-      session.user!.id = token.id as string;
-      session.user!.email = token.email as string;
-      session.user!.name = token.name as string;
-      session.user!.image = token.image as string | null;
-      session.user!.role = token.role as string;
+      session.user.id = token.id as string;
+      session.user.email = token.email as string;
+      session.user.name = token.name as string;
+      session.user.image = token.image as string | null;
+      session.user.role = token.role as string;
+      session.user.phone = token.phone as string
       return session;
     },
   },

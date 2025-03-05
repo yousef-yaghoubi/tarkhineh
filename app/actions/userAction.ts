@@ -4,8 +4,9 @@ import {
   hashingPasswordWithkey,
   verifyHashedPassword,
 } from '@/lib/hashingPass';
-import { SchemaEmail, SchemaLogin, SchemaNewUser } from '@/lib/zod';
+import { SchemaEditProfile, SchemaEmail, SchemaLogin, SchemaNewUser } from '@/lib/zod';
 import prisma from '@/prisma/prismaClient';
+import { getServerSession } from 'next-auth';
 import { signIn } from 'next-auth/react';
 import { z } from 'zod';
 
@@ -191,5 +192,44 @@ export async function SignInGoogle() {
     await signIn('google');
   } catch (error) {
     throw new Error(error as string)
+  }
+}
+
+
+
+export async function UpdateUser(formData : {
+  firstName: string ;
+  lastName: string;
+  email: string;
+  phone: string;
+  birthDay: string;
+  nickName: string
+}) {
+  const session = await getServerSession()
+  try {
+
+    const validation = SchemaEditProfile.safeParse(formData)
+    console.log(validation)
+    if(!validation.success) {
+      return {status: 401, message: 'لطفا اطلاعات درست وارد کنید.', data: null}
+    }
+    const updateUser = await prisma.user.update({
+      where:{
+        email : session!.user.email
+      },
+      data:{
+        email: formData.email,
+        nickName: formData.nickName,
+        firstName: formData.firstName,
+        lastName: formData.lastName,
+        phone: formData.phone,
+        // birthDay: formData.birthDay,
+      }
+    })
+    return {status: 200, message: 'اطلاعات با موفقیت آپدیت شد.', data: updateUser}
+  } catch (error) {
+    console.log(error)
+    return {status: 400, message: 'مشکلی پیش آمده.', data: null}
+    
   }
 }

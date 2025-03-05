@@ -189,6 +189,13 @@ export const NavBadgeMenu: BadgeType[] = [
   { id: 8, title: 'محبوب ترین', url: 'mostPopular' },
 ];
 
+export const NavBadgeOrderTracking: BadgeType[] = [
+  { id: 1, title: 'همه', url: 'all' },
+  { id: 2, title: 'جاری', url: 'current' },
+  { id: 3, title: 'تحویل شده', url: 'delivered' },
+  { id: 4, title: 'لغو شده', url: 'canceled' },
+];
+
 export const ProfileRoute: ProfileRoutes[] = [
   {id:1, title: 'پروفایل',icon: 'IconProfile', url: '/user/profile'},
   {id:2, title: 'پیگیری سفارش',icon: 'IconOrderTracking', url: '/user/order-tracking'},

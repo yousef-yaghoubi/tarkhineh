@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import BoxOfMain from '../../../components/shared/shopingCart/BoxOfMain';
 import ButtonDisabeld from '../ButtonDisabeld';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
@@ -12,9 +12,10 @@ import IconDiscountShape from "@icons/discount-shape.svg"
 import IconCardBank from "@icons/card.svg"
 import IconPaymentMethod from "@icons/payment-method.svg"
 import IconWarning from "@icons/warning-2.svg"
+
 function MainOfPaymentPage() {
   const [sendMethodOnline, setSendMethodOnline] = useState(true);
-  const {updatePayment, order} = useOrder()
+  const {updatePayment} = useOrder()
 
   return (
     <main className="w-full xl:w-1/2 h-full">

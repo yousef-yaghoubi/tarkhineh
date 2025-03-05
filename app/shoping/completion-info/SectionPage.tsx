@@ -172,7 +172,7 @@ function SectionPage({
               type={'text'}
               key={'titleAddress'}
               id={'titleAddress'}
-              width={'w-full md:max-w-[552px]'}
+              classNameParent={'w-full md:max-w-[552px]'}
               placeholder={'عنوان آدرس'}
               className={'h-8 md:h-10'}
               {...register('title')}
@@ -207,7 +207,7 @@ function SectionPage({
                   id={'phone'}
                   type={'text'}
                   placeholder={'شماره همراه'}
-                  width={'w-full md:max-w-[552px]'}
+                  classNameParent={'w-full md:max-w-[552px]'}
                   {...register('phone')}
                   //@ts-ignore
                   error={errors.phone}
@@ -220,7 +220,7 @@ function SectionPage({
                   key={'nameRecipient'}
                   type={'text'}
                   id={'nameRecipient'}
-                  width={'w-full md:max-w-[552px]'}
+                  classNameParent={'w-full md:max-w-[552px]'}
                   {...register('nameRecipient')}
                   // @ts-ignore
                   error={errors.nameRecipient}
@@ -232,7 +232,7 @@ function SectionPage({
                   key={'phoneRecipient'}
                   type={'text'}
                   id={'phoneRecipient'}
-                  width={'w-full md:max-w-[552px] mt-3 md:mt-4'}
+                  classNameParent={'w-full md:max-w-[552px] mt-3 md:mt-4'}
                   {...register('phoneRecipient')}
                   //@ts-ignore
                   error={errors.phoneRecipient}

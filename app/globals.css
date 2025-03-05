@@ -208,3 +208,6 @@ nav[aria-label="Main"] > div > div{
 .mySwiper .swiper-slide-thumb-active .transparentDiv{
   z-index: 0 !important;
 }
+.rmdp-container {
+  width: 100%;
+}

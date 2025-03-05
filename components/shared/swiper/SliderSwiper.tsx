@@ -7,7 +7,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import Comment from '@/components/shared/comment/Comment';
 import { NavBadgeMenu } from '@/lib/dataPublic';
-import Badge from '@/app/menu/Badge';
+import Badge from '@/components/shared/badge/Badge';
 
 import { FoodType } from '@/lib/indexType';
 import dynamic from 'next/dynamic';
