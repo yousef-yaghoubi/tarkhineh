@@ -4,7 +4,6 @@ import { FoodType, OrderState } from "@/lib/indexType";
 import prisma from "@/prisma/prismaClient";
 import { getServerSession } from "next-auth";
 import { authOption } from "../api/auth/[...nextauth]/route";
-import { stat } from "fs";
 
 export interface FoodTypeProp extends FoodType{
   quantity: number
@@ -12,7 +11,6 @@ export interface FoodTypeProp extends FoodType{
 export async function SendOrder({order, cart}: {order: OrderState, cart: FoodTypeProp[]}) {
     const data = await getServerSession(authOption)
     if(!data?.user) return {status: 401, message: 'لطفا لاگین کنید.'};
-
     try {
         const filteredCart = cart.map(({ name, image, price, quantity }) => ({ name, image, price, quantity }));
 
@@ -26,7 +24,7 @@ export async function SendOrder({order, cart}: {order: OrderState, cart: FoodTyp
             data:{
                 branchId: 2,
                 userId: Number(data?.user.id),
-                paymentMethodId: order.payment === 'online' ? 1 : 2,
+                paymentMethodId: order.payment.type === 'online' ? 1 : 2,
                 sendMethodId: order.delivery.type === 'delivery' ? 1 : 2,
                 statusId: 1,
                 foods:{ createMany: {
@@ -39,6 +37,44 @@ export async function SendOrder({order, cart}: {order: OrderState, cart: FoodTyp
         })
 
         return {status:201, message: 'سفارش شما با موفقیت ثبت شد.'}
+    } catch (error) {
+        return {status: 500, message: 'خطایی رخ داده است.'}
+    }
+}
+
+
+export async function GetOrderTracking() {
+    const data = await getServerSession(authOption)
+    if(!data?.user) return {status: 401, message: 'لطفا لاگین کنید.'};
+    try {
+        const order = await prisma.user.findUnique({
+            where:{
+                email: data?.user.email as string
+        },
+        select:{
+            orderTrack: {
+                select:{
+                    date: true,
+                    foods: {
+                        select:{
+                            quantity: true,
+                            food: {
+                                select:{
+                                    name: true,
+                                    image: true,
+                                    price: true
+                                }
+                            }                            
+                        }
+                    },
+                    sendMethod: true,
+                    status: true,
+                }
+            }
+        }
+    })
+
+        return {status: 200, message: '', order}
     } catch (error) {
         return {status: 500, message: 'خطایی رخ داده است.'}
     }
