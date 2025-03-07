@@ -63,7 +63,7 @@ const DatePic = forwardRef<HTMLInputElement, IPropDatePick>(
           </button>
         )}
         className={`green w-full ${windowWidth < 1024 ? 'rmdp-mobile' : ''}`}
-        inputClass="peer w-full border border-gray-4 disabled:!border-[rgb(242,242,242)] dark:border-background-2 h-8 md:h-10 rounded-sm px-2 pt-5 pb-5 text-gray-900 dark:text-gray-100 dark:bg-transparent transition-all duration-300 placeholder-transparent focus:outline-none focus:border-primary focus:dark:border-primary hover:border-gray-8 dark:hover:border-slate-400"
+        inputClass="peer w-full bg-transparent border border-gray-4 disabled:!border-[rgb(242,242,242)] dark:border-background-2 h-8 md:h-10 rounded-sm px-2 pt-5 pb-5 text-gray-900 dark:text-gray-100 dark:bg-transparent transition-all duration-300 placeholder-transparent focus:outline-none focus:border-primary focus:dark:border-primary hover:border-gray-8 dark:hover:border-slate-400"
         calendar={persian}
         locale={persian_fa}
       />

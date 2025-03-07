@@ -30,7 +30,7 @@ const InputCustom = forwardRef<HTMLInputElement, PropsInput>(
           disabled={!!disabled}
           {...rest}
           className={clsx(
-            `peer w-full border border-gray-4 disabled:!border-[rgb(242,242,242)] dark:border-background-2 h-8 md:h-10 rounded-sm px-2 pt-5 pb-5 text-gray-900 dark:text-gray-100 dark:bg-transparent transition-all duration-300 placeholder-transparent focus:outline-none focus:border-primary focus:dark:border-primary hover:border-gray-8 dark:hover:border-slate-400`,
+            `peer w-full border border-gray-4 bg-transparent disabled:!border-[rgb(242,242,242)] dark:border-background-2 h-8 md:h-10 rounded-sm px-2 pt-5 pb-5 text-gray-900 dark:text-gray-100 dark:bg-transparent transition-all duration-300 placeholder-transparent focus:outline-none focus:border-primary focus:dark:border-primary hover:border-gray-8 dark:hover:border-slate-400`,
             className
           )}
           placeholder={placeholder}

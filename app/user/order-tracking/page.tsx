@@ -10,14 +10,17 @@ import IconTrukFast from '@icons/truck-fast.svg';
 import IconTickCircle from '@icons/tick-circle.svg';
 import IconWallet from '@icons/wallet-2.svg';
 import { GetOrderTracking } from '@/app/actions/orderTracking';
+import Image from 'next/image';
+import { convertToPersianNumbers } from '@/lib/convertNumberToPersian';
+import Button from '@/components/shared/button/Button';
 
 async function page() {
-  const orderTrack = await GetOrderTracking()
-  console.log(orderTrack.order)
+  const orderTrack = await GetOrderTracking();
+
   return (
-    <BoxOfMain forUserPage title="سفارشات">
+    <BoxOfMain forUserPage title="سفارشات" className='overflow-hidden'>
       <div className="flex flex-col w-full gap-4">
-        <div className="flex w-fit gap-2 mb-4">
+        <div className="flex w-fit gap-2 mb-4 overflow-scroll">
           {NavBadgeOrderTracking.map((badge) => (
             <Badge
               title={badge.title}
@@ -28,6 +31,7 @@ async function page() {
           ))}
         </div>
         <div className="w-full h-[354px] border border-gray-4 rounded px-3 pt-2 pb-4 md:p-6 md:pt-4 relative">
+
           <div>
             <h3 className="caption-md md:body-sm md:mt-2 text-gray-6">
               شعبه اکباتان
@@ -36,8 +40,9 @@ async function page() {
               <IconCaledar className="w-3 h-3 md:h-4 md:w-4 fill-gray-7" />{' '}
               &nbsp;
               <span>شنبه 8 مرداد، ساعت 18:45</span>&nbsp; &nbsp;
-              <span className='hidden lg:flex'>مبلغ: 228،500 تومان</span>&nbsp; &nbsp;
-              <span className='hidden lg:flex'>تخفیف: 28،500 تومان</span>
+              <span className="hidden lg:flex">مبلغ: 228،500 تومان</span>&nbsp;
+              &nbsp;
+              <span className="hidden lg:flex">تخفیف: 28،500 تومان</span>
             </span>
             <span className="flex caption-sm md:caption-md items-center text-gray-7">
               <IconLocation className="w-3 h-3 md:h-4 md:w-4 fill-gray-7" />
@@ -47,8 +52,8 @@ async function page() {
             <span className="flex caption-sm md:caption-md lg:hidden items-center text-gray-7">
               <IconWallet className="w-3 h-3 md:h-4 md:w-4 fill-gray-7" />
               &nbsp;
-              <span className='flex'>مبلغ: 228،500 تومان</span>&nbsp; &nbsp;
-              <span className='flex'>تخفیف: 28،500 تومان</span>
+              <span className="flex">مبلغ: 228،500 تومان</span>&nbsp; &nbsp;
+              <span className="flex">تخفیف: 28،500 تومان</span>
             </span>
           </div>
 
@@ -107,6 +112,30 @@ async function page() {
               <span className="hidden lg:flex">تحویل سفارش</span>
             </p>
           </div>
+
+          <div className="flex w-full gap-4 overflow-auto mt-4 scrollbar">
+            {orderTrack.order?.orderTrack.map((order) =>
+              order.foods.map((food) => (
+                <div className="flex flex-col min-w-[92px] h-[92px] md:min-w-[123px] md:h-[125px] border border-gray-4 rounded-md overflow-hidden">
+                  <div className="relative w-full h-1/2 md:h-20">
+                    <Image alt="foodImg" src={food.food.image} fill />
+                    <div className="w-fit h-3 md:h-4 bg-white absolute bottom-1 left-1 rounded-[2px] md:rounded flex items-center justify-center caption-sm md:caption-md text-primary p-1">
+                      {convertToPersianNumbers(food.quantity.toString())}×
+                    </div>
+                  </div>
+                  <div className="caption-sm flex flex-col justify-center items-center my-1">
+                    <span>{food.food.name}</span>
+                    <span>
+                      {convertToPersianNumbers(
+                        food.food.price.toLocaleString()
+                      )}
+                    </span>
+                  </div>
+                </div>
+              ))
+            )}
+          </div>
+            <Button btn='stroke' theme='Primary'></Button>
         </div>
       </div>
     </BoxOfMain>

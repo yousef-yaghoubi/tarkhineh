@@ -49,6 +49,24 @@
 }
 
 @layer utilities {
+  .scrollbar::-webkit-scrollbar {
+    @apply w-5 h-1
+  }
+
+  .scrollbar::-webkit-scrollbar-track {
+    @apply rounded bg-transparent
+    /* border-radius: 100vh; */
+    /* background: #f7f4ed; */
+  }
+
+  .scrollbar::-webkit-scrollbar-thumb {
+    @apply bg-gray-2 rounded
+  }
+
+  .scrollbar::-webkit-scrollbar-thumb:hover {
+    @apply bg-gray-3
+    /* background: #c0a0b9; */
+  }
   .activeLink{
     @apply text-primary h5
   }

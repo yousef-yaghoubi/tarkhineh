@@ -7,7 +7,7 @@ function ChildLayout({ children }: { children: React.ReactNode }) {
   const showChild = useContext(CountShowMenuBar);
   return (
     <section className="">
-      <div className="mx-8 my-12 flex gap-6 md:hidden">
+      <div className="mx-1 md:mx-8 my-12 flex gap-6 md:hidden">
         {showChild?.count == 0 ? <MenuBar /> : children}
       </div>
 
