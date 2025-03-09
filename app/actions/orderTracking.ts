@@ -27,6 +27,8 @@ export async function SendOrder({order, cart}: {order: OrderState, cart: FoodTyp
                 paymentMethodId: order.payment.type === 'online' ? 1 : 2,
                 sendMethodId: order.delivery.type === 'delivery' ? 1 : 2,
                 statusId: 1,
+                discount:order.fee.discount,
+                price: order.fee.price,
                 foods:{ createMany: {
                     data: filteredCart.map(({ name, quantity }) => ({
                         foodId: foodItems.find((food) => food.name === name)?.id as number,
@@ -35,6 +37,8 @@ export async function SendOrder({order, cart}: {order: OrderState, cart: FoodTyp
                 }},
             }
         })
+
+        console.log(orderS)
 
         return {status:201, message: 'سفارش شما با موفقیت ثبت شد.'}
     } catch (error) {
@@ -53,6 +57,9 @@ export async function GetOrderTracking() {
         },
         select:{
             orderTrack: {
+                orderBy:{
+                    date: 'desc'
+                },
                 select:{
                     date: true,
                     foods: {
@@ -62,17 +69,20 @@ export async function GetOrderTracking() {
                                 select:{
                                     name: true,
                                     image: true,
-                                    price: true
+                                    price: true,
+                                    order: true
                                 }
                             }                            
                         }
                     },
+                    price: true,
+                    discount: true,
                     sendMethod: true,
                     status: true,
                 }
             }
-        }
-    })
+        },
+    },)
 
         return {status: 200, message: '', order}
     } catch (error) {

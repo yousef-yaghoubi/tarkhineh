@@ -14,10 +14,10 @@ function RenderCardFoods() {
   return (
     <>
       {cart.length == 0 ? (
-        <WithoutCart />
+        <WithoutCart setBorder/>
       ) : (
         <>
-          <main className="w-11/12 max-w-[704px] h-[554px] border border-gray-4 dark:border-background-2 overflow-auto rounded-md items-center hidden md:flex flex-col p-6 gap-4">
+          <main className="w-11/12 max-w-[704px] h-[554px] scrollbar border border-gray-4 dark:border-background-2 overflow-auto rounded-md items-center hidden md:flex flex-col p-6 gap-4">
             {cart.map((food) => (
               <CardFoodShopingCard item={food} />
             ))}

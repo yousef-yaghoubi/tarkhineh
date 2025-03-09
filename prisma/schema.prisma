@@ -114,7 +114,7 @@ model CommentsBranch {
 model Branchs {
   id             Int              @id @default(autoincrement())
   name           String           @unique
-  nickName       String @unique
+  nickName       String           @unique
   address        String
   phones         Json
   openDuration   String
@@ -127,6 +127,8 @@ model OrderTracking {
   id              Int                   @id @default(autoincrement())
   branchId        Int
   foods           FoodOfOrderTracking[]
+  price           Int
+  discount        Int
   userId          Int
   user            User                  @relation(fields: [userId], references: [id])
   date            DateTime              @default(now())
@@ -159,7 +161,7 @@ model PaymentMethod {
 model FoodOfOrderTracking {
   id           Int           @id @default(autoincrement())
   foodId       Int
-  food         Foods        @relation(fields: [foodId], references: [id])
+  food         Foods         @relation(fields: [foodId], references: [id])
   orderTrackId Int
   orderTrack   OrderTracking @relation(fields: [orderTrackId], references: [id])
   quantity     Int

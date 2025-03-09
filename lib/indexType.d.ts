@@ -64,4 +64,6 @@ export type PaymentMethod = {type: 'online', banck: 'tejarat' | 'saderat' | 'sam
 export interface OrderState {
   delivery: DeliveryMethod;
   payment: PaymentMethod;
+  fee : {price: number, discount: number}
 }
+

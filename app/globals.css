@@ -50,7 +50,7 @@
 
 @layer utilities {
   .scrollbar::-webkit-scrollbar {
-    @apply w-5 h-1
+    @apply w-1 h-1
   }
 
   .scrollbar::-webkit-scrollbar-track {

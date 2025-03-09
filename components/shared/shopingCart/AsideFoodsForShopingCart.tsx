@@ -1,6 +1,6 @@
 'use client';
 import { convertToPersianNumbers } from '@/lib/convertNumberToPersian';
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Price } from '../card/CardFoodNecessary';
 import Button from '../button/Button';
 import { useCart } from '../shopingCardProvider';
@@ -8,11 +8,12 @@ import { useSession } from 'next-auth/react';
 import { CartFoodForShopingCart } from '@/lib/indexType';
 import QuantityFood from '@/app/shoping/shopingCart/QuantityFood';
 import Modal from '../Modal';
-import IconRemove from "@icons/remove.svg"
-import IconWarning from "@icons/warning-2.svg"
-import IconArrowLeft from "@icons/arrow-left.svg"
+import IconRemove from '@icons/remove.svg';
+import IconWarning from '@icons/warning-2.svg';
+import IconArrowLeft from '@icons/arrow-left.svg';
+import { useOrder } from '@/app/shoping/ShopingProvider';
 
-const calcOffPrice = (cart: CartFoodForShopingCart[]) => {
+const calcDiscountPrice = (cart: CartFoodForShopingCart[]) => {
   const offerCart = cart.filter((item) => item.order !== 0);
   const allOffer = [
     offerCart.map(
@@ -47,17 +48,22 @@ function AsideFoodsForShopingCart({
   hiddenSection,
   linkBTN,
   onClickCustom,
-  BtnDisabeld
+  BtnDisabeld,
 }: {
   hiddenSection?: number[];
-  linkBTN: string,
-  onClickCustom?: ()=>void,
-  BtnDisabeld?: boolean
+  linkBTN: string;
+  onClickCustom?: () => void;
+  BtnDisabeld?: boolean;
 }) {
   const { cart, clearCart } = useCart();
+  const {updateFee} = useOrder()
   const { status } = useSession();
   const [isOpenModal, setIsOpenModel] = useState(false);
-  
+
+  useEffect(()=> {
+    updateFee({price: calcAllPrice(cart), discount: calcDiscountPrice(cart)})
+  },[cart])
+
   return (
     <aside className=" w-full md:w-11/12 max-w-[704px] xl:max-w-[496px] h-fit flex flex-col mt-10 xl:mt-0 border border-gray-4 dark:border-background-2 rounded-md p-6 text-gray-8 dark:text-gray-1">
       <div
@@ -67,16 +73,19 @@ function AsideFoodsForShopingCart({
           سبد خرید ({convertToPersianNumbers(cart.length.toString())})
         </span>
         <span onClick={() => setIsOpenModel(true)} className="cursor-pointer">
-          <IconRemove className="w-6 h-6"/>
+          <IconRemove className="w-6 h-6" />
         </span>
       </div>
 
       <div
         className={`${hiddenSection?.length && hiddenSection.find((num) => num == 2) ? 'hidden' : 'block'} py-2 !h-48 w-full border-b border-gray-4 dark:border-background-2`}
       >
-        <div className='overflow-auto h-full'> 
+        <div className="overflow-auto h-full">
           {cart.map((food) => (
-            <div key={food.name} className="w-full flex justify-between px-2 items-center even:bg-gray-3 bg-gray-1 dark:bg-background-1 odd:dark:bg-background-2 h-14">
+            <div
+              key={food.name}
+              className="w-full flex justify-between px-2 items-center even:bg-gray-3 bg-gray-1 dark:bg-background-1 odd:dark:bg-background-2 h-14"
+            >
               <div className="flex flex-col">
                 <span className="caption-md">{food.name}</span>
                 <span className="caption-sm text-gray-7 dark:text-gray-5">
@@ -92,7 +101,7 @@ function AsideFoodsForShopingCart({
       <div className="flex justify-between items-center border-b border-gray-4 dark:border-background-2 py-3">
         <span className="body-sm">تخفیف محصولات</span>
         <span className="text-gray-6">
-          <Price price={calcOffPrice(cart)} order={0} />
+          <Price price={calcDiscountPrice(cart)} order={0} />
         </span>
       </div>
 
@@ -104,7 +113,7 @@ function AsideFoodsForShopingCart({
           </span>
         </div>
         <div className="caption-sm text-warning flex mt-2">
-          <IconWarning width="24" height="24" className="fill-[#A9791C]"/>
+          <IconWarning width="24" height="24" className="fill-[#A9791C]" />
           <p className="mr-2">
             هزینه ارسال در ادامه بر اساس آدرس، زمان و نحوه ارسال انتخابی شما
             محاسبه و به این مبلغ اضافه خواهد شد.
@@ -121,7 +130,7 @@ function AsideFoodsForShopingCart({
         </div>
         {status == 'unauthenticated' ? (
           <Button
-            key={"button for login"}
+            key={'button for login'}
             btn="fill"
             theme="Primary"
             className="w-full h-10 mt-5"
@@ -152,25 +161,25 @@ function AsideFoodsForShopingCart({
           </Button>
         ) : status == 'authenticated' ? (
           <Button
-            key={"button for completion"}
+            key={'button for completion'}
             btn="fill"
             theme="Primary"
             className="w-full h-10 mt-5"
             link={linkBTN}
             disabled={BtnDisabeld}
-            onClickCustom={()=> onClickCustom && onClickCustom()}
+            onClickCustom={() => onClickCustom && onClickCustom()}
           >
             <span
               className="flex items-center gap-2
             "
             >
               <span>تکمیل اطلاعات</span>
-              <IconArrowLeft width="24" height="24" fill="white"/>
+              <IconArrowLeft width="24" height="24" fill="white" />
             </span>
           </Button>
         ) : (
           <Button
-            key={"button for loading"}
+            key={'button for loading'}
             btn="fill"
             theme="Primary"
             className="w-full h-10 mt-5"
@@ -180,11 +189,27 @@ function AsideFoodsForShopingCart({
           </Button>
         )}
       </div>
-      <Modal isOpen={isOpenModal} onClose={() => setIsOpenModel(false)} state='removeShopingCart' title={<h3 className='caption-lg md:h7'>حذف محصولات</h3>} desc='همه محصولات سبد خرید شما حذف شود؟'>
-        <div className='flex justify-between gap-4 md:gap-5'>
+      <Modal
+        isOpen={isOpenModal}
+        onClose={() => setIsOpenModel(false)}
+        state="removeShopingCart"
+        title={<h3 className="caption-lg md:h7">حذف محصولات</h3>}
+        desc="همه محصولات سبد خرید شما حذف شود؟"
+      >
+        <div className="flex justify-between gap-4 md:gap-5">
           {/* <Button btn='stroke' theme='Primary' className='w-32 h-8 md:w-[117px] md:h-10'>بازگشت</Button> */}
-          <button className='w-32 h-8 md:w-[117px] md:h-10 rounded border border-primary text-primary' onClick={()=> setIsOpenModel(false)}>بازگشت</button>
-          <button className='w-32 h-8 md:w-[117px] md:h-10 !bg-error-extralight rounded text-error' onClick={()=> clearCart()}>حذف</button>
+          <button
+            className="w-32 h-8 md:w-[117px] md:h-10 rounded border border-primary text-primary"
+            onClick={() => setIsOpenModel(false)}
+          >
+            بازگشت
+          </button>
+          <button
+            className="w-32 h-8 md:w-[117px] md:h-10 !bg-error-extralight rounded text-error"
+            onClick={() => clearCart()}
+          >
+            حذف
+          </button>
         </div>
       </Modal>
     </aside>

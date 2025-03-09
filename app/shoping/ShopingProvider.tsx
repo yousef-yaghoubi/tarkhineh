@@ -1,6 +1,5 @@
 'use client';
 import { createContext, useState, useContext, ReactNode } from 'react';
-import { useCart } from '@/components/shared/shopingCardProvider';
 import { DeliveryMethod, OrderState, PaymentMethod } from '@/lib/indexType';
 
 
@@ -9,6 +8,7 @@ import { DeliveryMethod, OrderState, PaymentMethod } from '@/lib/indexType';
 const initialOrder: OrderState = {
   delivery: { type: 'delivery', address: '' }, // مقدار پیش‌فرض: حضوری بدون شعبه مشخص
   payment: {type: 'online', banck:'saman'}, // مقدار پیش‌فرض: پرداخت اینترنتی
+  fee : {price: 0, discount: 0}
 };
 
 // 📌 نوع توابع مدیریت سفارش
@@ -16,6 +16,7 @@ interface OrderContextType {
   order: OrderState;
   updateDelivery: (delivery: DeliveryMethod) => void;
   updatePayment: (payment: PaymentMethod) => void;
+  updateFee: (fee: {price: number, discount: number}) => void
 }
 
 // 📌 ایجاد کانتکست
@@ -40,8 +41,15 @@ export const OrderProvider = ({ children }: { children: ReactNode }) => {
     }));
   };
 
+  const updateFee = (fee: {price: number, discount: number}) => {
+    setOrder((prev) => ({
+      ...prev,
+      fee,
+    }));
+  };
+
   return (
-    <OrderContext.Provider value={{ order, updateDelivery, updatePayment }}>
+    <OrderContext.Provider value={{ order, updateDelivery, updatePayment, updateFee }}>
       {children}
     </OrderContext.Provider>
   );
