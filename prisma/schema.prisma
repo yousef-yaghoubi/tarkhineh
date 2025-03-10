@@ -163,6 +163,6 @@ model FoodOfOrderTracking {
   foodId       Int
   food         Foods         @relation(fields: [foodId], references: [id])
   orderTrackId Int
-  orderTrack   OrderTracking @relation(fields: [orderTrackId], references: [id])
+  orderTrack   OrderTracking @relation(fields: [orderTrackId], references: [id], onDelete: Cascade)
   quantity     Int
 }

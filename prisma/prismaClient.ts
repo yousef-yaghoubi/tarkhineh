@@ -12,26 +12,44 @@ declare const globalThis: {
 const prisma = globalThis.prismaGlobal ?? prismaClientSingleton()
 
 // prisma.$use(async (params, next) => {
-//   // فقط وقتی مدل "Food" باشد و داده‌ها خوانده شوند
-//   if (params.model === 'OrderTracking' && params.action === 'findMany') {
-//       const result = await next(params);
+//   // بررسی عملیات‌های خواندن (findUnique, findMany, etc.)
+//   if (params.action === 'findUnique' || params.action === 'findMany') {
+//     // اجرای عملیات اصلی و دریافت نتیجه
+//     const result = await next(params);
 
-//       const oneHourAgo = new Date();
-//       oneHourAgo.setHours(oneHourAgo.getHours() - 1);
+//     // اگر نتیجه وجود داشته باشد
+//     if (result) {
+//       // بررسی تاریخ و تغییر وضعیت در صورت نیاز
+//       const updateStatus = async (record: any) => {
+//         const now = new Date();
+//         const recordDate = new Date(record.date);
+//         const oneHourAfter = new Date(recordDate.getTime() + 60 * 60 * 1000); // یک ساعت بعد
+//         // console.log(now)
 
-//       const updatedOrders = await Promise.all(result.map(async (order) => {
-//         if (order.createdAt <= oneHourAgo && order.status === 'available') {
-//           return prisma.orderTracking.update({
-//             where: { id: order.id },
-//                   data: { statusId: 2 }
-//               });
-//           }
-//           return order;
-//         }));
-        
-//         console.log(updatedOrders)
-//       return updatedOrders;
+//         if (now > oneHourAfter && record.statusId == 1) {
+//           await prisma.orderTracking.update({
+//             where: { id: record.id },
+//             data: { statusId: 2 },
+//           });
+//         }
+//       };
+
+//       // اگر نتیجه یک آرایه باشد (مانند findMany)
+//       if (Array.isArray(result)) {
+//         for (const record of result) {
+//           await updateStatus(record);
+//         }
+//       } else {
+//         // اگر نتیجه یک رکورد باشد (مانند findUnique)
+//         await updateStatus(result);
+//       }
+//     }
+
+//     // بازگرداندن نتیجه
+//     return result;
 //   }
+
+//   // برای سایر عملیات‌ها، فقط ادامه بده
 //   return next(params);
 // });
 

@@ -209,7 +209,7 @@ export async function UpdateUser(formData : {
   try {
 
     const validation = SchemaEditProfile.safeParse(formData)
-    console.log(validation)
+    
     if(!validation.success) {
       return {status: 401, message: 'لطفا اطلاعات درست وارد کنید.', data: null}
     }

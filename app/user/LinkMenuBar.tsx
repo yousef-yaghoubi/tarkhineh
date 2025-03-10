@@ -24,7 +24,7 @@ function LinkMenuBar({
       className={`hover:!bg-slate-100 flex h-[38px] items-center rounded dark:hover:!bg-background-2 w-full last:text-red-600 p-2 rounded-r-none ${pathName === route.url ? 'text-primary caption-lg md:body-md border-r-2 last:border-red-600 border-primary' : 'caption-md md:body-sm'}`}
       onClick={async()=> {
         await showChild?.setCount(1)
-        console.log(showChild?.count)
+
       }}
     >
       {IconProf && (

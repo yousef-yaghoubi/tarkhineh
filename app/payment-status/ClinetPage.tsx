@@ -35,7 +35,7 @@ function ClinetPage() {
           btn="fill"
           theme="Primary"
           className="w-2/5 max-w-[152px] md:max-w-none !rounded h-8 md:w-[184px] md:h-10"
-          onClickCustom={() => toast.warning('این عمل در دسترس نیست.')}
+          link='/user/order-tracking'
         >
           پیگیری سفارش
         </Button>

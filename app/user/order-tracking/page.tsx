@@ -15,6 +15,7 @@ import { convertToPersianNumbers } from '@/lib/convertNumberToPersian';
 import Button from '@/components/shared/button/Button';
 import moment from 'jalali-moment';
 import WithoutCart from '@/app/shoping/shopingCart/WithoutCart';
+import ButtonOrder from './ButtonOrder';
 
 async function page() {
   const orderTrack = await GetOrderTracking();
@@ -23,7 +24,7 @@ async function page() {
     <BoxOfMain
       forUserPage
       title="سفارشات"
-      className="overflow-x-hidden overflow-y-scroll scrollbar max-h-[700px]"
+      className="overflow-x-hidden outline-none overflow-y-scroll scrollbar max-h-[700px]"
     >
       <div className="flex flex-col w-full gap-4">
         {orderTrack.order?.orderTrack.length ? (
@@ -54,9 +55,17 @@ async function page() {
                       )}
                     </span>
                     &nbsp; &nbsp;
-                    <span className="hidden lg:flex">مبلغ: {convertToPersianNumbers(order.price.toLocaleString())} تومان</span>
+                    <span className="hidden lg:flex">
+                      مبلغ:{' '}
+                      {convertToPersianNumbers(order.price.toLocaleString())}{' '}
+                      تومان
+                    </span>
                     &nbsp; &nbsp;
-                    <span className="hidden lg:flex">تخفیف: {convertToPersianNumbers(order.discount.toLocaleString())} تومان</span>
+                    <span className="hidden lg:flex">
+                      تخفیف:{' '}
+                      {convertToPersianNumbers(order.discount.toLocaleString())}{' '}
+                      تومان
+                    </span>
                   </span>
                   <span className="flex caption-sm md:caption-md items-center text-gray-7">
                     <IconLocation className="w-3 h-3 md:h-4 md:w-4 fill-gray-7" />
@@ -82,7 +91,9 @@ async function page() {
                         : 'تحویل حضوری'}
                     </div>
 
-                    <div className={`w-fit px-3 py-[2px] caption-sm md:caption-md  ${order.status.name == "current" ? 'bg-warning-extralight text-warning' : order.status.name == "delivered" ? "bg-tint-1 text-primary" : "bg-error-extralight text-error"} rounded flex items-center justify-center`}>
+                    <div
+                      className={`w-fit px-3 py-[2px] caption-sm md:caption-md  ${order.status.name == 'current' ? 'bg-warning-extralight text-warning' : order.status.name == 'delivered' ? 'bg-tint-1 text-primary' : 'bg-error-extralight text-error'} rounded flex items-center justify-center`}
+                    >
                       {order.status.name == 'current'
                         ? 'جاری'
                         : order.status.name == 'delivered'
@@ -162,21 +173,17 @@ async function page() {
                         <span>{food.food.name}</span>
                         <span>
                           {convertToPersianNumbers(
-                            (food.food.price - (food.food.price * food.food.order) / 100).toLocaleString()
+                            (
+                              food.food.price -
+                              (food.food.price * food.food.order) / 100
+                            ).toLocaleString()
                           )}
                         </span>
                       </div>
                     </div>
                   ))}
                 </div>
-
-                <Button
-                  btn="stroke"
-                  theme="Primary"
-                  className={`w-24 h-8 md:w-[123px] flex self-center md:self-end mt-4 caption-md ${order.status.name == 'current' && 'border-red-600 text-red-600 hover:border-red-800 hover:text-red-800'}`}
-                >
-                  {order.status.name == 'current' ? 'لغو سفارش' : 'سفارش مجدد'}
-                </Button>
+                <ButtonOrder order={order} />
               </div>
             ))}
           </>
