@@ -57,7 +57,7 @@ export async function SendOrder({
   }
 }
 
-export async function GetOrderTracking() {
+export async function GetOrderTracking(status: string) {
   const data = await getServerSession(authOption);
   if (!data?.user) return { status: 401, message: 'لطفا لاگین کنید.' };
   try {
@@ -76,39 +76,36 @@ export async function GetOrderTracking() {
       },
     });
 
-    const order = await prisma.user.findUnique({
-      where: {
-        email: data?.user.email as string,
+    const order = await prisma.orderTracking.findMany({
+      where:{
+        userId: Number(data.user.id),
+        statusId: status == "current" ? 1 : status == "delivered" ? 2 : status == "canceled" ? 3 : undefined
+      },
+      orderBy:{
+        date: 'desc'
       },
       select: {
-        orderTrack: {
-          orderBy: {
-            date: 'desc',
-          },
+        id: true,
+        date: true,
+        foods: {
           select: {
-            id: true,
-            date: true,
-            foods: {
+            quantity: true,
+            food: {
               select: {
-                quantity: true,
-                food: {
-                  select: {
-                    name: true,
-                    image: true,
-                    price: true,
-                    order: true,
-                  },
-                },
+                name: true,
+                image: true,
+                price: true,
+                order: true,
               },
             },
-            price: true,
-            discount: true,
-            sendMethod: true,
-            status: true,
           },
         },
+        price: true,
+        discount: true,
+        sendMethod: true,
+        status: true,
       },
-    });
+    })
 
     return { status: 200, message: '', order };
   } catch (error) {
@@ -130,7 +127,7 @@ export async function CancelOrderTrack(id: number) {
       revalidatePath('/user/order-tracking')
       return {status: 200, message: 'سفارش شما با موفقیت لغو شد.'}
     } catch (error) {
-      return {status: 400, message: (error as Error).message}
+      return {status: 400, message: 'لغو سفارش شما با مشکل مواجه شد.'}
     }
 }
 
@@ -164,6 +161,6 @@ export async function AgainSubmitOrderTrack(id: number) {
     revalidatePath('/user/order-tracking')
     return {status: 201, message: 'سفارش شما با موفقیت ثبت شد.'}
   } catch (error) {
-    return {status: 400, message: (error as Error).message}
+    return {status: 400, message: 'سفارش مجدد شما با مشکل مواجه شد.'}
   }
 }

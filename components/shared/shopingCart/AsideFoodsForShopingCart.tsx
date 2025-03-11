@@ -56,13 +56,13 @@ function AsideFoodsForShopingCart({
   BtnDisabeld?: boolean;
 }) {
   const { cart, clearCart } = useCart();
-  const {updateFee} = useOrder()
+  const { updateFee } = useOrder();
   const { status } = useSession();
   const [isOpenModal, setIsOpenModel] = useState(false);
 
-  useEffect(()=> {
-    updateFee({price: calcAllPrice(cart), discount: calcDiscountPrice(cart)})
-  },[cart])
+  useEffect(() => {
+    updateFee({ price: calcAllPrice(cart), discount: calcDiscountPrice(cart) });
+  }, [cart]);
 
   return (
     <aside className=" w-full md:w-11/12 max-w-[704px] xl:max-w-[496px] h-fit flex flex-col mt-10 xl:mt-0 border border-gray-4 dark:border-background-2 rounded-md p-6 text-gray-8 dark:text-gray-1">
@@ -80,7 +80,7 @@ function AsideFoodsForShopingCart({
       <div
         className={`${hiddenSection?.length && hiddenSection.find((num) => num == 2) ? 'hidden' : 'block'} py-2 !h-48 w-full border-b border-gray-4 dark:border-background-2`}
       >
-        <div className="overflow-auto h-full">
+        <div className="overflow-auto h-full scrollbar">
           {cart.map((food) => (
             <div
               key={food.name}

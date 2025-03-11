@@ -12,13 +12,12 @@ import IconWallet from '@icons/wallet-2.svg';
 import { GetOrderTracking } from '@/app/actions/orderTracking';
 import Image from 'next/image';
 import { convertToPersianNumbers } from '@/lib/convertNumberToPersian';
-import Button from '@/components/shared/button/Button';
 import moment from 'jalali-moment';
 import WithoutCart from '@/app/shoping/shopingCart/WithoutCart';
 import ButtonOrder from './ButtonOrder';
 
-async function page() {
-  const orderTrack = await GetOrderTracking();
+async function page({ searchParams }: { searchParams: { [key: string]: string } }) {
+  const orderTrack = await GetOrderTracking(searchParams.status);
 
   return (
     <BoxOfMain
@@ -27,7 +26,7 @@ async function page() {
       className="overflow-x-hidden outline-none overflow-y-scroll scrollbar max-h-[700px]"
     >
       <div className="flex flex-col w-full gap-4">
-        {orderTrack.order?.orderTrack.length ? (
+        {orderTrack.order?.length ? (
           <>
             <div className="flex w-fit gap-2 mb-4 overflow-scroll scrollbar">
               {NavBadgeOrderTracking.map((badge) => (
@@ -39,7 +38,7 @@ async function page() {
                 />
               ))}
             </div>
-            {orderTrack.order?.orderTrack.map((order) => (
+            {orderTrack.order?.map((order) => (
               <div className="w-full h-fit border border-gray-4 rounded px-3 pt-2 pb-4 md:p-6 md:pt-4 relative flex flex-col">
                 <div>
                   <h3 className="caption-md md:body-sm md:mt-2 text-gray-6">
