@@ -6,100 +6,100 @@ import {
   LoginOrSignUpUserWithGoogle,
 } from '@/app/actions/userAction';
 
-
 export const authOption: AuthOptions = {
-  providers: [
-    // Credentials Provider
-    CredentialsProvider({
-      name: 'credentials',
-      credentials: {
-        email: { label: 'Email', type: 'email' },
-        password: { label: 'Password', type: 'password' },
+    providers: [
+      // Credentials Provider
+      CredentialsProvider({
+        name: 'credentials',
+        credentials: {
+          email: { label: 'Email', type: 'email' },
+          password: { label: 'Password', type: 'password' },
+        },
+        async authorize(credentials) {
+  
+          if (credentials == null || credentials == undefined) return null;
+          const { email, password } = credentials;
+  
+          // Check if the user exists in the database
+          const user: null | {
+            id: number;
+            email: string;
+            firstName: string | null;
+            lastName: string | null;
+            profile: string | null;
+            role: string;
+          } = await LoginOrSignUpUserWithCredential({ email, password });
+  
+          return user;
+        },
+      }),
+  
+      // Google Provider
+      GoogleProvider({
+        clientId: process.env.AUTH_GOOGLE_ID as string,
+        clientSecret: process.env.AUTH_GOOGLE_SECRET as string,
+        async profile(profile) {
+          const prof = await profile;
+  
+          //Check if the user already exists based on Google email
+          const user: null | {
+            id: number;
+            email: string;
+            firstName: string | null;
+            lastName: string | null;
+            profile: string | null;
+            role: string;
+          } = await LoginOrSignUpUserWithGoogle(prof);
+  
+          return user;
+        },
+        httpOptions: {
+          timeout: 100000,
+        },
+      }),
+    ],
+    callbacks: {
+      // JWT Callback: Store user data in JWT token
+      async jwt({ token, user, trigger, session } : any) {
+        if (user) {
+          token.id = user.id;
+          token.email = user.email;
+          token.name = `${user.firstName || 'کاربر'} ${user.lastName || 'ترخینه'}`;
+          token.image = user.profile;
+          token.phone = user.phone;
+          token.role = user.role as string;
+        }
+  
+        if( trigger === "update"){
+          token.email = session.email;
+          token.name = `${session.firstName || 'کاربر'} ${session.lastName || 'ترخینه'}`;
+          token.image = session.profile;
+          token.phone = session.phone;
+          token.role = session.role
+        }
+        
+        return token;
       },
-      async authorize(credentials) {
-
-        if (credentials == null || credentials == undefined) return null;
-        const { email, password } = credentials;
-
-        // Check if the user exists in the database
-        const user: null | {
-          id: number;
-          email: string;
-          firstName: string | null;
-          lastName: string | null;
-          profile: string | null;
-          role: string;
-        } = await LoginOrSignUpUserWithCredential({ email, password });
-
-        return user;
+      // Session Callback: Attach user data to the session object
+      async session({ session, token }) {
+        session.user.id = token.id as string;
+        session.user.email = token.email as string;
+        session.user.name = token.name as string;
+        session.user.image = token.image as string | null;
+        session.user.role = token.role as string;
+        session.user.phone = token.phone as string
+        return session;
       },
-    }),
-
-    // Google Provider
-    GoogleProvider({
-      clientId: process.env.AUTH_GOOGLE_ID as string,
-      clientSecret: process.env.AUTH_GOOGLE_SECRET as string,
-      async profile(profile) {
-        const prof = await profile;
-
-        //Check if the user already exists based on Google email
-        const user: null | {
-          id: number;
-          email: string;
-          firstName: string | null;
-          lastName: string | null;
-          profile: string | null;
-          role: string;
-        } = await LoginOrSignUpUserWithGoogle(prof);
-
-        return user;
-      },
-      httpOptions: {
-        timeout: 100000,
-      },
-    }),
-  ],
-  callbacks: {
-    // JWT Callback: Store user data in JWT token
-    async jwt({ token, user, trigger, session } : any) {
-      if (user) {
-        token.id = user.id;
-        token.email = user.email;
-        token.name = `${user.firstName || 'کاربر'} ${user.lastName || 'ترخینه'}`;
-        token.image = user.profile;
-        token.phone = user.phone;
-        token.role = user.role as string;
-      }
-
-      if( trigger === "update"){
-        token.email = session.email;
-        token.name = `${session.firstName || 'کاربر'} ${session.lastName || 'ترخینه'}`;
-        token.image = session.profile;
-        token.phone = session.phone;
-        token.role = session.role
-      }
-      
-      return token;
     },
-    // Session Callback: Attach user data to the session object
-    async session({ session, token }) {
-      session.user.id = token.id as string;
-      session.user.email = token.email as string;
-      session.user.name = token.name as string;
-      session.user.image = token.image as string | null;
-      session.user.role = token.role as string;
-      session.user.phone = token.phone as string
-      return session;
+    session: {
+      strategy: 'jwt', // Use JWT for session management
     },
-  },
-  session: {
-    strategy: 'jwt', // Use JWT for session management
-  },
-  pages: {
-    signIn: '/login',
-  },
-  secret: process.env.NEXTAUTH_SECRET as string,
-};
+    pages: {
+      signIn: '/login',
+    },
+    secret: process.env.NEXTAUTH_SECRET as string,
+  };
+
 const handler = NextAuth(authOption);
 
 export { handler as GET, handler as POST };

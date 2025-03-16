@@ -2,7 +2,7 @@
 import { Label } from '@/components/ui/label';
 import { RadioGroupItem, RadioGroup } from '@/components/ui/radio-group';
 import React, { useEffect, useState } from 'react';
-import RenderAddresses from './RenderAddresses';
+import RenderAddresses from '../../../components/shared/RenderAddresses';
 import TextAreaInfo from './TextAreaInfo';
 import AsideFoodsForShopingCart from '@/components/shared/shopingCart/AsideFoodsForShopingCart';
 import Modal from '@/components/shared/Modal';
@@ -18,15 +18,10 @@ import { AddressUserProps } from '@/lib/indexType';
 import { toast } from 'sonner';
 import BoxOfMain from '../../../components/shared/shopingCart/BoxOfMain';
 import { useOrder } from '../ShopingProvider';
-import IconTrukFast from "@icons/truck-fast.svg"
-import IconShopingBag from "@icons/shopping-bag.svg"
-import IconTruk from "@icons/truck.svg"
-const LeafletMap = dynamic(() => import('@/components/shared/map/ShowMap'), {
-  ssr: false,
-});
-
-
-type AddressFormType = z.infer<typeof SchemaAddress>;
+import IconTrukFast from '@icons/truck-fast.svg';
+import IconShopingBag from '@icons/shopping-bag.svg';
+import IconTruk from '@icons/truck.svg';
+import ModalForAddAddress from '@/components/shared/ModalForAddAddress';
 
 function SectionPage({
   userAddress,
@@ -35,39 +30,23 @@ function SectionPage({
 }) {
   const [isOpenModal, setIsOpenModel] = useState(false);
   const [showAddressBranch, setShowAddressBranch] = useState(false);
-  const [stepShowAddAddress, setStepShowAddAddress] = useState(1);
-  const [checkedInput, setCheckedInput] = useState(false);
   const { order, updateDelivery } = useOrder();
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<AddressFormType>({
-    resolver: zodResolver(SchemaAddress),
-    defaultValues: {
-      checkbox: checkedInput,
-    },
-  });
 
   const handleDataFromChild = (child: boolean) => {
     setIsOpenModel(child);
   };
-  const submitAddress = async (e: AddressFormType) => {
-    const submitAdd = await SendAddress(e);
-    setIsOpenModel(false);
-    if (submitAdd.status == 200) {
-      toast.success(submitAdd.message);
-    } else {
-      toast.warning(submitAdd.message);
-    }
-  };
-
-
 
   return (
     <section className="flex flex-col xl:flex-row justify-around items-center xl:items-start w-11/12 max-w-[1500px] mb-12">
       <main className="w-full xl:w-1/2 h-full">
-        <BoxOfMain title={<span className='flex items-center'><IconTruk className="w-4 h-4 md:w-6 md:h-6"/> روش تحویل سفارش</span>}>
+        <BoxOfMain
+          className=" mb-3 md:mb-6"
+          title={
+            <span className="flex items-center">
+              <IconTruk className="w-4 h-4 md:w-6 md:h-6" /> روش تحویل سفارش
+            </span>
+          }
+        >
           <RadioGroup
             defaultValue="delivery"
             dir="rtl"
@@ -96,7 +75,7 @@ function SectionPage({
                     توسط پیک رستوران ارسال شود.
                   </span>
                 </div>
-                <IconTrukFast className="w-4 md:w-6 h-4 md:h-6 fill-[#717171] dark:fill-[#cbcbcb]"/>
+                <IconTrukFast className="w-4 md:w-6 h-4 md:h-6 fill-[#717171] dark:fill-[#cbcbcb]" />
               </Label>
             </div>
 
@@ -124,7 +103,7 @@ function SectionPage({
                   </span>
                 </div>
 
-                <IconShopingBag className="w-4 md:w-6 h-4 md:h-6 fill-[#717171] dark:fill-[#cbcbcb]"/>
+                <IconShopingBag className="w-4 md:w-6 h-4 md:h-6 fill-[#717171] dark:fill-[#cbcbcb]" />
               </Label>
             </div>
           </RadioGroup>
@@ -144,145 +123,20 @@ function SectionPage({
         />
       </main>
 
-      <AsideFoodsForShopingCart hiddenSection={[]} linkBTN="/shoping/payment" BtnDisabeld={order.delivery.type == 'delivery' && order.delivery.address == '' ? true : false}/>
+      <AsideFoodsForShopingCart
+        hiddenSection={[]}
+        linkBTN="/shoping/payment"
+        BtnDisabeld={
+          order.delivery.type == 'delivery' && order.delivery.address == ''
+            ? true
+            : false
+        }
+      />
 
-      <Modal
-        isOpen={isOpenModal}
-        onClose={() => setIsOpenModel(false)}
-        title={<h6 className="h7">افزودن آدرس</h6>}
-        state="showMap"
-      >
-        {stepShowAddAddress == 1 ? (
-          <div className="w-full h-full">
-            <LeafletMap
-              setStateShow={setStepShowAddAddress}
-              stateAddress={order.delivery.type === 'delivery' ? order.delivery.address : ''}
-              setStateAddress={true}
-            />
-          </div>
-        ) : (
-          <form
-            key={'form'}
-            className={
-              'w-full h-full flex flex-col items-center p-6 relative overflow-auto'
-            }
-            onSubmit={handleSubmit(submitAddress)}
-          >
-            <InputCustom
-              type={'text'}
-              key={'titleAddress'}
-              id={'titleAddress'}
-              classNameParent={'w-full md:max-w-[552px]'}
-              placeholder={'عنوان آدرس'}
-              className={'h-8 md:h-10'}
-              {...register('title')}
-              error={errors.title}
-            />
-            <div className={'mb-2 mt-3 md:mt-4 w-full'}>
-              <input
-                key={'checkbox'}
-                type={'checkbox'}
-                checked={checkedInput}
-                {...register('checkbox')}
-                id={'checkboxInput'}
-                width={'w-full'}
-                onChange={(e) => setCheckedInput(e.target.checked)}
-                className={
-                  'text-primary rounded checked:bg-primary checked:accent-primary appearance-auto border border-primary'
-                }
-              />
-              <label
-                htmlFor={'checkboxInput'}
-                className={'caption-sm md:body-sm mr-1'}
-              >
-                تحویل گیرنده خودم هستم
-              </label>
-            </div>
-
-            {checkedInput ? (
-              <>
-                <InputCustom
-                  dir="ltr"
-                  key={'phone'}
-                  id={'phone'}
-                  type={'text'}
-                  placeholder={'شماره همراه'}
-                  classNameParent={'w-full md:max-w-[552px]'}
-                  {...register('phone')}
-                  //@ts-ignore
-                  error={errors.phone}
-                  defaultValue={'09'}
-                />
-              </>
-            ) : (
-              <>
-                <InputCustom
-                  key={'nameRecipient'}
-                  type={'text'}
-                  id={'nameRecipient'}
-                  classNameParent={'w-full md:max-w-[552px]'}
-                  {...register('nameRecipient')}
-                  // @ts-ignore
-                  error={errors.nameRecipient}
-                  placeholder={'نام و نام خانوادگی تحویل گیرنده'}
-                  className={'h-8 md:h-10'}
-                />
-                <InputCustom
-                  dir="ltr"
-                  key={'phoneRecipient'}
-                  type={'text'}
-                  id={'phoneRecipient'}
-                  classNameParent={'w-full md:max-w-[552px] mt-3 md:mt-4'}
-                  {...register('phoneRecipient')}
-                  //@ts-ignore
-                  error={errors.phoneRecipient}
-                  placeholder={'شماره تماس تحویل گیرنده'}
-                  className={'h-8 md:h-10'}
-                />
-              </>
-            )}
-
-            <TextAreaInfo
-              id={'accurate-address'}
-              key={'address'}
-              placeholder={'آدرس دقیق شما'}
-              {...register('address')}
-              value={order.delivery.type === 'delivery' ? order.delivery.address : ''}
-              onChange={(e) => updateDelivery({ type: 'delivery', address: e.target.value })}
-              className={
-                'w-full h-[100px] md:h-[165px] mt-3 md:mt-4 px-1 py-4 md:p-1 rounded'
-              }
-            />
-            {errors.address?.message && (
-              <span className={'text-red-600 text-sm'}>
-                {errors.address.message}
-              </span>
-            )}
-            <div
-              className={
-                'w-full flex justify-around gap-6 md:gap-5 mt-6 md:mt-4 absolute bottom-4'
-              }
-            >
-              <Button
-                btn={'text'}
-                className={'h-8 md:h-10 !w-5/12 md:min-w-[266px]'}
-                theme={'Primary'}
-                onClickCustom={() => setStepShowAddAddress(1)}
-              >
-                ویرایش آدرس انتخابی
-              </Button>
-
-              <Button
-                btn={'fill'}
-                className={'h-8 md:h-10 !w-5/12 md:min-w-[266px]'}
-                theme={'Primary'}
-              >
-                ثبت آدرس
-              </Button>
-            </div>
-          </form>
-        )}
-      </Modal>
+      <ModalForAddAddress
+        isOpenModal={isOpenModal}
+        setIsOpenModal={setIsOpenModel}
+      />
     </section>
   );
 }

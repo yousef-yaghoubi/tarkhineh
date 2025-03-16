@@ -3,25 +3,11 @@
 import { SchemaAddress } from '@/lib/zod';
 import prisma from '@/prisma/prismaClient';
 import { z } from 'zod';
-import { authOption } from '../api/auth/[...nextauth]/route';
 import { getServerSession } from 'next-auth';
 import { revalidatePath } from 'next/cache';
-
-export async function GetAddress(lat: number, lng: number) {
-  const response = await fetch(
-    `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lng}&format=json`,
-    {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    }
-  );
-  return await response.json();
-}
+import { authOption } from '../api/auth/[...nextauth]/route';
 
 type typeAdrress = z.infer<typeof SchemaAddress>;
-
 export async function SendAddress(props: typeAdrress) {
   const session = await getServerSession(authOption);
   if (session?.user?.email) {
@@ -91,27 +77,6 @@ export async function SendAddress(props: typeAdrress) {
       message: 'برای ثبت آدرس باید لاگین کنید.',
       data: null,
     };
-  }
-}
-
-export async function GetAddressUser() {
-  const session = await getServerSession(authOption);
-  if (session?.user?.email) {
-    try {
-      const response = await prisma.user.findUnique({
-        where: {
-          email: session.user.email,
-        },
-        select: {
-          addresses: true,
-        },
-      });
-      return response;
-    } catch (error) {
-      console.error('Error creating address:', error);
-    }
-  } else {
-    console.error('No user session found.');
   }
 }
 

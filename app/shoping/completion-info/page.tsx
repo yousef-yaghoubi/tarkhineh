@@ -1,12 +1,18 @@
 import React from 'react';
 import SectionPage from './SectionPage';
-import { GetAddressUser } from '@/app/actions/address';
+import { headers } from 'next/headers';
 
 async function page() {
-  const addressUser = await GetAddressUser();
+
+  const addressUser = await fetch('http://localhost:3000/api/address/addressesOfUser', {
+   cache: 'no-store',
+    headers: headers()
+  }).then(res => res).then(result => result.json());
+
+
   return (
     <>
-      <SectionPage userAddress={addressUser?.addresses}/>
+      <SectionPage userAddress={addressUser.addresses}/>
     </>
   );
 }

@@ -2,21 +2,10 @@ import SearchBox from '@/components/shared/searchBox/SearchBox';
 import SwiperMain from '@/components/shared/swiper/swiper';
 import React from 'react';
 import Button from '@/components/shared/button/Button';
-import { cookies } from 'next/headers';
 import { arraySlideMain } from '@/lib/dataPublic';
 import SwiperDeatail from './SwiperDeatail';
 import SliderSwiper from '../../../components/shared/swiper/SliderSwiper';
-import {
-  GetBranch,
-  GetFoodsNotIrani,
-  GetFoodsPopular,
-  GetFoodsSpecial,
-} from '@/app/actions/branchAction';
 import { CommentType } from '@/lib/indexType';
-import CardFoodLoading from '@/components/shared/card/CardFoodLoading';
-import { GetAllFoods } from '@/app/actions/foodAction';
-import { setCookie } from '@/app/actions/setCookieAction';
-import Cookies from 'js-cookie';
 import IconNote from '@icons/note.svg';
 
 interface Foods {
@@ -31,99 +20,101 @@ interface Foods {
 }
 
 async function DynamicBranchs({ params }: { params: { slug: string } }) {
-  // const sertterCookie = async ()=>{
-  //   'use server';
+  const { foods: specialOfferFoods }: { foods: Foods[] | undefined } =
+    await fetch(
+      `http://localhost:3000/api/food?branchName=${params.slug}&filter=${'specialOffer'}&page=${1}`
+    )
+      .then((result) => result)
+      .then((response) => response.json());
 
-  //   const cooki = cookies()
-  //   cooki.set('branch', params.slug, {httpOnly: false})
-  // }
+  const { foods: popularFoods }: { foods: Foods[] | undefined } = await fetch(
+    `http://localhost:3000/api/food?branchName=${params.slug}&filter=${'mostPopular'}&page=${1}`
+  )
+    .then((result) => result)
+    .then((response) => response.json());
 
-  // await sertterCookie()
-  const specialOfferFoods: Foods[] | undefined = await GetAllFoods({
-    branchName: params.slug,
-    filter: 'specialOffer',
-    page: 1,
-  });
-  const popularFoods: Foods[] | undefined = await GetAllFoods({
-    branchName: params.slug,
-    filter: 'mostPopular',
-    page: 1,
-  });
-  const notIraniFoods: Foods[] | undefined = await GetAllFoods({
-    branchName: params.slug,
-    filter: 'non-Iranian',
-    page: 1,
-  });
-  const branchAction = await GetBranch(params.slug);
+  const { foods: notIraniFoods }: { foods: Foods[] | undefined } = await fetch(
+    `http://localhost:3000/api/food?branchName=${params.slug}&filter=${'non-Iranian'}&page=${1}`
+  )
+    .then((result) => result)
+    .then((response) => response.json());
+
+  const { branch: branchAction } = await fetch(
+    `http://localhost:3000/api/branch?branchName=${params.slug}`
+  )
+    .then((result) => result)
+    .then((response) => response.json());
 
   return (
-    <section className="flex flex-col items-center">
-      <SwiperMain slides={arraySlideMain} pagination showBtn />
-      <div className="w-full flex justify-center">
-        <SearchBox classes="w-[90%] mt-4 sm:hidden" />
-      </div>
+    <>
+      <section className="flex flex-col items-center">
+        <SwiperMain slides={arraySlideMain} pagination showBtn />
+        <div className="w-full flex justify-center">
+          <SearchBox classes="w-[90%] mt-4 sm:hidden" />
+        </div>
 
-      <SliderSwiper
-        theme="White"
-        title="پیشنهاد ویژه"
-        foodSlides={specialOfferFoods}
-      />
-      <SliderSwiper
-        theme="Primary"
-        title="غذاهای محبوب"
-        foodSlides={popularFoods}
-      />
-
-      <SliderSwiper
-        theme="White"
-        title="غذاهای غیر ایرانی"
-        foodSlides={notIraniFoods}
-      />
-      <Button
-        btn="stroke"
-        className="w-[152px] h-8 md:w-[184px] md:h-10 caption-lg md:button-lg"
-        theme="Primary"
-        link="/menu"
-      >
-        <span className='flex items-center'>
-          <IconNote className="w-4 h-4 md:w-6 md:h-6 fill-primary" />
-          مشاهده منوی کامل
-        </span>
-      </Button>
-
-      <span className="h6 md:h5 lg:h4 mt-6 md:mt-9 lg:mt-12 mb-3 md:mb-[18px]">
-        {`شعبه ${branchAction?.name}`}
-      </span>
-
-      <SwiperDeatail
-        address={branchAction?.address as string}
-        durition={branchAction?.openDuration as string}
-        images={
-          branchAction?.images as {
-            images: {
-              id: number;
-              alt: string;
-              img: string;
-              imgMobile: string;
-            }[];
-          }
-        }
-        phones={branchAction?.phones as { phones: string[] }}
-      />
-
-      <span className="h6 md:h5 lg:h4 mt-6 md:mt-9 lg:mt-12 mb-3 md:mb-[18px]">
-        نظرات کاربران
-      </span>
-
-      {branchAction?.commentsBranch.length != 0 ? (
         <SliderSwiper
           theme="White"
-          commentSlides={branchAction?.commentsBranch as CommentType[]}
+          title="پیشنهاد ویژه"
+          foodSlides={specialOfferFoods}
         />
-      ) : (
-        <div className="h-16 mt-10">کامنتی وجود ندارد</div>
-      )}
-    </section>
+        <SliderSwiper
+          theme="Primary"
+          title="غذاهای محبوب"
+          foodSlides={popularFoods}
+        />
+
+        <SliderSwiper
+          theme="White"
+          title="غذاهای غیر ایرانی"
+          foodSlides={notIraniFoods}
+        />
+        <Button
+          btn="stroke"
+          className="w-[152px] h-8 md:w-[184px] md:h-10 caption-lg md:button-lg"
+          theme="Primary"
+          link="/menu"
+        >
+          <span className="flex items-center">
+            <IconNote className="w-4 h-4 md:w-6 md:h-6 fill-primary" />
+            مشاهده منوی کامل
+          </span>
+        </Button>
+
+        <span className="h6 md:h5 lg:h4 mt-6 md:mt-9 lg:mt-12 mb-3 md:mb-[18px]">
+          {`شعبه ${branchAction?.name}`}
+        </span>
+
+        <SwiperDeatail
+          address={branchAction?.address as string}
+          durition={branchAction?.openDuration as string}
+          images={
+            branchAction?.images as {
+              images: {
+                id: number;
+                alt: string;
+                img: string;
+                imgMobile: string;
+              }[];
+            }
+          }
+          phones={branchAction?.phones as { phones: string[] }}
+        />
+
+        <span className="h6 md:h5 lg:h4 mt-6 md:mt-9 lg:mt-12 mb-3 md:mb-[18px]">
+          نظرات کاربران
+        </span>
+
+        {branchAction?.commentsBranch.length != 0 ? (
+          <SliderSwiper
+            theme="White"
+            commentSlides={branchAction?.commentsBranch as CommentType[]}
+          />
+        ) : (
+          <div className="h-16 mt-10">کامنتی وجود ندارد</div>
+        )}
+      </section>
+    </>
   );
 }
 

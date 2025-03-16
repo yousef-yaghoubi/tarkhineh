@@ -4,11 +4,10 @@ import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react';
 import { MapContainer, Marker, TileLayer, useMapEvents } from 'react-leaflet';
 import { OpenStreetMapProvider } from 'leaflet-geosearch';
 import L, { Icon, LatLngExpression, Map } from 'leaflet';
-import { GetAddress } from '@/app/actions/address';
 import Button from '../button/Button';
 import { useOrder } from '@/app/shoping/ShopingProvider';
-import IconGps from "@icons/gps.svg"
-import IconLocation from "@icons/location.svg"
+import IconGps from '@icons/gps.svg';
+import IconLocation from '@icons/location.svg';
 function LocationMarker({
   setLocation,
 }: {
@@ -38,7 +37,7 @@ export default function ShowMap({
   const mapRef = useRef<Map>(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [userLocation, setUserLocation] = useState<LatLngExpression>();
-  const {updateDelivery} = useOrder()
+  const { updateDelivery } = useOrder();
 
   useEffect(() => {
     async function getAd() {
@@ -55,15 +54,16 @@ export default function ShowMap({
     getAd();
   }, [userLocation]);
 
-  useEffect(()=>{
-    if(stateAddress) setSearchQuery(stateAddress)
-  }, [stateAddress])
+  useEffect(() => {
+    if (stateAddress) setSearchQuery(stateAddress);
+  }, [stateAddress]);
 
   const getAddress = async (lat: number, lon: number) => {
+    const {response} = await fetch(`/api/address/addressFromApi?lat=${lat}&lon=${lon}`).then(res => res).then(result => result.json())
+
     try {
-      const data = await GetAddress(lat, lon);
-      if (data && data.address) {
-        let address = data.display_name
+      if (response && response.address) {
+        let address = response.display_name
           .split(', ')
           .reverse()
           .join(', ')
@@ -148,19 +148,18 @@ export default function ShowMap({
           </>
         )}
       </MapContainer>
-
       <div
         className={`bg-withe dark:bg-background-2 rounded caption-md md:button-lg w-28 md:w-[156px] text-primary h-8 md:h-10 ${showMiniMap !== undefined ? 'hidden' : 'flex'} items-center justify-center z-[1000] absolute top-4 right-4 cursor-pointer`}
         onClick={() => getUserLocation()}
       >
-        <IconGps width="24" height="24" className="fill-[#417F56]"/>
+        <IconGps width="24" height="24" className="fill-[#417F56]" />
         <span className="mr-2">موقعیت من</span>
       </div>
 
       <div
         className={`absolute z-[1000] ${showMiniMap !== undefined ? 'hidden' : 'flex'} bottom-[68px] px-1 items-center bg-white dark:bg-background-2 md:bottom-[88px] right-1/2 left-1/2 translate-x-1/2 !w-11/12 max-w-[409px] h-8 md:h-10 rounded overflow-hidden shadow-content-cards`}
       >
-        <IconLocation className="fill-[#717171] dark:fill-white w-4 h-4 md:w-6 md:h-6"/>
+        <IconLocation className="fill-[#717171] dark:fill-white w-4 h-4 md:w-6 md:h-6" />
         <input
           type="text"
           placeholder="جستجوی آدرس..."

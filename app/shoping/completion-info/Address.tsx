@@ -7,6 +7,7 @@ import { toast } from 'sonner';
 import { useOrder } from '../ShopingProvider';
 import IconEdit from "@icons/edit-2.svg"
 import IconRemove from "@icons/remove.svg"
+
 function Address({
   prop,
   setIsOpenModel,
