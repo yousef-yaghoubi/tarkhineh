@@ -16,7 +16,7 @@ function Badge(prop: PropsBadge) {
 
   return (
     <Link
-      href={!prop.forOrderTracking ? { pathname: '/menu', query: { ...query, categorie: prop.url }} : {pathname: '/user/order-tracking', query: {...query, status: prop.url}}}
+      href={!prop.forOrderTracking ? { query: { ...query, categorie: prop.url }} : {pathname: '/user/order-tracking', query: {...query, status: prop.url}}}
       className={`bg-gray-3 dark:bg-background-2 h-6 md:h-8 max-w-fit px-2 flex items-center rounded-md cursor-pointer md:rounded-3xl justify-around transition-all duration-300 ${prop.url == categorieQuery ? 'text-primary bg-tint-1 dark:bg-tint-1/70' : 'caption-sm md:text-gray-8 dark:text-gray-3 hover:bg-gray-4'}`}
     >
       <svg

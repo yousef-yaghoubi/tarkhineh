@@ -40,13 +40,11 @@ interface OrderTrackType {
   };
 }
 
-
 async function page({
   searchParams,
 }: {
   searchParams: { [key: string]: string };
 }) {
-
   const orderTrack = (await fetch(
     `http://localhost:3000/api/orderTrack?status=${searchParams.status}`,
     { headers: headers() }
@@ -76,7 +74,7 @@ async function page({
               ))}
             </div>
             {orderTrack.order?.map((order) => (
-              <div className="w-full h-fit border border-gray-4 rounded px-3 pt-2 pb-4 md:p-6 md:pt-4 relative flex flex-col">
+              <div className="w-full h-fit border border-gray-4 dark:border-background-2 rounded px-3 pt-2 pb-4 md:p-6 md:pt-4 relative flex flex-col">
                 <div>
                   <h3 className="caption-md md:body-sm md:mt-2 text-gray-6">
                     شعبه اکباتان
@@ -198,14 +196,14 @@ async function page({
 
                 <div className="flex w-full gap-4 overflow-auto mt-4 scrollbar">
                   {order.foods.map((food) => (
-                    <div className="flex flex-col min-w-[92px] h-[92px] md:min-w-[123px] md:h-[125px] border border-gray-4 rounded-md overflow-hidden">
+                    <div className="flex flex-col min-w-[92px] h-[92px] md:min-w-[123px] md:h-[125px] border border-gray-4 dark:border-background-2 rounded-md overflow-hidden">
                       <div className="relative w-full h-1/2 md:h-20">
                         <Image alt="foodImg" src={food.food.image} fill />
                         <div className="w-fit h-3 md:h-4 bg-white absolute bottom-1 left-1 rounded-[2px] md:rounded flex items-center justify-center caption-sm md:caption-md text-primary p-1">
                           {convertToPersianNumbers(food.quantity.toString())}×
                         </div>
                       </div>
-                      <div className="caption-sm flex flex-col justify-center items-center my-1 text-gray-8">
+                      <div className="caption-sm flex flex-col justify-center items-center my-1 text-gray-8 dark:text-gray-3">
                         <span>{food.food.name}</span>
                         <span>
                           {convertToPersianNumbers(

@@ -16,7 +16,6 @@ async function page({ params }: { params: { id: number } }) {
 
   const arrayStarFill = Array.from({ length: starFill }, (_, i) => i + 1);
   const arrayStarStroke = Array.from({ length: starStroke }, (_, i) => i + 1);
-  console.log(food)
   return (
     <Portal>
       <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 backdrop-blur-sm">

@@ -6,16 +6,16 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import Comment from '@/components/shared/comment/Comment';
-import { NavBadgeMenu } from '@/lib/dataPublic';
+import { NavBadgeMenu, navStats } from '@/lib/dataPublic';
 import Badge from '@/components/shared/badge/Badge';
 
 import { FoodType } from '@/lib/indexType';
 import dynamic from 'next/dynamic';
 import CardFoodLoading from '../card/CardFoodLoading';
 
-const CardFood = dynamic(() => import('@/components/shared/card/CardFood'),{
-  loading: ()=> <CardFoodLoading/>
-})
+const CardFood = dynamic(() => import('@/components/shared/card/CardFood'), {
+  loading: () => <CardFoodLoading />,
+});
 
 interface CommentType {
   id: number;
@@ -39,7 +39,7 @@ interface Props {
   title?: string;
   foodSlides?: FoodType[];
   commentSlides?: CommentType[];
-  badgeSlides?: boolean;
+  badgeSlides?: 'type' | 'sort';
 }
 const SliderSwiper = ({
   theme,
@@ -50,7 +50,7 @@ const SliderSwiper = ({
 }: Props) => {
   return (
     <div
-      className={`${badgeSlides == true ? '!w-full md:!w-3/5 !h-8' : commentSlides !== undefined ? 'h-52 md:h-64 w-full' : 'h-[301px] md:h-[555px] w-full'} flex flex-col overflow-hidden ${
+      className={`${badgeSlides == 'sort' ? '!w-full md:!w-3/5 !h-8' : badgeSlides == 'type' ? '!w-full md:!w-[90%] max-w-[27em] lg:max-w-none !h-8' : commentSlides !== undefined ? 'h-52 md:h-64 w-full' : 'h-[301px] md:h-[555px] w-full'} flex flex-col overflow-hidden ${
         theme == 'Primary' ? 'bg-primary' : 'bg-white dark:bg-background-1'
       }`}
     >
@@ -64,7 +64,7 @@ const SliderSwiper = ({
         </span>
       )}
       <div className="flex">
-        {badgeSlides !== true && (
+        {badgeSlides == undefined && (
           <div
             className={`w-[5%] h-full ${
               theme == 'Primary'
@@ -93,7 +93,7 @@ const SliderSwiper = ({
               ? {
                   200: {
                     slidesPerView: 1.5,
-                  }, 
+                  },
                   400: {
                     slidesPerView: 2,
                   },
@@ -122,7 +122,7 @@ const SliderSwiper = ({
                     slidesPerView: 4.1,
                   },
                 }
-              : badgeSlides == true
+              : badgeSlides !== undefined
                 ? {
                     200: {
                       slidesPerView: 'auto',
@@ -161,9 +161,9 @@ const SliderSwiper = ({
                     },
                   }
           }
-          className={` !overflow-visible w-[90%] ${badgeSlides == true ? 'md:w-full' : 'md:w-11/12'} relative`}
+          className={` !overflow-visible w-[90%] ${badgeSlides !== undefined ? 'md:w-full' : 'md:w-11/12'} relative`}
         >
-          {badgeSlides === true ? (
+          {badgeSlides !== undefined ? (
             <button className="prevSlide absolute right-0 z-20 top-1 justify-center items-center disabled:hidden w-6 h-6 bg-white rounded p-0 border border-gray-4 hidden md:flex">
               <svg
                 width="32"
@@ -210,22 +210,28 @@ const SliderSwiper = ({
                   />
                 </SwiperSlide>
               ))
-            : badgeSlides == true
+            : badgeSlides == 'sort'
               ? NavBadgeMenu.map((badge) => (
                   <SwiperSlide key={badge.id} className="!w-fit mx-2">
                     <Badge title={badge.title} url={badge.url} />
                   </SwiperSlide>
                 ))
-              : foodSlides?.map((item) => (
-                  <SwiperSlide
-                    key={item.id}
-                    className="p-0 !flex justify-center items-center"
-                  >
-                    <CardFood item={item} />
-                  </SwiperSlide>
-                ))}
+              : badgeSlides == 'type'
+                ? navStats.at(2)!.subMain!.map((badge) => (
+                    <SwiperSlide key={badge.id} className="!w-fit mx-2">
+                      <Badge title={badge.label} url={badge.routeQuery} />
+                    </SwiperSlide>
+                  ))
+                : foodSlides?.map((item) => (
+                    <SwiperSlide
+                      key={item.id}
+                      className="p-0 !flex justify-center items-center"
+                    >
+                      <CardFood item={item} />
+                    </SwiperSlide>
+                  ))}
 
-          {badgeSlides === true ? (
+          {badgeSlides !== undefined ? (
             <button className="nextSlide absolute left-0 !z-20 top-1 justify-center items-center disabled:hidden w-6 h-6 bg-white rounded p-0 border border-gray-4 hidden md:flex">
               <svg
                 width="24"
@@ -262,7 +268,7 @@ const SliderSwiper = ({
             }`}
           ></span>
         </Swiper>
-        {badgeSlides !== true && (
+        {badgeSlides == undefined && (
           <div
             className={`w-[5%] h-full ${
               theme == 'Primary'
