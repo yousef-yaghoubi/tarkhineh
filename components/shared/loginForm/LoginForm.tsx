@@ -25,7 +25,6 @@ function LoginForm() {
 
 
   const submitFormLogin = async (e: { email: string; password: string }) => {
-    // SignInCredential(e)
     await signIn('credentials', {
       email: e.email,
       password: e.password,

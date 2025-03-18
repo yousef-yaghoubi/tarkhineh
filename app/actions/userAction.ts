@@ -4,28 +4,15 @@ import {
   hashingPasswordWithkey,
   verifyHashedPassword,
 } from '@/lib/hashingPass';
-import { SchemaEditProfile, SchemaEmail, SchemaLogin, SchemaNewUser } from '@/lib/zod';
+import {
+  SchemaEditProfile,
+  SchemaEmail,
+  SchemaLogin,
+} from '@/lib/zod';
 import prisma from '@/prisma/prismaClient';
 import { getServerSession } from 'next-auth';
-import { signIn } from 'next-auth/react';
 import { z } from 'zod';
 
-export async function GetUser() {
-  try {
-    const users = await prisma.foods.findMany({
-      where: {
-        typeId: 4,
-      },
-      select: {
-        image: true,
-      },
-    });
-
-    return users;
-  } catch (error) {
-    throw new Error(error as string)
-  }
-}
 
 export async function LoginOrSignUpUserWithCredential(formData: {
   email: string;
@@ -80,7 +67,7 @@ export async function LoginOrSignUpUserWithCredential(formData: {
       role: user.role,
     };
   } catch (error) {
-    throw new Error(error as string)
+    throw new Error(error as string);
     return null;
   }
 }
@@ -97,7 +84,6 @@ export async function LoginOrSignUpUserWithGoogle(email: typeEmail) {
       where: { email: email.email },
     });
 
-    
     if (!user) {
       // If the user doesn't exist, create a new one
       user = await prisma.user.create({
@@ -117,119 +103,51 @@ export async function LoginOrSignUpUserWithGoogle(email: typeEmail) {
       role: user.role,
     };
   } catch (error) {
-    throw new Error(error as string)
+    throw new Error(error as string);
     return null;
   }
 }
 
-export async function SubmitNewUser(formData: {
-  email: string;
-  password: string;
-  repassword: string;
-}): Promise<{ status: number; message: string } | undefined> {
-  try {
-    const email = formData.email;
-    const password = formData.password;
-    const repassword = formData.repassword;
 
-    const data = {
-      email,
-      password,
-      repassword,
-    };
-
-    const validating = SchemaNewUser.safeParse(data);
-
-    if (!validating.success) {
-      return { status: 400, message: validating.error.message };
-    }
-
-    const hashPass = await hashingPasswordWithkey(password);
-
-    const chekIsExist = await prisma.user.findUnique({
-      where: {
-        email,
-      },
-    });
-
-    if (!!chekIsExist) {
-      return {
-        status: 400,
-        message: 'این ایمیل از قبل وجود دارد، لطفا لاگین کنید',
-      };
-    }
-
-    await prisma.user.create({
-      data: {
-        email,
-        hashPass,
-      },
-    });
-
-    return { status: 201, message: 'با موفقیت ثبت نام شدید.' };
-  } catch (error) {
-    return { status: 400, message: 'مشکلی پیش آمد، لطفا دوباره تلاش کنید' };
-    throw new Error(error as string)
-  }
-}
-
-export async function SignInCredential(data: {
-  email: string;
-  password: string;
-}) {
-  try {
-    await signIn('credentials', {
-      email: data.email,
-      password: data.password,
-    });
-  } catch (error) {
-    throw new Error(error as string)
-  }
-}
-
-export async function SignInGoogle() {
-  try {
-    await signIn('google');
-  } catch (error) {
-    throw new Error(error as string)
-  }
-}
-
-
-
-export async function UpdateUser(formData : {
-  firstName: string ;
+export async function UpdateUser(formData: {
+  firstName: string;
   lastName: string;
   email: string;
   phone: string;
   birthDay: string;
-  nickName: string
+  nickName: string;
 }) {
-  const session = await getServerSession()
+  const session = await getServerSession();
   try {
+    const validation = SchemaEditProfile.safeParse(formData);
 
-    const validation = SchemaEditProfile.safeParse(formData)
-    
-    if(!validation.success) {
-      return {status: 401, message: 'لطفا اطلاعات درست وارد کنید.', data: null}
+    if (!validation.success) {
+      return {
+        status: 401,
+        message: 'لطفا اطلاعات درست وارد کنید.',
+        data: null,
+      };
     }
     const updateUser = await prisma.user.update({
-      where:{
-        email : session!.user.email
+      where: {
+        email: session!.user.email,
       },
-      data:{
+      data: {
         email: formData.email,
         nickName: formData.nickName,
         firstName: formData.firstName,
         lastName: formData.lastName,
         phone: formData.phone,
         // birthDay: formData.birthDay,
-      }
-    })
-    return {status: 200, message: 'اطلاعات با موفقیت آپدیت شد.', data: updateUser}
+      },
+    });
+    return {
+      status: 200,
+      message: 'اطلاعات با موفقیت آپدیت شد.',
+      data: updateUser,
+    };
   } catch (error) {
-    console.log(error)
-    return {status: 400, message: 'مشکلی پیش آمده.', data: null}
-    
+    console.log(error);
+    return { status: 400, message: 'مشکلی پیش آمده.', data: null };
   }
 }

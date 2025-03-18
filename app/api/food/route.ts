@@ -85,7 +85,7 @@ export async function GET(req: Request) {
     const foods = await prisma.foods.findMany({
       where: {
         branch: {
-          OR: [{name: branchName}, {nickName: branchName}]
+          OR: [{ name: branchName }, { nickName: branchName }],
         },
         typeId: typeIdFoods,
         categorieId: categorieFilter,
@@ -115,8 +115,8 @@ export async function GET(req: Request) {
     revalidatePath('/branchs');
     // @ts-ignore
     return NextResponse.json({
-        foods
-    })
+      foods,
+    });
   } catch (error) {
     console.log(error);
   }

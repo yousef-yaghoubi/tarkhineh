@@ -1,4 +1,3 @@
-import { GetDemoUniqueFood } from '@/app/actions/foodAction';
 import Button from '@/components/shared/button/Button';
 import ButtonBack from '@/components/shared/button/ButtonBack';
 import Portal from '@/components/shared/Portal';
@@ -11,13 +10,13 @@ import IconStar from "@icons/StarRate.svg"
 
 async function page({ params }: { params: { id: number } }) {
   const { id } = params;
-  const food = await GetDemoUniqueFood(Number(id));
+  const food = await fetch(`http://localhost:3000/api/food/uniqeFood?id=${id}`).then(result => result.json());
   const starFill = Math.round(food?.food?.rating as number);
   const starStroke = 5 - starFill;
 
   const arrayStarFill = Array.from({ length: starFill }, (_, i) => i + 1);
   const arrayStarStroke = Array.from({ length: starStroke }, (_, i) => i + 1);
-
+  console.log(food)
   return (
     <Portal>
       <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 backdrop-blur-sm">
@@ -42,10 +41,10 @@ async function page({ params }: { params: { id: number } }) {
               <span className="body-sm md:h7">{food.food!.name}</span>
               <div className="flex justify-end">
                 {arrayStarStroke.map((star) => (
-                  <IconStar/>
+                  <IconStarStroke/>
                 ))}
                 {arrayStarFill.map((star) => (
-                  <IconStarStroke/>
+                <IconStar/>
                 ))}
               </div>
               <span className="caption-sm md:body-sm">{food.food!.desc}</span>

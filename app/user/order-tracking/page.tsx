@@ -9,15 +9,52 @@ import IconHome from '@icons/home.svg';
 import IconTrukFast from '@icons/truck-fast.svg';
 import IconTickCircle from '@icons/tick-circle.svg';
 import IconWallet from '@icons/wallet-2.svg';
-import { GetOrderTracking } from '@/app/actions/orderTracking';
 import Image from 'next/image';
 import { convertToPersianNumbers } from '@/lib/convertNumberToPersian';
 import moment from 'jalali-moment';
 import WithoutCart from '@/app/shoping/shopingCart/WithoutCart';
 import ButtonOrder from './ButtonOrder';
+import { headers } from 'next/headers';
 
-async function page({ searchParams }: { searchParams: { [key: string]: string } }) {
-  const orderTrack = await GetOrderTracking(searchParams.status);
+interface OrderTrackType {
+  id: number;
+  price: number;
+  foods: {
+    quantity: number;
+    food: {
+      order: number;
+      name: string;
+      image: string;
+      price: number;
+    };
+  }[];
+  discount: number;
+  date: Date;
+  sendMethod: {
+    name: string;
+    id: number;
+  };
+  status: {
+    id: number;
+    name: string;
+  };
+}
+
+
+async function page({
+  searchParams,
+}: {
+  searchParams: { [key: string]: string };
+}) {
+
+  const orderTrack = (await fetch(
+    `http://localhost:3000/api/orderTrack?status=${searchParams.status}`,
+    { headers: headers() }
+  ).then((res) => res.json())) as {
+    status: number;
+    message: string;
+    order: OrderTrackType[] | null;
+  };
 
   return (
     <BoxOfMain

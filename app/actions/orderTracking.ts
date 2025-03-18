@@ -57,62 +57,6 @@ export async function SendOrder({
   }
 }
 
-export async function GetOrderTracking(status: string) {
-  const data = await getServerSession(authOption);
-  if (!data?.user) return { status: 401, message: 'لطفا لاگین کنید.' };
-  try {
-    const dateNew = new Date();
-    dateNew.setHours(dateNew.getHours() - 1);
-
-    await prisma.orderTracking.updateMany({
-      where: {
-        statusId: 1,
-        date: {
-          lt: dateNew,
-        },
-      },
-      data: {
-        statusId: 2,
-      },
-    });
-
-    const order = await prisma.orderTracking.findMany({
-      where:{
-        userId: Number(data.user.id),
-        statusId: status == "current" ? 1 : status == "delivered" ? 2 : status == "canceled" ? 3 : undefined
-      },
-      orderBy:{
-        date: 'desc'
-      },
-      select: {
-        id: true,
-        date: true,
-        foods: {
-          select: {
-            quantity: true,
-            food: {
-              select: {
-                name: true,
-                image: true,
-                price: true,
-                order: true,
-              },
-            },
-          },
-        },
-        price: true,
-        discount: true,
-        sendMethod: true,
-        status: true,
-      },
-    })
-
-    return { status: 200, message: '', order };
-  } catch (error) {
-    return { status: 500, message: 'خطایی رخ داده است.' };
-  }
-}
-
 export async function CancelOrderTrack(id: number) {
     try {
       await prisma.orderTracking.update({
