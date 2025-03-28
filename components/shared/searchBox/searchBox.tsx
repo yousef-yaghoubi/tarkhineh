@@ -15,6 +15,8 @@ function SearchBox({
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const search = searchParams.get('search');
+  const categorie = searchParams.get('categorie') || 'all';
+  const params = new URLSearchParams(searchParams);
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter') {
@@ -25,6 +27,7 @@ function SearchBox({
   const handleSearchQuery = async () => {
     const query = await new URLSearchParams({
       search: inputValue!,
+      categorie: categorie!,
     }).toString();
 
     if (forFavorite) {
@@ -55,7 +58,10 @@ function SearchBox({
             fill="none"
             className="ml-2 cursor-pointer"
             xmlns="http://www.w3.org/2000/svg"
-            onClick={() => router.replace(pathname)}
+            onClick={() => {
+              params.delete('search');
+              router.replace(`?${params.toString()}`);
+            }}
           >
             <path
               d="M7.99967 15.1668C4.04634 15.1668 0.833008 11.9535 0.833008 8.00016C0.833008 4.04683 4.04634 0.833496 7.99967 0.833496C11.953 0.833496 15.1663 4.04683 15.1663 8.00016C15.1663 11.9535 11.953 15.1668 7.99967 15.1668ZM7.99967 1.8335C4.59967 1.8335 1.83301 4.60016 1.83301 8.00016C1.83301 11.4002 4.59967 14.1668 7.99967 14.1668C11.3997 14.1668 14.1663 11.4002 14.1663 8.00016C14.1663 4.60016 11.3997 1.8335 7.99967 1.8335Z"

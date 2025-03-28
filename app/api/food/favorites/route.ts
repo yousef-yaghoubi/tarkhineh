@@ -7,7 +7,7 @@ export async function GET(req: Request) {
   const session = await getServerSession(authOption);
   const { searchParams } = new URL(req.url);
   const search = searchParams.get('search');
-  const type = searchParams.get('type') as
+  const type = searchParams.get('categorie') as
     | 'food'
     | 'appetizer'
     | 'dessert'
@@ -51,6 +51,10 @@ export async function GET(req: Request) {
       },
       include: {
         foods: {
+          where: {
+            typeId: typeIdFoods,
+            ...(search && { name: { contains: search } }),
+          },
           include: {
             _count: {
               select: {

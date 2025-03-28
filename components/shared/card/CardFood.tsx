@@ -2,7 +2,7 @@
 
 import { convertToPersianNumbers } from '@/lib/convertNumberToPersian';
 import Image from 'next/image';
-import React from 'react';
+import React, { useState } from 'react';
 import Button from '../button/Button';
 import { FoodType } from '@/lib/indexType';
 import Link from 'next/link';
@@ -22,10 +22,15 @@ function CardFood({
   isShowForMenu?: boolean;
 }) {
   const { addToCart } = useCart();
-
+  const [isRedHeart, setIsRedHeart] = useState(item.isFavorite);
   const handleAddFoodToFavorite = async (id: number) => {
     const addFood = await AddFoodToFavorite(id);
+
     if (addFood.status == 200) {
+      setIsRedHeart(false);
+      toast.success(addFood.message as string);
+    } else if (addFood.status == 201) {
+      setIsRedHeart(true);
       toast.success(addFood.message as string);
     } else {
       toast.warning(addFood.message as string);
@@ -148,10 +153,12 @@ function CardFood({
               width="24"
               height="24"
               // fill={item.isFavorite ? `red` : `#ADADAD`}
-              className={`md:flex hidden ${item.isFavorite ? 'stroke-red-600' : 'fill-[#ADADAD]'}`}
-              onClick={() =>
-                handleAddFoodToFavorite(JSON.parse(JSON.stringify(item.id)))
-              }
+              className={`md:flex hidden ${isRedHeart ? 'stroke-red-600' : 'fill-[#ADADAD]'}`}
+              onClick={async () => {
+                const addOrRemove = await handleAddFoodToFavorite(
+                  JSON.parse(JSON.stringify(item.id))
+                );
+              }}
             />
           </div>
           <div className="mt-2 md:mt-0 flex justify-between">

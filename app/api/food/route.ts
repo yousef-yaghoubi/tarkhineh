@@ -131,7 +131,7 @@ export async function GET(req: Request) {
 
     revalidatePath('/menu');
     revalidatePath('/branchs');
-    // @ts-ignore
+
     return NextResponse.json({
       foods: result,
     });

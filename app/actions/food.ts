@@ -29,7 +29,6 @@ export async function AddFoodToFavorite(id: number) {
     });
 
     if (!favorite) {
-      // Create a favorite record if it doesn't exist
       await prisma.favorite.create({
         data: {
           userId: Number(session.user.id),
@@ -37,7 +36,7 @@ export async function AddFoodToFavorite(id: number) {
         },
       });
     } else {
-      // Check if the food is already in favorites
+
       const isFoodAlreadyInFavorites = favorite.foods.some(
         (food) => food.id === id
       );
@@ -57,15 +56,13 @@ export async function AddFoodToFavorite(id: number) {
         });
 
         revalidatePath('/user/favorites');
-        revalidatePath('/menu');
-        revalidatePath('/branchs');
         return {
           status: 200,
           message: 'محصول با موفقیت از لیست علاقمندی ها حذف شد.',
         };
       }
 
-      // Add the food to favorites
+
       await prisma.favorite.update({
         where: { userId: Number(session.user.id) },
         data: {
@@ -75,9 +72,7 @@ export async function AddFoodToFavorite(id: number) {
     }
 
     revalidatePath('/user/favorites');
-    revalidatePath('/menu');
-    revalidatePath('/branchs');
-    return { status: 200, message: 'محصول با موفقیت به علاقمندی ها اضافه شد.' };
+    return { status: 201, message: 'محصول با موفقیت به علاقمندی ها اضافه شد.' };
   } catch (error) {
     return { status: 400, message: error as string };
   }
