@@ -6,6 +6,8 @@ import { useInView } from 'react-intersection-observer';
 import { FoodType } from '@/lib/indexType';
 import CardFoodLoading from '@/components/shared/card/CardFoodLoading';
 import { useSearchParams } from 'next/navigation';
+import { headers } from 'next/headers';
+import { loadGetInitialProps } from 'next/dist/shared/lib/utils';
 
 const CardFood = dynamic(() => import('@/components/shared/card/CardFood'), {
   loading: () => <CardFoodLoading isShowForMenu key={Math.random()} />,
@@ -33,11 +35,15 @@ function InfiniteScroll() {
   }, [queryType, queryFilter]);
 
   async function loadMoreMovies() {
+    // console.log(cookieBranch, queryFilter, queryType, page);
     const { foods: food } = await fetch(
-      `http://localhost:3000/api/food?branchName=${cookieBranch}&filter=${queryFilter}&type=${queryType}&page=${page}`
+      `http://localhost:3000/api/food?branchName=${cookieBranch}&filter=${queryFilter}&type=${queryType}&page=${page}`, 
+      {
+        credentials: 'include'
+      }
     )
-      .then((result) => result)
-      .then((response) => response.json());
+      .then((response) => response)
+      .then((res) => res.json());
 
     setNumberOfAllFood(food ? food.length : 0);
     if (food?.length) {

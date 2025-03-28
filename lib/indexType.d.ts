@@ -39,6 +39,8 @@ export interface DemoFoodModalType {
 export interface FoodType extends DemoFoodModalType{
   price: number;
   order: number;
+  favorite: null | {id: number},
+  isFavorite : boolean
 }
 
 interface CartFoodForShopingCart extends FoodType{

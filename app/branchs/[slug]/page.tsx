@@ -7,6 +7,10 @@ import SwiperDeatail from './SwiperDeatail';
 import SliderSwiper from '../../../components/shared/swiper/SliderSwiper';
 import { CommentType } from '@/lib/indexType';
 import IconNote from '@icons/note.svg';
+import { headers } from 'next/headers';
+import { getServerSession } from 'next-auth';
+import { authOption } from '@/app/api/auth/[...nextauth]/route';
+import { getCsrfToken, getSession } from 'next-auth/react';
 
 interface Foods {
   id: number;
@@ -22,28 +26,32 @@ interface Foods {
 async function DynamicBranchs({ params }: { params: { slug: string } }) {
   const { foods: specialOfferFoods }: { foods: Foods[] | undefined } =
     await fetch(
-      `http://localhost:3000/api/food?branchName=${params.slug}&filter=${'specialOffer'}&page=${1}`
-    )
-      .then((result) => result)
-      .then((response) => response.json());
+      `http://localhost:3000/api/food?branchName=${params.slug}&filter=${'specialOffer'}&page=${1}`,
+      {
+        method: 'GET',
+        credentials: 'include'
+      }
+    ).then((res) => res.json());
 
   const { foods: popularFoods }: { foods: Foods[] | undefined } = await fetch(
-    `http://localhost:3000/api/food?branchName=${params.slug}&filter=${'mostPopular'}&page=${1}`
-  )
-    .then((result) => result)
-    .then((response) => response.json());
+    `http://localhost:3000/api/food?branchName=${params.slug}&filter=${'mostPopular'}&page=${1}`,
+    {
+      method: 'GET',
+      credentials: 'include'
+    }
+  ).then((response) => response.json());
 
   const { foods: notIraniFoods }: { foods: Foods[] | undefined } = await fetch(
-    `http://localhost:3000/api/food?branchName=${params.slug}&filter=${'non-Iranian'}&page=${1}`
-  )
-    .then((result) => result)
-    .then((response) => response.json());
+    `http://localhost:3000/api/food?branchName=${params.slug}&filter=${'non-Iranian'}&page=${1}`,
+    {
+      method: 'GET',
+      credentials: 'include'
+    }
+  ).then((response) => response.json());
 
   const { branch: branchAction } = await fetch(
     `http://localhost:3000/api/branch?branchName=${params.slug}`
-  )
-    .then((result) => result)
-    .then((response) => response.json());
+  ).then((response) => response.json());
 
   return (
     <>

@@ -9,11 +9,11 @@ function CardFoodLoading({
   }) {
     if (isShowForMenu !== true) {
         return (
-          <div className="w-[168px] md:w-72 h-[231px] md:h-[417px] overflow-hidden rounded-sm relative transition-shadow duration-300 flex flex-col items-center bg-white dark:bg-background-1">
+          <div className="w-[168px] md:w-72 h-[231px] md:h-[417px] overflow-hidden rounded-sm relative transition-shadow  border border-gray-4/20 dark:border-background-2 duration-300 flex flex-col items-center bg-white dark:bg-background-1">
             <Skeleton
               className="w-full !h-[109px] md:!h-[240px]"
             />
-            <div className="absolute bottom-0 h-[calc(100%_-_109px)] md:h-[calc(100%_-_240px)] w-full flex flex-col items-center border border-gray-4/20 dark:border-background-2 !border-t-0 rounded-b">
+            <div className="absolute bottom-0 h-[calc(100%_-_109px)] md:h-[calc(100%_-_240px)] w-full flex flex-col items-center rounded-b">
               <Skeleton className="w-16 md:w-24 h-6 mt-2 md:mt-4"/>
     
               <div className="flex justify-between w-full h-10 md:h-[4.2em] px-2 mt-1 md:mt-4">

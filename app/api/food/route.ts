@@ -1,10 +1,12 @@
 import prisma from '@/prisma/prismaClient';
+import { getServerSession } from 'next-auth';
 import { revalidatePath } from 'next/cache';
-import { NextRequest, NextResponse } from 'next/server';
+import { NextResponse } from 'next/server';
+import { authOption } from '../auth/[...nextauth]/route';
 
 export async function GET(req: Request) {
   const { searchParams } = new URL(req.url);
-
+  const session = await getServerSession(authOption);
   const branchName = searchParams.get('branchName') as string;
   const page = searchParams.get('page') as string;
   const type = searchParams.get('type') as
@@ -104,6 +106,16 @@ export async function GET(req: Request) {
             commentsFood: true,
           },
         },
+        favorite: session?.user.id
+          ? {
+              where: {
+                userId: Number(session.user.id),
+              },
+              select: {
+                id: true,
+              },
+            }
+          : undefined,
       },
       // @ts-ignore
       orderBy: sortingFilter,
@@ -111,13 +123,21 @@ export async function GET(req: Request) {
       take: take,
     });
 
+    const result = foods.map((food)  => ({
+      ...food,
+      // @ts-ignore
+      isFavorite: session?.user.id ? food.favorite !== null : false,
+    }));
+
     revalidatePath('/menu');
     revalidatePath('/branchs');
     // @ts-ignore
     return NextResponse.json({
-      foods,
+      foods: result,
     });
   } catch (error) {
-    console.log(error);
+    return NextResponse.json({
+      foods: null,
+    });
   }
 }

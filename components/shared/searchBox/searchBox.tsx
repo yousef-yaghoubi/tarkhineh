@@ -1,24 +1,24 @@
 'use client';
 import { Input } from '@/components/ui/input';
-import {
-  usePathname,
-  useRouter,
-  useSearchParams,
-} from 'next/navigation';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import React, { useState } from 'react';
 
-function SearchBox({ classes }: { classes: string }) {
+function SearchBox({
+  classes,
+  forFavorite,
+}: {
+  classes: string;
+  forFavorite?: boolean;
+}) {
   const [inputValue, setInputValue] = useState<string>();
   const router = useRouter();
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const search = searchParams.get('search');
 
-  const handleKeyDown = (
-    event: React.KeyboardEvent<HTMLInputElement>
-  ) => {
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter') {
-      handleSearchQuery()
+      handleSearchQuery();
     }
   };
 
@@ -26,7 +26,12 @@ function SearchBox({ classes }: { classes: string }) {
     const query = await new URLSearchParams({
       search: inputValue!,
     }).toString();
-    router.push(`/search?${query}`);
+
+    if (forFavorite) {
+      router.push(`?${query}`);
+    } else {
+      router.push(`/search?${query}`);
+    }
   };
 
   return (
@@ -54,27 +59,27 @@ function SearchBox({ classes }: { classes: string }) {
           >
             <path
               d="M7.99967 15.1668C4.04634 15.1668 0.833008 11.9535 0.833008 8.00016C0.833008 4.04683 4.04634 0.833496 7.99967 0.833496C11.953 0.833496 15.1663 4.04683 15.1663 8.00016C15.1663 11.9535 11.953 15.1668 7.99967 15.1668ZM7.99967 1.8335C4.59967 1.8335 1.83301 4.60016 1.83301 8.00016C1.83301 11.4002 4.59967 14.1668 7.99967 14.1668C11.3997 14.1668 14.1663 11.4002 14.1663 8.00016C14.1663 4.60016 11.3997 1.8335 7.99967 1.8335Z"
-              className='dark:fill-[rgb(171,171,171)] fill-[#353535]'
+              className="dark:fill-[rgb(171,171,171)] fill-[#353535]"
             />
             <path
               d="M6.11357 10.3869C5.9869 10.3869 5.86023 10.3402 5.76023 10.2402C5.5669 10.0469 5.5669 9.7269 5.76023 9.53357L9.53357 5.76023C9.7269 5.5669 10.0469 5.5669 10.2402 5.76023C10.4336 5.95357 10.4336 6.27357 10.2402 6.4669L6.4669 10.2402C6.37357 10.3402 6.24023 10.3869 6.11357 10.3869Z"
-              className='dark:fill-[rgb(171,171,171)] fill-[#353535]'
+              className="dark:fill-[rgb(171,171,171)] fill-[#353535]"
             />
             <path
               d="M9.8869 10.3869C9.76023 10.3869 9.63357 10.3402 9.53357 10.2402L5.76023 6.4669C5.5669 6.27357 5.5669 5.95357 5.76023 5.76023C5.95357 5.5669 6.27357 5.5669 6.4669 5.76023L10.2402 9.53357C10.4336 9.7269 10.4336 10.0469 10.2402 10.2402C10.1402 10.3402 10.0136 10.3869 9.8869 10.3869Z"
-              className='dark:fill-[rgb(171,171,171)] fill-[#353535]'
+              className="dark:fill-[rgb(171,171,171)] fill-[#353535]"
             />
           </svg>
           <span>{search}</span>
         </div>
       )}
-      
+
       <svg
         width="24"
         height="24"
         viewBox="0 0 16 16"
         fill="none"
-        onClick={()=> handleSearchQuery()}
+        onClick={() => handleSearchQuery()}
         xmlns="http://www.w3.org/2000/svg"
         className="absolute left-4 !w-4 !h-4 md:!w-6 md:!h-6 cursor-pointer"
       >

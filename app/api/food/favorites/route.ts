@@ -1,0 +1,73 @@
+import { getServerSession } from 'next-auth';
+import { authOption } from '../../auth/[...nextauth]/route';
+import prisma from '@/prisma/prismaClient';
+import { NextResponse } from 'next/server';
+
+export async function GET(req: Request) {
+  const session = await getServerSession(authOption);
+  const { searchParams } = new URL(req.url);
+  const search = searchParams.get('search');
+  const type = searchParams.get('type') as
+    | 'food'
+    | 'appetizer'
+    | 'dessert'
+    | 'drink'
+    | 'all'
+    | string;
+
+  let typeIdFoods;
+
+  switch (type) {
+    case 'food':
+      typeIdFoods = 1;
+      break;
+    case 'appetizer':
+      typeIdFoods = 2;
+      break;
+    case 'dessert':
+      typeIdFoods = 3;
+      break;
+    case 'drink':
+      typeIdFoods = 4;
+      break;
+    default:
+      break;
+  }
+
+  try {
+    if (session?.user.email) {
+      NextResponse.json({
+        favorites: null,
+      });
+    }
+    const favorites = await prisma.favorite.findUnique({
+      where: {
+        userId: Number(session?.user.id),
+        foods: {
+          some: {
+            typeId: typeIdFoods,
+          },
+        },
+      },
+      include: {
+        foods: {
+          include: {
+            _count: {
+              select: {
+                commentsFood: true,
+              },
+            },
+          },
+        },
+      },
+    });
+
+    return NextResponse.json({
+      favorites,
+    });
+  } catch (error) {
+    NextResponse.json({
+      favorites: null,
+    });
+  }
+}

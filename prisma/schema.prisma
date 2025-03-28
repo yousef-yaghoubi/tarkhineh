@@ -43,17 +43,6 @@ model Favorite {
   foods  Foods[]
 }
 
-model Addresses {
-  id           Int      @id @default(autoincrement())
-  titleAddress String
-  meReciver    Boolean?
-  phone        String
-  nameReciver  String?
-  address      String
-  userId       Int
-  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-}
-
 model Foods {
   id                  Int                   @id @default(autoincrement())
   name                String
@@ -75,6 +64,17 @@ model Foods {
   numberOfSell        Int                   @default(0)
   foodOfOrderTracking FoodOfOrderTracking[]
 }
+model Addresses {
+  id           Int      @id @default(autoincrement())
+  titleAddress String
+  meReciver    Boolean?
+  phone        String
+  nameReciver  String?
+  address      String
+  userId       Int
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
 
 model TypeFood {
   id   Int     @id @default(autoincrement())
