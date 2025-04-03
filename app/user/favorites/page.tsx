@@ -3,6 +3,7 @@ import CardFoodLoading from '@/components/shared/card/CardFoodLoading';
 import SearchBox from '@/components/shared/searchBox/SearchBox';
 import BoxOfMain from '@/components/shared/shopingCart/BoxOfMain';
 import SliderSwiper from '@/components/shared/swiper/SliderSwiper';
+import { FoodType } from '@/lib/indexType';
 import dynamic from 'next/dynamic';
 import { headers } from 'next/headers';
 import Image from 'next/image';
@@ -14,6 +15,7 @@ const CardFood = dynamic(() => import('@/components/shared/card/CardFood'), {
 });
 
 async function page({ searchParams }: { searchParams: {'categorie': string, 'search': string} }) {
+
   const response = await fetch(`http://localhost:3000/api/food/favorites?${searchParams.search && `search=${searchParams.search}`}&categorie=${searchParams.categorie}`, {
     headers: headers(),
   });
@@ -22,24 +24,7 @@ async function page({ searchParams }: { searchParams: {'categorie': string, 'sea
     favorites: {
       id: number;
       userId: number;
-      foods: {
-        id: number;
-        name: string;
-        image: string;
-        desc: string;
-        price: number;
-        order: number;
-        rating: number;
-        typeId: number;
-        categorieId: number;
-        favoriteId: number;
-        branchId: number;
-        _count: {
-          commentsFood: number;
-        };
-        specialOffer: boolean;
-        numberOfSell: number;
-      }[];
+      foods: FoodType[];
     };
   } | null;
 
@@ -59,7 +44,7 @@ async function page({ searchParams }: { searchParams: {'categorie': string, 'sea
             className={`w-full h-fit grid ${data?.favorites?.foods && 'grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3 3xl:grid-cols-4'} justify-items-center gap-x-2 gap-y-4 mt-4 justify-center`}
           >
             {data?.favorites?.foods ? (
-              data?.favorites?.foods?.map((food) => (
+              data?.favorites?.foods.map((food) => (
                 <CardFood item={food} key={food.id} />
               ))
             ) : (

@@ -11,6 +11,7 @@ import { useCart } from '@/components/shared/shopingCardProvider';
 import IconStar from '@icons/StarRate.svg';
 import IconStarStroke from '@icons/StarStroke.svg';
 import IconHeart from '@icons/Heart.svg';
+import IconHeartFill from '@icons/HeartFill.svg';
 import { AddFoodToFavorite } from '@/app/actions/food';
 import { toast } from 'sonner';
 
@@ -23,6 +24,7 @@ function CardFood({
 }) {
   const { addToCart } = useCart();
   const [isRedHeart, setIsRedHeart] = useState(item.isFavorite);
+
   const handleAddFoodToFavorite = async (id: number) => {
     const addFood = await AddFoodToFavorite(id);
 
@@ -57,11 +59,17 @@ function CardFood({
             <div className="w-1/2 h-full flex flex-col justify-between">
               <div
                 className="relative flex items-center cursor-pointer w-fit"
-                onClick={(id) =>
-                  handleAddFoodToFavorite(JSON.parse(JSON.stringify(item.id)))
-                }
+                onClick={() => {
+                  console.log(item.isFavorite);
+                  handleAddFoodToFavorite(item.id);
+                }}
               >
-                <IconHeart className="w-4 h-4 fill-[#ADADAD] ml-1" />
+                {isRedHeart ? (
+                  <IconHeartFill className="w-4 h-4 ml-1 fill-red-600" />
+                ) : (
+                  <IconHeart className="w-4 h-4 ml-1 fill-[#ADADAD]" />
+                )}
+
                 <span className="caption-sm hidden md:flex text-gray-5">
                   افزودن به علاقمندی ها
                 </span>
@@ -149,17 +157,31 @@ function CardFood({
                 fill="#ADADAD"
               />
             </svg> */}
-            <IconHeart
-              width="24"
-              height="24"
-              // fill={item.isFavorite ? `red` : `#ADADAD`}
-              className={`md:flex hidden ${isRedHeart ? 'stroke-red-600' : 'fill-[#ADADAD]'}`}
-              onClick={async () => {
-                const addOrRemove = await handleAddFoodToFavorite(
-                  JSON.parse(JSON.stringify(item.id))
-                );
-              }}
-            />
+            {isRedHeart ? (
+              <IconHeartFill
+                width="24"
+                height="24"
+                // fill={item.isFavorite ? `red` : `#ADADAD`}
+                className="md:flex hidden fill-red-600"
+                onClick={async () => {
+                  await handleAddFoodToFavorite(
+                    JSON.parse(JSON.stringify(item.id))
+                  );
+                }}
+              />
+            ) : (
+              <IconHeart
+                width="24"
+                height="24"
+                // fill={item.isFavorite ? `red` : `#ADADAD`}
+                className="md:flex hidden fill-[#ADADAD]"
+                onClick={async () => {
+                  await handleAddFoodToFavorite(
+                    JSON.parse(JSON.stringify(item.id))
+                  );
+                }}
+              />
+            )}
           </div>
           <div className="mt-2 md:mt-0 flex justify-between">
             <p className="caption-sm md:body-sm text-gray-8 dark:text-gray-4 w-8/12 whitespace-nowrap overflow-hidden text-ellipsis md:whitespace-normal md:overflow-auto md:text-balance">
@@ -178,26 +200,39 @@ function CardFood({
             </div>
           </div>
           <div className="flex items-center justify-between mt-1">
-            <IconHeart
-              width="16"
-              height="16"
-              fill="#ADADAD"
-              className="md:hidden"
-              onClick={() =>
-                handleAddFoodToFavorite(JSON.parse(JSON.stringify(item.id)))
-              }
-            />
+            {isRedHeart ? (
+              <IconHeartFill
+                width="16"
+                height="16"
+                fill="#ADADAD"
+                className="md:hidden fill-red-600"
+                onClick={() =>
+                  handleAddFoodToFavorite(JSON.parse(JSON.stringify(item.id)))
+                }
+              />
+            ) : (
+              <IconHeart
+                width="16"
+                height="16"
+                fill="#ADADAD"
+                className="md:hidden fill-[#ADADAD]"
+                onClick={() =>
+                  handleAddFoodToFavorite(JSON.parse(JSON.stringify(item.id)))
+                }
+              />
+            )}
             <div className="flex items-center md:w-full md:justify-between">
               <div className="flex w-20 md:w-28 ml-2">
                 {arrayStarStroke.map((star) => (
                   <IconStarStroke
+                    key={star}
                     width="24"
                     height="24"
                     className="fill-white dark:fill-background-2"
                   />
                 ))}
                 {arrayStarFill.map((star) => (
-                  <IconStar width="24" height="24" />
+                  <IconStar width="24" height="24" key={star}/>
                 ))}
               </div>
 

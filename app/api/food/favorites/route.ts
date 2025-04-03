@@ -66,11 +66,17 @@ export async function GET(req: Request) {
       },
     });
 
+    const result = favorites?.foods.map((food)  => ({
+      ...food,
+      isFavorite: true,
+    }));  
+
+
     return NextResponse.json({
-      favorites,
+      favorites: {...favorites, foods: result},
     });
   } catch (error) {
-    NextResponse.json({
+    return NextResponse.json({
       favorites: null,
     });
   }

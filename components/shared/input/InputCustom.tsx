@@ -1,15 +1,15 @@
-import React, { forwardRef } from 'react';
+import React, { ComponentProps, forwardRef } from 'react';
 import { clsx } from 'clsx';
 import ErrorMessage from '../loginForm/ErrorMessage';
 import { FieldError } from 'react-hook-form';
 
 type PropsInput = {
-  type: React.ComponentProps<'input'>['type'];
+  type: ComponentProps<'input'>['type'];
   placeholder: string;
-  classNameParent: React.ComponentProps<'div'>['className'];
+  classNameParent: ComponentProps<'div'>['className'];
   id: string;
   error?: FieldError | undefined;
-  disabled?: React.ComponentProps<'input'>['disabled'];
+  disabled?: ComponentProps<'input'>['disabled'];
 } & Partial<React.InputHTMLAttributes<HTMLInputElement>>;
 
 const InputCustom = forwardRef<HTMLInputElement, PropsInput>(

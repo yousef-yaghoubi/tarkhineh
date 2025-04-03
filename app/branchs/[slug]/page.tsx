@@ -29,7 +29,7 @@ async function DynamicBranchs({ params }: { params: { slug: string } }) {
       `http://localhost:3000/api/food?branchName=${params.slug}&filter=${'specialOffer'}&page=${1}`,
       {
         method: 'GET',
-        credentials: 'include'
+        headers: headers(),
       }
     ).then((res) => res.json());
 
@@ -37,7 +37,7 @@ async function DynamicBranchs({ params }: { params: { slug: string } }) {
     `http://localhost:3000/api/food?branchName=${params.slug}&filter=${'mostPopular'}&page=${1}`,
     {
       method: 'GET',
-      credentials: 'include'
+      headers: headers(),
     }
   ).then((response) => response.json());
 
@@ -45,7 +45,7 @@ async function DynamicBranchs({ params }: { params: { slug: string } }) {
     `http://localhost:3000/api/food?branchName=${params.slug}&filter=${'non-Iranian'}&page=${1}`,
     {
       method: 'GET',
-      credentials: 'include'
+      headers: headers(),
     }
   ).then((response) => response.json());
 

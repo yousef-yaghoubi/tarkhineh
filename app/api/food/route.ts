@@ -117,15 +117,19 @@ export async function GET(req: Request) {
             }
           : undefined,
       },
-      // @ts-ignore
-      orderBy: sortingFilter,
+      orderBy: sortingFilter
+        ? 'rating' in sortingFilter
+          ? { rating: sortingFilter.rating === 'asc' ? 'asc' : 'desc' }
+          : 'price' in sortingFilter
+            ? { price: sortingFilter.price === 'asc' ? 'asc' : 'desc' }
+            : undefined
+        : undefined,
       skip: skip,
       take: take,
     });
 
-    const result = foods.map((food)  => ({
+    const result = foods.map((food) => ({
       ...food,
-      // @ts-ignore
       isFavorite: session?.user.id ? food.favorite !== null : false,
     }));
 
