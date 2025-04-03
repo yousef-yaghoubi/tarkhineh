@@ -100,7 +100,7 @@ function page() {
 
       <div className="max-w-[925px] w-full flex flex-col">
         <h4 className="h6 md:h4 text-center">دریافت مشاوره</h4>
-        <div className="w-full gap-x-6 gap-y-3 mt-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 px-4">
+        <form className="w-full gap-x-6 gap-y-3 mt-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 px-4">
           <InputCustom
             type="text"
             classNameParent="h-10 w-full"
@@ -120,7 +120,7 @@ function page() {
             id="time"
           />
           <ClientButton/>
-        </div>
+        </form>
       </div>
     </div>
   );
