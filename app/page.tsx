@@ -5,15 +5,15 @@ import SearchBox from '@/components/shared/searchBox/SearchBox';
 import SwiperMain from '@/components/shared/swiper/swiper';
 import { arraySlideMain, branchs, miniCards } from '@/lib/dataPublic';
 import React from 'react';
-import IconProfile from "@icons/profileIcon.svg"
-import IconDiagram from "@icons/diagram.svg"
-import IconHomeWifi from "@icons/home-wifi.svg"
-import IconMenuBoard from "@icons/menu-board.svg"
-import IconArrowLeft from "@icons/arrow-left.svg"
+import IconProfile from '@icons/profileIcon.svg';
+import IconDiagram from '@icons/diagram.svg';
+import IconHomeWifi from '@icons/home-wifi.svg';
+import IconMenuBoard from '@icons/menu-board.svg';
+import IconArrowLeft from '@icons/arrow-left.svg';
 async function Home() {
   return (
     <div>
-      <SwiperMain slides={arraySlideMain} pagination showBtn/>
+      <SwiperMain slides={arraySlideMain} pagination showBtn />
       <div className="w-full flex justify-center">
         <SearchBox classes="w-[90%] mt-4 sm:hidden" />
       </div>
@@ -44,11 +44,10 @@ async function Home() {
               btn="stroke"
               theme="White"
               className="h-[32px] w-[152px] md:w-[184px] md:h-10 mt-8 md:mt-4"
-              
             >
-              <span className='flex items-center'>
-              اطلاعات بیشتر
-              <IconArrowLeft className="w-4 h-4 md:w-6 md:h-6 fill-white"/>
+              <span className="flex items-center">
+                اطلاعات بیشتر
+                <IconArrowLeft className="w-4 h-4 md:w-6 md:h-6 fill-white" />
               </span>
             </Button>
           </div>
@@ -56,28 +55,28 @@ async function Home() {
 
         <div className="grid grid-cols-2 text-white gap-y-4">
           <div className="flex flex-col justify-center items-center">
-            <IconProfile fill="white" className="w-6 h-6 md:w-12 md:h-12"/>
+            <IconProfile fill="white" className="w-6 h-6 md:w-12 md:h-12" />
             <span className="caption-md md:caption-lg lg:body-xl mt-1">
               پرسنلی مجرب و حرفه‌ای
             </span>
           </div>
 
           <div className="flex flex-col justify-center items-center">
-            <IconDiagram fill="white" className="w-6 h-6 md:w-12 md:h-12"/>
+            <IconDiagram fill="white" className="w-6 h-6 md:w-12 md:h-12" />
             <span className="caption-md md:caption-lg lg:body-xl mt-1">
               کیفیت بالای غذا ها
             </span>
           </div>
 
           <div className="flex flex-col justify-center items-center">
-            <IconHomeWifi fill="white" className="w-6 h-6 md:w-12 md:h-12"/>
+            <IconHomeWifi fill="white" className="w-6 h-6 md:w-12 md:h-12" />
             <span className="caption-md md:caption-lg lg:body-xl mt-1">
               محیطی دلنشین و آرام
             </span>
           </div>
 
           <div className="flex flex-col justify-center items-center">
-            <IconMenuBoard fill="white" className="w-6 h-6 md:w-12 md:h-12"/>
+            <IconMenuBoard fill="white" className="w-6 h-6 md:w-12 md:h-12" />
             <span className="caption-md md:caption-lg lg:body-xl mt-1">
               منوی متنوع
             </span>
@@ -90,6 +89,7 @@ async function Home() {
         <div className="flex flex-col sm:grid sm:grid-cols-2 sm:gap-6 xl:grid-cols-4">
           {branchs.map((branch) => (
             <CardTarkhineGardi
+              showType="normal"
               title={branch.title}
               desc={branch.desc}
               hrefBTN={`/branchs/${branch.nickName}`}

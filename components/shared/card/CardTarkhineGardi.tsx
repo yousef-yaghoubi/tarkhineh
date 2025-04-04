@@ -5,19 +5,22 @@ import Button from '../button/Button';
 import Modal from '../Modal';
 import { branchs } from '@/lib/dataPublic';
 import Cookies from 'js-cookie';
-import IconArrowLeft from "@icons/arrow-left.svg"
+import IconArrowLeft from '@icons/arrow-left.svg';
+import { convertToPersianNumbers } from '@/lib/convertNumberToPersian';
+import { toast } from 'sonner';
 
 interface Props {
   title: string;
   desc: string;
   img: string;
   hrefBTN?: string;
-  className?: ComponentProps<"div">["className"];
+  className?: ComponentProps<'div'>['className'];
   showBTN?: boolean;
   id: number;
-  smallShow?: boolean;
-  click?: MouseEventHandler<HTMLDivElement>
+  showType: 'small' | 'normal' | 'contactPage';
+  onClickCustom?: MouseEventHandler<HTMLDivElement>;
 }
+
 function CardTarkhineGardi({
   title,
   desc,
@@ -26,20 +29,20 @@ function CardTarkhineGardi({
   className,
   showBTN,
   id,
-  smallShow,
-  click
+  showType,
+  onClickCustom,
 }: Props) {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  let empty;
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
-  if (smallShow) {
-    return(
+
+  if (showType == 'small') {
+    return (
       <div
         className={`w-11/12 min-w-72 !h-20 md:min-w-[170px] md:!w-44 md:!h-[260px] rounded-sm border-gray-4 dark:border-[rgb(64,65,66)]  ${
           showBTN !== undefined ? 'group' : ''
-        } selection:border-primary transition-all overflow-hidden border flex justify-between mt-3 hover:shadow-cards duration-300 ${ showBTN !== undefined ? ' sm:w-72 sm:h-[344px] sm:flex-col' : ' md:w-72 md:h-[344px] md:flex-col'}`}
-        onClick={click}
+        } selection:border-primary transition-all overflow-hidden border flex justify-between mt-3 hover:shadow-cards duration-300 ${showBTN !== undefined ? ' sm:w-72 sm:h-[344px] sm:flex-col' : ' md:w-72 md:h-[344px] md:flex-col'}`}
+        onClick={onClickCustom}
       >
         <div
           className={`relative w-[114px] h-full ${
@@ -107,8 +110,8 @@ function CardTarkhineGardi({
           </p>
         </div>
       </div>
-    )
-  } else {
+    );
+  } else if (showType == 'normal') {
     return (
       <div
         className={`w-full ${className}  h-[85px] rounded-sm border-gray-4 dark:border-[rgb(64,65,66)]  ${
@@ -195,15 +198,98 @@ function CardTarkhineGardi({
               className="!w-32 !h-8 md:caption-md invisible opacity-0 group-hover:visible sm:group-hover:opacity-100 mt-2"
               theme="Primary"
               link={hrefBTN}
-              onClickCustom={()=> Cookies.set('branchs', `${title}`)}
-            > 
-            <span className='flex items-center'>
-              صفحه شعبه
-              <IconArrowLeft className="w-4 h-4 md:w-6 md:h-6 fill-primary"/>
-            </span>
+              onClickCustom={() => Cookies.set('branchs', `${title}`)}
+            >
+              <span className="flex items-center">
+                صفحه شعبه
+                <IconArrowLeft className="w-4 h-4 md:w-6 md:h-6 fill-primary" />
+              </span>
             </Button>
           )}
         </div>
+      </div>
+    );
+  } else if (showType == 'contactPage') {
+    return (
+      <div className="group h-fit pb-2 min-h-[252px] md:h-[280px] w-10/12 rounded border border-gray-4 flex flex-col md:flex-row overflow-hidden relative">
+        <div className="relative w-full h-[112px] md:w-1/2 md:h-full">
+          <Image alt={title} src={img} fill />
+          <div
+            className="w-full h-full z-30 !bg-[rgba(0,0,0,0.6)] absolute top-0 flex opacity-0  duration-500 transition-all ease-in-out  justify-center items-center sm:group-hover:opacity-100 cursor-pointer"
+            onClick={openModal}
+          >
+            <div className="relative w-[52px] h-[52px] flex justify-center items-center">
+              <Image
+                src="/icons/backIcon1.png"
+                alt="back1"
+                width={58}
+                height={58}
+                className="absolute"
+              />
+              <Image
+                src="/icons/backIcon2.png"
+                alt="back1"
+                width={42}
+                height={42}
+                className="absolute"
+              />
+              <Image
+                src="/icons/gallery.png"
+                alt="gallery"
+                width={32}
+                height={32}
+                className="absolute"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div className="flex flex-col w-full h-[calc(100%_-_112px)] md:w-1/2 md:h-full text-center">
+          <div className="mt-1 md:mt-6 flex flex-col items-center">
+            <h5 className="text-gray-8 caption-md md:h6 lg:h7">شعبه {title}</h5>
+            <span className="mt-1 md:mt-6 text-gray-7 caption-sm md:body-sm lg:body-md xl:body-lg">
+              آدرس: {desc}
+            </span>
+            <span
+              className="mt-1 text-gray-7 caption-sm md:body-sm lg:body-md xl:body-lg"
+              dir="rtl"
+            >
+              شماره تماس:{' '}
+              <span dir="ltr">
+                {convertToPersianNumbers('021-54891250-51')}
+              </span>
+            </span>
+            <span className="mt-1 text-gray-7 caption-sm md:body-sm lg:body-md xl:body-lg">
+              ساعت کاری: همه‌روزه از ساعت 12 تا 23 بجز روزهای تعطیل
+            </span>
+          </div>
+
+          <div className="caption-sm md:button-lg flex md:invisible md:opacity-0 md:-bottom-6 md:group-hover:visible md:group-hover:bottom-4 transition-all duration-500 md:group-hover:opacity-100 w-full mt-3 md:mt-[22px] justify-evenly md:absolute md:w-1/2">
+            <Button
+              btn="stroke"
+              theme="Primary"
+              className="w-2/5 h-6 md:h-10"
+              link={`/branchs/${hrefBTN}`}
+              onClickCustom={() => Cookies.set('branchs', `${title}`)}
+            >
+              صفحه شعبه
+            </Button>
+            <Button
+              btn="fill"
+              theme="Primary"
+              className="w-2/5 h-6 md:h-10"
+              onClickCustom={() => toast.warning('این عمل دردسترس نیست.')}
+            >
+              دیدن در نقشه
+            </Button>
+          </div>
+        </div>
+
+        <Modal
+          isOpen={isModalOpen}
+          onClose={closeModal}
+          images={branchs.find((branch) => branch.id == id)}
+        ></Modal>
       </div>
     );
   }

@@ -41,9 +41,9 @@ async function page({ searchParams }: { searchParams: {'categorie': string, 'sea
           </div>
           
           <div
-            className={`w-full h-fit grid ${data?.favorites?.foods && 'grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3 3xl:grid-cols-4'} justify-items-center gap-x-2 gap-y-4 mt-4 justify-center`}
+            className={`w-full h-fit grid ${data?.favorites?.foods.length && 'grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3 3xl:grid-cols-4'} justify-items-center gap-x-2 gap-y-4 mt-4 justify-center`}
           >
-            {data?.favorites?.foods ? (
+            {data?.favorites?.foods.length ? (
               data?.favorites?.foods.map((food) => (
                 <CardFood item={food} key={food.id} />
               ))

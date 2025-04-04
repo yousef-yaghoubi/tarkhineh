@@ -173,7 +173,7 @@ export const navStats = [
   {
     id: 6,
     label: 'تماس با ما',
-    route: '/call',
+    route: '/contact',
     icon: 'IconCallCalling'
   },
 ];

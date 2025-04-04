@@ -225,12 +225,12 @@ function Nav({ menuBar }: { menuBar: boolean }) {
           {branchs.map((branch) => (
             <CardTarkhineGardi
               key={branch.id}
-              smallShow
+              showType='small'
               desc={branch.desc}
               title={branch.title}
               img={branch.images[0].src}
               id={branch.id}
-              click={() => {
+              onClickCustom={() => {
                 Cookies.set('branchs', branch.title);
                 closeModal();
                 router.push(`/menu?type=${urlMenu}`);
