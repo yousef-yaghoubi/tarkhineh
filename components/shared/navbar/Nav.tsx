@@ -56,85 +56,84 @@ function Nav({ menuBar }: { menuBar: boolean }) {
 
       {menuBar ? (
         navStats.map((stats) => {
-          const IconNav = iconsNav[stats.icon as keyof typeof iconsNav] as React.ElementType;
-          return (
-            stats.subMain ? (
-              <Accordion
-                type="single"
-                collapsible
-                dir="rtl"
-                className="mx-4"
-                key={stats.id}
+          const IconNav = iconsNav[
+            stats.icon as keyof typeof iconsNav
+          ] as React.ElementType;
+          return stats.subMain ? (
+            <Accordion
+              type="single"
+              collapsible
+              dir="rtl"
+              className="mx-4"
+              key={stats.id}
+            >
+              <AccordionItem
+                value="item-1"
+                className="border-none hover:!no-underline"
               >
-                <AccordionItem
-                  value="item-1"
-                  className="border-none hover:!no-underline"
+                <AccordionTrigger
+                  className={`pt-3 pb-2 hover:!no-underline border-b md:border-0 ${
+                    stats.subMain?.find((sub) => sub.routeQuery == pathName) ||
+                    stats.route == pathName
+                      ? '!border-b border-primary caption-md sm:body-md text-primary'
+                      : 'caption-sm border-gray-4 sm:body-sm '
+                  }`}
                 >
-                  <AccordionTrigger
-                    className={`pt-3 pb-2 hover:!no-underline border-b md:border-0 ${
-                      stats.subMain?.find((sub) => sub.routeQuery == pathName) ||
-                      stats.route == pathName
-                        ? '!border-b border-primary caption-md sm:body-md text-primary'
-                        : 'caption-sm border-gray-4 sm:body-sm '
-                    }`}
-                  >
-                    <div className="flex items-center">
-                      <IconNav width="16" height="16" className="ml-1"/>
-                      <span>
-                        {stats.label == 'شعبه'
-                          ? branchName
-                          : stats.subMain?.find(
-                              (sub) => sub.routeQuery == searchParams.get('type')
-                            )?.label || stats.label}
-                      </span>
-                    </div>
-                  </AccordionTrigger>
-                  <AccordionContent
-                    dir="rtl"
-                    className="flex justify-start flex-col"
-                  >
-                    {stats.subMain?.map((sub) => (
-                      <Link
-                        key={sub.id}
-                        href={
-                          stats.label == 'شعبه'
-                            ? sub.routeQuery
-                            : {
-                                pathname: '/menu',
-                                query: { ...query, type: sub.routeQuery },
-                              }
-                        }
-                        className="w-fit mr-2 pt-2 caption-sm sm:body-sm"
-                        onClick={() =>
-                          stats.label == 'شعبه' &&
-                          Cookies.set('branchs', `${sub.label}`, { path: '/' })
-                        }
-                      >
-                        {sub.label}
-                      </Link>
-                    ))}
-                  </AccordionContent>
-                </AccordionItem>
-              </Accordion>
-            ) : (
-              <Link
-                href={stats.route}
-                key={stats.id}
-                className={`md:border-0 mx-4 md:mx-0 flex h-[39px] justify-start items-center ${
-                  stats.id == 6 ? 'border-0' : 'border-b border-gray-4 '
-                } ${
-                  stats.route == pathName
-                    ? 'caption-md sm:body-lg activeLink lg:activeLink !border-b border-primary'
-                    : 'caption-sm sm:body-sm lg:body-xl'
-                }`}
-              >
-                <IconNav width="16" height="16" className="ml-1"/>
-                {stats.label}
-              </Link>
-            )
-          )
-        }
-        )
+                  <div className="flex items-center">
+                    <IconNav width="16" height="16" className="ml-1" />
+                    <span>
+                      {stats.label == 'شعبه'
+                        ? branchName
+                        : stats.subMain?.find(
+                            (sub) => sub.routeQuery == searchParams.get('type')
+                          )?.label || stats.label}
+                    </span>
+                  </div>
+                </AccordionTrigger>
+                <AccordionContent
+                  dir="rtl"
+                  className="flex justify-start flex-col"
+                >
+                  {stats.subMain?.map((sub) => (
+                    <Link
+                      key={sub.id}
+                      href={
+                        stats.label == 'شعبه'
+                          ? sub.routeQuery
+                          : {
+                              pathname: '/menu',
+                              query: { ...query, type: sub.routeQuery },
+                            }
+                      }
+                      className="w-fit mr-2 pt-2 caption-sm sm:body-sm"
+                      onClick={() =>
+                        stats.label == 'شعبه' &&
+                        Cookies.set('branchs', `${sub.label}`, { path: '/' })
+                      }
+                    >
+                      {sub.label}
+                    </Link>
+                  ))}
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
+          ) : (
+            <Link
+              href={stats.route}
+              key={stats.id}
+              className={`md:border-0 mx-4 md:mx-0 flex h-[39px] justify-start items-center ${
+                stats.id == 6 ? 'border-0' : 'border-b border-gray-4 '
+              } ${
+                stats.route == pathName
+                  ? 'caption-md sm:body-lg activeLink lg:activeLink !border-b border-primary'
+                  : 'caption-sm sm:body-sm lg:body-xl'
+              }`}
+            >
+              <IconNav width="16" height="16" className="ml-1" />
+              {stats.label}
+            </Link>
+          );
+        })
       ) : (
         <NavigationMenu dir="rtl" className="max-w-full">
           <NavigationMenuList className="justify-around">
@@ -161,11 +160,9 @@ function Nav({ menuBar }: { menuBar: boolean }) {
                     {stats.subMain?.map((sub) =>
                       stats.label == 'منو' ? (
                         <button
-                          // href={sub.routeQuery || sub.route}
                           key={sub.label}
                           className="py-[7px] px-5 hover:bg-slate-100 dark:hover:bg-background-1 flex"
                           onClick={() => {
-                            // eslint-disable-next-line @typescript-eslint/no-unused-expressions
                             !!sessionCookie
                               ? router.push(`/menu?type=${sub.routeQuery}`)
                               : setShowChooseModal(true);
@@ -225,7 +222,7 @@ function Nav({ menuBar }: { menuBar: boolean }) {
           {branchs.map((branch) => (
             <CardTarkhineGardi
               key={branch.id}
-              showType='small'
+              showType="small"
               desc={branch.desc}
               title={branch.title}
               img={branch.images[0].src}

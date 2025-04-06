@@ -24,6 +24,7 @@ export async function LoginOrSignUpUserWithCredential(formData: {
   lastName: string | null;
   profile: string | null;
   role: string;
+  phone: string | null;
 }> {
   try {
     const validation = SchemaLogin.safeParse(formData);
@@ -65,6 +66,7 @@ export async function LoginOrSignUpUserWithCredential(formData: {
       lastName: user.lastName,
       profile: user.profile,
       role: user.role,
+      phone : user.phone
     };
   } catch (error) {
     throw new Error(error as string);
@@ -101,6 +103,7 @@ export async function LoginOrSignUpUserWithGoogle(email: typeEmail) {
       lastName: user.lastName,
       profile: user.profile,
       role: user.role,
+      phone: user.phone,
     };
   } catch (error) {
     throw new Error(error as string);

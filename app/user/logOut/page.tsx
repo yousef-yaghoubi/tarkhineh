@@ -24,8 +24,9 @@ function page() {
         <button
           className="w-[117px] h-10 rounded bg-error-extralight text-error"
           onClick={async() => {
-            await signOut()
-            router.replace('/')
+            await signOut({
+              callbackUrl: '/'
+            })
           }}  
         >
           حذف

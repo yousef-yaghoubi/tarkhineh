@@ -44,11 +44,13 @@ async function Home() {
               btn="stroke"
               theme="White"
               className="h-[32px] w-[152px] md:w-[184px] md:h-10 mt-8 md:mt-4"
+              link='/about'
             >
               <span className="flex items-center">
                 اطلاعات بیشتر
                 <IconArrowLeft className="w-4 h-4 md:w-6 md:h-6 fill-white" />
               </span>
+
             </Button>
           </div>
         </div>
