@@ -5,7 +5,7 @@ import Button from '@/components/shared/button/Button';
 import { arraySlideMain } from '@/lib/dataPublic';
 import SwiperDeatail from './SwiperDeatail';
 import SliderSwiper from '../../../components/shared/swiper/SliderSwiper';
-import { CommentType } from '@/lib/indexType';
+import { CommentType } from '@/types';
 import IconNote from '@icons/note.svg';
 import { headers } from 'next/headers';
 import { getServerSession } from 'next-auth';

@@ -5,15 +5,15 @@ import { Price } from '../card/CardFoodNecessary';
 import Button from '../button/Button';
 import { useCart } from '../shopingCardProvider';
 import { useSession } from 'next-auth/react';
-import { CartFoodForShopingCart } from '@/lib/indexType';
 import QuantityFood from '@/app/shoping/shopingCart/QuantityFood';
 import Modal from '../Modal';
 import IconRemove from '@icons/remove.svg';
 import IconWarning from '@icons/warning-2.svg';
 import IconArrowLeft from '@icons/arrow-left.svg';
 import { useOrder } from '@/app/shoping/ShopingProvider';
+import { CartFoodForShoppingCart } from '@/types';
 
-const calcDiscountPrice = (cart: CartFoodForShopingCart[]) => {
+const calcDiscountPrice = (cart: CartFoodForShoppingCart[]) => {
   const offerCart = cart.filter((item) => item.order !== 0);
   const allOffer = [
     offerCart.map(
@@ -29,7 +29,7 @@ const calcDiscountPrice = (cart: CartFoodForShopingCart[]) => {
   return sum;
 };
 
-const calcAllPrice = (cart: CartFoodForShopingCart[]) => {
+const calcAllPrice = (cart: CartFoodForShoppingCart[]) => {
   const offerCart = cart.filter((item) => item.order !== 0);
   const allOffer = [
     offerCart.map(

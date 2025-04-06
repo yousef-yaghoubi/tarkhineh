@@ -1,9 +1,9 @@
 'use server';
-import { FoodType, OrderState } from '@/lib/indexType';
 import prisma from '@/prisma/prismaClient';
 import { getServerSession } from 'next-auth';
 import { authOption } from '../api/auth/[...nextauth]/route';
 import { revalidatePath } from 'next/cache';
+import { FoodType, OrderState } from '@/types';
 
 export interface FoodTypeProp extends FoodType {
   quantity: number;

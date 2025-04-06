@@ -1,4 +1,4 @@
-import { FoodType } from '@/lib/indexType';
+import { FoodType } from '@/types';
 import prisma from '@/prisma/prismaClient';
 import { revalidatePath } from 'next/cache';
 import { NextResponse } from 'next/server';

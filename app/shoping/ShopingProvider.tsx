@@ -1,6 +1,6 @@
 'use client';
 import { createContext, useState, useContext, ReactNode } from 'react';
-import { DeliveryMethod, OrderState, PaymentMethod } from '@/lib/indexType';
+import { DeliveryMethod, OrderState, PaymentMethod } from '@/types';
 
 
 

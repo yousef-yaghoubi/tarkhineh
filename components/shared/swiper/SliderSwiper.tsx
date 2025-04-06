@@ -9,30 +9,13 @@ import Comment from '@/components/shared/comment/Comment';
 import { NavBadgeMenu, navStats } from '@/lib/dataPublic';
 import Badge from '@/components/shared/badge/Badge';
 
-import { FoodType } from '@/lib/indexType';
+import { CommentType, FoodType } from '@/types';
 import dynamic from 'next/dynamic';
 import CardFoodLoading from '../card/CardFoodLoading';
 
 const CardFood = dynamic(() => import('@/components/shared/card/CardFood'), {
   loading: () => <CardFoodLoading />,
 });
-
-interface CommentType {
-  id: number;
-  desc: string;
-  createdAt: Date;
-  score: number;
-  user: {
-    profile: string;
-    firstName: string;
-    lastName: string;
-  };
-}
-interface BadgeType {
-  id: number;
-  url: string;
-  title: string;
-}
 
 interface Props {
   theme: 'Primary' | 'White';

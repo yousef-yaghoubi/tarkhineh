@@ -3,7 +3,7 @@ import CardFoodLoading from '@/components/shared/card/CardFoodLoading';
 import SearchBox from '@/components/shared/searchBox/SearchBox';
 import BoxOfMain from '@/components/shared/shopingCart/BoxOfMain';
 import SliderSwiper from '@/components/shared/swiper/SliderSwiper';
-import { FoodType } from '@/lib/indexType';
+import { FoodType } from '@/types';
 import dynamic from 'next/dynamic';
 import { headers } from 'next/headers';
 import Image from 'next/image';

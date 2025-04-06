@@ -3,7 +3,7 @@ import dynamic from 'next/dynamic';
 import Cookies from 'js-cookie';
 import { useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
-import { FoodType } from '@/lib/indexType';
+import { FoodType } from '@/types';
 import CardFoodLoading from '@/components/shared/card/CardFoodLoading';
 import { useSearchParams } from 'next/navigation';
 import { headers } from 'next/headers';

@@ -4,7 +4,7 @@ import { convertToPersianNumbers } from '@/lib/convertNumberToPersian';
 import Image from 'next/image';
 import React, { useState } from 'react';
 import Button from '../button/Button';
-import { FoodType } from '@/lib/indexType';
+import { FoodType } from '@/types';
 import Link from 'next/link';
 import { OrderBadge, Price, PriceOrder } from './CardFoodNecessary';
 import { useCart } from '@/components/shared/shopingCardProvider';

@@ -6,13 +6,13 @@ import {
   Price,
   PriceOrder,
 } from '@/components/shared/card/CardFoodNecessary';
-import { CartFoodForShopingCart } from '@/lib/indexType';
 import { useCart } from '@/components/shared/shopingCardProvider';
 import IconRemove from '@icons/remove.svg';
 import IconStar from '@icons/StarRate.svg';
 import IconStarStroke from "@icons/StarStroke.svg"
+import { CartFoodForShoppingCart } from '@/types';
 
-function CardFoodShopingCard({ item }: { item: CartFoodForShopingCart }) {
+function CardFoodShopingCard({ item }: { item: CartFoodForShoppingCart }) {
   const { removeFromCart } = useCart();
   const starFill = Math.round(item.rating);
   const starStroke = 5 - starFill;

@@ -3,7 +3,7 @@
 import { useRouter } from 'next/navigation';
 import React from 'react';
 import { useCart } from '../shopingCardProvider';
-import { FoodType } from '@/lib/indexType';
+import { FoodType } from '@/types';
 import clsx from 'clsx';
 
 interface ButtonProps extends React.ButtonHTMLAttributes <HTMLButtonElement> {

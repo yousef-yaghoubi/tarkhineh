@@ -2,7 +2,7 @@ import { convertToPersianNumbers } from '@/lib/convertNumberToPersian';
 import Image from 'next/image';
 import React from 'react';
 import moment from 'jalali-moment';
-import { CommentType } from '@/lib/indexType';
+import { CommentType } from '@/types';
 
 function Comment(comment: CommentType) {
   const date = moment(comment.createdAt).locale('fa').format('DD MMMM YYYY');

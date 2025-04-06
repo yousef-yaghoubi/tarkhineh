@@ -1,4 +1,4 @@
-import { DemoFoodModalType } from '@/lib/indexType';
+import { DemoFoodModalType } from '@/types';
 import prisma from '@/prisma/prismaClient';
 import { NextResponse } from 'next/server';
 import { z } from 'zod';

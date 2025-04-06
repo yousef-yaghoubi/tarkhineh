@@ -1,12 +1,12 @@
 
 import { convertToPersianNumbers } from '@/lib/convertNumberToPersian';
-import { AddressUserProps } from '@/lib/indexType';
 import { useSession } from 'next-auth/react';
 import React, { Dispatch, SetStateAction } from 'react';
 import { toast } from 'sonner';
 import { useOrder } from '../ShopingProvider';
 import IconEdit from "@icons/edit-2.svg"
 import IconRemove from "@icons/remove.svg"
+import { AddressUserProps } from '@/types';
 
 function Address({
   prop,

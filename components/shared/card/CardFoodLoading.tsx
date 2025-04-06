@@ -1,5 +1,4 @@
 import { Skeleton } from '@/components/ui/skeleton';
-import { FoodType } from '@/lib/indexType';
 import React from 'react'
 
 function CardFoodLoading({

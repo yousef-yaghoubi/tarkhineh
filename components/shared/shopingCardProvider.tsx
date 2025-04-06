@@ -1,7 +1,7 @@
 // context/CartContext.tsx
 'use client';
 
-import { CartFoodForShopingCart, FoodType } from '@/lib/indexType';
+import { CartFoodForShoppingCart, FoodType } from '@/types';
 import {
   createContext,
   useContext,
@@ -11,7 +11,7 @@ import {
 } from 'react';
 
 interface CartContextType {
-  cart: CartFoodForShopingCart[];
+  cart: CartFoodForShoppingCart[];
   addToCart: (product: FoodType) => void;
   addQuantity: (id: number) => void;
   minuseQuantity: (id: number) => void;
@@ -22,7 +22,7 @@ interface CartContextType {
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
 export const CartProvider = ({ children }: { children: ReactNode }) => {
-  const [cart, setCart] = useState<CartFoodForShopingCart[]>([]);
+  const [cart, setCart] = useState<CartFoodForShoppingCart[]>([]);
 
   useEffect(() => {
     const storedCart = localStorage.getItem('cart');
