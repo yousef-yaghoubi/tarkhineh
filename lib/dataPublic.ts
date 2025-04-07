@@ -1,5 +1,4 @@
-import { title } from "process";
-import { BadgeType, ProfileRoutes } from "./indexType";
+import { BadgeType, ProfileRoutes } from '@/types';
 
 export const miniCards = [
   { id: 4, img: '/image/miniCardFood.png', title: 'غذای اصلی' },
@@ -15,7 +14,7 @@ interface image {
 interface branchType {
   id: number;
   images: image[];
-  nickName: string
+  nickName: string;
   title: string;
   desc: string;
 }
@@ -70,7 +69,6 @@ export const branchs: branchType[] = [
   },
 ];
 
-
 export const iconDetails = [
   {
     id: 1,
@@ -101,29 +99,38 @@ export const arraySlideMain = [
     title: 'تجربه غذای سالم و گیاهی به سبک ترخینه',
     img: '/image/bannerSlider1.jpg',
     imgMobile: '/image/bannerSlider1Mobile.jpg',
-    alt:'تجربه غذای سالم'
+    alt: 'تجربه غذای سالم',
   },
   {
     id: 2,
     title: 'طعم بی‌نظیر طبیعت!',
     img: '/image/bannerSlider2.jpg',
     imgMobile: '/image/bannerSlider2Mobile.jpg',
-    alt:'طعم بی‌نظیر طبیعت'
+    alt: 'طعم بی‌نظیر طبیعت',
   },
   {
     id: 3,
     title: 'لذت غذای سالم و گیاهی را با ترخینه تجربه کنید!',
     img: '/image/bannerSlider3.jpg',
     imgMobile: '/image/bannerSlider3Mobile.jpg',
-    alt:'لذت غذای سالم'
+    alt: 'لذت غذای سالم',
   },
 ];
 
 export const arraySlideBranch = [
-  {id:1, img: '/image/ekbatanBranch1.jpg', imgMobile: '/image/ekbatanBranch1Mobile.jpg', alt: 'ekbatan Branch'},
-  {id:2, img: '/image/ekbatanBranch1.jpg', imgMobile: '/image/ekbatanBranch1Mobile.jpg', alt: 'ekbatan Branch'}
-]
-
+  {
+    id: 1,
+    img: '/image/ekbatanBranch1.jpg',
+    imgMobile: '/image/ekbatanBranch1Mobile.jpg',
+    alt: 'ekbatan Branch',
+  },
+  {
+    id: 2,
+    img: '/image/ekbatanBranch1.jpg',
+    imgMobile: '/image/ekbatanBranch1Mobile.jpg',
+    alt: 'ekbatan Branch',
+  },
+];
 
 export const navStats = [
   {
@@ -143,7 +150,7 @@ export const navStats = [
       { id: 4, label: 'چالوس', routeQuery: '/branchs/chaloos' },
       { id: 5, label: 'اقدسیه', routeQuery: '/branchs/aghdasie' },
     ],
-    icon: 'IconNavBranch'
+    icon: 'IconNavBranch',
   },
   {
     id: 3,
@@ -162,7 +169,7 @@ export const navStats = [
     id: 4,
     label: 'اعطای نمایندگی',
     route: '/represent',
-    icon: 'IconNavRepresent'
+    icon: 'IconNavRepresent',
   },
   {
     id: 5,
@@ -174,7 +181,7 @@ export const navStats = [
     id: 6,
     label: 'تماس با ما',
     route: '/contact',
-    icon: 'IconCallCalling'
+    icon: 'IconCallCalling',
   },
 ];
 
@@ -197,9 +204,19 @@ export const NavBadgeOrderTracking: BadgeType[] = [
 ];
 
 export const ProfileRoute: ProfileRoutes[] = [
-  {id:1, title: 'پروفایل',icon: 'IconProfile', url: '/user/profile'},
-  {id:2, title: 'پیگیری سفارش',icon: 'IconOrderTracking', url: '/user/order-tracking'},
-  {id:3, title: 'علاقه مندی ها',icon: 'IconHeart', url: '/user/favorites'},
-  {id:4, title: 'آدرس های من',icon: 'IconLocation', url: '/user/myAddresses'},
-  {id:5, title: 'خروج',icon: 'IconLogout', url: '/user/logOut'},
-]
+  { id: 1, title: 'پروفایل', icon: 'IconProfile', url: '/user/profile' },
+  {
+    id: 2,
+    title: 'پیگیری سفارش',
+    icon: 'IconOrderTracking',
+    url: '/user/order-tracking',
+  },
+  { id: 3, title: 'علاقه مندی ها', icon: 'IconHeart', url: '/user/favorites' },
+  {
+    id: 4,
+    title: 'آدرس های من',
+    icon: 'IconLocation',
+    url: '/user/myAddresses',
+  },
+  { id: 5, title: 'خروج', icon: 'IconLogout', url: '/user/logOut' },
+];

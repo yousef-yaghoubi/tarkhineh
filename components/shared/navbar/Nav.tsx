@@ -23,6 +23,8 @@ import Modal from '../Modal';
 import { branchs, navStats } from '@/lib/dataPublic';
 import CardTarkhineGardi from '../card/CardTarkhineGardi';
 import { iconsNav } from '@/lib/indexIcon';
+import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+import IconNavbar from '@icons/menu.svg';
 
 function Nav({ menuBar }: { menuBar: boolean }) {
   const router = useRouter();
@@ -34,6 +36,14 @@ function Nav({ menuBar }: { menuBar: boolean }) {
   const query = Object.fromEntries(searchParams.entries());
   const [showChooseModal, setShowChooseModal] = useState(false);
   const closeModal = () => setShowChooseModal(false);
+  const firstLinks = navStats.slice(0, 1);
+  const accordionLinks = navStats.filter((stats) => stats.subMain);
+  const secondLinks = navStats.slice(2).filter((stats) => !stats.subMain);
+  const [open, setOpen] = useState(true);
+
+  useEffect(() => {
+    setOpen(false);
+  }, [pathName]);
 
   useEffect(() => {
     if (!!sessionCookie) setBranchName(`شعبه ${sessionCookie}`);
@@ -47,93 +57,160 @@ function Nav({ menuBar }: { menuBar: boolean }) {
           : 'flex flex-col justify-start text-gray-7 dark:text-gray-4 overflow-y-scroll'
       }
     >
-      <Image
-        src={'/image/topFrameMenuMobile.jpg'}
-        alt="header menu"
-        fill
-        className="w-full !h-[94px] md:hidden !relative mb-2 z-10"
-      />
-
       {menuBar ? (
-        navStats.map((stats) => {
-          const IconNav = iconsNav[
-            stats.icon as keyof typeof iconsNav
-          ] as React.ElementType;
-          return stats.subMain ? (
-            <Accordion
-              type="single"
-              collapsible
-              dir="rtl"
-              className="mx-4"
-              key={stats.id}
-            >
-              <AccordionItem
-                value="item-1"
-                className="border-none hover:!no-underline"
-              >
-                <AccordionTrigger
-                  className={`pt-3 pb-2 hover:!no-underline border-b md:border-0 ${
+        <Sheet open={open} onOpenChange={setOpen}>
+          <SheetTrigger className="md:!hidden" asChild>
+            <IconNavbar width="24" height="24" className="fill-primary" />
+          </SheetTrigger>
+
+          <SheetContent
+            side="right"
+            className="bg-white dark:bg-[#1c1b22] border-none p-0 menuMobile"
+          >
+            <>
+              <Image
+                src={'/image/topFrameMenuMobile.jpg'}
+                alt="header menu"
+                fill
+                className="w-full !h-[94px] md:hidden !relative mb-2 z-10"
+              />
+              {firstLinks.map((stats) => {
+                const IconNav = iconsNav[
+                  stats.icon as keyof typeof iconsNav
+                ] as React.ElementType;
+
+                return (
+                  <Link
+                    key={stats.id}
+                    href={stats.route}
+                    className={`md:border-0 mx-4 md:mx-0 flex h-[39px] justify-start items-center ${
+                      stats.id == 6 ? 'border-0' : 'border-b border-gray-4 '
+                    } ${
+                      stats.route == pathName
+                        ? 'caption-md sm:body-lg activeLink lg:activeLink !border-b border-primary'
+                        : 'caption-sm sm:body-sm lg:body-xl'
+                    }`}
+                  >
+                    <IconNav
+                      width="16"
+                      height="16"
+                      className="ml-1 fill-background-1 dark:fill-gray-3"
+                    />
+                    {stats.label}
+                  </Link>
+                );
+              })}
+
+              <Accordion type="single" collapsible dir="rtl" className="mx-4">
+                {accordionLinks.map((stats) => {
+                  const IconNav = iconsNav[
+                    stats.icon as keyof typeof iconsNav
+                  ] as React.ElementType;
+                  const isActive =
                     stats.subMain?.find((sub) => sub.routeQuery == pathName) ||
-                    stats.route == pathName
-                      ? '!border-b border-primary caption-md sm:body-md text-primary'
-                      : 'caption-sm border-gray-4 sm:body-sm '
-                  }`}
-                >
-                  <div className="flex items-center">
-                    <IconNav width="16" height="16" className="ml-1" />
-                    <span>
-                      {stats.label == 'شعبه'
-                        ? branchName
-                        : stats.subMain?.find(
-                            (sub) => sub.routeQuery == searchParams.get('type')
-                          )?.label || stats.label}
-                    </span>
-                  </div>
-                </AccordionTrigger>
-                <AccordionContent
-                  dir="rtl"
-                  className="flex justify-start flex-col"
-                >
-                  {stats.subMain?.map((sub) => (
-                    <Link
-                      key={sub.id}
-                      href={
-                        stats.label == 'شعبه'
-                          ? sub.routeQuery
-                          : {
-                              pathname: '/menu',
-                              query: { ...query, type: sub.routeQuery },
-                            }
-                      }
-                      className="w-fit mr-2 pt-2 caption-sm sm:body-sm"
-                      onClick={() =>
-                        stats.label == 'شعبه' &&
-                        Cookies.set('branchs', `${sub.label}`, { path: '/' })
-                      }
+                    stats.route == pathName;
+
+                  return (
+                    <AccordionItem
+                      key={stats.id}
+                      value={`item-${stats.id}`}
+                      className="border-none hover:!no-underline"
                     >
-                      {sub.label}
-                    </Link>
-                  ))}
-                </AccordionContent>
-              </AccordionItem>
-            </Accordion>
-          ) : (
-            <Link
-              href={stats.route}
-              key={stats.id}
-              className={`md:border-0 mx-4 md:mx-0 flex h-[39px] justify-start items-center ${
-                stats.id == 6 ? 'border-0' : 'border-b border-gray-4 '
-              } ${
-                stats.route == pathName
-                  ? 'caption-md sm:body-lg activeLink lg:activeLink !border-b border-primary'
-                  : 'caption-sm sm:body-sm lg:body-xl'
-              }`}
-            >
-              <IconNav width="16" height="16" className="ml-1" />
-              {stats.label}
-            </Link>
-          );
-        })
+                      <AccordionTrigger
+                        className={`pt-3 pb-2 hover:!no-underline border-b md:border-0 ${
+                          isActive
+                            ? '!border-b border-primary caption-md sm:body-md text-primary'
+                            : 'caption-sm border-gray-4 sm:body-sm '
+                        }`}
+                      >
+                        <div className="flex items-center">
+                          <IconNav
+                            width="16"
+                            height="16"
+                            className="ml-1 fill-background-1 dark:fill-gray-3"
+                          />
+                          <span>
+                            {stats.label === 'شعبه'
+                              ? branchName
+                              : stats.subMain?.find(
+                                  (sub) =>
+                                    sub.routeQuery === searchParams.get('type')
+                                )?.label || stats.label}
+                          </span>
+                        </div>
+                      </AccordionTrigger>
+
+                      <AccordionContent
+                        dir="rtl"
+                        className="flex justify-start flex-col"
+                      >
+                        {stats?.subMain?.map((sub) => {
+                          const isSubActive =
+                            stats.label !== 'شعبه'
+                              ? searchParams.get('type') === sub.routeQuery
+                              : pathName === sub.routeQuery;
+
+                          return (
+                            <Link
+                              key={sub.id}
+                              href={
+                                stats.label === 'شعبه'
+                                  ? sub.routeQuery
+                                  : {
+                                      pathname: '/menu',
+                                      query: { ...query, type: sub.routeQuery },
+                                    }
+                              }
+                              onClick={() => {
+                                if (stats.label === 'شعبه') {
+                                  Cookies.set('branchs', `${sub.label}`, {
+                                    path: '/',
+                                  });
+                                }
+                              }}
+                              className={`w-fit mr-2 pt-2 caption-sm sm:body-sm ${
+                                isSubActive ? 'text-primary' : ''
+                              }`}
+                            >
+                              {sub.label}
+                            </Link>
+                          );
+                        })}
+                      </AccordionContent>
+                    </AccordionItem>
+                  );
+                })}
+              </Accordion>
+
+              {secondLinks.map((stats) => {
+                const IconNav = iconsNav[
+                  stats.icon as keyof typeof iconsNav
+                ] as React.ElementType;
+
+                return (
+                  <Link
+                    key={stats.id}
+                    href={stats.route} // ✅
+                    className={`md:border-0 mx-4 md:mx-0 flex h-[39px] justify-start items-center ${
+                      stats.id == 6 ? 'border-0' : 'border-b border-gray-4 '
+                    } ${
+                      stats.route == pathName
+                        ? 'caption-md sm:body-lg activeLink lg:activeLink !border-b border-primary'
+                        : 'caption-sm sm:body-sm lg:body-xl'
+                    }`}
+                  >
+                    <IconNav
+                      width="16"
+                      height="16"
+                      className="ml-1 fill-background-1 dark:fill-gray-3"
+                    />
+                    {stats.label}
+                  </Link>
+                );
+              })}
+            </>
+          </SheetContent>
+        </Sheet>
       ) : (
         <NavigationMenu dir="rtl" className="max-w-full">
           <NavigationMenuList className="justify-around">
