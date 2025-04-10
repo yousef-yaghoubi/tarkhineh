@@ -5,52 +5,50 @@ import Button from '@/components/shared/button/Button';
 import { arraySlideMain } from '@/lib/dataPublic';
 import SwiperDeatail from './SwiperDeatail';
 import SliderSwiper from '../../../components/shared/swiper/SliderSwiper';
-import { CommentType } from '@/types';
+import { CommentType, FoodType } from '@/types';
 import IconNote from '@icons/note.svg';
 import { headers } from 'next/headers';
-import { getServerSession } from 'next-auth';
-import { authOption } from '@/app/api/auth/[...nextauth]/route';
-import { getCsrfToken, getSession } from 'next-auth/react';
+import AddComment from '@/components/shared/comment/AddComment';
 
-interface Foods {
-  id: number;
-  name: string;
-  image: string;
-  desc: string;
-  price: number;
-  order: number;
-  rating: number;
-  _count: { commentsFood: number };
-}
-
-async function DynamicBranchs({ params }: { params: { slug: string } }) {
-  const { foods: specialOfferFoods }: { foods: Foods[] | undefined } =
+async function DynamicBranchs({
+  params,
+}: {
+  params: Readonly<{ slug: string }>;
+}) {
+  const { slug } = params;
+  const { foods: specialOfferFoods }: { foods: FoodType[] | undefined } =
     await fetch(
-      `http://localhost:3000/api/food?branchName=${params.slug}&filter=${'specialOffer'}&page=${1}`,
+      `http://localhost:3000/api/food?branchName=${slug}&filter=${'specialOffer'}&page=${1}`,
       {
         method: 'GET',
         headers: headers(),
       }
     ).then((res) => res.json());
 
-  const { foods: popularFoods }: { foods: Foods[] | undefined } = await fetch(
-    `http://localhost:3000/api/food?branchName=${params.slug}&filter=${'mostPopular'}&page=${1}`,
-    {
-      method: 'GET',
-      headers: headers(),
-    }
-  ).then((response) => response.json());
+  const { foods: popularFoods }: { foods: FoodType[] | undefined } =
+    await fetch(
+      `http://localhost:3000/api/food?branchName=${slug}&filter=${'mostPopular'}&page=${1}`,
+      {
+        method: 'GET',
+        headers: headers(),
+      }
+    ).then((response) => response.json());
 
-  const { foods: notIraniFoods }: { foods: Foods[] | undefined } = await fetch(
-    `http://localhost:3000/api/food?branchName=${params.slug}&filter=${'non-Iranian'}&page=${1}`,
-    {
-      method: 'GET',
-      headers: headers(),
-    }
-  ).then((response) => response.json());
+  const { foods: notIraniFoods }: { foods: FoodType[] | undefined } =
+    await fetch(
+      `http://localhost:3000/api/food?branchName=${slug}&filter=${'non-Iranian'}&page=${1}`,
+      {
+        method: 'GET',
+        headers: headers(),
+      }
+    ).then((response) => response.json());
 
   const { branch: branchAction } = await fetch(
-    `http://localhost:3000/api/branch?branchName=${params.slug}`
+    `http://localhost:3000/api/branch?branchName=${slug}`, {
+      next: {
+        tags: ['branch']
+      }
+    }
   ).then((response) => response.json());
 
   return (
@@ -66,6 +64,7 @@ async function DynamicBranchs({ params }: { params: { slug: string } }) {
           title="پیشنهاد ویژه"
           foodSlides={specialOfferFoods}
         />
+
         <SliderSwiper
           theme="Primary"
           title="غذاهای محبوب"
@@ -77,6 +76,7 @@ async function DynamicBranchs({ params }: { params: { slug: string } }) {
           title="غذاهای غیر ایرانی"
           foodSlides={notIraniFoods}
         />
+
         <Button
           btn="stroke"
           className="w-[152px] h-8 md:w-[184px] md:h-10 caption-lg md:button-lg"
@@ -95,7 +95,7 @@ async function DynamicBranchs({ params }: { params: { slug: string } }) {
 
         <SwiperDeatail
           address={branchAction?.address as string}
-          durition={branchAction?.openDuration as string}
+          durition={'همه‌روزه از ساعت 12 تا 23 بجز روزهای تعطیل'}
           images={
             branchAction?.images as {
               images: {
@@ -113,7 +113,8 @@ async function DynamicBranchs({ params }: { params: { slug: string } }) {
           نظرات کاربران
         </span>
 
-        {branchAction?.commentsBranch.length != 0 ? (
+        <AddComment type={{ name: 'branch', id: branchAction.id }} />
+        {branchAction?.commentsBranch.length != 0? (
           <SliderSwiper
             theme="White"
             commentSlides={branchAction?.commentsBranch as CommentType[]}

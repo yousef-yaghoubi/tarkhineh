@@ -1,15 +1,15 @@
 'use server';
 
-import { SchemaAddress } from '@/lib/zod';
+import { SchemaAddress } from '@/validators/zod';
 import prisma from '@/prisma/prismaClient';
 import { z } from 'zod';
 import { getServerSession } from 'next-auth';
 import { revalidatePath } from 'next/cache';
-import { authOption } from '../api/auth/[...nextauth]/route';
+import { authOptions } from '@/lib/auth';
 
 type typeAdrress = z.infer<typeof SchemaAddress>;
 export async function SendAddress(props: typeAdrress) {
-  const session = await getServerSession(authOption);
+  const session = await getServerSession(authOptions);
   if (session?.user?.email) {
     try {
       const validation = SchemaAddress.safeParse(props);
@@ -69,12 +69,13 @@ export async function SendAddress(props: typeAdrress) {
         status: 400,
         message: 'مشکلی در ثبت آدرس پیش آمده.',
         data: null,
+        error
       };
     }
   } else {
     return {
       status: 400,
-      message: 'برای ثبت آدرس باید لاگین کنید.',
+      message: 'لطفا وارد حساب کاربری شوید.',
       data: null,
     };
   }

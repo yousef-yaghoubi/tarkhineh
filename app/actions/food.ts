@@ -1,17 +1,17 @@
 'use server';
 
 import { getServerSession } from 'next-auth';
-import { authOption } from '../api/auth/[...nextauth]/route';
+import { authOptions } from '@/lib/auth';
 import prisma from '@/prisma/prismaClient';
 import { revalidatePath } from 'next/cache';
 import { z } from 'zod';
 
 export async function AddFoodToFavorite(id: number) {
   const SchemaId = z.number().min(1).max(1000);
-  const session = await getServerSession(authOption);
+  const session = await getServerSession(authOptions);
 
   if (!session?.user.email) {
-    return { status: 401, message: 'لطفا لاگین کنید.' };
+    return { status: 401, message: 'لطفا وارد حساب کاربری شوید.' };
   }
 
   try {
@@ -21,7 +21,7 @@ export async function AddFoodToFavorite(id: number) {
       return { status: 400, message: validation.error };
     }
 
-    let favorite = await prisma.favorite.findUnique({
+    const favorite = await prisma.favorite.findUnique({
       where: { userId: Number(session.user.id) },
       include: {
         foods: true,

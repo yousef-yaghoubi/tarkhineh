@@ -1,4 +1,4 @@
-import { useCart } from '@/components/shared/shopingCardProvider';
+import { useCart } from '@/providers/shopingCardProvider';
 import { convertToPersianNumbers } from '@/lib/convertNumberToPersian';
 import IconPlus from "@icons/plus.svg"
 import IconMinuse from "@icons/minuse.svg"

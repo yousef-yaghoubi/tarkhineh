@@ -2,51 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@font-face {
-  font-family: 'Estedad';
-  src: url('./fonts/Estedad-Thin.woff2');
-  font-weight: 100;
-}
-@font-face {
-  font-family: 'Estedad';
-  src: url('./fonts/Estedad-ExtraLight.woff2');
-  font-weight: 200;
-}
-@font-face {
-  font-family: 'Estedad';
-  src: url('./fonts/Estedad-Light.woff2');
-  font-weight: 300;
-}
-@font-face {
-  font-family: 'Estedat';
-  src: url('./fonts/Estedad-Regular.woff2');
-  font-weight: 400;
-}
-@font-face {
-  font-family: 'Estedad';
-  src: url('./fonts/Estedad-Medium.woff2');
-  font-weight: 500;
-}
-@font-face {
-  font-family: 'Estedad';
-  src: url('./fonts/Estedad-SemiBold.woff2');
-  font-weight: 600;
-}
-@font-face {
-  font-family: 'Estedad';
-  src: url('./fonts/Estedad-Bold.woff2');
-  font-weight: 700;
-}
-@font-face {
-  font-family: 'Estedad';
-  src: url('./fonts/Estedad-ExtraBold.woff2');
-  font-weight: 800;
-}
-@font-face {
-  font-family: 'Estedad';
-  src: url('./fonts/Estedad-Black.woff2');
-  font-weight: 900;
-}
 
 @layer utilities {
   .scrollbar::-webkit-scrollbar {
@@ -55,8 +10,6 @@
 
   .scrollbar::-webkit-scrollbar-track {
     @apply rounded bg-transparent
-    /* border-radius: 100vh; */
-    /* background: #f7f4ed; */
   }
 
   .scrollbar::-webkit-scrollbar-thumb {

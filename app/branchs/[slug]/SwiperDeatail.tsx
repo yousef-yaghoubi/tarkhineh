@@ -20,6 +20,7 @@ interface Details {
   };
   durition: string;
 }
+
 function SwiperDeatail({ address, images, phones, durition }: Details) {
   return (
     <div className="w-full flex flex-col items-center relative h-[14.2em] md:h-[27.2em]">
@@ -49,7 +50,7 @@ function SwiperDeatail({ address, images, phones, durition }: Details) {
         <div className="flex md:col-span-1 md:flex-col items-center">
           <IconClock className="ml-1 w-4 h-4 md:!w-8 md:!h-8 md:mt-4" />
           <span className="caption-sm md:body-md text-center md:mt-2">
-            {durition}
+            {convertToPersianNumbers(durition)}
           </span>
         </div>
 

@@ -11,7 +11,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { useCart } from '../shopingCardProvider';
+import { useCart } from '../../../providers/shopingCardProvider';
 import { convertToPersianNumbers } from '@/lib/convertNumberToPersian';
 import clsx from 'clsx';
 import IconArrowDown from '@icons/arrow-down.svg';

@@ -1,6 +1,6 @@
 'use client'
 import Modal from '@/components/shared/Modal';
-import { useCart } from '@/components/shared/shopingCardProvider';
+import { useCart } from '@/providers/shopingCardProvider';
 import { usePathname, useRouter } from 'next/navigation';
 import React, { useState } from 'react';
 import { toast } from 'sonner';

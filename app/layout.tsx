@@ -3,14 +3,13 @@ import localFont from 'next/font/local';
 import 'normalize.css';
 import './globals.css';
 import Navbar from '../components/shared/navbar/Navbar';
-import { ThemeProvider } from '@/components/shared/themeProvider';
+import { ThemeProvider } from '@/providers/themeProvider';
 import Footer from '@/components/shared/footer/Footer';
 import { Toaster } from '@/components/ui/sonner';
-import { getServerSession } from 'next-auth';
-import { authOption } from './api/auth/[...nextauth]/route';
-import AuthProvider from '@/components/shared/authProvider';
-import { CartProvider } from '@/components/shared/shopingCardProvider';
+import AuthProvider from '@/providers/authProvider';
+import { CartProvider } from '@/providers/shopingCardProvider';
 import 'leaflet/dist/leaflet.css';
+import { QueryProvider } from '@/providers/queryProvider';
 
 const estedad = localFont({
   src: './fonts/Estedad[KSHD,wght].woff2',
@@ -30,13 +29,13 @@ export default async function RootLayout({
   children: React.ReactNode;
   intercepting: React.ReactNode;
 }) {
-  const session = await getServerSession(authOption);
   return (
-    <html dir="rtl" lang="fa-Ir">
+    <html dir="rtl" lang="fa-Ir" className={estedad.className}>
       <body
-        className={`font-estedad antialiased dark:bg-background-1 selection:bg-tint-1 selection:text-gray-7`}
+        className={`antialiased dark:bg-background-1 selection:bg-tint-1 selection:text-gray-7`}
       >
-        <AuthProvider>
+        <QueryProvider>
+          <AuthProvider>
             <CartProvider>
               <ThemeProvider
                 attribute="class"
@@ -51,14 +50,15 @@ export default async function RootLayout({
                     richColors
                     closeButton
                     dir="rtl"
-                    className="font-estedad"
+                    className={estedad.className}
                     position="top-right"
                   />
                   <Footer />
                 </>
               </ThemeProvider>
             </CartProvider>
-        </AuthProvider>
+          </AuthProvider>
+        </QueryProvider>
       </body>
     </html>
   );

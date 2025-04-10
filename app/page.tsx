@@ -2,7 +2,6 @@ import Button from '@/components/shared/button/Button';
 import CardTarkhineGardi from '@/components/shared/card/CardTarkhineGardi';
 import MiniCardMenu from '@/components/shared/card/MiniCardMenu';
 import SearchBox from '@/components/shared/searchBox/SearchBox';
-import SwiperMain from '@/components/shared/swiper/swiper';
 import { arraySlideMain, branchs, miniCards } from '@/lib/dataPublic';
 import React from 'react';
 import IconProfile from '@icons/profileIcon.svg';
@@ -10,6 +9,11 @@ import IconDiagram from '@icons/diagram.svg';
 import IconHomeWifi from '@icons/home-wifi.svg';
 import IconMenuBoard from '@icons/menu-board.svg';
 import IconArrowLeft from '@icons/arrow-left.svg';
+import dynamic from 'next/dynamic';
+
+
+const SwiperMain = dynamic(()=> import('@/components/shared/swiper/swiper'))
+
 async function Home() {
   return (
     <div>

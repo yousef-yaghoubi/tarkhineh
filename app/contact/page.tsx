@@ -21,6 +21,7 @@ function page() {
       <div className='w-full flex flex-col items-center my-6 gap-y-7'>
         {branchs.map((branch) => (
           <CardTarkhineGardi
+            key={branch.id}
             desc={branch.desc}
             id={branch.id}
             img={branch.images[0].src}

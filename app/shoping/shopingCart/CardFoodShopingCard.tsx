@@ -6,7 +6,7 @@ import {
   Price,
   PriceOrder,
 } from '@/components/shared/card/CardFoodNecessary';
-import { useCart } from '@/components/shared/shopingCardProvider';
+import { useCart } from '@/providers/shopingCardProvider';
 import IconRemove from '@icons/remove.svg';
 import IconStar from '@icons/StarRate.svg';
 import IconStarStroke from "@icons/StarStroke.svg"

@@ -4,27 +4,27 @@ import React from 'react';
 import moment from 'jalali-moment';
 import { CommentType } from '@/types';
 
-function Comment(comment: CommentType) {
-  const date = moment(comment.createdAt).locale('fa').format('DD MMMM YYYY');
+function Comment({user, desc, createdAt, id, score}: CommentType) {
+  const date = moment(createdAt).locale('fa').format('DD MMMM YYYY');
 
   return (
     <div className="w-[252px] h-[142px] md:w-[600px] md:h-[202px] rounded-sm border border-gray-4 dark:border-background-2 relative">
       <div className="w-full h-full py-5 px-4 flex justify-between">
         <div className="w-[60px] md:w-24 md:h-[154px] flex flex-col items-center">
           <Image
-            src={comment.user.profile}
+            src={user.profile}
             alt="profile"
             width={56}
             height={56}
             className="rounded-full !w-14 !h-14 md:!w-24 md:!h-24"
           />
           <div className="flex flex-col text-gray-7 caption-sm md:body-sm">
-            <span>{`${comment.user?.firstName || 'کاربر'} ${comment.user?.lastName || 'ترخینه'}`}</span>
+            <span>{`${user?.firstName || 'کاربر'} ${user?.lastName || 'ترخینه'}`}</span>
             <span>{convertToPersianNumbers(date)}</span>
           </div>
         </div>
         <p className="caption-sm md:body-md w-[152px] md:w-[427px] my-[6px] flex items-start">
-          {comment?.desc}
+          {desc}
         </p>
       </div>
 
@@ -45,7 +45,7 @@ function Comment(comment: CommentType) {
           />
         </svg>
         <span className="caption-md md:body-lg">
-          {convertToPersianNumbers(comment.score.toString())}
+          {convertToPersianNumbers(score.toString())}
         </span>
       </div>
     </div>

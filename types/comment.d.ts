@@ -3,6 +3,7 @@ export interface CommentType {
     desc: string;
     createdAt: Date;
     score: number;
+    public?: boolean,
     user: {
       profile: string;
       firstName: string;

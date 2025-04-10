@@ -2,7 +2,7 @@ import React, { Dispatch, useState } from 'react';
 import Modal from './Modal';
 import dynamic from 'next/dynamic';
 import { z } from 'zod';
-import { SchemaAddress } from '@/lib/zod';
+import { SchemaAddress } from '@/validators/zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { SendAddress } from '@/app/actions/address';

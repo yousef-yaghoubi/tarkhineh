@@ -43,7 +43,7 @@ function SwiperMain({
         nextEl: '.next',
       }}
       modules={[Pagination, Navigation]}
-      className="mySwiper w-full h-[176px] md:h-[336px] drop-shadow-shadow-4"
+      className="mySwiper w-full h-[176px] md:h-[336px] drop-shadow-shadow-4 relative"
     >
       <div className={`${pagination ? 'hidden' : 'flex'} sm:flex bg-gradient-to-r from-[rgba(0,0,0,0.75)] to-transparent w-[48px] md:w-[136px] h-full text-white absolute top-1/2 left-4 md:left-16 z-20 transform -translate-x-1/2 -translate-y-1/2 items-center`}>
         <svg
@@ -115,7 +115,7 @@ function SwiperMain({
         </svg>
       </div>
       <span
-        className={`swiper-pagination !w-[82px] h-[19px] bg-[url(/image/Rectangle2Mobile.png)] dark:bg-[url(/image/Rectangle2MobileDark.png)] md:!w-[154px] md:h-7 md:bg-[url(/image/Rectangle2.png)] dark:md:bg-[url(/image/Rectangle2Dark.png)] mx-auto inset-0 !bottom-0 justify-center items-center ${
+        className={`swiper-pagination !w-[82px] h-[19px] bg-[url(/image/Rectangle2Mobile.png)] dark:bg-[url(/image/Rectangle2MobileDark.png)] md:!w-[154px] md:h-7 md:bg-[url(/image/Rectangle2.png)] dark:md:bg-[url(/image/Rectangle2Dark.png)] mx-auto inset-0 absolute !bottom-0 justify-center items-center ${
           pagination ? 'flex' : 'hidden'
         }`}
       ></span>

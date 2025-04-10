@@ -1,7 +1,7 @@
 'use client';
 import React, { useState } from 'react';
 import CardFoodShopingCard from './CardFoodShopingCard';
-import { useCart } from '@/components/shared/shopingCardProvider';
+import { useCart } from '@/providers/shopingCardProvider';
 import Modal from '@/components/shared/Modal';
 import { toast } from 'sonner';
 import WithoutCart from './WithoutCart';

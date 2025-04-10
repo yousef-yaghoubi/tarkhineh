@@ -1,5 +1,4 @@
 'use client';
-import Link from 'next/link';
 import {
   Accordion,
   AccordionContent,
@@ -25,6 +24,7 @@ import CardTarkhineGardi from '../card/CardTarkhineGardi';
 import { iconsNav } from '@/lib/indexIcon';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import IconNavbar from '@icons/menu.svg';
+import Link from 'next/link';
 
 function Nav({ menuBar }: { menuBar: boolean }) {
   const router = useRouter();
@@ -81,6 +81,7 @@ function Nav({ menuBar }: { menuBar: boolean }) {
 
                 return (
                   <Link
+                    prefetch
                     key={stats.id}
                     href={stats.route}
                     className={`md:border-0 mx-4 md:mx-0 flex h-[39px] justify-start items-center ${
@@ -189,8 +190,9 @@ function Nav({ menuBar }: { menuBar: boolean }) {
 
                 return (
                   <Link
+                    prefetch
                     key={stats.id}
-                    href={stats.route} // ✅
+                    href={stats.route}
                     className={`md:border-0 mx-4 md:mx-0 flex h-[39px] justify-start items-center ${
                       stats.id == 6 ? 'border-0' : 'border-b border-gray-4 '
                     } ${
@@ -277,9 +279,11 @@ function Nav({ menuBar }: { menuBar: boolean }) {
                         ? 'caption-md sm:body-lg activeLink lg:activeLink !border-b border-primary'
                         : 'caption-sm sm:body-sm lg:!body-xl'
                     }`}
-                    href={stats.route}
+                    asChild
                   >
-                    {stats.label}
+                    <Link href={stats.route} prefetch>
+                      {stats.label}
+                    </Link>
                   </NavigationMenuLink>
                   {/* </Link> */}
                 </NavigationMenuItem>

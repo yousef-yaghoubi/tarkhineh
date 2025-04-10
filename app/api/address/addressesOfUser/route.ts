@@ -1,12 +1,10 @@
 import { getServerSession } from 'next-auth';
 import prisma from '@/prisma/prismaClient';
 import { NextResponse } from 'next/server';
-import { getSession } from 'next-auth/react';
-import { setEngine } from 'crypto';
-import { authOption } from '../../auth/[...nextauth]/route';
+import { authOptions } from '@/lib/auth';
 
-export async function GET(req: Request) {
-  const session = await getServerSession(authOption);
+export async function GET() {
+  const session = await getServerSession(authOptions);
   
   
   if(!session){
@@ -27,5 +25,6 @@ export async function GET(req: Request) {
     return Response.json({ addresses: response?.addresses },{status: 200});
   } catch (error) {
     return Response.json({ addresses: null }, {status: 400});
+    console.log(error)
   }
 }

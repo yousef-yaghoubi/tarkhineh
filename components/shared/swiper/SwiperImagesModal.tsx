@@ -9,9 +9,9 @@ import 'swiper/css';
 import 'swiper/css/free-mode';
 import 'swiper/css/navigation';
 import 'swiper/css/thumbs';
-import IconArrowLeftBack from "@icons/arrowLeftBack.svg"
-import IconArrowRightBack from "@icons/arrowRightBack.svg"
-import IconCloseBack from "@icons/CloseIconDark.svg"
+import IconArrowLeftBack from '@icons/arrowLeftBack.svg';
+import IconArrowRightBack from '@icons/arrowRightBack.svg';
+import IconCloseBack from '@icons/CloseIconDark.svg';
 SwiperCore.use([Navigation]);
 interface Images {
   id: number;
@@ -23,13 +23,16 @@ interface Images {
   }[];
 }
 
-function SwiperImagesModal({ images, onClose }: {images: Images, onClose?: ()=> void}) {
-    const router = useRouter()
-  // eslint-disable-next-line react-hooks/rules-of-hooks
+function SwiperImagesModal({
+  images,
+  onClose,
+}: {
+  images: Images;
+  onClose?: () => void;
+}) {
+  const router = useRouter();
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
-  // eslint-disable-next-line react-hooks/rules-of-hooks
   const prevRef = useRef(null);
-  // eslint-disable-next-line react-hooks/rules-of-hooks
   const nextRef = useRef(null);
   return (
     <>
@@ -37,13 +40,13 @@ function SwiperImagesModal({ images, onClose }: {images: Images, onClose?: ()=> 
         ref={prevRef}
         className="custom-prev absolute right-0 bottom-[1.1em] w-12 flex justify-center items-center h-[74px] z-20 text-white bg-black/0 bg-gradient-to-l from-black/75 to-transparent disabled:hidden sm:hidden"
       >
-        <IconArrowRightBack className=' w-6 h-6'/>
+        <IconArrowRightBack className=" w-6 h-6" />
       </button>
       <button
         ref={nextRef}
         className="custom-next absolute left-0 bottom-[1.1em] w-12 flex justify-center items-center h-[74px] z-20 text-white bg-black/0 bg-gradient-to-r from-black/75 to-transparent disabled:hidden sm:hidden"
       >
-        <IconArrowLeftBack className="w-6 h-6"/>
+        <IconArrowLeftBack className="w-6 h-6" />
       </button>
       <Swiper
         spaceBetween={10}
@@ -51,20 +54,20 @@ function SwiperImagesModal({ images, onClose }: {images: Images, onClose?: ()=> 
         modules={[FreeMode, Thumbs]}
         className="mySwiper2 w-full h-[441px] relative"
         onInit={(swiper) => {
-          // @ts-ignore
+          // @ts-expect-error
           swiper.params.navigation.prevEl = prevRef.current;
-          // @ts-ignore
+          // @ts-expect-error
           swiper.params.navigation.nextEl = nextRef.current;
           swiper.navigation.init();
           swiper.navigation.update();
         }}
       >
         <button
-          onClick={onClose ? onClose : ()=> router.back()}
+          onClick={onClose ? onClose : () => router.back()}
           className="absolute justify-center items-center flex top-4 z-50 left-4 w-6 h-6 sm:h-10 sm:w-10 sm:top-[0.4em] sm:left-[0.4em] md:w-10 md:top-5 md:left-5 text-gray-600 hover:text-gray-800 focus:outline-none bg-gray-8 md:bg-transparent rounded-full"
           aria-label="Close Modal"
         >
-          <IconCloseBack width="24" height="24"/>
+          <IconCloseBack width="24" height="24" />
         </button>
 
         {images?.images.map((img) => (
@@ -76,7 +79,7 @@ function SwiperImagesModal({ images, onClose }: {images: Images, onClose?: ()=> 
       </Swiper>
 
       <Swiper
-        // @ts-ignore
+          // @ts-expect-error
         onSwiper={setThumbsSwiper}
         spaceBetween={10}
         slidesPerView={4}

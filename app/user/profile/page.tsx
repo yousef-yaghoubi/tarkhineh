@@ -2,7 +2,7 @@
 import Button from '@/components/shared/button/Button';
 import InputCustom from '@/components/shared/input/InputCustom';
 import BoxOfMain from '@/components/shared/shopingCart/BoxOfMain';
-import { SchemaEditProfile } from '@/lib/zod';
+import { SchemaEditProfile } from '@/validators/zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';

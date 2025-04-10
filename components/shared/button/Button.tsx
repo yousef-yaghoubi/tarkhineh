@@ -2,7 +2,7 @@
 
 import { useRouter } from 'next/navigation';
 import React from 'react';
-import { useCart } from '../shopingCardProvider';
+import { useCart } from '../../../providers/shopingCardProvider';
 import { FoodType } from '@/types';
 import clsx from 'clsx';
 

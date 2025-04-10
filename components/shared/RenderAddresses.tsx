@@ -13,7 +13,7 @@ import IconCloseCircle from '@icons/close-circle.svg';
 import { OrderProvider, useOrder } from '@/app/shoping/ShopingProvider';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { SchemaAddress } from '@/lib/zod';
+import { SchemaAddress } from '@/validators/zod';
 import { z } from 'zod';
 import TextAreaInfo from '@/app/shoping/completion-info/TextAreaInfo';
 import InputCustom from './input/InputCustom';

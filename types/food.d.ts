@@ -19,4 +19,3 @@ export interface DemoFoodModalType {
   export interface CartFoodForShoppingCart extends FoodType {
     quantity: number;
   }
-  

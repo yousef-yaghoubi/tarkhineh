@@ -40,10 +40,10 @@ async function page({ params }: { params: { id: number } }) {
               <span className="body-sm md:h7">{food.food!.name}</span>
               <div className="flex justify-end">
                 {arrayStarStroke.map((star) => (
-                  <IconStarStroke/>
+                  <IconStarStroke key={star}/>
                 ))}
                 {arrayStarFill.map((star) => (
-                <IconStar/>
+                <IconStar key={star}/>
                 ))}
               </div>
               <span className="caption-sm md:body-sm">{food.food!.desc}</span>

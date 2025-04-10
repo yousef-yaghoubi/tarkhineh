@@ -8,7 +8,7 @@ import {
   SchemaEditProfile,
   SchemaEmail,
   SchemaLogin,
-} from '@/lib/zod';
+} from '@/validators/zod';
 import prisma from '@/prisma/prismaClient';
 import { getServerSession } from 'next-auth';
 import { z } from 'zod';

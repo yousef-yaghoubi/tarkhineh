@@ -16,8 +16,11 @@ export async function GET(req: Request) {
         address: true,
         images: true,
         phones: true,
-        openDuration: true,
         commentsBranch: {
+          where: {
+            public : true
+          },
+          orderBy: { createdAt: 'desc' },
           select: {
             id: true,
             desc: true,

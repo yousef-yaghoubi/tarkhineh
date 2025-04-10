@@ -3,7 +3,7 @@ import { convertToPersianNumbers } from '@/lib/convertNumberToPersian';
 import React, { useContext, useEffect, useState } from 'react';
 import { Price } from '../card/CardFoodNecessary';
 import Button from '../button/Button';
-import { useCart } from '../shopingCardProvider';
+import { useCart } from '../../../providers/shopingCardProvider';
 import { useSession } from 'next-auth/react';
 import QuantityFood from '@/app/shoping/shopingCart/QuantityFood';
 import Modal from '../Modal';

@@ -1,5 +1,5 @@
 import { getServerSession } from 'next-auth';
-import { authOption } from '../auth/[...nextauth]/route';
+import { authOptions } from '@/lib/auth';
 import prisma from '@/prisma/prismaClient';
 import { NextResponse } from 'next/server';
 
@@ -7,8 +7,8 @@ export async function GET(req: Request) {
   const { searchParams } = new URL(req.url);
   const status = searchParams.get('status');
 
-  const data = await getServerSession(authOption);
-  if (!data?.user) return NextResponse.json({ status: 401, message: 'لطفا لاگین کنید.' });
+  const data = await getServerSession(authOptions);
+  if (!data?.user) return NextResponse.json({ status: 401, message: 'لطفا وارد حساب کاربری شوید.' });
 
   try {
     const dateNew = new Date();
@@ -67,5 +67,6 @@ export async function GET(req: Request) {
     return NextResponse.json({ status: 200, message: '', order });
   } catch (error) {
     return NextResponse.json({ status: 500, message: 'خطایی رخ داده است.' });
+    console.log(error)
   }
 }

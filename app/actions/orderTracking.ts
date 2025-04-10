@@ -1,7 +1,7 @@
 'use server';
 import prisma from '@/prisma/prismaClient';
 import { getServerSession } from 'next-auth';
-import { authOption } from '../api/auth/[...nextauth]/route';
+import { authOptions } from '@/lib/auth';
 import { revalidatePath } from 'next/cache';
 import { FoodType, OrderState } from '@/types';
 
@@ -15,8 +15,8 @@ export async function SendOrder({
   order: OrderState;
   cart: FoodTypeProp[];
 }) {
-  const data = await getServerSession(authOption);
-  if (!data?.user) return { status: 401, message: 'لطفا لاگین کنید.' };
+  const data = await getServerSession(authOptions);
+  if (!data?.user) return { status: 401, message: 'لطفا وارد حساب کاربری شوید.' };
   try {
     const filteredCart = cart.map(({ name, image, price, quantity }) => ({
       name,
@@ -30,7 +30,7 @@ export async function SendOrder({
       where: { name: { in: foodNames } },
     });
 
-    const orderS = await prisma.orderTracking.create({
+    await prisma.orderTracking.create({
       data: {
         branchId: 2,
         userId: Number(data?.user.id),
@@ -54,6 +54,7 @@ export async function SendOrder({
     return { status: 201, message: 'سفارش شما با موفقیت ثبت شد.' };
   } catch (error) {
     return { status: 500, message: 'خطایی رخ داده است.' };
+    console.log(error)
   }
 }
 
@@ -72,6 +73,7 @@ export async function CancelOrderTrack(id: number) {
       return {status: 200, message: 'سفارش شما با موفقیت لغو شد.'}
     } catch (error) {
       return {status: 400, message: 'لغو سفارش شما با مشکل مواجه شد.'}
+      console.log(error)
     }
 }
 
@@ -106,5 +108,6 @@ export async function AgainSubmitOrderTrack(id: number) {
     return {status: 201, message: 'سفارش شما با موفقیت ثبت شد.'}
   } catch (error) {
     return {status: 400, message: 'سفارش مجدد شما با مشکل مواجه شد.'}
+    console.log(error)
   }
 }

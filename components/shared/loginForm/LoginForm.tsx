@@ -7,7 +7,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import ErrorMessage from './ErrorMessage';
-import { SchemaLogin } from '@/lib/zod';
+import { SchemaLogin } from '@/validators/zod';
 import { signIn } from 'next-auth/react';
 import ButtonBack from '../button/ButtonBack';
 import IconClose from "@icons/CloseIcon.svg"

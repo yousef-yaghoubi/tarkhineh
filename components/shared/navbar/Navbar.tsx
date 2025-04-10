@@ -3,30 +3,18 @@ import React from 'react';
 import Icon from './Icon';
 import Nav from './Nav';
 import { ModeToggle } from './ChangeTheme';
-import {
-  Sheet,
-  SheetContent,
-  SheetTrigger,
-} from '@/components/ui/sheet';
 import { iconDetails } from '@/lib/dataPublic';
 import Link from 'next/link';
 import { getServerSession } from 'next-auth';
-import { authOption } from '@/app/api/auth/[...nextauth]/route';
-import IconNavbar from '@icons/menu.svg';
+import { authOptions } from '@/lib/auth';
+
 async function Navbar() {
-  const session = await getServerSession(authOption);
+  const session = await getServerSession(authOptions);
   return (
     <div className="w-full h-16 md:h-[115px] flex flex-row justify-between px-4 md:justify-around md:p-0 items-center shadow-shadow-10">
-      {/* <Sheet>
-        <SheetTrigger className="md:!hidden" asChild>
-          <IconNavbar width="24" height="24" className="fill-primary" />
-        </SheetTrigger>
-        <SheetContent className="bg-white dark:bg-[#1c1b22] border-none p-0 menuMobile"> */}
-          <div className="flex flex-col justify-start md:!hidden">
-            <Nav menuBar={true}/>
-          </div>
-        {/* </SheetContent>
-      </Sheet> */}
+      <div className="flex flex-col justify-start md:!hidden">
+        <Nav menuBar={true} />
+      </div>
 
       <div className="w-[102px] h-8 lg:w-[155px] lg:h-[51px]">
         <Link href={'/'}>

@@ -1,12 +1,11 @@
 import prisma from '@/prisma/prismaClient';
 import { getServerSession } from 'next-auth';
-import { revalidatePath } from 'next/cache';
 import { NextResponse } from 'next/server';
-import { authOption } from '../auth/[...nextauth]/route';
+import { authOptions } from '@/lib/auth';
 
 export async function GET(req: Request) {
   const { searchParams } = new URL(req.url);
-  const session = await getServerSession(authOption);
+  const session = await getServerSession(authOptions);
   const branchName = searchParams.get('branchName') as string;
   const page = searchParams.get('page') as string;
   const type = searchParams.get('type') as
@@ -133,9 +132,6 @@ export async function GET(req: Request) {
       isFavorite: session?.user.id ? food.favorite !== null : false,
     }));
 
-    revalidatePath('/menu');
-    revalidatePath('/branchs');
-
     return NextResponse.json({
       foods: result,
     });
@@ -143,5 +139,6 @@ export async function GET(req: Request) {
     return NextResponse.json({
       foods: null,
     });
+    console.log(error)
   }
 }

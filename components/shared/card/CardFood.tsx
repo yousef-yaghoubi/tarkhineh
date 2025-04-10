@@ -7,7 +7,7 @@ import Button from '../button/Button';
 import { FoodType } from '@/types';
 import Link from 'next/link';
 import { OrderBadge, Price, PriceOrder } from './CardFoodNecessary';
-import { useCart } from '@/components/shared/shopingCardProvider';
+import { useCart } from '@/providers/shopingCardProvider';
 import IconStar from '@icons/StarRate.svg';
 import IconStarStroke from '@icons/StarStroke.svg';
 import IconHeart from '@icons/Heart.svg';
@@ -42,7 +42,7 @@ function CardFood({
   if (!isShowForMenu) {
     return (
       <div className="w-[168px] md:w-72 h-[231px] md:h-[417px] overflow-hidden rounded-sm relative hover:shadow-shadow-10 transition-shadow border border-gray-4 dark:border-background-2 duration-300 flex flex-col items-center bg-white dark:bg-background-1">
-        <Link href={`/product/${item.id}`}>
+        <Link href={`/food/${item.id}`}>
           <Image
             src={item.image}
             alt="food"
@@ -51,8 +51,8 @@ function CardFood({
           />
         </Link>
         <div className="absolute bottom-0 h-[calc(100%_-_109px)] md:h-[calc(100%_-_240px)] w-full flex flex-col items-center rounded-b">
-          <Link href={`/product/${item.id}`}>
-            <span className="caption-md mt-1 md:h7 md:mt-2">{item.name}</span>
+          <Link href={`/food/${item.id}`}>
+            <span className="caption-md mt-1 md:h7 md:mt-2 text-gray-8 dark:text-gray-3">{item.name}</span>
           </Link>
 
           <div className="flex justify-between w-full h-10 md:h-[51px] px-2 mt-1 md:mt-4">
@@ -65,9 +65,9 @@ function CardFood({
                 }}
               >
                 {isRedHeart ? (
-                  <IconHeartFill className="w-4 h-4 ml-1 fill-red-600" />
+                  <IconHeartFill className="w-4 h-4 ml-1 fill-red-600 cursor-pointer" />
                 ) : (
-                  <IconHeart className="w-4 h-4 ml-1 fill-[#ADADAD]" />
+                  <IconHeart className="w-4 h-4 ml-1 fill-[#ADADAD] cursor-pointer" />
                 )}
 
                 <span className="caption-sm hidden md:flex text-gray-5">
@@ -125,7 +125,7 @@ function CardFood({
     const arrayStarStroke = Array.from({ length: starStroke }, (_, i) => i + 1);
     return (
       <div className="w-4/5 min-w-80 h-[100px] md:w-4/5 md:h-[158px] md:min-w-[600px] border border-gray-4 dark:border-background-2 rounded flex relative overflow-hidden hover:shadow-cardFood transition-shadow duration-300">
-        <Link href={`/product/${item.id}`}>
+        <Link href={`/food/${item.id}`}>
           <Image
             src={item.image}
             alt="food"
@@ -135,8 +135,8 @@ function CardFood({
         </Link>
         <div className="w-[calc(100%_-_92px)] md:w-[calc(100%_-_169px)] absolute left-0 h-full p-2 md:pr-8 md:py-2 md:pl-4">
           <div className="flex justify-between items-center">
-            <Link href={`/product/${item.id}`}>
-              <span className="caption-md md:h7">{item.name}</span>
+            <Link href={`/food/${item.id}`}>
+              <span className="caption-md md:h7 text-gray-8 dark:text-gray-3">{item.name}</span>
             </Link>
             <div
               className={`${item.order !== 0 ? 'flex md:hidden' : 'hidden'} w-16 gap-1 items-center justify-between`}
@@ -149,7 +149,7 @@ function CardFood({
               <IconHeartFill
                 width="24"
                 height="24"
-                className="md:flex hidden fill-red-600"
+                className="md:flex hidden fill-red-600 cursor-pointer"
                 onClick={async () => {
                   await handleAddFoodToFavorite(
                     JSON.parse(JSON.stringify(item.id))
@@ -160,7 +160,7 @@ function CardFood({
               <IconHeart
                 width="24"
                 height="24"
-                className="md:flex hidden fill-[#ADADAD]"
+                className="md:flex hidden fill-[#ADADAD] cursor-pointer"
                 onClick={async () => {
                   await handleAddFoodToFavorite(
                     JSON.parse(JSON.stringify(item.id))
@@ -191,7 +191,7 @@ function CardFood({
                 width="16"
                 height="16"
                 fill="#ADADAD"
-                className="md:hidden fill-red-600"
+                className="md:hidden fill-red-600 cursor-pointer"
                 onClick={() =>
                   handleAddFoodToFavorite(JSON.parse(JSON.stringify(item.id)))
                 }
@@ -201,7 +201,7 @@ function CardFood({
                 width="16"
                 height="16"
                 fill="#ADADAD"
-                className="md:hidden fill-[#ADADAD]"
+                className="md:hidden fill-[#ADADAD] cursor-pointer"
                 onClick={() =>
                   handleAddFoodToFavorite(JSON.parse(JSON.stringify(item.id)))
                 }

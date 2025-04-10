@@ -26,5 +26,6 @@ export async function GET(req: Request) {
       get: 'unsuccessfully',
       status: 400,
     });
+    console.log(error)
   }
 }
