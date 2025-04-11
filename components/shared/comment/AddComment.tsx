@@ -13,18 +13,6 @@ import { AddCommentAction } from '@/app/actions/comment';
 import { toast } from 'sonner';
 
 type TypeAddComment = z.infer<typeof SchemaAddComment>;
-const fillColorArray = [
-  '#f17a45',
-  '#f17a45',
-  '#f19745',
-  '#f19745',
-  '#f1a545',
-  '#f1a545',
-  '#f1b345',
-  '#f1b345',
-  '#f1d045',
-  '#f1d045',
-];
 
 function AddComment({ type }: { type: {name: 'branch', id: number} | {name: 'proudact', id: number} }) {
   const [openModal, setOpenModal] = useState(false);
@@ -32,7 +20,6 @@ function AddComment({ type }: { type: {name: 'branch', id: number} | {name: 'pro
     register,
     handleSubmit,
     control,
-    getValues,
     formState: { errors },
   } = useForm<TypeAddComment>({
     resolver: zodResolver(SchemaAddComment),

@@ -4,11 +4,11 @@ import React from 'react';
 import Button from '@/components/shared/button/Button';
 import { arraySlideMain } from '@/lib/dataPublic';
 import SwiperDeatail from './SwiperDeatail';
-import SliderSwiper from '../../../components/shared/swiper/SliderSwiper';
 import { CommentType, FoodType } from '@/types';
 import IconNote from '@icons/note.svg';
 import { headers } from 'next/headers';
 import AddComment from '@/components/shared/comment/AddComment';
+import SliderSwiper from '@/components/shared/swiper/SliderSwiper';
 
 async function DynamicBranchs({
   params,
@@ -54,7 +54,6 @@ async function DynamicBranchs({
   return (
     <>
       <section className="flex flex-col items-center">
-        <SwiperMain slides={arraySlideMain} pagination showBtn />
         <div className="w-full flex justify-center">
           <SearchBox classes="w-[90%] mt-4 sm:hidden" />
         </div>
