@@ -8,14 +8,7 @@ import 'swiper/css/navigation';
 import { Pagination, Navigation } from 'swiper/modules';
 import Button from '../button/Button';
 import Image from 'next/image';
-
-interface Slide {
-  id: number;
-  title?: string;
-  img: string;
-  imgMobile: string;
-  alt: string;
-}
+import { Slide } from '@/types/swiper';
 
 function SwiperMain({
   slides,
