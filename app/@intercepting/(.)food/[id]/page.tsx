@@ -10,7 +10,7 @@ import IconStar from "@icons/StarRate.svg"
 
 async function page({ params }: { params: { id: number } }) {
   const { id } = params;
-  const food = await fetch(`http://localhost:3000/api/food/uniqeFood?id=${id}`).then(result => result.json());
+  const food = await fetch(`${process.env.NEXTAUTH_URL}/api/food/uniqeFood?id=${id}`).then(result => result.json());
   const starFill = Math.round(food?.food?.rating as number);
   const starStroke = 5 - starFill;
 

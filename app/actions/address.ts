@@ -52,6 +52,7 @@ export async function SendAddress(props: typeAdrress) {
           });
         }
         revalidatePath('/shoping/completion-info');
+        revalidatePath('/user/myAddresses')
         return {
           status: 200,
           message: 'آدرس با موفقیت ثبت شد.',

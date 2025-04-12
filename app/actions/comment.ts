@@ -9,7 +9,7 @@ export async function AddCommentAction({
   type,
   data,
 }: {
-  type: { name: 'branch'; id: number } | { name: 'proudact'; id: number };
+  type: { name: 'branch'; id: number } | { name: 'product'; id: number };
   data: { desc: string; rate: number };
 }) {
   const session = await getServerSession(authOptions);

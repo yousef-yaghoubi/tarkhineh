@@ -46,7 +46,7 @@ async function page({
   searchParams: { [key: string]: string };
 }) {
   const orderTrack = (await fetch(
-    `http://localhost:3000/api/orderTrack?status=${searchParams.status}`,
+    `${process.env.NEXTAUTH_URL}/api/orderTrack?status=${searchParams.status}`,
     { headers: headers() }
   ).then((res) => res.json())) as {
     status: number;

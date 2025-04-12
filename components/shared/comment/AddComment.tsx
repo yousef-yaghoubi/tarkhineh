@@ -8,7 +8,6 @@ import { SchemaAddComment } from '@/validators/zod';
 import { Textarea } from '@/components/ui/textarea';
 import { z } from 'zod';
 import { Rating } from '@smastrom/react-rating';
-import '@smastrom/react-rating/style.css';
 import { AddCommentAction } from '@/app/actions/comment';
 import { toast } from 'sonner';
 
@@ -17,7 +16,7 @@ type TypeAddComment = z.infer<typeof SchemaAddComment>;
 function AddComment({
   type,
 }: {
-  type: { name: 'branch'; id: number } | { name: 'proudact'; id: number };
+  type: { name: 'branch'; id: number } | { name: 'product'; id: number };
 }) {
   const [openModal, setOpenModal] = useState(false);
   const {

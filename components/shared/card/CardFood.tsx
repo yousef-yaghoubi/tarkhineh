@@ -58,7 +58,6 @@ function CardFood({
               <div
                 className="relative flex items-center cursor-pointer w-fit"
                 onClick={() => {
-                  console.log(item.isFavorite);
                   handleAddFoodToFavorite(item.id);
                 }}
               >

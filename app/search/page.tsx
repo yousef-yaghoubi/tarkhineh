@@ -16,7 +16,7 @@ interface SearchParams {
 async function page({ searchParams }: { searchParams: SearchParams }) {
   const { search } = searchParams;
   const { foods } = (await fetch(
-    `http://localhost:3000/api/food/search?search=${search}`
+    `${process.env.NEXTAUTH_URL}/api/food/search?search=${search}`
   ).then((result) => result.json())) as { foods: FoodType[] | undefined };
 
   return (

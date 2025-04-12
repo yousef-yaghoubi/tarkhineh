@@ -4,7 +4,7 @@ import RenderAddressesClient from './RenderAddressesClient';
 
 async function page() {
   const {addresses: getAddresses} = await fetch(
-    'http://localhost:3000/api/address/addressesOfUser',
+    `${process.env.NEXTAUTH_URL}/api/address/addressesOfUser`,
     {
       headers: headers(),
     }

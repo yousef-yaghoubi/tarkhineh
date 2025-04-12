@@ -10,7 +10,7 @@ function Comment({user, desc, createdAt, score}: CommentType) {
   return (
     <div className="w-[252px] h-[142px] md:w-[600px] md:h-[202px] rounded-sm border border-gray-4 dark:border-background-2 relative">
       <div className="w-full h-full py-5 px-4 flex justify-between">
-        <div className="w-[60px] md:w-24 md:h-[154px] flex flex-col items-center">
+        <div className="w-[60px] md:w-fit md:h-[154px] flex flex-col items-center">
           <Image
             src={user.profile}
             alt="profile"

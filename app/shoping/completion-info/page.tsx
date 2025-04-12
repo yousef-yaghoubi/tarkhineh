@@ -4,7 +4,7 @@ import { headers } from 'next/headers';
 
 async function page() {
 
-  const addressUser = await fetch('http://localhost:3000/api/address/addressesOfUser', {
+  const addressUser = await fetch(`${process.env.NEXTAUTH_URL}/api/address/addressesOfUser`, {
    cache: 'no-store',
     headers: headers()
   }).then(res => res).then(result => result.json());

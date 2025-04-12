@@ -9,6 +9,7 @@ import { Toaster } from '@/components/ui/sonner';
 import AuthProvider from '@/providers/authProvider';
 import { CartProvider } from '@/providers/shopingCardProvider';
 import 'leaflet/dist/leaflet.css';
+import '@smastrom/react-rating/style.css';
 import { QueryProvider } from '@/providers/queryProvider';
 
 const estedad = localFont({

@@ -19,7 +19,7 @@ async function DynamicBranchs({
   const { slug } = params;
   const { foods: specialOfferFoods }: { foods: FoodType[] | undefined } =
     await fetch(
-      `http://localhost:3000/api/food?branchName=${slug}&filter=${'specialOffer'}&page=${1}`,
+      `${process.env.NEXTAUTH_URL}/api/food?branchName=${slug}&filter=${'specialOffer'}&page=${1}`,
       {
         method: 'GET',
         headers: headers(),
@@ -28,7 +28,7 @@ async function DynamicBranchs({
 
   const { foods: popularFoods }: { foods: FoodType[] | undefined } =
     await fetch(
-      `http://localhost:3000/api/food?branchName=${slug}&filter=${'mostPopular'}&page=${1}`,
+      `${process.env.NEXTAUTH_URL}/api/food?branchName=${slug}&filter=${'mostPopular'}&page=${1}`,
       {
         method: 'GET',
         headers: headers(),
@@ -37,7 +37,7 @@ async function DynamicBranchs({
 
   const { foods: notIraniFoods }: { foods: FoodType[] | undefined } =
     await fetch(
-      `http://localhost:3000/api/food?branchName=${slug}&filter=${'non-Iranian'}&page=${1}`,
+      `${process.env.NEXTAUTH_URL}/api/food?branchName=${slug}&filter=${'non-Iranian'}&page=${1}`,
       {
         method: 'GET',
         headers: headers(),
@@ -45,7 +45,7 @@ async function DynamicBranchs({
     ).then((response) => response.json());
 
   const { branch: branchAction } = await fetch(
-    `http://localhost:3000/api/branch?branchName=${slug}`, {
+    `${process.env.NEXTAUTH_URL}/api/branch?branchName=${slug}`, {
       next: {
         tags: ['branch']
       }

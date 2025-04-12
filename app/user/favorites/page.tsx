@@ -16,7 +16,7 @@ const CardFood = dynamic(() => import('@/components/shared/card/CardFood'), {
 
 async function page({ searchParams }: { searchParams: {'categorie': string, 'search': string} }) {
 
-  const response = await fetch(`http://localhost:3000/api/food/favorites?${searchParams.search && `search=${searchParams.search}`}&categorie=${searchParams.categorie}`, {
+  const response = await fetch(`${process.env.NEXTAUTH_URL}/api/food/favorites?${searchParams.search && `search=${searchParams.search}`}&categorie=${searchParams.categorie}`, {
     headers: headers(),
   });
 
