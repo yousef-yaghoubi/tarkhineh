@@ -117,7 +117,6 @@ export async function UpdateUser(formData: {
   lastName: string;
   email: string;
   phone: string;
-  birthDay: string;
   nickName: string;
 }) {
   const session = await getServerSession();
@@ -141,7 +140,6 @@ export async function UpdateUser(formData: {
         firstName: formData.firstName,
         lastName: formData.lastName,
         phone: formData.phone,
-        // birthDay: formData.birthDay,
       },
     });
     return {

@@ -52,7 +52,7 @@ export default function ShowMap({
       }
     }
     getAd();
-  }, [userLocation]);
+  }, [userLocation, setStateAddress, updateDelivery]);
 
   useEffect(() => {
     if (stateAddress) setSearchQuery(stateAddress);
@@ -63,7 +63,7 @@ export default function ShowMap({
 
     try {
       if (response && response.address) {
-        let address = response.display_name
+        const address = response.display_name
           .split(', ')
           .reverse()
           .join(', ')

@@ -3,18 +3,17 @@ import React from 'react';
 import RenderAddressesClient from './RenderAddressesClient';
 
 async function page() {
-
-  const getAddresses = await fetch(
+  const {addresses: getAddresses} = await fetch(
     'http://localhost:3000/api/address/addressesOfUser',
     {
-      cache: 'no-store',
       headers: headers(),
     }
   ).then((res) => res).then((result) => result.json());
 
+  // console.log(getAddresses)
   return (
     <>
-      <RenderAddressesClient getAddresses={getAddresses} />
+      <RenderAddressesClient address={getAddresses} />
     </>
   );
 }

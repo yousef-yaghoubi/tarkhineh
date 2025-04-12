@@ -46,7 +46,7 @@ function Nav({ menuBar }: { menuBar: boolean }) {
   }, [pathName]);
 
   useEffect(() => {
-    if (!!sessionCookie) setBranchName(`شعبه ${sessionCookie}`);
+    if (sessionCookie) setBranchName(`شعبه ${sessionCookie}`);
   }, [sessionCookie]);
 
   return (
@@ -242,9 +242,11 @@ function Nav({ menuBar }: { menuBar: boolean }) {
                           key={sub.label}
                           className="py-[7px] px-5 hover:bg-slate-100 dark:hover:bg-background-1 flex"
                           onClick={() => {
-                            !!sessionCookie
-                              ? router.push(`/menu?type=${sub.routeQuery}`)
-                              : setShowChooseModal(true);
+                            if (sessionCookie) {
+                              router.push(`/menu?type=${sub.routeQuery}`);
+                            } else {
+                              setShowChooseModal(true);
+                            }
                             setUrlMenu(sub.routeQuery);
                           }}
                         >

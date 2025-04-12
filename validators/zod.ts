@@ -121,8 +121,7 @@ export const SchemaEditProfile = z.object({
     .min(11, 'شماره باید 11 رقم باشد')
     .max(11, 'شماره باید 11 رقم باشد')
     .regex(/^\d+$/, 'فقط مجاز هستید عدد وارد کنید')
-    .transform((val) => val.trim())
-    .optional(),
+    .transform((val) => val.trim()),
   birthDay: z.string().optional(),
   nickName: z
     .string()

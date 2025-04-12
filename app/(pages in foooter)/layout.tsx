@@ -3,10 +3,9 @@ import SwiperMain from '@/components/shared/swiper/swiper';
 import { usePathname } from 'next/navigation';
 import React from 'react';
 import Tab from '../(foods)/menu/Tab';
-import { url } from 'inspector';
 
 
-function layout({ children }: { children: React.ReactElement }) {
+function Layout({ children }: { children: React.ReactElement }) {
   const pathName = usePathname();
 
   const arrayOfPages = [
@@ -30,4 +29,4 @@ function layout({ children }: { children: React.ReactElement }) {
   );
 }
 
-export default layout;
+export default Layout;

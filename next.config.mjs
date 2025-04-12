@@ -1,10 +1,8 @@
 /** @type {import('next').NextConfig} */
+import withBundleAnalyzer from '@next/bundle-analyzer';
 const nextConfig = {
   images: {
     domains: ['res.cloudinary.com'],
-  },
-  experimental: {
-    middleware: true,
   },
   async headers() {
     return [
@@ -41,6 +39,7 @@ const nextConfig = {
         issuer: fileLoaderRule.issuer,
         resourceQuery: { not: [...fileLoaderRule.resourceQuery.not, /url/] }, // exclude if *.svg?url
         use: ['@svgr/webpack'],
+        // ref: true
       },
     )
 
@@ -51,4 +50,11 @@ const nextConfig = {
   },
 };
 
-export default nextConfig;
+
+const withBundleAnalyzerConfig = withBundleAnalyzer({
+  enabled: process.env.ANALYZE === 'true',
+
+})
+export default withBundleAnalyzerConfig(nextConfig);
+
+// module.exports = withBundleAnalyzer(nextConfig)

@@ -1,14 +1,15 @@
 import SearchBox from '@/components/shared/searchBox/SearchBox';
-import SwiperMain from '@/components/shared/swiper/swiper';
 import React from 'react';
 import Button from '@/components/shared/button/Button';
-import { arraySlideMain } from '@/lib/dataPublic';
 import SwiperDeatail from './SwiperDeatail';
 import { CommentType, FoodType } from '@/types';
 import IconNote from '@icons/note.svg';
 import { headers } from 'next/headers';
 import AddComment from '@/components/shared/comment/AddComment';
 import SliderSwiper from '@/components/shared/swiper/SliderSwiper';
+
+
+// export const revalidate = 3600
 
 async function DynamicBranchs({
   params,

@@ -185,7 +185,6 @@ const SliderSwiper = ({
                   className="p-0 !flex justify-center items-center"
                 >
                   <Comment
-                    id={comment.id}
                     createdAt={comment.createdAt}
                     desc={comment.desc}
                     score={comment.score}

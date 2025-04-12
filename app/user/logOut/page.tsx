@@ -4,7 +4,7 @@ import { signOut } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import React from 'react';
 
-function page() {
+function Page() {
   const router = useRouter();
   return (
     <Modal
@@ -36,4 +36,4 @@ function page() {
   );
 }
 
-export default page;
+export default Page;

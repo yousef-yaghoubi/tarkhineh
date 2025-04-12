@@ -73,7 +73,7 @@ function page() {
 
       <div className="mt-6 md:mt-12 mx-2 grid grid-cols-2 md:grid-cols-4 max-w-[925px] gap-[8%]">
         {listOfLogos.map((logo) => (
-          <div className="flex flex-col items-center justify-center">
+          <div className="flex flex-col items-center justify-center" key={logo.id}>
             {logo.icon}
             <p className="text-center mt-4 caption-md md:body-lg">
               {logo.title}
@@ -88,7 +88,7 @@ function page() {
         <h4 className="h6 md:h4 text-center">مزیت دریافت نمایندگی</h4>
         <ul className="grid grid-cols-1 md:grid-cols-2 gap-y-4 mt-6">
           {lis.map((li) => (
-            <li className="flex gap-x-1 items-center">
+            <li className="flex gap-x-1 items-center" key={li.id}>
               <IconLi width="16" height="16" className="fill-transparent" />
               {li.title}
             </li>

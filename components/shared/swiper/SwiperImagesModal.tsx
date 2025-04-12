@@ -31,7 +31,7 @@ function SwiperImagesModal({
   onClose?: () => void;
 }) {
   const router = useRouter();
-  const [thumbsSwiper, setThumbsSwiper] = useState(null);
+  const [thumbsSwiper, setThumbsSwiper] = useState<SwiperCore | null>(null);
   const prevRef = useRef(null);
   const nextRef = useRef(null);
   return (
@@ -54,10 +54,13 @@ function SwiperImagesModal({
         modules={[FreeMode, Thumbs]}
         className="mySwiper2 w-full h-[441px] relative"
         onInit={(swiper) => {
-          // @ts-expect-error
-          swiper.params.navigation.prevEl = prevRef.current;
-          // @ts-expect-error
-          swiper.params.navigation.nextEl = nextRef.current;
+          if (
+            swiper.params.navigation &&
+            typeof swiper.params.navigation !== 'boolean'
+          ) {
+            swiper.params.navigation.prevEl = prevRef.current;
+            swiper.params.navigation.nextEl = nextRef.current;
+          }
           swiper.navigation.init();
           swiper.navigation.update();
         }}
@@ -79,7 +82,6 @@ function SwiperImagesModal({
       </Swiper>
 
       <Swiper
-          // @ts-expect-error
         onSwiper={setThumbsSwiper}
         spaceBetween={10}
         slidesPerView={4}

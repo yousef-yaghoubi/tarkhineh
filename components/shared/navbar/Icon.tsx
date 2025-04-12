@@ -32,7 +32,7 @@ function Icon({ alt, icon, className }: Props) {
   const { cart } = useCart();
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
-  let isActive = pathName.includes(alt)
+  const isActive = pathName.includes(alt)
   let isLogin = false;
 
   useEffect(() => {
@@ -51,7 +51,7 @@ function Icon({ alt, icon, className }: Props) {
     } else {
       setIsProfile(false);
     }
-  }, []);
+  }, [alt]);
 
   if (status == 'authenticated') {
     isLogin = true;
@@ -67,9 +67,9 @@ function Icon({ alt, icon, className }: Props) {
           ${className}`
         )}
         onClick={() => {
-          !isLogin && alt == 'user' && router.push('/login');
-          alt == 'search' && openModal();
-          alt == 'shoping' && router.push('/shoping/shopingCart');
+          if(!isLogin && alt == 'user') router.push('/login');
+          if(alt == 'search') openModal();
+          if(alt == 'shoping') router.push('/shoping/shopingCart');
         }}
       >
         {alt == 'shoping' && cart.length !== 0 && (

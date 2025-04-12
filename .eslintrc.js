@@ -20,5 +20,6 @@ module.exports = {
       '@typescript-eslint/no-unused-vars': ['warn'],
       'react-hooks/exhaustive-deps': 'warn',
     },
+    ignorePatterns: ["components/ui/**/*.ts", "components/ui/**/*.tsx"]
   }
   

@@ -4,7 +4,7 @@ import React from 'react';
 import moment from 'jalali-moment';
 import { CommentType } from '@/types';
 
-function Comment({user, desc, createdAt, id, score}: CommentType) {
+function Comment({user, desc, createdAt, score}: CommentType) {
   const date = moment(createdAt).locale('fa').format('DD MMMM YYYY');
 
   return (

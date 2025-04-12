@@ -22,7 +22,7 @@ function Footer() {
         <span className="caption-md md:h5">دسترسی آسان</span>
         <div className="mr-2 md:mr-3 flex flex-col caption-sm md:caption-lg text-gray-3 justify-between mt-2 md:mt-4 w-[84px] md:w-[172px] h-[84px] md:h-[148px]">
           {liLinksForFooter.map((link) => (
-            <Link href={link.url} key={link.id}>
+            <Link href={link.url} key={link.id} prefetch>
               {link.title}
             </Link>
           ))}
@@ -43,7 +43,7 @@ function Footer() {
         <span className="caption-md md:h5">شعبه های ترخینه</span>
         <div className="mr-3 flex flex-col caption-sm md:caption-lg text-gray-3 justify-between mt-4 w-[90px] h-[114px] md:w-[172px] md:h-[148px]">
           {liBranchsForFooter.map((li) => (
-            <Link href={li.url}>شعبه {li.title}</Link>
+            <Link key={li.id} href={li.url}>شعبه {li.title}</Link>
           ))}
         </div>
       </section>

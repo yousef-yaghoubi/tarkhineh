@@ -1,6 +1,6 @@
 'use client';
 import { convertToPersianNumbers } from '@/lib/convertNumberToPersian';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Price } from '../card/CardFoodNecessary';
 import Button from '../button/Button';
 import { useCart } from '../../../providers/shopingCardProvider';
@@ -62,7 +62,7 @@ function AsideFoodsForShopingCart({
 
   useEffect(() => {
     updateFee({ price: calcAllPrice(cart), discount: calcDiscountPrice(cart) });
-  }, [cart]);
+  }, [cart, updateFee]);
 
   return (
     <aside className=" w-full md:w-11/12 max-w-[704px] xl:max-w-[496px] h-fit flex flex-col mt-10 xl:mt-0 border border-gray-4 dark:border-background-2 rounded-md p-6 text-gray-8 dark:text-gray-1">
@@ -185,7 +185,7 @@ function AsideFoodsForShopingCart({
             className="w-full h-10 mt-5"
             loading
           >
-            ''
+             <></>
           </Button>
         )}
       </div>

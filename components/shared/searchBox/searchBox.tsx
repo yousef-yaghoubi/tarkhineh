@@ -1,6 +1,6 @@
 'use client';
 import { Input } from '@/components/ui/input';
-import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import React, { useState } from 'react';
 
 function SearchBox({
@@ -13,7 +13,6 @@ function SearchBox({
   const [inputValue, setInputValue] = useState<string>();
   const router = useRouter();
   const searchParams = useSearchParams();
-  const pathname = usePathname();
   const search = searchParams.get('search');
   const categorie = searchParams.get('categorie') || 'all';
   const params = new URLSearchParams(searchParams);

@@ -47,4 +47,5 @@ const InputCustom = forwardRef<HTMLInputElement, PropsInput>(
   }
 );
 
+InputCustom.displayName = 'InputCustom'
 export default InputCustom;

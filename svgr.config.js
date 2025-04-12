@@ -1,4 +1,5 @@
 module.exports = {
+  ref: true,
   icon: true,
   dimensions: false,
   expandProps: 'end',
@@ -10,6 +11,5 @@ module.exports = {
     fill: 'currentColor',
   },
   expandProps: 'end',
-
   dimensions: false,
 };

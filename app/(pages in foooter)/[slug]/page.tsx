@@ -5,9 +5,12 @@ import {
   AccordionTrigger,
 } from '@/components/ui/accordion';
 import React from 'react';
-import NotFound from '../../not-found';
 import { notFound } from 'next/navigation';
-import { questionsFAQ, questionsPrivacy, questionsRuls } from '@/lib/dataPublic';
+import {
+  questionsFAQ,
+  questionsPrivacy,
+  questionsRuls,
+} from '@/lib/dataPublic';
 
 function page({ params }: { params: { slug: string } }) {
   if (
@@ -36,8 +39,7 @@ function page({ params }: { params: { slug: string } }) {
     <>
       <div className="w-full flex justify-center items-center my-3 md:my-6 ">
         <Accordion
-          type="single"
-          collapsible
+          type="multiple"
           className="rounded md:rounded-md border border-gray-3 w-4/5"
         >
           {questions.map((quest) => (

@@ -1,5 +1,5 @@
 'use client';
-import React, { forwardRef, useEffect, useState } from 'react';
+import React, { MouseEventHandler, useEffect, useState } from 'react';
 import DatePicker from 'react-multi-date-picker';
 import persian from 'react-date-object/calendars/persian';
 import persian_fa from 'react-date-object/locales/persian_fa';
@@ -20,11 +20,7 @@ type IPropDatePick = React.HTMLAttributes<HTMLDivElement> & {
     disabled?: React.ComponentProps<'input'>['disabled'];
 };
 
-const DatePic = forwardRef<HTMLInputElement, IPropDatePick>(
-  (
-    { placeholder, className, id, error, disabled, ...rest },
-    ref
-  ) => {
+const DatePic = ({ placeholder, className, id, error, disabled } : IPropDatePick) => {
     
   const [windowWidth, setWindowWidth] = useState(0);
 
@@ -54,7 +50,7 @@ const DatePic = forwardRef<HTMLInputElement, IPropDatePick>(
         disabled={!!disabled}
         weekDays={weekDays}
         placeholder={placeholder}
-        renderButton={(direction: any, handleClick: any) => (
+        renderButton={(direction: unknown, handleClick: MouseEventHandler<HTMLButtonElement> | undefined) => (
           <button
             onClick={handleClick}
             className="border border-primary w-6 h-6 rounded-full text-primary"
@@ -76,6 +72,7 @@ const DatePic = forwardRef<HTMLInputElement, IPropDatePick>(
         <ErrorMessage forInput={error} />
     </div>
   )
-});
+};
   
+DatePic.displayName = 'DatePic';
 export default DatePic;

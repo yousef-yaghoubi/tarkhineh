@@ -7,7 +7,6 @@ import Button from '../button/Button';
 import { FoodType } from '@/types';
 import Link from 'next/link';
 import { OrderBadge, Price, PriceOrder } from './CardFoodNecessary';
-import { useCart } from '@/providers/shopingCardProvider';
 import IconStar from '@icons/StarRate.svg';
 import IconStarStroke from '@icons/StarStroke.svg';
 import IconHeart from '@icons/Heart.svg';
@@ -22,7 +21,6 @@ function CardFood({
   item: FoodType;
   isShowForMenu?: boolean;
 }) {
-  const { addToCart } = useCart();
   const [isRedHeart, setIsRedHeart] = useState(item.isFavorite);
 
   const handleAddFoodToFavorite = async (id: number) => {

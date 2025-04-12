@@ -1,6 +1,3 @@
-import React from 'react';
-import ProgressShoping from '../ProgressShoping';
-
 import RenderCardFoods from './RenderCardFoods';
 
 function page() {

@@ -74,7 +74,7 @@ async function page({
               ))}
             </div>
             {orderTrack.order?.map((order) => (
-              <div className="w-full h-fit border border-gray-4 dark:border-background-2 rounded px-3 pt-2 pb-4 md:p-6 md:pt-4 relative flex flex-col">
+              <div key={order.id} className="w-full h-fit border border-gray-4 dark:border-background-2 rounded px-3 pt-2 pb-4 md:p-6 md:pt-4 relative flex flex-col">
                 <div>
                   <h3 className="caption-md md:body-sm md:mt-2 text-gray-6">
                     شعبه اکباتان
@@ -165,7 +165,7 @@ async function page({
                     <div className="w-full flex flex-row">
                       <div className="w-1/2 border-b-2 border-primary border-dashed h-1"></div>
                       <div
-                        className={`w-1/2 border-b-2 ${false ? 'border-b-primary' : 'border-gray-4'} border-dashed h-1`}
+                        className={`w-1/2 border-b-2 border-gray-4 border-dashed h-1`}
                       ></div>
                     </div>
 
@@ -196,7 +196,7 @@ async function page({
 
                 <div className="flex w-full gap-4 overflow-auto mt-4 scrollbar">
                   {order.foods.map((food) => (
-                    <div className="flex flex-col min-w-[92px] h-[92px] md:min-w-[123px] md:h-[125px] border border-gray-4 dark:border-background-2 rounded-md overflow-hidden">
+                    <div key={food.food.name} className="flex flex-col min-w-[92px] h-[92px] md:min-w-[123px] md:h-[125px] border border-gray-4 dark:border-background-2 rounded-md overflow-hidden">
                       <div className="relative w-full h-1/2 md:h-20">
                         <Image alt="foodImg" src={food.food.image} fill />
                         <div className="w-fit h-3 md:h-4 bg-white absolute bottom-1 left-1 rounded-[2px] md:rounded flex items-center justify-center caption-sm md:caption-md text-primary p-1">

@@ -4,16 +4,22 @@ import RenderAddresses from '@/components/shared/RenderAddresses';
 import React from 'react';
 
 export default function RenderAddressesClient({
-  getAddresses,
+  address,
 }: {
-  getAddresses: any;
+  address: {
+    id: number;
+    titleAddress: string;
+    meReciver: boolean;
+    phone: string;
+    nameReciver: string;
+    address: string;
+    userId: number;
+  }[];
 }) {
-  const address = getAddresses?.addresses;
   return (
     <OrderProvider>
       <RenderAddresses
         addressesUser={address}
-        sendDataToParent={() => {}}
         showAddressBranch={false}
       />
     </OrderProvider>

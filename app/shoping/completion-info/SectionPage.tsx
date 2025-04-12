@@ -1,7 +1,7 @@
 'use client';
 import { Label } from '@/components/ui/label';
 import { RadioGroupItem, RadioGroup } from '@/components/ui/radio-group';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import RenderAddresses from '../../../components/shared/RenderAddresses';
 import TextAreaInfo from './TextAreaInfo';
 import AsideFoodsForShopingCart from '@/components/shared/shopingCart/AsideFoodsForShopingCart';
@@ -11,20 +11,15 @@ import { useOrder } from '../ShopingProvider';
 import IconTrukFast from '@icons/truck-fast.svg';
 import IconShopingBag from '@icons/shopping-bag.svg';
 import IconTruk from '@icons/truck.svg';
-import ModalForAddAddress from '@/components/shared/ModalForAddAddress';
 
 function SectionPage({
   userAddress,
 }: {
   userAddress: AddressUserProps[] | undefined;
 }) {
-  const [isOpenModal, setIsOpenModel] = useState(false);
   const [showAddressBranch, setShowAddressBranch] = useState(false);
   const { order, updateDelivery } = useOrder();
 
-  const handleDataFromChild = (child: boolean) => {
-    setIsOpenModel(child);
-  };
 
   return (
     <section className="flex flex-col xl:flex-row justify-around items-center xl:items-start w-11/12 max-w-[1500px] mb-12">
@@ -101,7 +96,6 @@ function SectionPage({
 
         <RenderAddresses
           showAddressBranch={showAddressBranch}
-          sendDataToParent={handleDataFromChild}
           addressesUser={userAddress}
         />
 
@@ -121,11 +115,6 @@ function SectionPage({
             ? true
             : false
         }
-      />
-
-      <ModalForAddAddress
-        isOpenModal={isOpenModal}
-        setIsOpenModal={setIsOpenModel}
       />
     </section>
   );

@@ -12,9 +12,10 @@ import 'leaflet/dist/leaflet.css';
 import { QueryProvider } from '@/providers/queryProvider';
 
 const estedad = localFont({
-  src: './fonts/Estedad[KSHD,wght].woff2',
+  src: './fonts/EstedadKSHD-wght.woff2',
   variable: '--font-estedad',
   weight: '100 900',
+  display: 'swap'
 });
 
 export const metadata: Metadata = {
@@ -30,7 +31,7 @@ export default async function RootLayout({
   intercepting: React.ReactNode;
 }) {
   return (
-    <html dir="rtl" lang="fa-Ir" className={estedad.className}>
+    <html dir="rtl" lang="fa-Ir" className={estedad.className} suppressHydrationWarning>
       <body
         className={`antialiased dark:bg-background-1 selection:bg-tint-1 selection:text-gray-7`}
       >

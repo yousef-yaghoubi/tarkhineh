@@ -49,4 +49,5 @@ const TextAreaInfo = forwardRef<HTMLTextAreaElement, PropsTextArea>(
   }
 );
 
+TextAreaInfo.displayName = 'TextAreaInfo'
 export default TextAreaInfo;

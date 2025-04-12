@@ -10,7 +10,7 @@ import { toast } from 'sonner';
 import { DeleteAddress, SendAddress } from '@/app/actions/address';
 import IconLocation from '@icons/location.svg';
 import IconCloseCircle from '@icons/close-circle.svg';
-import { OrderProvider, useOrder } from '@/app/shoping/ShopingProvider';
+import { useOrder } from '@/app/shoping/ShopingProvider';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { SchemaAddress } from '@/validators/zod';
@@ -23,26 +23,17 @@ const Leaflet = dynamic(() => import('@/components/shared/map/ShowMap'), {
   ssr: false,
 });
 
-// const Map = dynamic(() => import('@/components/shared/map/ShowMap'), {
-//   ssr: false,
-// });
-
 type AddressFormType = z.infer<typeof SchemaAddress>;
 
 function RenderAddresses({
-  sendDataToParent,
   showAddressBranch,
   addressesUser,
 }: {
-  sendDataToParent: (child: boolean) => void;
   showAddressBranch: boolean;
   addressesUser: AddressUserProps[] | undefined;
 }) {
   const [isOpenModal, setIsOpenModel] = useState(false);
   const [idAddressForRemove, setIdAddressForRemove] = useState<number | null>(
-    null
-  );
-  const [idAddressForSelect, setIdAddressForSelect] = useState<number | null>(
     null
   );
   const [isOpenModalAddAddress, setIsOpenModalAddAddress] = useState(false);
@@ -71,7 +62,6 @@ function RenderAddresses({
     }
   };
   return (
-    // <OrderProvider>
     <div className="flex w-full h-fit rounded-md border border-gray-4 dark:border-background-2 p-4">
       {!showAddressBranch ? (
         <div className="w-full h-fit">
@@ -113,8 +103,6 @@ function RenderAddresses({
                   prop={address}
                   setIsOpenModel={setIsOpenModel}
                   setIdAddress={setIdAddressForRemove}
-                  idSelectedAddress={idAddressForSelect}
-                  setIdSelectedAddress={setIdAddressForSelect}
                 />
               ))}
             </div>
@@ -167,7 +155,7 @@ function RenderAddresses({
           <button
             className="w-[117px] h-10 rounded bg-error-extralight text-error"
             onClick={() => {
-              DeleteAddress && DeleteAddress(idAddressForRemove as number);
+              if(DeleteAddress) DeleteAddress(idAddressForRemove as number);
               setIsOpenModel(false);
               toast.success('آدرس شما پاک شد');
             }}
@@ -232,22 +220,7 @@ function RenderAddresses({
               </label>
             </div>
 
-            {checkedInput ? (
-              <>
-                <InputCustom
-                  dir="ltr"
-                  key={'phone'}
-                  id={'phone'}
-                  type={'text'}
-                  placeholder={'شماره همراه'}
-                  classNameParent={'w-full md:max-w-[552px]'}
-                  {...register('phone')}
-                  //@ts-ignore
-                  error={errors.phone}
-                  defaultValue={'09'}
-                />
-              </>
-            ) : (
+            {checkedInput == false ? (
               <>
                 <InputCustom
                   key={'nameRecipient'}
@@ -255,8 +228,7 @@ function RenderAddresses({
                   id={'nameRecipient'}
                   classNameParent={'w-full md:max-w-[552px]'}
                   {...register('nameRecipient')}
-                  // @ts-ignore
-                  error={errors.nameRecipient}
+                  error={!checkedInput && 'nameRecipient' in errors ? errors.nameRecipient : undefined}
                   placeholder={'نام و نام خانوادگی تحویل گیرنده'}
                   className={'h-8 md:h-10'}
                 />
@@ -267,10 +239,23 @@ function RenderAddresses({
                   id={'phoneRecipient'}
                   classNameParent={'w-full md:max-w-[552px] mt-3 md:mt-4'}
                   {...register('phoneRecipient')}
-                  //@ts-ignore
-                  error={errors.phoneRecipient}
+                  error={!checkedInput && 'phoneRecipient' in errors ? errors.phoneRecipient : undefined}
                   placeholder={'شماره تماس تحویل گیرنده'}
                   className={'h-8 md:h-10'}
+                />
+              </>
+            ) : (
+              <>
+                <InputCustom
+                  dir="ltr"
+                  key={'phone'}
+                  id={'phone'}
+                  type={'text'}
+                  placeholder={'شماره همراه'}
+                  classNameParent={'w-full md:max-w-[552px]'}
+                  {...register('phone')}
+                  error={checkedInput && 'phone' in errors ? errors.phone : undefined}
+                  defaultValue={'09'}
                 />
               </>
             )}
@@ -321,7 +306,6 @@ function RenderAddresses({
         )}
       </Modal>
     </div>
-    // </OrderProvider>
   );
 }
 

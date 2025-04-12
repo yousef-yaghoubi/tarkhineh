@@ -49,7 +49,7 @@ function CardFoodShopingCard({ item }: { item: CartFoodForShoppingCart }) {
 
           <div className={`h-full flex items-center justify-end`}>
             <div
-              className={` ${true ? 'flex' : 'hidden'} gap-1 w-[4.2em] items-center justify-between`}
+              className={` ${item.order !== 0 ? 'flex' : 'hidden'} gap-1 w-[4.2em] items-center justify-between`}
             >
               <PriceOrder price={item.price} />
               <OrderBadge order={item.order} />
@@ -58,10 +58,10 @@ function CardFoodShopingCard({ item }: { item: CartFoodForShoppingCart }) {
 
           <div className="h-full flex col-start-1 col-end-4 items-center">
             {arrayStarStroke.map((star) => (
-              <IconStarStroke className="!w-4 !h-4 md:!w-6 md:!h-6 fill-white dark:fill-background-2"/>
+              <IconStarStroke key={star} className="!w-4 !h-4 md:!w-6 md:!h-6 fill-white dark:fill-background-2"/>
             ))}
             {arrayStarFill.map((star) => (
-            <IconStar className="!w-4 !h-4 md:!w-6 md:!h-6" />
+            <IconStar key={star} className="!w-4 !h-4 md:!w-6 md:!h-6" />
             ))}
             <QuantityFood quantity={item.quantity} id={item.id} />
           </div>

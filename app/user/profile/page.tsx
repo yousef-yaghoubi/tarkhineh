@@ -15,7 +15,7 @@ import DatePic from './DatePic';
 
 type TypeOfFormEditProfile = z.infer<typeof SchemaEditProfile>;
 
-function page() {
+function Page() {
   const [disabeldInput, setDisabeldInput] = useState(true);
   const {
     register,
@@ -23,10 +23,17 @@ function page() {
     formState: { errors },
   } = useForm<TypeOfFormEditProfile>({
     resolver: zodResolver(SchemaEditProfile),
-  });
-  const {update, data: session} = useSession()
+  })
+  const {update} = useSession()
 
-  const submitForm = async (e: any) => {
+  const submitForm = async (e: {
+    firstName: string;
+    lastName: string;
+    email: string;
+    phone: string;
+    nickName: string;
+  }) => {
+    console.log(e)
     const updateUser = await UpdateUser(e);
     if (updateUser?.status == 200) {
       await update(updateUser.data)
@@ -136,4 +143,4 @@ function page() {
   );
 }
 
-export default page;
+export default Page;
