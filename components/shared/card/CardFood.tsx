@@ -3,17 +3,19 @@
 import { convertToPersianNumbers } from '@/lib/convertNumberToPersian';
 import Image from 'next/image';
 import React, { useState } from 'react';
-import Button from '../button/Button';
 import { FoodType } from '@/types';
 import Link from 'next/link';
 import { OrderBadge, Price, PriceOrder } from './CardFoodNecessary';
 import IconStar from '@icons/StarRate.svg';
-import IconStarStroke from '@icons/StarStroke.svg';
 import IconHeart from '@icons/Heart.svg';
 import IconHeartFill from '@icons/HeartFill.svg';
 import { AddFoodToFavorite } from '@/app/actions/food';
 import { toast } from 'sonner';
+import { Rating } from '@smastrom/react-rating';
+import dynamic from 'next/dynamic';
 
+
+const Button = dynamic(()=> import('../button/Button'))
 function CardFood({
   item,
   isShowForMenu,
@@ -115,11 +117,6 @@ function CardFood({
       </div>
     );
   } else {
-    const starFill = Math.round(item.rating);
-    const starStroke = 5 - starFill;
-
-    const arrayStarFill = Array.from({ length: starFill }, (_, i) => i + 1);
-    const arrayStarStroke = Array.from({ length: starStroke }, (_, i) => i + 1);
     return (
       <div className="w-4/5 min-w-80 h-[100px] md:w-4/5 md:h-[158px] md:min-w-[600px] border border-gray-4 dark:border-background-2 rounded flex relative overflow-hidden hover:shadow-cardFood transition-shadow duration-300">
         <Link href={`/food/${item.id}`}>
@@ -206,17 +203,7 @@ function CardFood({
             )}
             <div className="flex items-center md:w-full md:justify-between">
               <div className="flex w-20 md:w-28 ml-2">
-                {arrayStarStroke.map((star) => (
-                  <IconStarStroke
-                    key={star}
-                    width="24"
-                    height="24"
-                    className="fill-white dark:fill-background-2"
-                  />
-                ))}
-                {arrayStarFill.map((star) => (
-                  <IconStar width="24" height="24" key={star}/>
-                ))}
+                <Rating value={item.rating} readOnly className='max-w-20 md:max-w-32'/>
               </div>
 
               <Button

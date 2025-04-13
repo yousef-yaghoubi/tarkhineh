@@ -10,7 +10,6 @@ async function page() {
     }
   ).then((res) => res).then((result) => result.json());
 
-  // console.log(getAddresses)
   return (
     <>
       <RenderAddressesClient address={getAddresses} />

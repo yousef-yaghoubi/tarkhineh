@@ -16,7 +16,7 @@ export interface FoodType extends DemoFoodModalType {
   order: number;
   favorite?: { id: number } | null;
   isFavorite?: boolean;
-  commentsFood: CommentType[]
+  commentsFood?: CommentType[]
 }
 
 

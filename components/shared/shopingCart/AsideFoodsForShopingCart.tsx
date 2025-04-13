@@ -60,6 +60,8 @@ function AsideFoodsForShopingCart({
   const { status } = useSession();
   const [isOpenModal, setIsOpenModel] = useState(false);
 
+
+  
   useEffect(() => {
     updateFee({ price: calcAllPrice(cart), discount: calcDiscountPrice(cart) });
   }, [cart, updateFee]);

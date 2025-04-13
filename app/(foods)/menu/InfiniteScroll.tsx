@@ -22,7 +22,6 @@ function InfiniteScroll() {
   const queryFilter = searchParams.get('categorie') || 'all';
 
   const fetchFoods = async ({ pageParam = 1 }: { pageParam?: number }) => {
-    console.log(process.env.NEXTAUTH_URL)
     const res = await fetch(
       `/api/food?branchName=${cookieBranch}&filter=${queryFilter}&type=${queryType}&page=${pageParam}`,
       {
@@ -70,7 +69,7 @@ function InfiniteScroll() {
         ))}
       </section>
 
-      {hasNextPage || isLoading && (
+      {hasNextPage && (
         <div className="w-full flex justify-center items-center mt-20 mb-40">
           <div
             className="text-primary h-14 w-14 animate-spin rounded-full border-[6px] border-solid border-current border-e-transparent align-[-0.125em] text-surface motion-reduce:animate-[spin_1.5s_linear_infinite]"

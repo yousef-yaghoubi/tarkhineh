@@ -1,5 +1,5 @@
 import { Skeleton } from '@/components/ui/skeleton';
-import { FoodType } from '@/types';
+import { CommentType, FoodType } from '@/types';
 import dynamic from 'next/dynamic';
 import React from 'react';
 import ClientPageForButton from './ClientPageForButton';
@@ -31,7 +31,6 @@ async function page({ params }: { params: { id: string } }) {
     food: FoodType | null;
   };
 
-  console.log(food)
   return (
     <div className="p-4 md:p-10 lg:p-16">
       {food ? (
@@ -67,7 +66,7 @@ async function page({ params }: { params: { id: string } }) {
           </div>
 
 
-          <ShowComments comments={food.commentsFood} id={food.id} type='product' className='mt-[5em]'/>
+          <ShowComments comments={food.commentsFood as CommentType[]} id={food.id} type='product' className='mt-[5em]'/>
         </>
       ) : (
         <></>

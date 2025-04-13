@@ -1,4 +1,3 @@
-import { DemoFoodModalType, FoodType } from '@/types';
 import prisma from '@/prisma/prismaClient';
 import { NextResponse } from 'next/server';
 import { z } from 'zod';
@@ -37,6 +36,9 @@ export async function GET(req: Request) {
         price: true,
         rating: true,
         commentsFood: {
+          where:{
+            public: true
+          },
           select: {
             id: true,
             desc: true,

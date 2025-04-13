@@ -1,6 +1,4 @@
 'use client'
-import Button from '@/components/shared/button/Button';
-import InputCustom from '@/components/shared/input/InputCustom';
 import BoxOfMain from '@/components/shared/shopingCart/BoxOfMain';
 import { SchemaEditProfile } from '@/validators/zod';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -11,10 +9,13 @@ import IconEdit from '@icons/edit-2.svg';
 import { UpdateUser } from '@/app/actions/userAction';
 import { toast } from 'sonner';
 import { useSession } from 'next-auth/react';
-import DatePic from './DatePic';
+import dynamic from 'next/dynamic';
 
+
+const InputCustom = dynamic(()=> import('@/components/shared/input/InputCustom'))
+const DatePic = dynamic(()=> import('./DatePic'))
+const Button = dynamic(()=> import('@/components/shared/button/Button'))
 type TypeOfFormEditProfile = z.infer<typeof SchemaEditProfile>;
-
 function Page() {
   const [disabeldInput, setDisabeldInput] = useState(true);
   const {
@@ -33,7 +34,6 @@ function Page() {
     phone: string;
     nickName: string;
   }) => {
-    console.log(e)
     const updateUser = await UpdateUser(e);
     if (updateUser?.status == 200) {
       await update(updateUser.data)

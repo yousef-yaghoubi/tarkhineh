@@ -48,7 +48,7 @@ function ButtonOrder({
             }
           : async() => {
             const response = await AgainSubmitOrderTrack(order.id);
-            if (response.status == 200) {
+            if (response.status == 201) {
               toast.success(response.message);
             } else {
               toast.error(response.message);

@@ -1,6 +1,5 @@
 'use client';
 import React, { MouseEventHandler, useEffect, useState } from 'react';
-import DatePicker from 'react-multi-date-picker';
 import persian from 'react-date-object/calendars/persian';
 import persian_fa from 'react-date-object/locales/persian_fa';
 import 'react-multi-date-picker/styles/colors/green.css';
@@ -9,7 +8,8 @@ import clsx from 'clsx';
 import { FieldError } from 'react-hook-form';
 import ErrorMessage from '@/components/shared/loginForm/ErrorMessage';
 import DateObject from 'react-date-object';
-
+import dynamic from 'next/dynamic';
+const DatePicker = dynamic(()=> import('react-multi-date-picker'))
 const weekDays = ['ش', 'ی', 'د', 'س', 'چ', 'پ', 'ج'];
 
 type IPropDatePick = React.HTMLAttributes<HTMLDivElement> & {

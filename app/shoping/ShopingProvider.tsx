@@ -1,5 +1,5 @@
 'use client';
-import { createContext, useState, useContext, ReactNode } from 'react';
+import { createContext, useState, useContext, ReactNode, useCallback } from 'react';
 import { DeliveryMethod, OrderState, PaymentMethod } from '@/types';
 
 
@@ -41,12 +41,12 @@ export const OrderProvider = ({ children }: { children: ReactNode }) => {
     }));
   };
 
-  const updateFee = (fee: {price: number, discount: number}) => {
+  const updateFee = useCallback((fee: {price: number, discount: number}) => {
     setOrder((prev) => ({
       ...prev,
       fee,
     }));
-  };
+  }, []);
 
   return (
     <OrderContext.Provider value={{ order, updateDelivery, updatePayment, updateFee }}>

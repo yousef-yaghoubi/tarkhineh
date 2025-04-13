@@ -8,17 +8,11 @@ import {
 } from '@/components/shared/card/CardFoodNecessary';
 import { useCart } from '@/providers/shopingCardProvider';
 import IconRemove from '@icons/remove.svg';
-import IconStar from '@icons/StarRate.svg';
-import IconStarStroke from "@icons/StarStroke.svg"
 import { CartFoodForShoppingCart } from '@/types';
+import { Rating } from '@smastrom/react-rating';
 
 function CardFoodShopingCard({ item }: { item: CartFoodForShoppingCart }) {
   const { removeFromCart } = useCart();
-  const starFill = Math.round(item.rating);
-  const starStroke = 5 - starFill;
-
-  const arrayStarFill = Array.from({ length: starFill }, (_, i) => i + 1);
-  const arrayStarStroke = Array.from({ length: starStroke }, (_, i) => i + 1);
 
   return (
     <>
@@ -57,12 +51,11 @@ function CardFoodShopingCard({ item }: { item: CartFoodForShoppingCart }) {
           </div>
 
           <div className="h-full flex col-start-1 col-end-4 items-center">
-            {arrayStarStroke.map((star) => (
-              <IconStarStroke key={star} className="!w-4 !h-4 md:!w-6 md:!h-6 fill-white dark:fill-background-2"/>
-            ))}
-            {arrayStarFill.map((star) => (
-            <IconStar key={star} className="!w-4 !h-4 md:!w-6 md:!h-6" />
-            ))}
+            <Rating
+              value={item.rating}
+              readOnly
+              className="max-w-20 md:max-w-32"
+            />
             <QuantityFood quantity={item.quantity} id={item.id} />
           </div>
           <span className="h-full body-lg flex justify-end col-start-4 col-end-6">
