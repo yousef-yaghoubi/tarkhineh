@@ -15,6 +15,8 @@ import moment from 'jalali-moment';
 import WithoutCart from '@/app/shoping/shopingCart/WithoutCart';
 import ButtonOrder from './ButtonOrder';
 import { headers } from 'next/headers';
+import { Metadata } from 'next';
+import { getBaseUrl } from '@/lib/getBaseUrl';
 
 interface OrderTrackType {
   id: number;
@@ -38,6 +40,28 @@ interface OrderTrackType {
     id: number;
     name: string;
   };
+}
+
+
+export const metadata: Metadata  = {
+  title: 'پیگیری سفارش | رهگیری سفارش آنلاین در ترخینه',
+  description: 'وضعیت سفارش خود را در هر لحظه بررسی کنید و از زمان تحویل آن مطلع شوید. پیگیری سریع و آسان سفارشات در ترخینه.',
+  openGraph: {
+    title: 'پیگیری سفارش | رهگیری سفارش آنلاین در ترخینه',
+    description: 'سفارش خود را به صورت لحظه‌ای پیگیری کنید و از مراحل آماده‌سازی تا تحویل آگاه باشید.',
+    url: `${getBaseUrl()}/user/order-tracking`,
+    images: [
+      {
+        url: `/logoGreenBig.png`,
+        width: 1200,
+        height: 630,
+        alt: `پیگیری سفارش - ترخینه`,
+      },
+    ],
+  },
+  alternates: {
+    canonical: `${getBaseUrl()}/user/order-tracking`,
+  },
 }
 
 async function page({

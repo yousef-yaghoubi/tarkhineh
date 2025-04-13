@@ -2,7 +2,6 @@
 import { convertToPersianNumbers } from '@/lib/convertNumberToPersian';
 import React, { useEffect, useState } from 'react';
 import { Price } from '../card/CardFoodNecessary';
-import Button from '../button/Button';
 import { useCart } from '../../../providers/shopingCardProvider';
 import { useSession } from 'next-auth/react';
 import QuantityFood from '@/app/shoping/shopingCart/QuantityFood';
@@ -12,7 +11,9 @@ import IconWarning from '@icons/warning-2.svg';
 import IconArrowLeft from '@icons/arrow-left.svg';
 import { useOrder } from '@/app/shoping/ShopingProvider';
 import { CartFoodForShoppingCart } from '@/types';
+import dynamic from 'next/dynamic';
 
+const Button = dynamic(()=> import('../button/Button'))
 const calcDiscountPrice = (cart: CartFoodForShoppingCart[]) => {
   const offerCart = cart.filter((item) => item.order !== 0);
   const allOffer = [
@@ -199,7 +200,6 @@ function AsideFoodsForShopingCart({
         desc="همه محصولات سبد خرید شما حذف شود؟"
       >
         <div className="flex justify-between gap-4 md:gap-5">
-          {/* <Button btn='stroke' theme='Primary' className='w-32 h-8 md:w-[117px] md:h-10'>بازگشت</Button> */}
           <button
             className="w-32 h-8 md:w-[117px] md:h-10 rounded border border-primary text-primary"
             onClick={() => setIsOpenModel(false)}

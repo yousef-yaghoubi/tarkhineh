@@ -1,5 +1,4 @@
 /** @type {import('next').NextConfig} */
-import withBundleAnalyzer from '@next/bundle-analyzer';
 const nextConfig = {
   images: {
     domains: ['res.cloudinary.com'],
@@ -50,11 +49,6 @@ const nextConfig = {
   },
 };
 
-
-const withBundleAnalyzerConfig = withBundleAnalyzer({
-  enabled: process.env.ANALYZE === 'true',
-
-})
-export default withBundleAnalyzerConfig(nextConfig);
+export default nextConfig;
 
 // module.exports = withBundleAnalyzer(nextConfig)

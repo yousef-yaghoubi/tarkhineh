@@ -1,7 +1,6 @@
 'use client';
 import React from 'react';
 import Image from 'next/image';
-import Button from '../button/Button';
 import Link from 'next/link';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -11,9 +10,10 @@ import { SchemaLogin } from '@/validators/zod';
 import { signIn } from 'next-auth/react';
 import ButtonBack from '../button/ButtonBack';
 import IconClose from "@icons/CloseIcon.svg"
+import dynamic from 'next/dynamic';
 
 type loginType = z.infer<typeof SchemaLogin>;
-
+const Button = dynamic(()=> import('@/components/shared/button/Button'))
 function LoginForm() {
   const {
     register: registerLogin,

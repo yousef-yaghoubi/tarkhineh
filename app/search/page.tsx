@@ -4,6 +4,8 @@ import React from 'react';
 import { FoodType } from '@/types';
 import dynamic from 'next/dynamic';
 import CardFoodLoading from '@/components/shared/card/CardFoodLoading';
+import { getBaseUrl } from '@/lib/getBaseUrl';
+import { Metadata } from 'next';
 
 const CardFood = dynamic(() => import('@/components/shared/card/CardFood'), {
   loading: () => <CardFoodLoading />,
@@ -11,6 +13,28 @@ const CardFood = dynamic(() => import('@/components/shared/card/CardFood'), {
 
 interface SearchParams {
   search: string;
+}
+
+
+export const metadata: Metadata = {
+  title: 'جستجوی غذا | پیدا کردن غذاهای خوشمزه در منوی ترخینه',
+  description: 'با استفاده از قابلیت جستجو، غذاهای مورد علاقه‌تان را در منوی متنوع ترخینه پیدا کنید. از پیش‌غذا تا غذای اصلی، همه در دسترس شماست!',
+  openGraph: {
+    title: 'جستجوی غذا | پیدا کردن غذاهای خوشمزه در منوی ترخینه',
+    description: 'با جستجوی سریع در منوی ترخینه، غذای دلخواه خود را پیدا کنید و تجربه‌ای لذت‌بخش داشته باشید.',
+    url: `${getBaseUrl()}/search`,
+    images: [
+      {
+        url: `/logoGreenBig.png`, 
+        width: 1200,
+        height: 630,
+        alt: 'جستجوی غذا - رستوران‌های ترخینه',
+      },
+    ],
+  },
+  alternates: {
+    canonical: `${getBaseUrl()}/search`,
+  },
 }
 
 async function page({ searchParams }: { searchParams: SearchParams }) {

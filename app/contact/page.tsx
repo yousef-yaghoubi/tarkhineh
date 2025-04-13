@@ -1,7 +1,33 @@
 import CardTarkhineGardi from '@/components/shared/card/CardTarkhineGardi';
 import SwiperMain from '@/components/shared/swiper/swiper';
 import { branchs } from '@/lib/dataPublic';
+import { getBaseUrl } from '@/lib/getBaseUrl';
+import { Metadata } from 'next';
 import React from 'react';
+
+
+
+
+export const metadata: Metadata = {
+  title: 'تماس با ما | ارتباط با رستوران‌های زنجیره‌ای ترخینه',
+  description: 'از طریق فرم تماس یا اطلاعات تماس موجود، با تیم ترخینه در ارتباط باشید. ما همیشه آماده پاسخگویی به شما هستیم.',
+  openGraph: {
+    title: 'تماس با ما | ارتباط با رستوران‌های زنجیره‌ای ترخینه',
+    description: 'سوال یا پیشنهادی دارید؟ از طریق فرم تماس یا شماره‌های تماس، با تیم پشتیبانی ترخینه در ارتباط باشید.',
+    url: `${getBaseUrl()}/contact`,
+    images: [
+      {
+        url: `/logoGreenBig.png`,
+        width: 1200,
+        height: 630,
+        alt: 'تماس با ما - رستوران‌های ترخینه',
+      },
+    ],
+  },
+  alternates: {
+    canonical: `${getBaseUrl()}/contact`,
+  },
+}
 
 function page() {
   return (

@@ -1,7 +1,7 @@
-import Button from '@/components/shared/button/Button';
+import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import React from 'react';
-
+const Button = dynamic(()=> import('@/components/shared/button/Button'))
 function WithoutCart({ setBorder }: { setBorder?: boolean }) {
   return (
     <div

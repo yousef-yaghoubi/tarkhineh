@@ -5,23 +5,24 @@ import React from 'react';
 import ClientPageForButton from './ClientPageForButton';
 import { headers } from 'next/headers';
 import ShowComments from '@/components/shared/comment/ShowComments';
-
-const Rating = dynamic(
-  () => import('@smastrom/react-rating').then((mod) => mod.Rating),
-  {
-    loading: () => <Skeleton className="w-24 md:w-44 h-5 md:h-10 mt-4 lg:mt-0"></Skeleton>,
-    ssr: false,
-  }
-);
-
+import { getBaseUrl } from '@/lib/getBaseUrl';
 const Image = dynamic(() => import('next/image'), {
   loading: () => <Skeleton className="w-full h-80 md:h-80 md:w-96"></Skeleton>,
   ssr: false,
 });
+const Rating = dynamic(
+  () => import('@smastrom/react-rating').then((mod) => mod.Rating),
+  {
+    loading: () => (
+      <Skeleton className="w-24 md:w-44 h-5 md:h-10 mt-4 lg:mt-0"></Skeleton>
+    ),
+    ssr: false,
+  }
+);
 
-async function page({ params }: { params: { id: string } }) {
+async function GetFood({id}:{id: string}) {
   const { food } = (await fetch(
-    `${process.env.NEXTAUTH_URL}/api/food/uniqeFoodFull?id=${params.id}`,
+    `${process.env.NEXTAUTH_URL}/api/food/uniqeFoodFull?id=${id}`,
     {
       headers: headers(),
     }
@@ -31,6 +32,36 @@ async function page({ params }: { params: { id: string } }) {
     food: FoodType | null;
   };
 
+  return food
+}
+
+export async function generateMetadata({ params }: { params: { id: string } }) {
+  const product = await GetFood(params);
+
+  return {
+    title: `ترخینه | ${product?.name}`,
+    description: product?.desc,
+    openGraph: {
+      title: `${product?.name} | ترخینه`,
+      description: product?.desc,
+      url: `${getBaseUrl()}/food/${params.id}`,
+      images: [
+        {
+          url: product?.image,
+          width: 1200,
+          height: 630,
+          alt: product?.name,
+        },
+      ],
+    },
+    alternates: {
+      canonical: `${getBaseUrl()}/food/${params.id}`,
+    },
+  };
+}
+
+async function page({ params }: { params: { id: string } }) {
+  const food = await GetFood(params);
   return (
     <div className="p-4 md:p-10 lg:p-16">
       {food ? (
@@ -56,7 +87,7 @@ async function page({ params }: { params: { id: string } }) {
                   <Rating
                     readOnly
                     value={food.rating}
-                    className='max-w-24 md:max-w-44 mt-4 lg:mt-0'
+                    className="max-w-24 md:max-w-44 mt-4 lg:mt-0"
                   />
                 </div>
               </div>
@@ -65,8 +96,12 @@ async function page({ params }: { params: { id: string } }) {
             </div>
           </div>
 
-
-          <ShowComments comments={food.commentsFood as CommentType[]} id={food.id} type='product' className='mt-[5em]'/>
+          <ShowComments
+            comments={food.commentsFood as CommentType[]}
+            id={food.id}
+            type="product"
+            className="mt-[5em]"
+          />
         </>
       ) : (
         <></>

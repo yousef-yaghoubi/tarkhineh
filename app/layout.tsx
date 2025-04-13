@@ -16,7 +16,7 @@ const estedad = localFont({
   src: './fonts/EstedadKSHD-wght.woff2',
   variable: '--font-estedad',
   weight: '100 900',
-  display: 'swap'
+  display: 'swap',
 });
 
 export const metadata: Metadata = {
@@ -32,7 +32,7 @@ export default async function RootLayout({
   intercepting: React.ReactNode;
 }) {
   return (
-    <html dir="rtl" lang="fa-Ir" className={estedad.className} suppressHydrationWarning>
+    <html dir="rtl" lang="fa-Ir" className={estedad.className}>
       <body
         className={`antialiased dark:bg-background-1 selection:bg-tint-1 selection:text-gray-7`}
       >

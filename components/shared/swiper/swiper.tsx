@@ -6,10 +6,11 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import { Pagination, Navigation } from 'swiper/modules';
-import Button from '../button/Button';
 import Image from 'next/image';
 import { Slide } from '@/types/swiper';
+import dynamic from 'next/dynamic';
 
+const Button = dynamic(()=> import('../button/Button'))
 function SwiperMain({
   slides,
   pagination,

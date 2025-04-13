@@ -1,9 +1,10 @@
 'use client';
-import Button from '@/components/shared/button/Button';
 import { convertToPersianNumbers } from '@/lib/convertNumberToPersian';
+import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import React from 'react';
 
+const Button = dynamic(()=> import('@/components/shared/button/Button'))
 function ClinetPage() {
 
   const randomEightDigitNumber = Math.floor(10000000 + Math.random() * 90000000);

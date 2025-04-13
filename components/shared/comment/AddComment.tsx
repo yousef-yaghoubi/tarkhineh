@@ -1,6 +1,5 @@
 'use client';
 import React, { useState } from 'react';
-import Button from '../button/Button';
 import Modal from '../Modal';
 import { Controller, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -10,9 +9,10 @@ import { z } from 'zod';
 import { Rating } from '@smastrom/react-rating';
 import { AddCommentAction } from '@/app/actions/comment';
 import { toast } from 'sonner';
+import dynamic from 'next/dynamic';
 
 type TypeAddComment = z.infer<typeof SchemaAddComment>;
-
+const Button = dynamic(()=> import('@/components/shared/button/Button'))
 function AddComment({
   type,
 }: {

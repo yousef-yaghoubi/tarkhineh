@@ -7,6 +7,8 @@ import IconBookGreen from '@icons/bookGreen.svg';
 import IconLi from '@icons/Rectangle4.svg';
 import InputCustom from '@/components/shared/input/InputCustom';
 import ClientButton from './ClientButton';
+import { Metadata } from 'next';
+import { getBaseUrl } from '@/lib/getBaseUrl';
 
 const listOfLogos = [
   {
@@ -50,6 +52,22 @@ const lis = [
   { id: 8, title: 'طرح های تشویقی برای ارتقا فروش' },
 ];
 
+export const metadata: Metadata = {
+  title: 'اعطای نمایندگی ترخینه | فرصت همکاری با رستوران‌های زنجیره‌ای ترخینه',
+  description:
+    'به خانواده بزرگ ترخینه بپیوندید! اطلاعات کامل درباره شرایط اخذ نمایندگی رستوران‌های زنجیره‌ای ترخینه را اینجا ببینید.',
+  openGraph: {
+    title:
+      'اعطای نمایندگی ترخینه | فرصت همکاری با رستوران‌های زنجیره‌ای ترخینه',
+    description:
+      'فرصتی عالی برای سرمایه‌گذاری مطمئن با دریافت نمایندگی ترخینه. شرایط همکاری، مزایا و فرم درخواست نمایندگی را بررسی کنید.',
+    url: `${getBaseUrl()}/represent`,
+  },
+  alternates: {
+    canonical: `${getBaseUrl()}/represent`,
+  },
+};
+
 function BorderButton() {
   return (
     <div className="w-3/4 border-b border-gray-4 h-1 mb-6 mt-6 md:mt-12 md:mb-12"></div>
@@ -73,7 +91,10 @@ function page() {
 
       <div className="mt-6 md:mt-12 mx-2 grid grid-cols-2 md:grid-cols-4 max-w-[925px] gap-[8%]">
         {listOfLogos.map((logo) => (
-          <div className="flex flex-col items-center justify-center" key={logo.id}>
+          <div
+            className="flex flex-col items-center justify-center"
+            key={logo.id}
+          >
             {logo.icon}
             <p className="text-center mt-4 caption-md md:body-lg">
               {logo.title}
@@ -119,7 +140,7 @@ function page() {
             placeholder="زمان ایدهآل"
             id="time"
           />
-          <ClientButton/>
+          <ClientButton />
         </form>
       </div>
     </div>

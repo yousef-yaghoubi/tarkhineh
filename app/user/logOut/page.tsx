@@ -1,38 +1,31 @@
-'use client';
-import Modal from '@/components/shared/Modal';
-import { signOut } from 'next-auth/react';
-import { useRouter } from 'next/navigation';
-import React from 'react';
+import { getBaseUrl } from "@/lib/getBaseUrl";
+import LogOutClient from "./LogOutClient";
+import { Metadata } from "next";
+
+export const metadata: Metadata  = {
+  title: 'خروج از حساب کاربری | ترخینه',
+  description: 'با خروج از حساب کاربری خود در ترخینه، امنیت حساب خود را حفظ کنید. برای ورود مجدد کافیست به صفحه ورود مراجعه کنید.',
+  openGraph: {
+    title: 'خروج از حساب کاربری | ترخینه',
+    description: 'خروج امن از حساب کاربری و حفظ امنیت اطلاعات شخصی شما در ترخینه.',
+    url: `${getBaseUrl()}/user/logOut`,
+    images: [
+      {
+        url: `/logoGreenBig.png`,
+        width: 1200,
+        height: 630,
+        alt: `خروج از حساب - ترخینه`,
+      },
+    ],
+  },
+  alternates: {
+    canonical: `${getBaseUrl()}/user/logOut`,
+  },
+}
 
 function Page() {
-  const router = useRouter();
   return (
-    <Modal
-      isOpen={true}
-      onClose={() => router.back()}
-      title={<h6 className="h7">خروج</h6>}
-      desc="آیا میخواهید از حساب خود خارج شوید؟"
-      state="removeShopingCart"
-    >
-      <div className="flex w-64 justify-between">
-        <button
-          className="w-[117px] h-10 rounded border border-primary text-primary"
-          onClick={() => router.back()}
-        >
-          بازگشت
-        </button>
-        <button
-          className="w-[117px] h-10 rounded bg-error-extralight text-error"
-          onClick={async() => {
-            await signOut({
-              callbackUrl: '/'
-            })
-          }}  
-        >
-          حذف
-        </button>
-      </div>
-    </Modal>
+    <LogOutClient/>
   );
 }
 

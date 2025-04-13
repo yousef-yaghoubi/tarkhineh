@@ -1,9 +1,10 @@
 'use client';
 import { AgainSubmitOrderTrack, CancelOrderTrack } from '@/app/actions/orderTracking';
-import Button from '@/components/shared/button/Button';
+import dynamic from 'next/dynamic';
 import React from 'react';
 import { toast } from 'sonner';
 
+const Button = dynamic(()=> import('@/components/shared/button/Button'))
 function ButtonOrder({
   order,
 }: {

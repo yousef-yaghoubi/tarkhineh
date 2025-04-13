@@ -1,4 +1,3 @@
-import Button from '@/components/shared/button/Button';
 import CardTarkhineGardi from '@/components/shared/card/CardTarkhineGardi';
 import MiniCardMenu from '@/components/shared/card/MiniCardMenu';
 import SearchBox from '@/components/shared/searchBox/SearchBox';
@@ -10,9 +9,35 @@ import IconHomeWifi from '@icons/home-wifi.svg';
 import IconMenuBoard from '@icons/menu-board.svg';
 import IconArrowLeft from '@icons/arrow-left.svg';
 import dynamic from 'next/dynamic';
+import { getBaseUrl } from '@/lib/getBaseUrl';
+const SwiperMain = dynamic(() => import('@/components/shared/swiper/swiper'));
+const Button = dynamic(() => import('@/components/shared/button/Button'));
 
-
-const SwiperMain = dynamic(()=> import('@/components/shared/swiper/swiper'))
+export const metadata = {
+  title: 'ترخینه | طعم اصیل ایرانی 🍲',
+  description:
+    'سفارش آنلاین غذاهای سنتی ایرانی با بهترین کیفیت از ترخینه. تجربه‌ای بی‌نظیر از طعم خانه!',
+  keywords: ['ترخینه', 'غذای ایرانی', 'سنتی', 'سفارش آنلاین غذا'],
+  openGraph: {
+    title: 'ترخینه | طعم اصیل ایرانی 🍲',
+    description: 'سفارش آنلاین غذاهای سنتی ایرانی با بهترین کیفیت از ترخینه.',
+    url: getBaseUrl(),
+    siteName: 'ترخینه',
+    images: [
+      {
+        url: '/logoGreenBig.png',
+        width: 1200,
+        height: 630,
+        alt: 'ترخینه | طعم اصیل ایرانی 🍲',
+      },
+    ],
+    locale: 'fa_IR',
+    type: 'website',
+  },
+  alternates: {
+    canonical: getBaseUrl(),
+  },
+};
 
 async function Home() {
   return (
@@ -48,13 +73,12 @@ async function Home() {
               btn="stroke"
               theme="White"
               className="h-[32px] w-[152px] md:w-[184px] md:h-10 mt-8 md:mt-4"
-              link='/about'
+              link="/about"
             >
               <span className="flex items-center">
                 اطلاعات بیشتر
                 <IconArrowLeft className="w-4 h-4 md:w-6 md:h-6 fill-white" />
               </span>
-
             </Button>
           </div>
         </div>

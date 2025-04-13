@@ -4,10 +4,17 @@ import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react';
 import { MapContainer, Marker, TileLayer, useMapEvents } from 'react-leaflet';
 import { OpenStreetMapProvider } from 'leaflet-geosearch';
 import L, { Icon, LatLngExpression, Map } from 'leaflet';
-import Button from '../button/Button';
 import { useOrder } from '@/app/shoping/ShopingProvider';
 import IconGps from '@icons/gps.svg';
 import IconLocation from '@icons/location.svg';
+import dynamic from 'next/dynamic';
+const Button = dynamic(()=> import('../button/Button'))
+
+
+
+
+
+
 function LocationMarker({
   setLocation,
 }: {

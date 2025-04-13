@@ -2,7 +2,6 @@
 import Image from 'next/image';
 import React, { useState } from 'react';
 import Address from '../../app/shoping/completion-info/Address';
-import Button from '@/components/shared/button/Button';
 import dynamic from 'next/dynamic';
 import { AddressUserProps } from '@/types';
 import Modal from '@/components/shared/Modal';
@@ -22,7 +21,7 @@ import { usePathname } from 'next/navigation';
 const Leaflet = dynamic(() => import('@/components/shared/map/ShowMap'), {
   ssr: false,
 });
-
+const Button = dynamic(()=> import('@/components/shared/button/Button'))
 type AddressFormType = z.infer<typeof SchemaAddress>;
 
 function RenderAddresses({

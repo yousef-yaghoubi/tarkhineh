@@ -1,15 +1,44 @@
 import SearchBox from '@/components/shared/searchBox/SearchBox';
 import React from 'react';
-import Button from '@/components/shared/button/Button';
 import SwiperDeatail from './SwiperDeatail';
 import { CommentType, FoodType } from '@/types';
 import IconNote from '@icons/note.svg';
 import { headers } from 'next/headers';
 import AddComment from '@/components/shared/comment/AddComment';
 import SliderSwiper from '@/components/shared/swiper/SliderSwiper';
+import dynamic from 'next/dynamic';
+import { generateBranchMetadata } from '@/lib/seo';
+const Button = dynamic(() => import('@/components/shared/button/Button'));
 
+export const revalidate = 3600;
 
-// export const revalidate = 3600
+async function getBranchBySlug({ params }: { params: { slug: string } }) {
+  const { branch: branchAction } = await fetch(
+    `${process.env.NEXTAUTH_URL}/api/branch?branchName=${params.slug}`,
+    {
+      next: {
+        tags: ['branch'],
+      },
+    }
+  ).then((response) => response.json());
+
+  return branchAction;
+}
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}) {
+  const branch = await getBranchBySlug({ params });
+
+  return generateBranchMetadata({
+    name: branch.name,
+    address: branch.address,
+    phone: branch.phone,
+    slug: branch.slug,
+    image: branch.image,
+  });
+}
 
 async function DynamicBranchs({
   params,
@@ -44,14 +73,7 @@ async function DynamicBranchs({
       }
     ).then((response) => response.json());
 
-  const { branch: branchAction } = await fetch(
-    `${process.env.NEXTAUTH_URL}/api/branch?branchName=${slug}`, {
-      next: {
-        tags: ['branch']
-      }
-    }
-  ).then((response) => response.json());
-
+  const branchAction = await getBranchBySlug({ params });
   return (
     <>
       <section className="flex flex-col items-center">
@@ -114,7 +136,7 @@ async function DynamicBranchs({
         </span>
 
         <AddComment type={{ name: 'branch', id: branchAction.id }} />
-        {branchAction?.commentsBranch.length != 0? (
+        {branchAction?.commentsBranch.length != 0 ? (
           <SliderSwiper
             theme="White"
             commentSlides={branchAction?.commentsBranch as CommentType[]}

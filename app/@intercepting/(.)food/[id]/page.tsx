@@ -1,21 +1,21 @@
-import Button from '@/components/shared/button/Button';
 import ButtonBack from '@/components/shared/button/ButtonBack';
 import Portal from '@/components/shared/Portal';
 import { convertToPersianNumbers } from '@/lib/convertNumberToPersian';
 import Image from 'next/image';
 import React from 'react';
-import IconClose from "@icons/CloseIcon.svg"
-import IconStarStroke from "@icons/StarStroke.svg"
-import IconStar from "@icons/StarRate.svg"
+import IconClose from '@icons/CloseIcon.svg';
+import dynamic from 'next/dynamic';
+import { Rating } from '@smastrom/react-rating';
+import { FoodType } from '@/types';
+const Button = dynamic(() => import('@/components/shared/button/Button'));
 
 async function page({ params }: { params: { id: number } }) {
   const { id } = params;
-  const food = await fetch(`${process.env.NEXTAUTH_URL}/api/food/uniqeFood?id=${id}`).then(result => result.json());
-  const starFill = Math.round(food?.food?.rating as number);
-  const starStroke = 5 - starFill;
+  const food = await fetch(
+    `${process.env.NEXTAUTH_URL}/api/food/uniqeFood?id=${id}`
+  ).then((result) => result.json()) as {status:number, food: FoodType};
 
-  const arrayStarFill = Array.from({ length: starFill }, (_, i) => i + 1);
-  const arrayStarStroke = Array.from({ length: starStroke }, (_, i) => i + 1);
+
   return (
     <Portal>
       <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 backdrop-blur-sm">
@@ -25,7 +25,7 @@ async function page({ params }: { params: { id: number } }) {
               <h3 className="h7">اطلاعات محصول</h3>
 
               <ButtonBack>
-                <IconClose/>
+                <IconClose />
               </ButtonBack>
             </div>
             <div className="!w-full !h-96 relative">
@@ -39,12 +39,11 @@ async function page({ params }: { params: { id: number } }) {
             <div className="grid grid-cols-[80%,20%] grid-rows-2 w-full justify-between items-center px-4 py-4">
               <span className="body-sm md:h7">{food.food!.name}</span>
               <div className="flex justify-end">
-                {arrayStarStroke.map((star) => (
-                  <IconStarStroke key={star}/>
-                ))}
-                {arrayStarFill.map((star) => (
-                <IconStar key={star}/>
-                ))}
+                <Rating
+                  readOnly
+                  value={food.food.rating}
+                  className="max-w-24 md:max-w-44 mt-4 lg:mt-0"
+                />
               </div>
               <span className="caption-sm md:body-sm">{food.food!.desc}</span>
               <span className="body-sm text-gray-4 grid justify-end">

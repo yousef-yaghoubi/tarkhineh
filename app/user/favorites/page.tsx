@@ -1,18 +1,41 @@
-import Button from '@/components/shared/button/Button';
 import CardFoodLoading from '@/components/shared/card/CardFoodLoading';
 import SearchBox from '@/components/shared/searchBox/SearchBox';
 import BoxOfMain from '@/components/shared/shopingCart/BoxOfMain';
 import SliderSwiper from '@/components/shared/swiper/SliderSwiper';
+import { getBaseUrl } from '@/lib/getBaseUrl';
 import { FoodType } from '@/types';
+import { Metadata } from 'next';
 import dynamic from 'next/dynamic';
 import { headers } from 'next/headers';
 import Image from 'next/image';
 import React from 'react';
 
+const Button = dynamic(()=> import('@/components/shared/button/Button'))
 const CardFood = dynamic(() => import('@/components/shared/card/CardFood'), {
   loading: () => <CardFoodLoading key={Math.random()} />,
   ssr: false,
 });
+
+export const metadata: Metadata = {
+  title: 'علاقه‌مندی‌های من | لیست غذاهای مورد علاقه در ترخینه',
+  description: 'غذاهای مورد علاقه خود را در لیست علاقه‌مندی‌های ترخینه ذخیره کنید و هر زمان سریع‌تر سفارش دهید!',
+  openGraph: {
+    title: 'علاقه‌مندی‌های من | لیست غذاهای مورد علاقه در ترخینه',
+    description: 'غذاهای محبوب خود را یکجا ببینید و راحت‌تر سفارش دهید.',
+    url: `${getBaseUrl()}/user/favorites`,
+    images: [
+      {
+        url: `/logoGreenBig.png`,
+        width: 1200,
+        height: 630,
+        alt: `لیست علاقه‌مندی‌ها - ترخینه`,
+      },
+    ],
+  },
+  alternates: {
+    canonical: `${getBaseUrl()}/user/favorites`,
+  },
+}
 
 async function page({ searchParams }: { searchParams: {'categorie': string, 'search': string} }) {
 

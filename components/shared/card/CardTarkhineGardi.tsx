@@ -1,14 +1,16 @@
 'use client';
 import Image from 'next/image';
 import React, { ComponentProps, MouseEventHandler, useState } from 'react';
-import Button from '../button/Button';
 import Modal from '../Modal';
 import { branchs } from '@/lib/dataPublic';
 import Cookies from 'js-cookie';
 import IconArrowLeft from '@icons/arrow-left.svg';
 import { convertToPersianNumbers } from '@/lib/convertNumberToPersian';
 import { toast } from 'sonner';
+import dynamic from 'next/dynamic';
 
+
+const Button = dynamic(()=> import('@/components/shared/button/Button'))
 interface Props {
   title: string;
   desc: string;

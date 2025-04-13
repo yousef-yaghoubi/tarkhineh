@@ -5,6 +5,8 @@ import IconProfile from '@icons/profileIcon.svg';
 import IconDiagram from '@icons/diagram.svg';
 import IconHome from '@icons/home-wifi.svg';
 import IconMenuBoard from '@icons/menu-board.svg';
+import { getBaseUrl } from '@/lib/getBaseUrl';
+import { Metadata } from 'next';
 const listOfIcons: { id: number; title: string; icon: ReactElement }[] = [
   {
     id: 1,
@@ -28,6 +30,26 @@ const listOfIcons: { id: number; title: string; icon: ReactElement }[] = [
   },
 ];
 
+export const metadata: Metadata = {
+  title: 'درباره ما | آشنایی با داستان و ارزش‌های رستوران‌های ترخینه',
+  description: 'با داستان شکل‌گیری، ارزش‌ها و مسیر رشد رستوران‌های زنجیره‌ای ترخینه آشنا شوید. کیفیت، اصالت و مهمان‌نوازی در ترخینه.',
+  openGraph: {
+    title: 'درباره ما | آشنایی با داستان و ارزش‌های رستوران‌های ترخینه',
+    description: 'ترخینه با سال‌ها تجربه در ارائه غذاهای اصیل ایرانی، داستان موفقیت و تعهد خود به کیفیت را با شما به اشتراک می‌گذارد.',
+    url: `${getBaseUrl()}/about`,
+    images: [
+      {
+        url: `/logoGreenBig.png`,
+        width: 1200,
+        height: 630,
+        alt: 'درباره ما - رستوران‌های ترخینه',
+      },
+    ],
+  },
+  alternates: {
+    canonical: `${getBaseUrl()}/about-us`,
+  },
+}
 function page() {
   return (
     <div>

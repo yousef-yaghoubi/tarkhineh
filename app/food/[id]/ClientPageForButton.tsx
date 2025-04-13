@@ -1,5 +1,4 @@
 'use client';
-import Button from '@/components/shared/button/Button';
 import { convertToPersianNumbers } from '@/lib/convertNumberToPersian';
 import { FoodType } from '@/types';
 import React, { useState } from 'react';
@@ -7,6 +6,9 @@ import IconHeart from '@icons/Heart.svg';
 import IconHeartFill from '@icons/HeartFill.svg';
 import { AddFoodToFavorite } from '@/app/actions/food';
 import { toast } from 'sonner';
+import dynamic from 'next/dynamic';
+
+const Button = dynamic(()=> import('@/components/shared/button/Button'))
 function ClientPageForButton({ food }: { food: FoodType }) {
   const [isRedHeart, setIsRedHeart] = useState(food.isFavorite);
 

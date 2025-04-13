@@ -1,8 +1,9 @@
 'use client';
-import Button from '@/components/shared/button/Button';
+import dynamic from 'next/dynamic';
 import React from 'react';
 import { toast } from 'sonner';
 
+const Button = dynamic(()=> import('@/components/shared/button/Button'))
 function ClientButton() {
   return (
     <Button
