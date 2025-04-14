@@ -1,7 +1,7 @@
 import React from 'react';
 import Tab from './Tab';
-import SearchBox from '@/components/shared/searchBox/SearchBox';
-import SliderSwiper from '@/components/shared/swiper/SliderSwiper';
+import SearchBox from '@components/shared/searchBox/SearchBox';
+import SliderSwiper from '@components/shared/swiper/SliderSwiper';
 import { navStats } from '@/lib/dataPublic';
 
 function HeaderMenu() {

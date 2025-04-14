@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     url: `${getBaseUrl()}/shoping/shopingCart`,
     images: [
       {
-        url: `/logoGreenBig.png`, // پیشنهاد: تصویر سبد خرید پر از غذا یا فاکتور سفارش
+        url: `/logoGreenBig.png`,
         width: 1200,
         height: 630,
         alt: 'سبد خرید - رستوران‌های ترخینه',

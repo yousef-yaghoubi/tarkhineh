@@ -1,6 +1,6 @@
 'use client'
 import React,{ useState }  from 'react'
-import BoxOfMain from '@/components/shared/shopingCart/BoxOfMain';
+import BoxOfMain from '@components/shared/shopingCart/BoxOfMain';
 import { SchemaEditProfile } from '@/validators/zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
@@ -10,9 +10,9 @@ import { UpdateUser } from '@/app/actions/userAction';
 import { toast } from 'sonner';
 import { useSession } from 'next-auth/react';
 import dynamic from 'next/dynamic';
-const InputCustom = dynamic(()=> import('@/components/shared/input/InputCustom'))
+const InputCustom = dynamic(()=> import('@components/shared/input/InputCustom'))
 const DatePic = dynamic(()=> import('./DatePic'))
-const Button = dynamic(()=> import('@/components/shared/button/Button'))
+const Button = dynamic(()=> import('@components/shared/button/Button'))
 
 
 type TypeOfFormEditProfile = z.infer<typeof SchemaEditProfile>;

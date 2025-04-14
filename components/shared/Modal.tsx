@@ -1,8 +1,8 @@
 'use client';
-import React, { ReactNode} from 'react';
+import React, { ReactNode } from 'react';
 import Portal from './Portal';
 import SwiperImagesModal from './swiper/SwiperImagesModal';
-import IconClose from "@icons/CloseIcon.svg"
+import IconClose from '@icons/CloseIcon.svg';
 interface ImgArray {
   id: number;
   src: string;
@@ -20,7 +20,7 @@ interface ModalProps {
   images?: Images;
   title?: React.ReactElement;
   desc?: string;
-  state?: 'removeShopingCart' | 'showMap' 
+  state?: 'removeShopingCart' | 'showMap';
 }
 
 const Modal: React.FC<ModalProps> = ({
@@ -51,7 +51,7 @@ const Modal: React.FC<ModalProps> = ({
             className={`bg-white dark:bg-background-1 rounded-sm shadow-lg w-11/12 ${state && state == 'removeShopingCart' ? '!max-w-[392px] h-56' : state && state == 'showMap' ? 'max-w-[600px] !h-[90%] max-h-[596px]' : 'max-w-[800px]'}  relative flex flex-col items-center overflow-hidden`}
           >
             <div
-              className={` ${state && state == 'removeShopingCart' ? 'bg-gray-1 h-16 items-center' : 'bg-gray-3 dark:bg-background-2 h-14 md:h-[86px]'} relative w-full flex justify-center items-center`}
+              className={` ${state && state == 'removeShopingCart' ? 'bg-gray-1 h-16 items-center dark:bg-background-2' : 'bg-gray-3 dark:bg-background-2 h-14 md:h-[86px]'} relative w-full flex justify-center items-center`}
             >
               <button
                 onClick={onClose}
@@ -59,14 +59,20 @@ const Modal: React.FC<ModalProps> = ({
                 aria-label="Close Modal"
               >
                 <span>
-                  <IconClose className="w-6 h-6 md:w-10 md:h-10 fill-gray-7"/>
+                  <IconClose className="w-6 h-6 md:w-10 md:h-10 fill-gray-7" />
                 </span>
               </button>
               {title}
             </div>
-            
-            <div className={`${state && state == 'showMap' ? 'inset-0 h-full' : 'mt-10 mb-12'} flex flex-col justify-center items-center w-full`}>
-              <p className={`caption-md md:body-md ${desc?.length ? 'mb-3' : 'inset-0'}`}>{desc}</p>
+
+            <div
+              className={`${state && state == 'showMap' ? 'inset-0 h-full' : 'mt-10 mb-12'} flex flex-col justify-center items-center w-full`}
+            >
+              <p
+                className={`caption-md md:body-md ${desc?.length ? 'mb-3' : 'inset-0'}`}
+              >
+                {desc}
+              </p>
               {children}
             </div>
           </div>

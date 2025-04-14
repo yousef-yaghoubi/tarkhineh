@@ -1,5 +1,5 @@
-import LoginForm from '@/components/shared/loginForm/LoginForm'
-import Portal from '@/components/shared/Portal'
+import LoginForm from '@components/shared/loginForm/LoginForm'
+import Portal from '@components/shared/Portal'
 import React from 'react'
 
 function page() {

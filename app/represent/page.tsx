@@ -1,11 +1,11 @@
-import SwiperMain from '@/components/shared/swiper/swiper';
+import SwiperMain from '@components/shared/swiper/swiper';
 import React from 'react';
 import IconCenter from '@icons/centerBank.svg';
 import IconWalletOpen from '@icons/openWallet.svg';
 import IconDiagramGreen from '@icons/diagramGreen.svg';
 import IconBookGreen from '@icons/bookGreen.svg';
 import IconLi from '@icons/Rectangle4.svg';
-import InputCustom from '@/components/shared/input/InputCustom';
+import InputCustom from '@components/shared/input/InputCustom';
 import ClientButton from './ClientButton';
 import { Metadata } from 'next';
 import { getBaseUrl } from '@/lib/getBaseUrl';

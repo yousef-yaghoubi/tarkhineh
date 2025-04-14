@@ -5,7 +5,7 @@ import {
   OrderBadge,
   Price,
   PriceOrder,
-} from '@/components/shared/card/CardFoodNecessary';
+} from '@components/shared/card/CardFoodNecessary';
 import { useCart } from '@/providers/shopingCardProvider';
 import IconRemove from '@icons/remove.svg';
 import { CartFoodForShoppingCart } from '@/types';

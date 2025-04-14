@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { useQuery } from '@tanstack/react-query';
-import SliderSwiper from '@/components/shared/swiper/SliderSwiper';
+import SliderSwiper from '@components/shared/swiper/SliderSwiper';
 import { FoodType } from '@/types';
 
 // Custom fetcher

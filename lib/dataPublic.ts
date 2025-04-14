@@ -18,7 +18,7 @@ interface branchType {
   title: string;
   desc: string;
 }
-export const branchs: branchType[] = [
+export const branches: branchType[] = [
   {
     id: 1,
     images: [

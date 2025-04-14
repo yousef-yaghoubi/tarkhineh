@@ -4,7 +4,7 @@ import Image from 'next/image';
 import React from 'react';
 import LinkMenuBar from './LinkMenuBar';
 import { useSession } from 'next-auth/react';
-import { Skeleton } from '@/components/ui/skeleton';
+import { Skeleton } from '@components/ui/skeleton';
 
 function MenuBar() {
   const { data: session, status } = useSession();

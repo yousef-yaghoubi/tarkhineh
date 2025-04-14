@@ -1,5 +1,5 @@
 'use client';
-import SwiperMain from '@/components/shared/swiper/swiper';
+import SwiperMain from '@components/shared/swiper/swiper';
 import { usePathname } from 'next/navigation';
 import React from 'react';
 import Tab from '../(foods)/menu/Tab';

@@ -1,6 +1,6 @@
-import CardTarkhineGardi from '@/components/shared/card/CardTarkhineGardi';
-import SwiperMain from '@/components/shared/swiper/swiper';
-import { branchs } from '@/lib/dataPublic';
+import CardTarkhineGardi from '@components/shared/card/CardTarkhineGardi';
+import SwiperMain from '@components/shared/swiper/swiper';
+import { branches } from '@/lib/dataPublic';
 import { getBaseUrl } from '@/lib/getBaseUrl';
 import { Metadata } from 'next';
 import React from 'react';
@@ -45,7 +45,7 @@ function page() {
       />
 
       <div className='w-full flex flex-col items-center my-6 gap-y-7'>
-        {branchs.map((branch) => (
+        {branches.map((branch) => (
           <CardTarkhineGardi
             key={branch.id}
             desc={branch.desc}

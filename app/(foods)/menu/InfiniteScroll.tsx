@@ -8,15 +8,15 @@ import { useSearchParams } from 'next/navigation';
 import { useInfiniteQuery } from '@tanstack/react-query';
 
 import { FoodType } from '@/types';
-import CardFoodLoading from '@/components/shared/card/CardFoodLoading';
+import CardFoodLoading from '@components/shared/card/CardFoodLoading';
 
-const CardFood = dynamic(() => import('@/components/shared/card/CardFood'), {
+const CardFood = dynamic(() => import('@components/shared/card/CardFood'), {
   loading: () => <CardFoodLoading isShowForMenu />,
 });
 
 function InfiniteScroll() {
   const { ref, inView } = useInView();
-  const cookieBranch = Cookies.get('branchs');
+  const cookieBranch = Cookies.get('branches');
   const searchParams = useSearchParams();
   const queryType = searchParams.get('type') || 'all';
   const queryFilter = searchParams.get('categorie') || 'all';

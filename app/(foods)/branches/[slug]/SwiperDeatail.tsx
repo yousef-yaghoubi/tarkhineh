@@ -1,4 +1,4 @@
-import SwiperMain from '@/components/shared/swiper/swiper';
+import SwiperMain from '@components/shared/swiper/swiper';
 import { convertToPersianNumbers } from '@/lib/convertNumberToPersian';
 import React from 'react';
 import IconLocation from '@icons/location.svg';
@@ -47,7 +47,7 @@ function SwiperDeatail({ address, images, phones, durition }: Details) {
           ))}
         </div>
 
-        <div className="flex md:col-span-1 md:flex-col items-center">
+        <div className="flex md:col-span-1 md:flex-col items-center -mr-12">
           <IconClock className="ml-1 w-4 h-4 md:!w-8 md:!h-8 md:mt-4" />
           <span className="caption-sm md:body-md text-center md:mt-2">
             {convertToPersianNumbers(durition)}

@@ -1,14 +1,14 @@
-import SearchBox from '@/components/shared/searchBox/SearchBox';
+import SearchBox from '@components/shared/searchBox/SearchBox';
 import React from 'react';
 import SwiperDeatail from './SwiperDeatail';
 import { CommentType, FoodType } from '@/types';
 import IconNote from '@icons/note.svg';
 import { headers } from 'next/headers';
-import AddComment from '@/components/shared/comment/AddComment';
-import SliderSwiper from '@/components/shared/swiper/SliderSwiper';
+import AddComment from '@components/shared/comment/AddComment';
+import SliderSwiper from '@components/shared/swiper/SliderSwiper';
 import dynamic from 'next/dynamic';
 import { generateBranchMetadata } from '@/lib/seo';
-const Button = dynamic(() => import('@/components/shared/button/Button'));
+const Button = dynamic(() => import('@components/shared/button/Button'));
 
 export const revalidate = 3600;
 
@@ -24,6 +24,7 @@ async function getBranchBySlug({ params }: { params: { slug: string } }) {
 
   return branchAction;
 }
+
 export async function generateMetadata({
   params,
 }: {
@@ -40,7 +41,7 @@ export async function generateMetadata({
   });
 }
 
-async function DynamicBranchs({
+async function DynamicBranches({
   params,
 }: {
   params: Readonly<{ slug: string }>;
@@ -149,4 +150,4 @@ async function DynamicBranchs({
   );
 }
 
-export default DynamicBranchs;
+export default DynamicBranches;

@@ -2,15 +2,15 @@ import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 import 'normalize.css';
 import './globals.css';
-import Navbar from '../components/shared/navbar/Navbar';
 import { ThemeProvider } from '@/providers/themeProvider';
-import Footer from '@/components/shared/footer/Footer';
-import { Toaster } from '@/components/ui/sonner';
+import Footer from '@components/shared/footer/Footer';
 import AuthProvider from '@/providers/authProvider';
 import { CartProvider } from '@/providers/shopingCardProvider';
 import 'leaflet/dist/leaflet.css';
 import '@smastrom/react-rating/style.css';
 import { QueryProvider } from '@/providers/queryProvider';
+import Navbar from '@components/shared/navbar/Navbar';
+import { Toaster } from '@components/ui/sonner';
 
 const estedad = localFont({
   src: './fonts/EstedadKSHD-wght.woff2',

@@ -1,10 +1,10 @@
-import { Skeleton } from '@/components/ui/skeleton';
+import { Skeleton } from '@components/ui/skeleton';
 import { CommentType, FoodType } from '@/types';
 import dynamic from 'next/dynamic';
 import React from 'react';
 import ClientPageForButton from './ClientPageForButton';
 import { headers } from 'next/headers';
-import ShowComments from '@/components/shared/comment/ShowComments';
+import ShowComments from '@components/shared/comment/ShowComments';
 import { getBaseUrl } from '@/lib/getBaseUrl';
 const Image = dynamic(() => import('next/image'), {
   loading: () => <Skeleton className="w-full h-80 md:h-80 md:w-96"></Skeleton>,

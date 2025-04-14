@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function middleware(req: NextRequest) {
   const token = req.cookies.get("next-auth.session-token") || req.cookies.get("__Secure-next-auth.session-token");
-  const tokenName = req.cookies.get('branchs')?.value;
+  const tokenName = req.cookies.get('branches')?.value;
 
   
   if (!tokenName && req.nextUrl.pathname.startsWith("/menu")) {

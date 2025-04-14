@@ -1,7 +1,7 @@
-import CardTarkhineGardi from '@/components/shared/card/CardTarkhineGardi';
-import MiniCardMenu from '@/components/shared/card/MiniCardMenu';
-import SearchBox from '@/components/shared/searchBox/SearchBox';
-import { arraySlideMain, branchs, miniCards } from '@/lib/dataPublic';
+import CardTarkhineGardi from '@components/shared/card/CardTarkhineGardi';
+import MiniCardMenu from '@components/shared/card/MiniCardMenu';
+import SearchBox from '@components/shared/searchBox/SearchBox';
+import { arraySlideMain, branches, miniCards } from '@/lib/dataPublic';
 import React from 'react';
 import IconProfile from '@icons/profileIcon.svg';
 import IconDiagram from '@icons/diagram.svg';
@@ -10,8 +10,8 @@ import IconMenuBoard from '@icons/menu-board.svg';
 import IconArrowLeft from '@icons/arrow-left.svg';
 import dynamic from 'next/dynamic';
 import { getBaseUrl } from '@/lib/getBaseUrl';
-const SwiperMain = dynamic(() => import('@/components/shared/swiper/swiper'));
-const Button = dynamic(() => import('@/components/shared/button/Button'));
+const SwiperMain = dynamic(() => import('@components/shared/swiper/swiper'));
+const Button = dynamic(() => import('@components/shared/button/Button'));
 
 export const metadata = {
   title: 'ترخینه | طعم اصیل ایرانی 🍲',
@@ -117,12 +117,12 @@ async function Home() {
       <section className="w-full flex py-6 px-5 flex-col items-center">
         <h6 className="h6 sm:h4 sm:mt-12">ترخینه گردی</h6>
         <div className="flex flex-col sm:grid sm:grid-cols-2 sm:gap-6 xl:grid-cols-4">
-          {branchs.map((branch) => (
+          {branches.map((branch) => (
             <CardTarkhineGardi
               showType="normal"
               title={branch.title}
               desc={branch.desc}
-              hrefBTN={`/branchs/${branch.nickName}`}
+              hrefBTN={`/branches/${branch.nickName}`}
               img={branch.images[0].src}
               key={branch.id}
               id={branch.id}

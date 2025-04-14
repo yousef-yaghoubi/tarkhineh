@@ -1,5 +1,5 @@
-import ButtonBack from '@/components/shared/button/ButtonBack';
-import Portal from '@/components/shared/Portal';
+import ButtonBack from '@components/shared/button/ButtonBack';
+import Portal from '@components/shared/Portal';
 import { convertToPersianNumbers } from '@/lib/convertNumberToPersian';
 import Image from 'next/image';
 import React from 'react';
@@ -7,7 +7,7 @@ import IconClose from '@icons/CloseIcon.svg';
 import dynamic from 'next/dynamic';
 import { Rating } from '@smastrom/react-rating';
 import { FoodType } from '@/types';
-const Button = dynamic(() => import('@/components/shared/button/Button'));
+const Button = dynamic(() => import('@components/shared/button/Button'));
 
 async function page({ params }: { params: { id: number } }) {
   const { id } = params;

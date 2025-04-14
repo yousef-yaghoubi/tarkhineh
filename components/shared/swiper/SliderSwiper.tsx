@@ -5,15 +5,15 @@ import { Navigation, Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-import Comment from '@/components/shared/comment/Comment';
+import Comment from '@components/shared/comment/Comment';
 import { NavBadgeMenu, navStats } from '@/lib/dataPublic';
-import Badge from '@/components/shared/badge/Badge';
+import Badge from '@components/shared/badge/Badge';
 
 import { CommentType, FoodType } from '@/types';
 import dynamic from 'next/dynamic';
 import CardFoodLoading from '../card/CardFoodLoading';
 
-const CardFood = dynamic(() => import('@/components/shared/card/CardFood'), {
+const CardFood = dynamic(() => import('@components/shared/card/CardFood'), {
   loading: () => <CardFoodLoading />,
 });
 

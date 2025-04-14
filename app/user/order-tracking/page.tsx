@@ -1,5 +1,5 @@
-import Badge from '@/components/shared/badge/Badge';
-import BoxOfMain from '@/components/shared/shopingCart/BoxOfMain';
+import Badge from '@components/shared/badge/Badge';
+import BoxOfMain from '@components/shared/shopingCart/BoxOfMain';
 import { NavBadgeOrderTracking } from '@/lib/dataPublic';
 import React from 'react';
 import IconCaledar from '@icons/calendar.svg';

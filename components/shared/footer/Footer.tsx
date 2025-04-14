@@ -2,11 +2,11 @@ import Link from 'next/link';
 import FormFooter from './FormFooter';
 import IconFooter from './IconFooter';
 
-const liBranchsForFooter = [
-  { id: 1, title: 'اکباتان', url: '/branchs/ekbatan' },
-  { id: 2, title: 'چالوس', url: '/branchs/chaloos' },
-  { id: 3, title: 'اقدسیه', url: '/branchs/aghdasie' },
-  { id: 4, title: 'ونک', url: '/branchs/vanak' },
+const liBranchesForFooter = [
+  { id: 1, title: 'اکباتان', url: '/branches/ekbatan' },
+  { id: 2, title: 'چالوس', url: '/branches/chaloos' },
+  { id: 3, title: 'اقدسیه', url: '/branches/aghdasie' },
+  { id: 4, title: 'ونک', url: '/branches/vanak' },
 ];
 
 const liLinksForFooter = [
@@ -42,7 +42,7 @@ function Footer() {
       <section className="flex flex-col mt-4 md:mt-8">
         <span className="caption-md md:h5">شعبه های ترخینه</span>
         <div className="mr-3 flex flex-col caption-sm md:caption-lg text-gray-3 justify-between mt-4 w-[90px] h-[114px] md:w-[172px] md:h-[148px]">
-          {liBranchsForFooter.map((li) => (
+          {liBranchesForFooter.map((li) => (
             <Link key={li.id} href={li.url}>شعبه {li.title}</Link>
           ))}
         </div>

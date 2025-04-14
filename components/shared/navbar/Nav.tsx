@@ -4,7 +4,7 @@ import {
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from '@/components/ui/accordion';
+} from '@components/ui/accordion';
 import Image from 'next/image';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import {
@@ -15,14 +15,14 @@ import {
   NavigationMenuTrigger,
   NavigationMenuItem,
   navigationMenuTriggerStyle,
-} from '@/components/ui/navigation-menu';
+} from '@components/ui/navigation-menu';
 import Cookies from 'js-cookie';
 import { useEffect, useState } from 'react';
 import Modal from '../Modal';
-import { branchs, navStats } from '@/lib/dataPublic';
+import { branches, navStats } from '@/lib/dataPublic';
 import CardTarkhineGardi from '../card/CardTarkhineGardi';
 import { iconsNav } from '@/lib/indexIcon';
-import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+import { Sheet, SheetContent, SheetTitle, SheetTrigger } from '@components/ui/sheet';
 import IconNavbar from '@icons/menu.svg';
 import Link from 'next/link';
 
@@ -30,7 +30,7 @@ function Nav({ menuBar }: { menuBar: boolean }) {
   const router = useRouter();
   const pathName = usePathname();
   const searchParams = useSearchParams();
-  const sessionCookie = Cookies.get('branchs');
+  const sessionCookie = Cookies.get('branches');
   const [branchName, setBranchName] = useState('شعبه');
   const [urlMenu, setUrlMenu] = useState<string>();
   const query = Object.fromEntries(searchParams.entries());
@@ -65,8 +65,9 @@ function Nav({ menuBar }: { menuBar: boolean }) {
 
           <SheetContent
             side="right"
-            className="bg-white dark:bg-[#1c1b22] border-none p-0 menuMobile"
+            className="bg-white dark:bg-background-1 border-none p-0 menuMobile"
           >
+            <SheetTitle></SheetTitle>
             <>
               <Image
                 src={'/image/topFrameMenuMobile.jpg'}
@@ -85,10 +86,10 @@ function Nav({ menuBar }: { menuBar: boolean }) {
                     key={stats.id}
                     href={stats.route}
                     className={`md:border-0 mx-4 md:mx-0 flex h-[39px] justify-start items-center ${
-                      stats.id == 6 ? 'border-0' : 'border-b border-gray-4 '
+                      stats.id == 6 ? 'border-0' : 'border-b border-gray-4 dark:border-gray-7'
                     } ${
                       stats.route == pathName
-                        ? 'caption-md sm:body-lg activeLink lg:activeLink !border-b border-primary'
+                        ? 'caption-md sm:body-lg activeLink lg:activeLink !border-b border-primary dark:border-primary'
                         : 'caption-sm sm:body-sm lg:body-xl'
                     }`}
                   >
@@ -120,8 +121,8 @@ function Nav({ menuBar }: { menuBar: boolean }) {
                       <AccordionTrigger
                         className={`pt-3 pb-2 hover:!no-underline border-b md:border-0 ${
                           isActive
-                            ? '!border-b border-primary caption-md sm:body-md text-primary'
-                            : 'caption-sm border-gray-4 sm:body-sm '
+                            ? '!border-b border-primary dark:border-primary caption-md sm:body-md text-primary'
+                            : 'caption-sm border-gray-4 dark:border-gray-7 sm:body-sm '
                         }`}
                       >
                         <div className="flex items-center">
@@ -164,13 +165,13 @@ function Nav({ menuBar }: { menuBar: boolean }) {
                               }
                               onClick={() => {
                                 if (stats.label === 'شعبه') {
-                                  Cookies.set('branchs', `${sub.label}`, {
+                                  Cookies.set('branches', `${sub.label}`, {
                                     path: '/',
                                   });
                                 }
                               }}
                               className={`w-fit mr-2 pt-2 caption-sm sm:body-sm ${
-                                isSubActive ? 'text-primary' : ''
+                                isSubActive ? 'border-primary dark:border-primary' : ''
                               }`}
                             >
                               {sub.label}
@@ -194,10 +195,10 @@ function Nav({ menuBar }: { menuBar: boolean }) {
                     key={stats.id}
                     href={stats.route}
                     className={`md:border-0 mx-4 md:mx-0 flex h-[39px] justify-start items-center ${
-                      stats.id == 6 ? 'border-0' : 'border-b border-gray-4 '
+                      stats.id == 6 ? 'border-0' : 'border-b border-gray-4 dark:border-gray-7'
                     } ${
                       stats.route == pathName
-                        ? 'caption-md sm:body-lg activeLink lg:activeLink !border-b border-primary'
+                        ? 'caption-md sm:body-lg activeLink lg:activeLink !border-b border-primary dark:border-primary'
                         : 'caption-sm sm:body-sm lg:body-xl'
                     }`}
                   >
@@ -259,7 +260,7 @@ function Nav({ menuBar }: { menuBar: boolean }) {
                           className="py-1 px-5 hover:bg-slate-100 dark:hover:bg-background-1"
                           onClick={() =>
                             stats.label == 'شعبه' &&
-                            Cookies.set('branchs', `${sub.label}`, {
+                            Cookies.set('branches', `${sub.label}`, {
                               path: '/',
                             })
                           }
@@ -302,7 +303,7 @@ function Nav({ menuBar }: { menuBar: boolean }) {
         desc="برای دیدن منوی رستوران، لطفا شعبه مدنظر خود را انتخاب کنید:"
       >
         <div className="flex flex-col md:flex-row justify-evenly items-center w-full">
-          {branchs.map((branch) => (
+          {branches.map((branch) => (
             <CardTarkhineGardi
               key={branch.id}
               showType="small"
@@ -311,7 +312,7 @@ function Nav({ menuBar }: { menuBar: boolean }) {
               img={branch.images[0].src}
               id={branch.id}
               onClickCustom={() => {
-                Cookies.set('branchs', branch.title);
+                Cookies.set('branches', branch.title);
                 closeModal();
                 router.push(`/menu?type=${urlMenu}`);
               }}

@@ -2,7 +2,7 @@
 import Image from 'next/image';
 import React, { ComponentProps, MouseEventHandler, useState } from 'react';
 import Modal from '../Modal';
-import { branchs } from '@/lib/dataPublic';
+import { branches } from '@/lib/dataPublic';
 import Cookies from 'js-cookie';
 import IconArrowLeft from '@icons/arrow-left.svg';
 import { convertToPersianNumbers } from '@/lib/convertNumberToPersian';
@@ -10,7 +10,7 @@ import { toast } from 'sonner';
 import dynamic from 'next/dynamic';
 
 
-const Button = dynamic(()=> import('@/components/shared/button/Button'))
+const Button = dynamic(()=> import('@components/shared/button/Button'))
 interface Props {
   title: string;
   desc: string;
@@ -176,7 +176,7 @@ function CardTarkhineGardi({
         <Modal
           isOpen={isModalOpen}
           onClose={closeModal}
-          images={branchs.find((branch) => branch.id == id)}
+          images={branches.find((branch) => branch.id == id)}
         ></Modal>
 
         <div className="w-[calc(100%_-_114px)] h-[110px] group-hover:h-[154px] flex items-center flex-col px-2 py-2 sm:w-full duration-300 transition-all">
@@ -200,7 +200,7 @@ function CardTarkhineGardi({
               className="!w-32 !h-8 md:caption-md invisible opacity-0 group-hover:visible sm:group-hover:opacity-100 mt-2"
               theme="Primary"
               link={hrefBTN}
-              onClickCustom={() => Cookies.set('branchs', `${title}`)}
+              onClickCustom={() => Cookies.set('branches', `${title}`)}
             >
               <span className="flex items-center">
                 صفحه شعبه
@@ -271,8 +271,8 @@ function CardTarkhineGardi({
               btn="stroke"
               theme="Primary"
               className="w-2/5 h-6 md:h-10"
-              link={`/branchs/${hrefBTN}`}
-              onClickCustom={() => Cookies.set('branchs', `${title}`)}
+              link={`/branches/${hrefBTN}`}
+              onClickCustom={() => Cookies.set('branches', `${title}`)}
             >
               صفحه شعبه
             </Button>
@@ -290,7 +290,7 @@ function CardTarkhineGardi({
         <Modal
           isOpen={isModalOpen}
           onClose={closeModal}
-          images={branchs.find((branch) => branch.id == id)}
+          images={branches.find((branch) => branch.id == id)}
         ></Modal>
       </div>
     );
