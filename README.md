@@ -1,7 +1,10 @@
 
 # 🍞Tarkhineh Project
 
-Tarkhineh is a personal project built with Next.js. It focuses on dynamic content loading, infinite scroll, and responsive design. 🚀
+Tarkhineh is a full-stack food ordering website built with Next.js. 🍽️
+
+It allows users to browse, search, and order traditional Persian food online.  
+This project demonstrates a complete web application, including a responsive frontend, interactive UI components, and backend API routes for handling data and user requests. 🚀
 
 ## 🖥️Demo 
 
