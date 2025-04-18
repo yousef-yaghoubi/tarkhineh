@@ -51,7 +51,7 @@ export async function GET(req: Request) {
         categorieFilter = 4;
         break;
       case 'bestSeller':
-        sortingFilter = { rating: 'desc' };
+        sortingFilter = { numberOfSell: 'desc' };
         break;
       case 'mostEconomical':
         sortingFilter = { price: 'asc' };
@@ -117,12 +117,14 @@ export async function GET(req: Request) {
           : undefined,
       },
       orderBy: sortingFilter
-        ? 'rating' in sortingFilter
-          ? { rating: sortingFilter.rating === 'asc' ? 'asc' : 'desc' }
-          : 'price' in sortingFilter
-            ? { price: sortingFilter.price === 'asc' ? 'asc' : 'desc' }
-            : undefined
-        : undefined,
+      ? 'rating' in sortingFilter
+        ? { rating: sortingFilter.rating === 'asc' ? 'asc' : 'desc' }
+        : 'price' in sortingFilter
+          ? { price: sortingFilter.price === 'asc' ? 'asc' : 'desc' }
+          : 'numberOfSell' in sortingFilter 
+          ? {numberOfSell: sortingFilter.numberOfSell === 'asc' ? 'asc' : 'desc'} 
+          : undefined
+      : undefined,
       skip: skip,
       take: take,
     });

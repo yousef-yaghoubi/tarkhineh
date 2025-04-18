@@ -27,7 +27,7 @@ export const metadata: Metadata  = {
 
 async function page() {
   const {addresses: getAddresses} = await fetch(
-    `${process.env.NEXTAUTH_URL}/api/address/addressesOfUser`,
+    `${getBaseUrl()}/api/address/addressesOfUser`,
     {
       headers: headers(),
     }

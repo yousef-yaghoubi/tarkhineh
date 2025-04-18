@@ -39,7 +39,7 @@ export const metadata: Metadata = {
 
 async function page({ searchParams }: { searchParams: {'categorie': string, 'search': string} }) {
 
-  const response = await fetch(`${process.env.NEXTAUTH_URL}/api/food/favorites?${searchParams.search && `search=${searchParams.search}`}&categorie=${searchParams.categorie}`, {
+  const response = await fetch(`${getBaseUrl()}/api/food/favorites?${searchParams.search && `search=${searchParams.search}`}&categorie=${searchParams.categorie}`, {
     headers: headers(),
   });
 

@@ -16,7 +16,8 @@ export async function SendOrder({
   cart: FoodTypeProp[];
 }) {
   const data = await getServerSession(authOptions);
-  if (!data?.user) return { status: 401, message: 'لطفا وارد حساب کاربری شوید.' };
+  if (!data?.user)
+    return { status: 401, message: 'لطفا وارد حساب کاربری شوید.' };
   try {
     const filteredCart = cart.map(({ name, image, price, quantity }) => ({
       name,
@@ -28,6 +29,19 @@ export async function SendOrder({
     const foodNames = filteredCart.map(({ name }) => name);
     const foodItems = await prisma.foods.findMany({
       where: { name: { in: foodNames } },
+    });
+
+    const foodIds = foodItems.map((item) => item.id);
+
+    await prisma.foods.updateMany({
+      where: {
+        id: { in: foodIds },
+      },
+      data: {
+        numberOfSell: {
+          increment: 1,
+        },
+      },
     });
 
     await prisma.orderTracking.create({
@@ -54,39 +68,39 @@ export async function SendOrder({
     return { status: 201, message: 'سفارش شما با موفقیت ثبت شد.' };
   } catch (error) {
     return { status: 500, message: 'خطایی رخ داده است.' };
-    console.log(error)
+    console.log(error);
   }
 }
 
 export async function CancelOrderTrack(id: number) {
-    try {
-      await prisma.orderTracking.update({
-        where:{
-          id
-        }, 
-        data:{
-          statusId: 3
-        }
-      })
+  try {
+    await prisma.orderTracking.update({
+      where: {
+        id,
+      },
+      data: {
+        statusId: 3,
+      },
+    });
 
-      revalidatePath('/user/order-tracking')
-      return {status: 200, message: 'سفارش شما با موفقیت لغو شد.'}
-    } catch (error) {
-      return {status: 400, message: 'لغو سفارش شما با مشکل مواجه شد.'}
-      console.log(error)
-    }
+    revalidatePath('/user/order-tracking');
+    return { status: 200, message: 'سفارش شما با موفقیت لغو شد.' };
+  } catch (error) {
+    return { status: 400, message: 'لغو سفارش شما با مشکل مواجه شد.' };
+    console.log(error);
+  }
 }
 
 export async function AgainSubmitOrderTrack(id: number) {
   try {
     const orderTrack = await prisma.orderTracking.findUnique({
-      where:{
-        id
+      where: {
+        id,
       },
-      include:{
-        foods:true
-      }
-    })
+      include: {
+        foods: true,
+      },
+    });
     await prisma.orderTracking.create({
       data: {
         price: orderTrack!.price,
@@ -101,13 +115,14 @@ export async function AgainSubmitOrderTrack(id: number) {
             foodId: food.foodId,
             quantity: food.quantity,
           })),
-        }}
+        },
+      },
     });
 
-    revalidatePath('/user/order-tracking')
-    return {status: 201, message: 'سفارش شما با موفقیت ثبت شد.'}
+    revalidatePath('/user/order-tracking');
+    return { status: 201, message: 'سفارش شما با موفقیت ثبت شد.' };
   } catch (error) {
-    return {status: 400, message: 'سفارش مجدد شما با مشکل مواجه شد.'}
-    console.log(error)
+    return { status: 400, message: 'سفارش مجدد شما با مشکل مواجه شد.' };
+    console.log(error);
   }
 }

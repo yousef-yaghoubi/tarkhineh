@@ -8,13 +8,14 @@ import AddComment from '@components/shared/comment/AddComment';
 import SliderSwiper from '@components/shared/swiper/SliderSwiper';
 import dynamic from 'next/dynamic';
 import { generateBranchMetadata } from '@/lib/seo';
+import { getBaseUrl } from '@/lib/getBaseUrl';
 const Button = dynamic(() => import('@components/shared/button/Button'));
 
 export const revalidate = 3600;
 
 async function getBranchBySlug({ params }: { params: { slug: string } }) {
   const { branch: branchAction } = await fetch(
-    `${process.env.NEXTAUTH_URL}/api/branch?branchName=${params.slug}`,
+    `${getBaseUrl()}/api/branch?branchName=${params.slug}`,
     {
       next: {
         tags: ['branch'],
@@ -49,7 +50,7 @@ async function DynamicBranches({
   const { slug } = params;
   const { foods: specialOfferFoods }: { foods: FoodType[] | undefined } =
     await fetch(
-      `${process.env.NEXTAUTH_URL}/api/food?branchName=${slug}&filter=${'specialOffer'}&page=${1}`,
+      `${getBaseUrl()}/api/food?branchName=${slug}&filter=${'specialOffer'}&page=${1}`,
       {
         method: 'GET',
         headers: headers(),
@@ -58,7 +59,7 @@ async function DynamicBranches({
 
   const { foods: popularFoods }: { foods: FoodType[] | undefined } =
     await fetch(
-      `${process.env.NEXTAUTH_URL}/api/food?branchName=${slug}&filter=${'mostPopular'}&page=${1}`,
+      `${getBaseUrl()}/api/food?branchName=${slug}&filter=${'mostPopular'}&page=${1}`,
       {
         method: 'GET',
         headers: headers(),
@@ -67,7 +68,7 @@ async function DynamicBranches({
 
   const { foods: notIraniFoods }: { foods: FoodType[] | undefined } =
     await fetch(
-      `${process.env.NEXTAUTH_URL}/api/food?branchName=${slug}&filter=${'non-Iranian'}&page=${1}`,
+      `${getBaseUrl()}/api/food?branchName=${slug}&filter=${'non-Iranian'}&page=${1}`,
       {
         method: 'GET',
         headers: headers(),
@@ -120,7 +121,7 @@ async function DynamicBranches({
           address={branchAction?.address as string}
           durition={'همه‌روزه از ساعت 12 تا 23 بجز روزهای تعطیل'}
           images={
-            branchAction?.images as {
+            JSON.parse(branchAction?.images) as {
               images: {
                 id: number;
                 alt: string;
@@ -129,7 +130,7 @@ async function DynamicBranches({
               }[];
             }
           }
-          phones={branchAction?.phones as { phones: string[] }}
+          phones={JSON.parse(branchAction?.phones) as { phones: string[] }}
         />
 
         <span className="h6 md:h5 lg:h4 mt-6 md:mt-9 lg:mt-12 mb-3 md:mb-[18px]">

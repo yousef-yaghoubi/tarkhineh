@@ -9,6 +9,7 @@ import { useInfiniteQuery } from '@tanstack/react-query';
 
 import { FoodType } from '@/types';
 import CardFoodLoading from '@components/shared/card/CardFoodLoading';
+import { getBaseUrl } from '@/lib/getBaseUrl';
 
 const CardFood = dynamic(() => import('@components/shared/card/CardFood'), {
   loading: () => <CardFoodLoading isShowForMenu />,

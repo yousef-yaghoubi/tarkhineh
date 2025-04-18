@@ -6,10 +6,12 @@ import ClientPageForButton from './ClientPageForButton';
 import { headers } from 'next/headers';
 import ShowComments from '@components/shared/comment/ShowComments';
 import { getBaseUrl } from '@/lib/getBaseUrl';
+
 const Image = dynamic(() => import('next/image'), {
   loading: () => <Skeleton className="w-full h-80 md:h-80 md:w-96"></Skeleton>,
   ssr: false,
 });
+
 const Rating = dynamic(
   () => import('@smastrom/react-rating').then((mod) => mod.Rating),
   {
@@ -22,7 +24,7 @@ const Rating = dynamic(
 
 async function GetFood({id}:{id: string}) {
   const { food } = (await fetch(
-    `${process.env.NEXTAUTH_URL}/api/food/uniqeFoodFull?id=${id}`,
+    `${getBaseUrl()}/api/food/uniqeFoodFull?id=${id}`,
     {
       headers: headers(),
     }

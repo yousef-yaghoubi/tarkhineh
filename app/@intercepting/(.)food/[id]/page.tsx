@@ -7,15 +7,17 @@ import IconClose from '@icons/CloseIcon.svg';
 import dynamic from 'next/dynamic';
 import { Rating } from '@smastrom/react-rating';
 import { FoodType } from '@/types';
+import { getBaseUrl } from '@/lib/getBaseUrl';
 const Button = dynamic(() => import('@components/shared/button/Button'));
 
 async function page({ params }: { params: { id: number } }) {
   const { id } = params;
   const food = await fetch(
-    `${process.env.NEXTAUTH_URL}/api/food/uniqeFood?id=${id}`
+    `${getBaseUrl()}/api/food/uniqeFood?id=${id}`
   ).then((result) => result.json()) as {status:number, food: FoodType};
 
 
+  console.log(food)
   return (
     <Portal>
       <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 backdrop-blur-sm">

@@ -40,7 +40,7 @@ export const metadata: Metadata = {
 async function page({ searchParams }: { searchParams: SearchParams }) {
   const { search } = searchParams;
   const { foods } = (await fetch(
-    `${process.env.NEXTAUTH_URL}/api/food/search?search=${search}`
+    `${getBaseUrl()}/api/food/search?search=${search}`
   ).then((result) => result.json())) as { foods: FoodType[] | undefined };
 
   return (

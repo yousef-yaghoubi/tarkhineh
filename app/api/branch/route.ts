@@ -38,10 +38,13 @@ export async function GET(req: Request) {
       },
     });
 
-    return NextResponse.json({
+
+    return Response.json({
       branch,
     });
   } catch (error) {
-    console.log(error);
+    return Response.json({
+      branch: 'error',
+    });
   }
 }

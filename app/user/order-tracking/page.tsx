@@ -70,7 +70,7 @@ async function page({
   searchParams: { [key: string]: string };
 }) {
   const orderTrack = (await fetch(
-    `${process.env.NEXTAUTH_URL}/api/orderTrack?status=${searchParams.status}`,
+    `${getBaseUrl()}/api/orderTrack?status=${searchParams.status}`,
     { headers: headers() }
   ).then((res) => res.json())) as {
     status: number;

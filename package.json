@@ -52,6 +52,7 @@
     "react-leaflet": "^4.2.0",
     "react-multi-date-picker": "^4.5.2",
     "sonner": "^1.7.1",
+    "sqlite3": "^5.1.7",
     "swiper": "^11.1.14",
     "tailwind-merge": "^2.5.3",
     "tailwindcss-animate": "^1.0.7",

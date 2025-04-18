@@ -3,12 +3,13 @@ import Celebrate from './Celebration';
 import ClinetPage from './ClinetPage';
 import { headers } from 'next/headers';
 import { redirect } from 'next/navigation';
+import { getBaseUrl } from '@/lib/getBaseUrl';
 
 function page() {
 
   const requestHeaders = headers();
   const referer = requestHeaders.get("referer") || "";
-  const allowedDomain = process.env.NEXTAUTH_URL as string; // دومین مجاز
+  const allowedDomain = getBaseUrl() as string; // دومین مجاز
 
   // اگه رفرر وجود نداشته باشه یا معتبر نباشه، ریدایرکت کن
   if (!referer.includes(allowedDomain)) {
