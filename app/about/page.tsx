@@ -1,4 +1,4 @@
-import SwiperMain from '@components/shared/swiper/swiper';
+import SwiperMain from '@/components/shared/swiper/swiper';
 import Image from 'next/image';
 import React, { ReactElement } from 'react';
 import IconProfile from '@icons/profileIcon.svg';

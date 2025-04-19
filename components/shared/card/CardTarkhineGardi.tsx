@@ -10,7 +10,7 @@ import { toast } from 'sonner';
 import dynamic from 'next/dynamic';
 
 
-const Button = dynamic(()=> import('@components/shared/button/Button'))
+const Button = dynamic(()=> import('@/components/shared/button/Button'))
 interface Props {
   title: string;
   desc: string;

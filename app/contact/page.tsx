@@ -1,5 +1,5 @@
-import CardTarkhineGardi from '@components/shared/card/CardTarkhineGardi';
-import SwiperMain from '@components/shared/swiper/swiper';
+import CardTarkhineGardi from '@/components/shared/card/CardTarkhineGardi';
+import SwiperMain from '@/components/shared/swiper/swiper';
 import { branches } from '@/lib/dataPublic';
 import { getBaseUrl } from '@/lib/getBaseUrl';
 import { Metadata } from 'next';

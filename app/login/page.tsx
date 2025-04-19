@@ -1,4 +1,4 @@
-import LoginForm from '@components/shared/loginForm/LoginForm'
+import LoginForm from '@/components/shared/loginForm/LoginForm'
 import React from 'react'
 
 function loginModal() {

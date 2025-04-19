@@ -4,7 +4,7 @@ import {
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from '@components/ui/accordion';
+} from '@/components/ui/accordion';
 import Image from 'next/image';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import {
@@ -15,14 +15,14 @@ import {
   NavigationMenuTrigger,
   NavigationMenuItem,
   navigationMenuTriggerStyle,
-} from '@components/ui/navigation-menu';
+} from '@/components/ui/navigation-menu';
 import Cookies from 'js-cookie';
 import { useEffect, useState } from 'react';
 import Modal from '../Modal';
 import { branches, navStats } from '@/lib/dataPublic';
 import CardTarkhineGardi from '../card/CardTarkhineGardi';
 import { iconsNav } from '@/lib/indexIcon';
-import { Sheet, SheetContent, SheetTitle, SheetTrigger } from '@components/ui/sheet';
+import { Sheet, SheetContent, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import IconNavbar from '@icons/menu.svg';
 import Link from 'next/link';
 

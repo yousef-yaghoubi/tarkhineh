@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import Address from '../../app/shoping/completion-info/Address';
 import dynamic from 'next/dynamic';
 import { AddressUserProps } from '@/types';
-import Modal from '@components/shared/Modal';
+import Modal from '@/components/shared/Modal';
 import { toast } from 'sonner';
 import { DeleteAddress, SendAddress } from '@/app/actions/address';
 import IconLocation from '@icons/location.svg';
@@ -18,10 +18,10 @@ import TextAreaInfo from '@/app/shoping/completion-info/TextAreaInfo';
 import InputCustom from './input/InputCustom';
 import { usePathname } from 'next/navigation';
 
-const Leaflet = dynamic(() => import('@components/shared/map/ShowMap'), {
+const Leaflet = dynamic(() => import('@/components/shared/map/ShowMap'), {
   ssr: false,
 });
-const Button = dynamic(()=> import('@components/shared/button/Button'))
+const Button = dynamic(()=> import('@/components/shared/button/Button'))
 type AddressFormType = z.infer<typeof SchemaAddress>;
 
 function RenderAddresses({

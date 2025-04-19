@@ -1,7 +1,7 @@
 import { convertToPersianNumbers } from '@/lib/convertNumberToPersian'
 import dynamic from 'next/dynamic'
 import React from 'react'
-const Button = dynamic(()=> import('@components/shared/button/Button'))
+const Button = dynamic(()=> import('@/components/shared/button/Button'))
 
 function NotFound() {
   return (

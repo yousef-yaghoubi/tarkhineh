@@ -1,7 +1,7 @@
-import CardFoodLoading from '@components/shared/card/CardFoodLoading';
-import SearchBox from '@components/shared/searchBox/SearchBox';
-import BoxOfMain from '@components/shared/shopingCart/BoxOfMain';
-import SliderSwiper from '@components/shared/swiper/SliderSwiper';
+import CardFoodLoading from '@/components/shared/card/CardFoodLoading';
+import SearchBox from '@/components/shared/searchBox/SearchBox';
+import BoxOfMain from '@/components/shared/shopingCart/BoxOfMain';
+import SliderSwiper from '@/components/shared/swiper/SliderSwiper';
 import { getBaseUrl } from '@/lib/getBaseUrl';
 import { FoodType } from '@/types';
 import { Metadata } from 'next';
@@ -10,8 +10,8 @@ import { headers } from 'next/headers';
 import Image from 'next/image';
 import React from 'react';
 
-const Button = dynamic(()=> import('@components/shared/button/Button'))
-const CardFood = dynamic(() => import('@components/shared/card/CardFood'), {
+const Button = dynamic(()=> import('@/components/shared/button/Button'))
+const CardFood = dynamic(() => import('@/components/shared/card/CardFood'), {
   loading: () => <CardFoodLoading key={Math.random()} />,
   ssr: false,
 });

@@ -1,10 +1,10 @@
 'use client';
-import { Label } from '@components/ui/label';
-import { RadioGroupItem, RadioGroup } from '@components/ui/radio-group';
+import { Label } from '@/components/ui/label';
+import { RadioGroupItem, RadioGroup } from '@/components/ui/radio-group';
 import React, { useState } from 'react';
 import RenderAddresses from '../../../components/shared/RenderAddresses';
 import TextAreaInfo from './TextAreaInfo';
-import AsideFoodsForShopingCart from '@components/shared/shopingCart/AsideFoodsForShopingCart';
+import AsideFoodsForShopingCart from '@/components/shared/shopingCart/AsideFoodsForShopingCart';
 import { AddressUserProps } from '@/types';
 import BoxOfMain from '../../../components/shared/shopingCart/BoxOfMain';
 import { useOrder } from '../ShopingProvider';

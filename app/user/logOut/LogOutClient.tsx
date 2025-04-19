@@ -1,5 +1,5 @@
 'use client';
-import Modal from '@components/shared/Modal';
+import Modal from '@/components/shared/Modal';
 import { signOut } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import React from 'react';

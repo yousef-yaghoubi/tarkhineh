@@ -2,10 +2,10 @@
 import React, { useState } from 'react';
 import CardFoodShopingCard from './CardFoodShopingCard';
 import { useCart } from '@/providers/shopingCardProvider';
-import Modal from '@components/shared/Modal';
+import Modal from '@/components/shared/Modal';
 import { toast } from 'sonner';
 import WithoutCart from './WithoutCart';
-import AsideFoodsForShopingCart from '@components/shared/shopingCart/AsideFoodsForShopingCart';
+import AsideFoodsForShopingCart from '@/components/shared/shopingCart/AsideFoodsForShopingCart';
 
 function RenderCardFoods() {
   const { cart, clearCart } = useCart();

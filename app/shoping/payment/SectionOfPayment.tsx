@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
 import MainOfPaymentPage from './MainOfPaymentPage';
-import AsideFoodsForShopingCart from '@components/shared/shopingCart/AsideFoodsForShopingCart';
+import AsideFoodsForShopingCart from '@/components/shared/shopingCart/AsideFoodsForShopingCart';
 import { SendOrder } from '@/app/actions/orderTracking';
 import { useOrder } from '../ShopingProvider';
 import { useCart } from '@/providers/shopingCardProvider';

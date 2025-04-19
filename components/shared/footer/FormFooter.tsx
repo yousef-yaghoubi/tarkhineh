@@ -1,7 +1,7 @@
 'use client';
 import React, { useState } from 'react';
 import InputFooter from './InputFooter';
-import { Textarea } from '@components/ui/textarea';
+import { Textarea } from '@/components/ui/textarea';
 import { convertToPersianNumbers } from '@/lib/convertNumberToPersian';
 
 function FormFooter() {

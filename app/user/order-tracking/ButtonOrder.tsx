@@ -4,7 +4,7 @@ import dynamic from 'next/dynamic';
 import React from 'react';
 import { toast } from 'sonner';
 
-const Button = dynamic(()=> import('@components/shared/button/Button'))
+const Button = dynamic(()=> import('@/components/shared/button/Button'))
 function ButtonOrder({
   order,
 }: {

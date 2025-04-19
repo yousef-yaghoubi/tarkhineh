@@ -13,7 +13,7 @@ import IconClose from "@icons/CloseIcon.svg"
 import dynamic from 'next/dynamic';
 
 type loginType = z.infer<typeof SchemaLogin>;
-const Button = dynamic(()=> import('@components/shared/button/Button'))
+const Button = dynamic(()=> import('@/components/shared/button/Button'))
 function LoginForm() {
   const {
     register: registerLogin,

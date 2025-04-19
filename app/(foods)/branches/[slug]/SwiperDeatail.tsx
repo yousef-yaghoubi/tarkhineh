@@ -1,4 +1,4 @@
-import SwiperMain from '@components/shared/swiper/swiper';
+import SwiperMain from '@/components/shared/swiper/swiper';
 import { convertToPersianNumbers } from '@/lib/convertNumberToPersian';
 import React from 'react';
 import IconLocation from '@icons/location.svg';

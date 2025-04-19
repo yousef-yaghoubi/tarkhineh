@@ -8,7 +8,7 @@ import { AddFoodToFavorite } from '@/app/actions/food';
 import { toast } from 'sonner';
 import dynamic from 'next/dynamic';
 
-const Button = dynamic(()=> import('@components/shared/button/Button'))
+const Button = dynamic(()=> import('@/components/shared/button/Button'))
 function ClientPageForButton({ food }: { food: FoodType }) {
   const [isRedHeart, setIsRedHeart] = useState(food.isFavorite);
 

@@ -10,7 +10,7 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from '@components/ui/dropdown-menu';
+} from '@/components/ui/dropdown-menu';
 import { useCart } from '../../../providers/shopingCardProvider';
 import { convertToPersianNumbers } from '@/lib/convertNumberToPersian';
 import clsx from 'clsx';

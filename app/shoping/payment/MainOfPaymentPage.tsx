@@ -1,9 +1,9 @@
 'use client';
 import React, { useState } from 'react';
-import BoxOfMain from '@components/shared/shopingCart/BoxOfMain';
+import BoxOfMain from '@/components/shared/shopingCart/BoxOfMain';
 import ButtonDisabeld from '../ButtonDisabeld';
-import { RadioGroup, RadioGroupItem } from '@components/ui/radio-group';
-import { Label } from '@components/ui/label';
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+import { Label } from '@/components/ui/label';
 import ImageGrayscale from './ImageGrayscale';
 import { useOrder } from '../ShopingProvider';
 import IconPaymentPos from '@icons/card-pos.svg'
