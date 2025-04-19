@@ -1,5 +1,5 @@
 import CardFoodLoading from '@/components/shared/card/CardFoodLoading';
-import SearchBox from '@/components/shared/searchBox/SearchBox';
+import SearchBox from '@/components/shared/SearchBox/SearchBox';
 import BoxOfMain from '@/components/shared/shopingCart/BoxOfMain';
 import SliderSwiper from '@/components/shared/swiper/SliderSwiper';
 import { getBaseUrl } from '@/lib/getBaseUrl';

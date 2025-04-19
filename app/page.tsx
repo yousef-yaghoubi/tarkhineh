@@ -9,7 +9,7 @@ import IconMenuBoard from '@icons/menu-board.svg';
 import IconArrowLeft from '@icons/arrow-left.svg';
 import dynamic from 'next/dynamic';
 import { getBaseUrl } from '@/lib/getBaseUrl';
-import SearchBox from '@/components/shared/searchBox/SearchBox';
+import SearchBox from '@/components/shared/SearchBox/SearchBox';
 const SwiperMain = dynamic(() => import('@/components/shared/swiper/swiper'));
 const Button = dynamic(() => import('@/components/shared/button/Button'));
 

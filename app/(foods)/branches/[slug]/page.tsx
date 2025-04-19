@@ -1,4 +1,4 @@
-import SearchBox from '@/components/shared/searchBox/SearchBox';
+import SearchBox from '@/components/shared/SearchBox/SearchBox';
 import React from 'react';
 import SwiperDeatail from './SwiperDeatail';
 import { CommentType, FoodType } from '@/types';

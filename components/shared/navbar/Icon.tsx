@@ -1,7 +1,7 @@
 'use client';
 import React, { useEffect, useState } from 'react';
 import Modal from '../Modal';
-import SearchBox from '../searchBox/SearchBox';
+import SearchBox from '../SearchBox/SearchBox';
 import { usePathname, useRouter } from 'next/navigation';
 import { ProfileRoute } from '@/lib/dataPublic';
 import { useSession } from 'next-auth/react';
