@@ -1,4 +1,3 @@
-
 # 🍞Tarkhineh Project
 
 Tarkhineh is a full-stack food ordering website built with Next.js. 🍽️
@@ -11,9 +10,7 @@ This project demonstrates a complete web application, including a responsive fro
 Check out the live demo here:  
 **[🔗 View Demo](https://your-demo-link.com)**
 
-
 ## 🖼️Project Preview
-
 
 <p align="center">
   <img src="./assets/tarkhineh1.jpg" width="500">
@@ -21,12 +18,13 @@ Check out the live demo here:
   <img src="./assets/tarkhineh3.png" width="500">
 </p>
 
-
 ## 🛠️Technologies Used 
 
 🍞 **Next.js**: A React framework for building modern web applications with SSR (Server-Side Rendering) and Static Site Generation. ⚡  
 🖼️ **SVGR**: Converts SVG files into React components for better scalability and customization.  
-📱 **shadcn/ui**: A UI library for implementing mobile menus with accordion functionality.
+📱 **shadcn/ui**: A UI library for implementing mobile menus with accordion functionality.  
+📡 **React Query**: Powerful asynchronous state management and server-state caching.  
+🗃️ **SQLite**: Lightweight, file-based relational database engine ideal for development and testing.
 
 ## ✨Features
 
@@ -83,6 +81,19 @@ Personalized user experience with flexible components and layouts.
 4. Open the application in your browser:  
    `http://localhost:3000` 🌍
 
+### 🔐Environment Variables
+
+Create a `.env` file in the root of the project and add the following variables:
+
+```env
+NEXTAUTH_SECRET=****
+AUTH_GOOGLE_ID=****
+AUTH_GOOGLE_SECRET=****
+HASH_PASS_SECRET=****
+NEXTAUTH_URL=http://localhost:3000
+```
+
+
 ## 🤝Contribution 
 
 Feel free to fork the project and submit pull requests. If you have any suggestions or improvements, open an issue and we’ll take a look! 💡
@@ -96,3 +107,6 @@ This project is licensed under the **MIT License**. 🔒
 🖌️ You can view the UI/UX design of this project on Figma:  
 **[🔗 View Figma File](https://www.figma.com/design/RSeAI35Xm1iwISm7cxU3zn/Tarkhineh-%7C-Food-ordering-Website-%26-Application-(Community))**
 
+---
+
+🔧 Built with ❤️ by **Yousef Yaghoubi**
