@@ -17,7 +17,8 @@ const liLinksForFooter = [
 
 function Footer() {
   return (
-    <footer className="bg-[url(/image/footerMobile.png)] flex flex-row justify-around h-[152px] sm:bg-[url(/image/footerDesktop.png)] md:h-[319px] bg-cover text-white p-3">
+    <footer className="flex flex-col">
+      <div className='bg-[url(/image/footerMobile.png)] flex flex-row justify-around h-[152px] sm:bg-[url(/image/footerDesktop.png)] md:h-[319px] bg-cover text-white p-3'>
       <section className="flex flex-col mt-4 md:mt-8">
         <span className="caption-md md:h5">دسترسی آسان</span>
         <div className="mr-2 md:mr-3 flex flex-col caption-sm md:caption-lg text-gray-3 justify-between mt-2 md:mt-4 w-[84px] md:w-[172px] h-[84px] md:h-[148px]">
@@ -52,6 +53,10 @@ function Footer() {
         <span className="h5">پیام به ترخینه</span>
         <FormFooter />
       </section>
+      </div>
+      <div className='w-full bg-primary text-white flex justify-center items-center py-2'>
+          ساخته شده با ❤️ توسط <span className='font-semibold'>یوسف یعقوبی</span>
+      </div>
     </footer>
   );
 }
