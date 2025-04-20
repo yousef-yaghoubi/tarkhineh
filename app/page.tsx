@@ -1,6 +1,6 @@
-import CardTarkhineGardi from '@components/shared/card/CardTarkhineGardi';
-import MiniCardMenu from '@components/shared/card/MiniCardMenu';
-import SearchBox from '@components/shared/searchBox/SearchBox';
+import CardTarkhineGardi from '@/components/shared/card/CardTarkhineGardi';
+import MiniCardMenu from '@/components/shared/card/MiniCardMenu';
+import SearchBox from '@/components/shared/SearchBox/SearchBox';
 import { arraySlideMain, branches, miniCards } from '@/lib/dataPublic';
 import React from 'react';
 import IconProfile from '@icons/profileIcon.svg';
@@ -10,8 +10,8 @@ import IconMenuBoard from '@icons/menu-board.svg';
 import IconArrowLeft from '@icons/arrow-left.svg';
 import dynamic from 'next/dynamic';
 import { getBaseUrl } from '@/lib/getBaseUrl';
-const SwiperMain = dynamic(() => import('@components/shared/swiper/swiper'));
-const Button = dynamic(() => import('@components/shared/button/Button'));
+const SwiperMain = dynamic(() => import('@/components/shared/swiper/swiper'));
+const Button = dynamic(() => import('@/components/shared/button/Button'));
 
 export const metadata = {
   title: 'ترخینه | طعم اصیل ایرانی 🍲',
