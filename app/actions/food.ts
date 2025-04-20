@@ -5,6 +5,7 @@ import { authOptions } from '@/lib/auth';
 import prisma from '@/prisma/prismaClient';
 import { revalidatePath } from 'next/cache';
 import { z } from 'zod';
+import { FoodTypeFull } from '@/types';
 
 export async function AddFoodToFavorite(id: number) {
   const SchemaId = z.number().min(1).max(1000);
@@ -38,7 +39,7 @@ export async function AddFoodToFavorite(id: number) {
     } else {
 
       const isFoodAlreadyInFavorites = favorite.foods.some(
-        (food) => food.id === id
+        (food: FoodTypeFull) => food.id === id
       );
 
       if (isFoodAlreadyInFavorites) {

@@ -64,7 +64,7 @@ export const metadata: Metadata  = {
   },
 }
 
-async function page({
+async function Page({
   searchParams,
 }: {
   searchParams: { [key: string]: string };
@@ -253,4 +253,4 @@ async function page({
   );
 }
 
-export default page;
+export default Page;

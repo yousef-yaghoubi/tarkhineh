@@ -37,7 +37,7 @@ export const metadata: Metadata = {
   },
 }
 
-async function page({ searchParams }: { searchParams: SearchParams }) {
+async function Page({ searchParams }: { searchParams: SearchParams }) {
   const { search } = searchParams;
   const { foods } = (await fetch(
     `${getBaseUrl()}/api/food/search?search=${search}`
@@ -74,4 +74,4 @@ async function page({ searchParams }: { searchParams: SearchParams }) {
   );
 }
 
-export default page;
+export default Page;

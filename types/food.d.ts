@@ -23,3 +23,7 @@ export interface FoodType extends DemoFoodModalType {
 export interface CartFoodForShoppingCart extends FoodType {
   quantity: number;
 }
+
+export interface FoodTypeFull {
+  id: number;   name: string;   image: string;   desc: string;   price: number;   order: number;   rating: number;   typeId: number;   categorieId: number;   favoriteId: number | null;   branchId: number;   specialOffer: boolean;   numberOfSell: number;
+}
