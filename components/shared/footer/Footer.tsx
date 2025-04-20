@@ -55,7 +55,7 @@ function Footer() {
       </section>
       </div>
       <div className='w-full bg-primary text-white flex justify-center items-center py-2'>
-          ساخته شده با ❤️ توسط <span className='font-semibold'>یوسف یعقوبی</span>
+          ساخته شده با ❤️ توسط <Link href={'https://github.com/yousef-yaghoubi'} className='font-semibold mr-1'>یوسف یعقوبی</Link>
       </div>
     </footer>
   );

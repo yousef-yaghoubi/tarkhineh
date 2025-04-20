@@ -5,15 +5,15 @@ import Link from 'next/link';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import ErrorMessage from './ErrorMessage';
 import { SchemaLogin } from '@/validators/zod';
 import { signIn } from 'next-auth/react';
 import ButtonBack from '../button/ButtonBack';
-import IconClose from "@icons/CloseIcon.svg"
+import IconClose from '@icons/CloseIcon.svg';
 import dynamic from 'next/dynamic';
+import InputCustom from '../input/InputCustom';
 
 type loginType = z.infer<typeof SchemaLogin>;
-const Button = dynamic(()=> import('@/components/shared/button/Button'))
+const Button = dynamic(() => import('@/components/shared/button/Button'));
 function LoginForm() {
   const {
     register: registerLogin,
@@ -22,7 +22,6 @@ function LoginForm() {
   } = useForm<loginType>({
     resolver: zodResolver(SchemaLogin),
   });
-
 
   const submitFormLogin = async (e: { email: string; password: string }) => {
     await signIn('credentials', {
@@ -44,7 +43,7 @@ function LoginForm() {
         />
 
         <ButtonBack>
-          <IconClose className="w-6 h-6 fill-[#717171]"/>
+          <IconClose className="w-6 h-6 fill-[#717171]" />
         </ButtonBack>
       </div>
 
@@ -58,48 +57,22 @@ function LoginForm() {
             لطفا جیمیل و رمز عبور خود را وارد کنید
           </p>
 
-          <div
-            className="relative w-full max-w-sm flex justify-center mt-3"
+          <InputCustom
+            classNameParent="w-[344px] !max-w-[90%] max-w-sm mt-3"
             id="InputEmail"
-          >
-            <input
-              dir="ltr"
-              type="text"
-              id="InputEmailLogin"
-              {...registerLogin('email')}
-              className="peer w-11/12 max-w-[344px] border border-gray-4 h-10 rounded-sm px-2 pt-5 pb-5 text-gray-900 dark:text-gray-100 dark:bg-transparent transition-all duration-300 placeholder-transparent focus:outline-none focus:border-primary hover:border-gray-8 dark:hover:border-slate-400"
-              placeholder="ایمیل"
-            />
-            <label
-              htmlFor="InputEmailLogin"
-              className={`absolute right-10 -top-[15px] flex justify-center items-center px-1 text-gray-7 text-sm transition-all duration-300 peer-placeholder-shown:top-2 peer-placeholder-shown:text-gray-400  peer-hover:text-gray-8 dark:peer-hover:text-slate-400 peer-placeholder-shown:text-base peer-focus:-top-[15px] focus:text-sm peer-focus:text-primary bg-white dark:bg-background-1`}
-            >
-              ایمیل
-            </label>
-          </div>
-
-          <ErrorMessage forInput={errorsLogin.email} />
-
-          <div
-            className="relative w-full max-w-sm flex justify-center mt-3"
+            placeholder="ایمیل"
+            type="text"
+            error={errorsLogin.email}
+            {...registerLogin('email')}
+          />
+          <InputCustom
+            classNameParent="w-[344px] !max-w-[90%] max-w-sm mt-3"
             id="InputPass"
-          >
-            <input
-              dir="ltr"
-              type="password"
-              id="InputPassLogin"
-              {...registerLogin('password')}
-              className="peer w-11/12 max-w-[344px] border border-gray-4 h-10 rounded-sm px-2 pt-5 pb-5 text-gray-900 dark:text-gray-100 dark:bg-transparent transition-all duration-300 placeholder-transparent focus:outline-none focus:border-primary hover:border-gray-8 dark:hover:border-slate-400"
-              placeholder="رمز ورود"
-            />
-            <label
-              htmlFor="InputPassLogin"
-              className={`absolute right-10 -top-[15px] flex justify-center items-center px-1 text-gray-7 text-sm transition-all duration-300 peer-placeholder-shown:top-2 peer-placeholder-shown:text-gray-400  peer-hover:text-gray-8 dark:peer-hover:text-slate-400 peer-placeholder-shown:text-base peer-focus:-top-[15px] focus:text-sm peer-focus:text-primary bg-white dark:bg-background-1`}
-            >
-              رمز ورود
-            </label>
-          </div>
-          <ErrorMessage forInput={errorsLogin.password} />
+            placeholder="رمز عبور"
+            type="password"
+            error={errorsLogin.password}
+            {...registerLogin('password')}
+          />
 
           <Button
             btn="fill"

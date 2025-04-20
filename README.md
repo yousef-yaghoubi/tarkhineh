@@ -8,7 +8,7 @@ This project demonstrates a complete web application, including a responsive fro
 ## 🖥️Demo 
 
 Check out the live demo here:  
-**[🔗 View Demo](https://your-demo-link.com)**
+**[🔗 View Demo](https://tarkhineh-1307.onrender.com)**
 
 ## 🖼️Project Preview
 
@@ -21,6 +21,7 @@ Check out the live demo here:
 ## 🛠️Technologies Used 
 
 🍞 **Next.js**: A React framework for building modern web applications with SSR (Server-Side Rendering) and Static Site Generation. ⚡  
+🎨 **Tailwind CSS**: A utility-first CSS framework for building custom designs rapidly and responsively.  
 🖼️ **SVGR**: Converts SVG files into React components for better scalability and customization.  
 📱 **shadcn/ui**: A UI library for implementing mobile menus with accordion functionality.  
 📡 **React Query**: Powerful asynchronous state management and server-state caching.  
@@ -92,7 +93,6 @@ AUTH_GOOGLE_SECRET=****
 HASH_PASS_SECRET=****
 NEXTAUTH_URL=http://localhost:3000
 ```
-
 
 ## 🤝Contribution 
 
