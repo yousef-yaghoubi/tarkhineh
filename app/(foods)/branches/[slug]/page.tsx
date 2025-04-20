@@ -138,7 +138,7 @@ async function DynamicBranches({
         </span>
 
         <AddComment type={{ name: 'branch', id: branchAction.id }} />
-        {branchAction?.commentsBranch.length != 0 ? (
+        {Array.isArray(branchAction?.commentsBranch) ? (
           <SliderSwiper
             theme="White"
             commentSlides={branchAction?.commentsBranch as CommentType[]}
