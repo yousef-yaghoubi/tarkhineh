@@ -333,8 +333,8 @@ function Nav({ menuBar }: { menuBar: boolean }) {
               title={branch.title}
               img={branch.images[0].src}
               id={branch.id}
-              onClickCustom={async () => {
-                await Cookies.set('branches', branch.title),
+              onClickCustom={() => {
+                Cookies.set('branches', branch.title),
                 router.push(`/menu?type=${urlMenu}`);
                 closeModal();
               }}
