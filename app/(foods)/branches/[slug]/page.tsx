@@ -47,13 +47,14 @@ async function DynamicBranches({
 }: {
   params: Readonly<{ slug: string }>;
 }) {
+  const headerOption = headers()
   const { slug } = params;
   const { foods: specialOfferFoods }: { foods: FoodType[] | undefined } =
     await fetch(
       `${getBaseUrl()}/api/food?branchName=${slug}&filter=${'specialOffer'}&page=${1}`,
       {
         method: 'GET',
-        headers: headers()
+        headers: headerOption
       }
     ).then((res) => res.json());
 
@@ -62,7 +63,7 @@ async function DynamicBranches({
       `${getBaseUrl()}/api/food?branchName=${slug}&filter=${'mostPopular'}&page=${1}`,
       {
         method: 'GET',
-        headers: headers()
+        headers: headerOption
       }
     ).then((response) => response.json());
 
@@ -71,7 +72,7 @@ async function DynamicBranches({
       `${getBaseUrl()}/api/food?branchName=${slug}&filter=${'non-Iranian'}&page=${1}`,
       {
         method: 'GET',
-        headers: headers()
+        headers: headerOption
       }
     ).then((response) => response.json());
 
@@ -138,7 +139,7 @@ async function DynamicBranches({
         </span>
 
         <AddComment type={{ name: 'branch', id: branchAction.id }} />
-        {Array.isArray(branchAction?.commentsBranch) ? (
+        {branchAction?.commentsBranch.length > 0 ? (
           <SliderSwiper
             theme="White"
             commentSlides={branchAction?.commentsBranch as CommentType[]}

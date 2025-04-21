@@ -29,14 +29,15 @@ function Footer() {
           ))}
 
           <div className="flex flex-row items-center w-[72px] md:w-[172px]">
-            <IconFooter img="/icons/XIcon.webp" alt="X" route="/" />
-            <IconFooter img="/icons/InstaIcon.webp" alt="insta" route="/" />
+            <IconFooter img="/icons/XIcon.png" alt="X" route="/" />
+            <IconFooter img="/icons/InstaIcon.png" alt="insta" route="/" />
             <IconFooter
-              img="/icons/TelegramIcon.webp"
+              img="/icons/TelegramIcon.png"
               alt="telegram"
               route="/"
             />
           </div>
+
         </div>
       </section>
 
@@ -54,7 +55,7 @@ function Footer() {
         <FormFooter />
       </section>
       </div>
-      <div className='w-full bg-primary text-white flex justify-center items-center py-2'>
+      <div className='w-full bg-primary text-white flex justify-center items-center py-2 caption-md md:body-md'>
           ساخته شده با ❤️ توسط <Link href={'https://github.com/yousef-yaghoubi'} className='font-semibold mr-1'>یوسف یعقوبی</Link>
       </div>
     </footer>

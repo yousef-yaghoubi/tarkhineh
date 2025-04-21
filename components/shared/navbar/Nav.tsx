@@ -22,7 +22,12 @@ import Modal from '../Modal';
 import { branches, navStats } from '@/lib/dataPublic';
 import CardTarkhineGardi from '../card/CardTarkhineGardi';
 import { iconsNav } from '@/lib/indexIcon';
-import { Sheet, SheetContent, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
+import {
+  Sheet,
+  SheetContent,
+  SheetTitle,
+  SheetTrigger,
+} from '@/components/ui/sheet';
 import IconNavbar from '@icons/menu.svg';
 import Link from 'next/link';
 
@@ -86,7 +91,9 @@ function Nav({ menuBar }: { menuBar: boolean }) {
                     key={stats.id}
                     href={stats.route}
                     className={`md:border-0 mx-4 md:mx-0 flex h-[39px] justify-start items-center ${
-                      stats.id == 6 ? 'border-0' : 'border-b border-gray-4 dark:border-gray-7'
+                      stats.id == 6
+                        ? 'border-0'
+                        : 'border-b border-gray-4 dark:border-gray-7'
                     } ${
                       stats.route == pathName
                         ? 'caption-md sm:body-lg activeLink lg:activeLink !border-b border-primary dark:border-primary'
@@ -169,9 +176,22 @@ function Nav({ menuBar }: { menuBar: boolean }) {
                                     path: '/',
                                   });
                                 }
+
+                                if (stats.label === 'منو') {
+                                  if (sessionCookie) {
+                                    router.push(`/menu?type=${sub.routeQuery}`);
+                                  } else {
+                                    setOpen(false);
+                                    setShowChooseModal(true);
+                                  }
+                                }
+
+                                setUrlMenu(sub.routeQuery);
                               }}
                               className={`w-fit mr-2 pt-2 caption-sm sm:body-sm ${
-                                isSubActive ? 'border-primary dark:border-primary' : ''
+                                isSubActive
+                                  ? 'border-primary dark:border-primary'
+                                  : ''
                               }`}
                             >
                               {sub.label}
@@ -195,7 +215,9 @@ function Nav({ menuBar }: { menuBar: boolean }) {
                     key={stats.id}
                     href={stats.route}
                     className={`md:border-0 mx-4 md:mx-0 flex h-[39px] justify-start items-center ${
-                      stats.id == 6 ? 'border-0' : 'border-b border-gray-4 dark:border-gray-7'
+                      stats.id == 6
+                        ? 'border-0'
+                        : 'border-b border-gray-4 dark:border-gray-7'
                     } ${
                       stats.route == pathName
                         ? 'caption-md sm:body-lg activeLink lg:activeLink !border-b border-primary dark:border-primary'
@@ -311,10 +333,10 @@ function Nav({ menuBar }: { menuBar: boolean }) {
               title={branch.title}
               img={branch.images[0].src}
               id={branch.id}
-              onClickCustom={() => {
-                Cookies.set('branches', branch.title);
-                closeModal();
+              onClickCustom={async () => {
+                await Cookies.set('branches', branch.title),
                 router.push(`/menu?type=${urlMenu}`);
+                closeModal();
               }}
             />
           ))}
