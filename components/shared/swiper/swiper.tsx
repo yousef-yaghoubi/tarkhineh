@@ -109,7 +109,7 @@ function SwiperMain({
         </svg>
       </div>
       <span
-        className={`swiper-pagination !w-[82px] h-[19px] bg-[url(/image/Rectangle2Mobile.png)] dark:bg-[url(/image/Rectangle2MobileDark.png)] md:!w-[154px] md:h-7 md:bg-[url(/image/Rectangle2.png)] dark:md:bg-[url(/image/Rectangle2Dark.png)] mx-auto inset-0 absolute !bottom-0 justify-center items-center ${
+        className={`swiper-pagination !w-[82px] h-[19px] bg-[url(/image/Rectangle2Mobile.webp)] dark:bg-[url(/image/Rectangle2MobileDark.webp)] md:!w-[154px] md:h-7 md:bg-[url(/image/Rectangle2.webp)] dark:md:bg-[url(/image/Rectangle2Dark.webp)] mx-auto inset-0 absolute !bottom-0 justify-center items-center ${
           pagination ? 'flex' : 'hidden'
         }`}
       ></span>

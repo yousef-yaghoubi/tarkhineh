@@ -19,7 +19,7 @@ async function Navbar() {
       <div className="w-[102px] h-8 lg:w-[155px] lg:h-[51px]">
         <Link href={'/'}>
           <Image
-            src="/logoGreenSmall.png"
+            src="/logoGreenSmall.webp"
             width={102}
             height={32}
             alt="logo"
@@ -27,7 +27,7 @@ async function Navbar() {
           />
 
           <Image
-            src="/logoGreenBig.png"
+            src="/logoGreenBig.webp"
             width={155}
             height={51}
             alt="logo"

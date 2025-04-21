@@ -30,7 +30,7 @@ export async function generateMetadata({
       openGraph: {
         title: "ترخینه |  صفحه مورد نظر پیدا نشد",
         description: "متأسفیم، صفحه‌ای که به دنبال آن بودید پیدا نشد.",
-        url: "/logoGreenBig.png",
+        url: "/logoGreenBig.webp",
         siteName: "رستوران‌های زنجیره‌ای ترخینه",
         type: "website",
       },
@@ -53,7 +53,7 @@ export async function generateMetadata({
       url: `${getBaseUrl()}/${params.slug}`,
       images: [
         {
-          url: '/logoGreenBig.png',
+          url: '/logoGreenBig.webp',
           width: 1200,
           height: 630,
           alt: params.slug,

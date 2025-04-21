@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     url: `${getBaseUrl()}/about`,
     images: [
       {
-        url: `/logoGreenBig.png`,
+        url: `/logoGreenBig.webp`,
         width: 1200,
         height: 630,
         alt: 'درباره ما - رستوران‌های ترخینه',
@@ -59,8 +59,8 @@ function page() {
             id: 1,
             title: 'درباره ترخینه بیشتر بدانید!',
             alt: 'ترخینه',
-            img: '/image/bannerAboutPage.jpg',
-            imgMobile: '/image/bannerAboutPageMobile.jpg',
+            img: '/image/bannerAboutPage.webp',
+            imgMobile: '/image/bannerAboutPageMobile.webp',
           },
         ]}
       />
@@ -70,7 +70,7 @@ function page() {
         <div className="inline-block h-[27em] mt-1 w-full md:mt-6 caption-sm md:body-xl text-justify text-gray-7">
           <div className="w-1/2 relative h-[120px] md:h-[14em] lg:h-full float-left mr-4 md:mr-6">
             <Image
-              src={'/image/aboutImg.jpg'}
+              src={'/image/aboutImg.webp'}
               className="rounded md:rounded-md"
               alt="درباره ما"
               fill

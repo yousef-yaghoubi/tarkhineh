@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     url: `${getBaseUrl()}/user/favorites`,
     images: [
       {
-        url: `/logoGreenBig.png`,
+        url: `/logoGreenBig.webp`,
         width: 1200,
         height: 630,
         alt: `لیست علاقه‌مندی‌ها - ترخینه`,
@@ -75,7 +75,7 @@ async function page({ searchParams }: { searchParams: {'categorie': string, 'sea
                 className={`w-full h-[422px] rounded-md dark:border-background-2 flex flex-col items-center justify-center relative`}
               >
                 <Image
-                  src={'/image/EmptyPage.png'}
+                  src={'/image/EmptyPage.webp'}
                   alt="empty"
                   width={325}
                   height={312}

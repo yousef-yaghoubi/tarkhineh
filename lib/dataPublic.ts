@@ -1,10 +1,10 @@
 import { BadgeType, ProfileRoutes } from '@/types';
 
 export const miniCards = [
-  { id: 4, img: '/image/miniCardFood.png', title: 'غذای اصلی' },
-  { id: 3, img: '/image/miniCardAppetizer.png', title: 'پیش غذا' },
-  { id: 2, img: '/image/miniCardDecer.png', title: 'دسر' },
-  { id: 1, img: '/image/miniCardDrink.png', title: 'نوشیدنی' },
+  { id: 4, img: '/image/miniCardFood.webp', title: 'غذای اصلی' },
+  { id: 3, img: '/image/miniCardAppetizer.webp', title: 'پیش غذا' },
+  { id: 2, img: '/image/miniCardDecer.webp', title: 'دسر' },
+  { id: 1, img: '/image/miniCardDrink.webp', title: 'نوشیدنی' },
 ];
 
 interface image {
@@ -22,10 +22,10 @@ export const branches: branchType[] = [
   {
     id: 1,
     images: [
-      { id: 1, src: '/image/ekbatan1.jpg' },
-      { id: 2, src: '/image/vanak1.jpg' },
-      { id: 3, src: '/image/chaloos1.jpg' },
-      { id: 4, src: '/image/aghdasie1.jpg' },
+      { id: 1, src: '/image/ekbatan1.webp' },
+      { id: 2, src: '/image/vanak1.webp' },
+      { id: 3, src: '/image/chaloos1.webp' },
+      { id: 4, src: '/image/aghdasie1.webp' },
     ],
     title: 'اکباتان',
     nickName: 'ekbatan',
@@ -34,10 +34,10 @@ export const branches: branchType[] = [
   {
     id: 2,
     images: [
-      { id: 1, src: '/image/chaloos1.jpg' },
-      { id: 2, src: '/image/vanak1.jpg' },
-      { id: 3, src: '/image/aghdasie1.jpg' },
-      { id: 4, src: '/image/ekbatan1.jpg' },
+      { id: 1, src: '/image/chaloos1.webp' },
+      { id: 2, src: '/image/vanak1.webp' },
+      { id: 3, src: '/image/aghdasie1.webp' },
+      { id: 4, src: '/image/ekbatan1.webp' },
     ],
     title: 'چالوس',
     nickName: 'chaloos',
@@ -46,10 +46,10 @@ export const branches: branchType[] = [
   {
     id: 3,
     images: [
-      { id: 1, src: '/image/aghdasie1.jpg' },
-      { id: 2, src: '/image/chaloos1.jpg' },
-      { id: 3, src: '/image/vanak1.jpg' },
-      { id: 4, src: '/image/ekbatan1.jpg' },
+      { id: 1, src: '/image/aghdasie1.webp' },
+      { id: 2, src: '/image/chaloos1.webp' },
+      { id: 3, src: '/image/vanak1.webp' },
+      { id: 4, src: '/image/ekbatan1.webp' },
     ],
     title: 'اقدسیه',
     nickName: 'aghdasie',
@@ -58,10 +58,10 @@ export const branches: branchType[] = [
   {
     id: 4,
     images: [
-      { id: 1, src: '/image/vanak1.jpg' },
-      { id: 2, src: '/image/aghdasie1.jpg' },
-      { id: 3, src: '/image/chaloos1.jpg' },
-      { id: 4, src: '/image/ekbatan1.jpg' },
+      { id: 1, src: '/image/vanak1.webp' },
+      { id: 2, src: '/image/aghdasie1.webp' },
+      { id: 3, src: '/image/chaloos1.webp' },
+      { id: 4, src: '/image/ekbatan1.webp' },
     ],
     title: 'ونک',
     nickName: 'vanak',
@@ -97,22 +97,22 @@ export const arraySlideMain = [
   {
     id: 1,
     title: 'تجربه غذای سالم و گیاهی به سبک ترخینه',
-    img: '/image/bannerSlider1.jpg',
-    imgMobile: '/image/bannerSlider1Mobile.jpg',
+    img: '/image/bannerSlider1.webp',
+    imgMobile: '/image/bannerSlider1Mobile.webp',
     alt: 'تجربه غذای سالم',
   },
   {
     id: 2,
     title: 'طعم بی‌نظیر طبیعت!',
-    img: '/image/bannerSlider2.jpg',
-    imgMobile: '/image/bannerSlider2Mobile.jpg',
+    img: '/image/bannerSlider2.webp',
+    imgMobile: '/image/bannerSlider2Mobile.webp',
     alt: 'طعم بی‌نظیر طبیعت',
   },
   {
     id: 3,
     title: 'لذت غذای سالم و گیاهی را با ترخینه تجربه کنید!',
-    img: '/image/bannerSlider3.jpg',
-    imgMobile: '/image/bannerSlider3Mobile.jpg',
+    img: '/image/bannerSlider3.webp',
+    imgMobile: '/image/bannerSlider3Mobile.webp',
     alt: 'لذت غذای سالم',
   },
 ];
@@ -120,14 +120,14 @@ export const arraySlideMain = [
 export const arraySlideBranch = [
   {
     id: 1,
-    img: '/image/ekbatanBranch1.jpg',
-    imgMobile: '/image/ekbatanBranch1Mobile.jpg',
+    img: '/image/ekbatanBranch1.webp',
+    imgMobile: '/image/ekbatanBranch1Mobile.webp',
     alt: 'ekbatan Branch',
   },
   {
     id: 2,
-    img: '/image/ekbatanBranch1.jpg',
-    imgMobile: '/image/ekbatanBranch1Mobile.jpg',
+    img: '/image/ekbatanBranch1.webp',
+    imgMobile: '/image/ekbatanBranch1Mobile.webp',
     alt: 'ekbatan Branch',
   },
 ];

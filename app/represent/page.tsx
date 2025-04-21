@@ -81,9 +81,9 @@ function page() {
         slides={[
           {
             id: 1,
-            img: '/image/bannerRePresent.jpg',
+            img: '/image/bannerRePresent.webp',
             alt: 'نمایندگی',
-            imgMobile: '/image/bannerRePresent.jpg',
+            imgMobile: '/image/bannerRePresent.webp',
             title: 'همین الان به خانواده بزرگ ترخینه بپیوندید!',
           },
         ]}

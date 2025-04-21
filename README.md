@@ -13,9 +13,9 @@ Check out the live demo here:
 ## 🖼️Project Preview
 
 <p align="center">
-  <img src="./assets/tarkhineh1.jpg" width="500">
-  <img src="./assets/tarkhineh2.png" width="500">
-  <img src="./assets/tarkhineh3.png" width="500">
+  <img src="./assets/tarkhineh1.webp" width="500">
+  <img src="./assets/tarkhineh2.webp" width="500">
+  <img src="./assets/tarkhineh3.webp" width="500">
 </p>
 
 ## 🛠️Technologies Used 

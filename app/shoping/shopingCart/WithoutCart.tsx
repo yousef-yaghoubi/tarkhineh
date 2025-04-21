@@ -8,7 +8,7 @@ function WithoutCart({ setBorder }: { setBorder?: boolean }) {
       className={`w-full h-[422px] rounded-md ${setBorder && 'border border-gray-4'} dark:border-background-2 flex flex-col items-center justify-center relative`}
     >
       <Image
-        src={'/image/EmptyPage.png'}
+        src={'/image/EmptyPage.webp'}
         alt="empty"
         width={325}
         height={312}

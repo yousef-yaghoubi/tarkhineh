@@ -25,7 +25,7 @@ export const metadata = {
     siteName: 'ترخینه',
     images: [
       {
-        url: '/logoGreenBig.png',
+        url: '/logoGreenBig.webp',
         width: 1200,
         height: 630,
         alt: 'ترخینه | طعم اصیل ایرانی 🍲',
@@ -56,7 +56,7 @@ async function Home() {
         </div>
       </section>
 
-      <section className="w-full flex flex-col md:flex-row justify-between md:justify-around h-[339px] md:h-[390px] bg-[url(/image/bannerAboutMobile.png)] bg-cover md:bg-[url(/image/bannerAbout.png)] py-4 px-5 md:py-12">
+      <section className="w-full flex flex-col md:flex-row justify-between md:justify-around h-[339px] md:h-[390px] bg-[url(/image/bannerAboutMobile.webp)] bg-cover md:bg-[url(/image/bannerAbout.webp)] py-4 px-5 md:py-12">
         <div className="md:w-3/5 md:max-w-[600px] md:h-[294px]">
           <span className="overline-lg md:h4 text-withe md:mb-6">
             رستوران های نجیره ای ترخینه

@@ -55,7 +55,7 @@ function CardTarkhineGardi({
         >
           <Image src={img} alt={title} fill className="w-full h-full" />
           <Image
-            src="/image/zoomPicture.png"
+            src="/image/zoomPicture.webp"
             alt="zoom"
             width={16}
             height={16}
@@ -71,21 +71,21 @@ function CardTarkhineGardi({
           >
             <div className="relative w-[52px] h-[52px] flex justify-center items-center">
               <Image
-                src="/icons/backIcon1.png"
+                src="/icons/backIcon1.webp"
                 alt="back1"
                 width={58}
                 height={58}
                 className="absolute"
               />
               <Image
-                src="/icons/backIcon2.png"
+                src="/icons/backIcon2.webp"
                 alt="back1"
                 width={42}
                 height={42}
                 className="absolute"
               />
               <Image
-                src="/icons/gallery.png"
+                src="/icons/gallery.webp"
                 alt="gallery"
                 width={32}
                 height={32}
@@ -133,7 +133,7 @@ function CardTarkhineGardi({
         >
           <Image src={img} alt={title} fill className="w-full h-full" />
           <Image
-            src="/image/zoomPicture.png"
+            src="/image/zoomPicture.webp"
             alt="zoom"
             width={16}
             height={16}
@@ -149,21 +149,21 @@ function CardTarkhineGardi({
           >
             <div className="relative w-[52px] h-[52px] flex justify-center items-center">
               <Image
-                src="/icons/backIcon1.png"
+                src="/icons/backIcon1.webp"
                 alt="back1"
                 width={58}
                 height={58}
                 className="absolute"
               />
               <Image
-                src="/icons/backIcon2.png"
+                src="/icons/backIcon2.webp"
                 alt="back1"
                 width={42}
                 height={42}
                 className="absolute"
               />
               <Image
-                src="/icons/gallery.png"
+                src="/icons/gallery.webp"
                 alt="gallery"
                 width={32}
                 height={32}
@@ -222,21 +222,21 @@ function CardTarkhineGardi({
           >
             <div className="relative w-[52px] h-[52px] flex justify-center items-center">
               <Image
-                src="/icons/backIcon1.png"
+                src="/icons/backIcon1.webp"
                 alt="back1"
                 width={58}
                 height={58}
                 className="absolute"
               />
               <Image
-                src="/icons/backIcon2.png"
+                src="/icons/backIcon2.webp"
                 alt="back1"
                 width={42}
                 height={42}
                 className="absolute"
               />
               <Image
-                src="/icons/gallery.png"
+                src="/icons/gallery.webp"
                 alt="gallery"
                 width={32}
                 height={32}

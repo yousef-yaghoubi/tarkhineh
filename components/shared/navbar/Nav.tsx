@@ -70,7 +70,7 @@ function Nav({ menuBar }: { menuBar: boolean }) {
             <SheetTitle></SheetTitle>
             <>
               <Image
-                src={'/image/topFrameMenuMobile.jpg'}
+                src={'/image/topFrameMenuMobile.webp'}
                 alt="header menu"
                 fill
                 className="w-full !h-[94px] md:hidden !relative mb-2 z-10"

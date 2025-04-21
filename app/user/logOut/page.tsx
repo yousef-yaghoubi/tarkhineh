@@ -11,7 +11,7 @@ export const metadata: Metadata  = {
     url: `${getBaseUrl()}/user/logOut`,
     images: [
       {
-        url: `/logoGreenBig.png`,
+        url: `/logoGreenBig.webp`,
         width: 1200,
         height: 630,
         alt: `خروج از حساب - ترخینه`,

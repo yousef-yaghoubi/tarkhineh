@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     url: `${getBaseUrl()}/search`,
     images: [
       {
-        url: `/logoGreenBig.png`, 
+        url: `/logoGreenBig.webp`, 
         width: 1200,
         height: 630,
         alt: 'جستجوی غذا - رستوران‌های ترخینه',
@@ -57,7 +57,7 @@ async function Page({ searchParams }: { searchParams: SearchParams }) {
 
       {!foods?.length ? (
         <Image
-          src={'/image/MatchNotFound.png'}
+          src={'/image/MatchNotFound.webp'}
           alt="not found"
           width={390}
           height={345}

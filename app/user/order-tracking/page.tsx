@@ -52,7 +52,7 @@ export const metadata: Metadata  = {
     url: `${getBaseUrl()}/user/order-tracking`,
     images: [
       {
-        url: `/logoGreenBig.png`,
+        url: `/logoGreenBig.webp`,
         width: 1200,
         height: 630,
         alt: `پیگیری سفارش - ترخینه`,

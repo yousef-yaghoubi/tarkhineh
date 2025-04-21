@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     url: `${getBaseUrl()}/contact`,
     images: [
       {
-        url: `/logoGreenBig.png`,
+        url: `/logoGreenBig.webp`,
         width: 1200,
         height: 630,
         alt: 'تماس با ما - رستوران‌های ترخینه',
@@ -37,8 +37,8 @@ function page() {
           {
             id: 1,
             alt: 'contact to tarkhine',
-            img: '/image/bannerContact.jpg',
-            imgMobile: '/image/bannerContactMobile.jpg',
+            img: '/image/bannerContact.webp',
+            imgMobile: '/image/bannerContactMobile.webp',
             title: 'با ترخینه در تماس باشید.',
           },
         ]}

@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     url: `${getBaseUrl()}/shoping/payment`,
     images: [
       {
-        url: `/logoGreenBig.png`,
+        url: `/logoGreenBig.webp`,
         width: 1200,
         height: 630,
         alt: `پرداخت سفارش - رستوران‌های ترخینه`,

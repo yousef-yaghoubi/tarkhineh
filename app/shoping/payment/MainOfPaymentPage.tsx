@@ -106,15 +106,15 @@ function MainOfPaymentPage() {
           <div className="w-full flex flex-col mt-4 md:mt-6 h-full">
             <div className="w-full flex justify-around">
               <ImageGrayscale
-                src="/image/tejaratBank.png"
+                src="/image/tejaratBank.webp"
                 id="tejarat"
               />
               <ImageGrayscale
-                src="/image/saderatBank.png"
+                src="/image/saderatBank.webp"
                 id="saderat"
               />
               <ImageGrayscale
-                src="/image/samanBank.png"
+                src="/image/samanBank.webp"
                 id="saman"
               />
             </div>

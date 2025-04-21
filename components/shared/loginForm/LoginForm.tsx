@@ -35,7 +35,7 @@ function LoginForm() {
     <div className="bg-white dark:bg-background-1 rounded-md w-11/12 max-w-[392px] h-[30em] flex flex-col items-center overflow-hidden relative">
       <div className="w-full h-[72px] flex justify-center relative items-center">
         <Image
-          src="/logoGreenSmall.png"
+          src="/logoGreenSmall.webp"
           alt="logo"
           height={36}
           width={100}
