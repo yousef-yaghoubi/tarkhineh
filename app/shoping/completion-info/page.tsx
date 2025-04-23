@@ -27,14 +27,11 @@ export const metadata: Metadata = {
 
 
 async function page() {
-
   const addressUser = await fetch(`${getBaseUrl()}/api/address/addressesOfUser`, {
    cache: 'no-store',
     headers: headers()
   }).then(res => res).then(result => result.json());
 
-
-  console.log(addressUser)
   return (
     <>
       <SectionPage userAddress={addressUser.addresses}/>

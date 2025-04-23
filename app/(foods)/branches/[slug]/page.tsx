@@ -45,7 +45,8 @@ export async function generateMetadata({
   params: { slug: string };
 }) {
   const branch = await getBranchBySlug({ params });
-
+  
+  console.log(branch)
   if (!branch) {
     return {
       title: 'Branch Not Found',
@@ -56,9 +57,9 @@ export async function generateMetadata({
   return generateBranchMetadata({
     name: branch.name,
     address: branch.address,
-    phone: branch.phone,
-    slug: branch.slug,
-    image: branch.image,
+    phone: branch.phones.phones[0],
+    slug: branch.nickName,
+    image: branch.images.images[0],
   });
 }
 
