@@ -143,6 +143,5 @@ export async function GET(req: Request) {
     return NextResponse.json({
       foods: null,
     });
-    console.log(error);
   }
 }
