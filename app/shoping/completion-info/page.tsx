@@ -34,6 +34,7 @@ async function page() {
   }).then(res => res).then(result => result.json());
 
 
+  console.log(addressUser)
   return (
     <>
       <SectionPage userAddress={addressUser.addresses}/>

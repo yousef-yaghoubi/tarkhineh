@@ -11,19 +11,17 @@ import { generateBranchMetadata } from '@/lib/seo';
 import { getBaseUrl } from '@/lib/getBaseUrl';
 const Button = dynamic(() => import('@/components/shared/button/Button'));
 
-
-
 async function getBranchBySlug({ params }: { params: { slug: string } }) {
   const { branch: branchAction } = await fetch(
     `${getBaseUrl()}/api/branch?branchName=${params.slug}`,
     {
       next: {
         tags: ['branch'],
-        revalidate: 3600
+        revalidate: 3600,
       },
     }
   ).then((response) => response.json());
-  
+
   return branchAction;
 }
 
@@ -48,15 +46,18 @@ async function DynamicBranches({
 }: {
   params: Readonly<{ slug: string }>;
 }) {
-  const headerOption = headers()
+  const headersList = headers();
+  const customHeaders = {
+    cookie: headersList.get('cookie') || '',
+  };
   const { slug } = params;
   const { foods: specialOfferFoods }: { foods: FoodType[] | undefined } =
     await fetch(
       `${getBaseUrl()}/api/food?branchName=${slug}&filter=${'specialOffer'}&page=${1}`,
       {
         method: 'GET',
-        headers: headerOption,
-        next: { revalidate: 3600 }
+        headers: customHeaders,
+        next: { revalidate: 3600 },
       }
     ).then((res) => res.json());
 
@@ -65,8 +66,8 @@ async function DynamicBranches({
       `${getBaseUrl()}/api/food?branchName=${slug}&filter=${'mostPopular'}&page=${1}`,
       {
         method: 'GET',
-        headers: headerOption,
-        next: { revalidate: 3600 }
+        headers: customHeaders,
+        next: { revalidate: 3600 },
       }
     ).then((response) => response.json());
 
@@ -75,8 +76,8 @@ async function DynamicBranches({
       `${getBaseUrl()}/api/food?branchName=${slug}&filter=${'non-Iranian'}&page=${1}`,
       {
         method: 'GET',
-        headers: headerOption,
-        next: { revalidate: 3600 }
+        headers: customHeaders,
+        next: { revalidate: 3600 },
       }
     ).then((response) => response.json());
 
@@ -137,7 +138,6 @@ async function DynamicBranches({
           }
           phones={branchAction?.phones as { phones: string[] }}
         />
-
 
         <span className="h6 md:h5 lg:h4 mt-6 md:mt-9 lg:mt-12 mb-3 md:mb-[18px]">
           نظرات کاربران

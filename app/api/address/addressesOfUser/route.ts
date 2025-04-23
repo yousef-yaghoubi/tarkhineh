@@ -3,7 +3,7 @@ import prisma from '@/prisma/prismaClient';
 import { authOptions } from '@/lib/auth';
 import { NextResponse } from 'next/server';
 
-export async function GET() {
+export async function GET(req: Request) {
   const session = await getServerSession(authOptions);
   
   
@@ -24,7 +24,7 @@ export async function GET() {
 
     return NextResponse.json({ addresses: response?.addresses },{status: 200});
   } catch (error) {
-    return NextResponse.json({ addresses: null }, {status: 400});
     console.log(error)
+    return NextResponse.json({ addresses: null }, {status: 400});
   }
 }

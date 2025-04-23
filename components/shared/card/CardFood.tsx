@@ -26,7 +26,7 @@ function CardFood({
   const [isRedHeart, setIsRedHeart] = useState(item.isFavorite);
 
   const handleAddFoodToFavorite = async (id: string) => {
-    const addFood = await AddFoodToFavorite(id);
+    const addFood = await AddFoodToFavorite(JSON.parse(JSON.stringify(id)));
 
     if (addFood.status == 200) {
       setIsRedHeart(false);
