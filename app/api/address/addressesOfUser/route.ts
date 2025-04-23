@@ -1,9 +1,9 @@
 import { getServerSession } from 'next-auth';
 import prisma from '@/prisma/prismaClient';
-import { NextResponse } from 'next/server';
 import { authOptions } from '@/lib/auth';
+import { NextResponse } from 'next/server';
 
-export async function GET(req: Request) {
+export async function GET() {
   const session = await getServerSession(authOptions);
   
   
@@ -22,9 +22,9 @@ export async function GET(req: Request) {
     });
 
 
-    return Response.json({ addresses: response?.addresses },{status: 200});
+    return NextResponse.json({ addresses: response?.addresses },{status: 200});
   } catch (error) {
-    return Response.json({ addresses: null }, {status: 400});
+    return NextResponse.json({ addresses: null }, {status: 400});
     console.log(error)
   }
 }

@@ -21,5 +21,6 @@ export const config = {
   matcher: [
     "/login",
     "/menu/:path*",
+    "/api/:path*"
   ],
 };
