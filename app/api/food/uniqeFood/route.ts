@@ -4,10 +4,10 @@ import { NextResponse } from 'next/server';
 import { z } from 'zod';
 
 export async function GET(req: Request) {
-  const SchemaId = z.number().min(1).max(1000);
+  const SchemaId = z.string()
   type IdType = z.infer<typeof SchemaId>;
   const { searchParams } = new URL(req.url);
-  const id = Number(searchParams.get('id')) as IdType;
+  const id = searchParams.get('id') as IdType;
 
   try {
     const validation = SchemaId.safeParse(id);

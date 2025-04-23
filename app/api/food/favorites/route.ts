@@ -19,18 +19,16 @@ export async function GET(req: Request) {
 
   switch (type) {
     case 'food':
-      typeIdFoods = 1;
+      typeIdFoods = '6806567e8c5946ee9db897a3';
       break;
     case 'appetizer':
-      typeIdFoods = 2;
+      typeIdFoods = '6806567e8c5946ee9db897a4';
       break;
     case 'dessert':
-      typeIdFoods = 3;
+      typeIdFoods = '6806567e8c5946ee9db897a5';
       break;
     case 'drink':
-      typeIdFoods = 4;
-      break;
-    default:
+      typeIdFoods = '6806567e8c5946ee9db897a6';
       break;
   }
 
@@ -42,7 +40,7 @@ export async function GET(req: Request) {
     }
     const favorites = await prisma.favorite.findUnique({
       where: {
-        userId: Number(session?.user.id),
+        userId: session?.user.id,
         foods: {
           some: {
             typeId: typeIdFoods,
@@ -66,19 +64,18 @@ export async function GET(req: Request) {
       },
     });
 
-    const result = favorites?.foods.map((food)  => ({
+    const result = favorites?.foods.map((food) => ({
       ...food,
       isFavorite: true,
-    }));  
-
+    }));
 
     return NextResponse.json({
-      favorites: {...favorites, foods: result},
+      favorites: { ...favorites, foods: result },
     });
   } catch (error) {
     return NextResponse.json({
       favorites: null,
     });
-    console.log(error)
+    console.log(error);
   }
 }

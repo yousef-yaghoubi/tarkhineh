@@ -1,5 +1,5 @@
 export interface CommentType {
-    id?: number;
+    id?: string;
     desc: string;
     createdAt: Date;
     score: number;

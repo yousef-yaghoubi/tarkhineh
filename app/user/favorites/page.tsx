@@ -45,8 +45,8 @@ async function page({ searchParams }: { searchParams: {'categorie': string, 'sea
 
   const data = (await response.json()) as {
     favorites: {
-      id: number;
-      userId: number;
+      id: string;
+      userId: string;
       foods: FoodType[];
     };
   } | null;

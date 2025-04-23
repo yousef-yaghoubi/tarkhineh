@@ -18,7 +18,7 @@ export async function LoginOrSignUpUserWithCredential(formData: {
   email: string;
   password: string;
 }): Promise<null | {
-  id: number;
+  id: string;
   email: string;
   firstName: string | null;
   lastName: string | null;

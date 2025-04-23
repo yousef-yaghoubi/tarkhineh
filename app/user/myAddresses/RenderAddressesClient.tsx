@@ -7,13 +7,13 @@ export default function RenderAddressesClient({
   address,
 }: {
   address: {
-    id: number;
+    id: string;
     titleAddress: string;
     meReciver: boolean;
     phone: string;
     nameReciver: string;
     address: string;
-    userId: number;
+    userId: string;
   }[];
 }) {
   return (

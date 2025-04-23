@@ -46,18 +46,18 @@ export async function SendOrder({
 
     await prisma.orderTracking.create({
       data: {
-        branchId: 2,
-        userId: Number(data?.user.id),
-        paymentMethodId: order.payment.type === 'online' ? 1 : 2,
-        sendMethodId: order.delivery.type === 'delivery' ? 1 : 2,
-        statusId: 1,
+        branchId: '6807aa2012b8ff1e272caf6f',
+        userId: data?.user.id,
+        paymentMethodId: order.payment.type === 'online' ? '680656138c5946ee9db89778' : '680656138c5946ee9db89779',
+        sendMethodId: order.delivery.type === 'delivery' ? '6806562b8c5946ee9db8977b' : '6806562b8c5946ee9db8977c',
+        statusId: '680656548c5946ee9db89786',
         discount: order.fee.discount,
         price: order.fee.price,
         foods: {
           createMany: {
             data: filteredCart.map(({ name, quantity }) => ({
               foodId: foodItems.find((food) => food.name === name)
-                ?.id as number,
+                ?.id as string,
               quantity,
             })),
           },
@@ -72,14 +72,14 @@ export async function SendOrder({
   }
 }
 
-export async function CancelOrderTrack(id: number) {
+export async function CancelOrderTrack(id: string) {
   try {
     await prisma.orderTracking.update({
       where: {
         id,
       },
       data: {
-        statusId: 3,
+        statusId: '680656548c5946ee9db89788',
       },
     });
 
@@ -91,7 +91,7 @@ export async function CancelOrderTrack(id: number) {
   }
 }
 
-export async function AgainSubmitOrderTrack(id: number) {
+export async function AgainSubmitOrderTrack(id: string) {
   try {
     const orderTrack = await prisma.orderTracking.findUnique({
       where: {
@@ -108,7 +108,7 @@ export async function AgainSubmitOrderTrack(id: number) {
         discount: orderTrack!.discount,
         paymentMethodId: orderTrack!.paymentMethodId,
         sendMethodId: orderTrack!.sendMethodId,
-        statusId: 1,
+        statusId: '680656548c5946ee9db89786',
         userId: orderTrack!.userId,
         foods: {
           create: orderTrack!.foods.map((food) => ({

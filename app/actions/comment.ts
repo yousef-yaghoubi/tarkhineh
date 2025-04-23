@@ -9,7 +9,7 @@ export async function AddCommentAction({
   type,
   data,
 }: {
-  type: { name: 'branch'; id: number } | { name: 'product'; id: number };
+  type: { name: 'branch'; id: string } | { name: 'product'; id: string };
   data: { desc: string; rate: number };
 }) {
   const session = await getServerSession(authOptions);
@@ -29,7 +29,7 @@ export async function AddCommentAction({
         data: {
           desc: data.desc,
           score: data.rate,
-          userId: Number(session?.user.id),
+          userId: session?.user.id,
           branchId: type.id,
         },
       });
@@ -44,7 +44,7 @@ export async function AddCommentAction({
           desc: data.desc,
           score: data.rate,
           foodId: type.id,
-          userId: Number(session?.user.id),
+          userId: session?.user.id,
         },
       });
 

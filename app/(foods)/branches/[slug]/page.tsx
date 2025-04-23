@@ -11,7 +11,7 @@ import { generateBranchMetadata } from '@/lib/seo';
 import { getBaseUrl } from '@/lib/getBaseUrl';
 const Button = dynamic(() => import('@/components/shared/button/Button'));
 
-export const revalidate = 3600;
+
 
 async function getBranchBySlug({ params }: { params: { slug: string } }) {
   const { branch: branchAction } = await fetch(
@@ -19,10 +19,11 @@ async function getBranchBySlug({ params }: { params: { slug: string } }) {
     {
       next: {
         tags: ['branch'],
+        revalidate: 3600
       },
     }
   ).then((response) => response.json());
-
+  
   return branchAction;
 }
 
@@ -54,7 +55,8 @@ async function DynamicBranches({
       `${getBaseUrl()}/api/food?branchName=${slug}&filter=${'specialOffer'}&page=${1}`,
       {
         method: 'GET',
-        headers: headerOption
+        headers: headerOption,
+        next: { revalidate: 3600 }
       }
     ).then((res) => res.json());
 
@@ -63,7 +65,8 @@ async function DynamicBranches({
       `${getBaseUrl()}/api/food?branchName=${slug}&filter=${'mostPopular'}&page=${1}`,
       {
         method: 'GET',
-        headers: headerOption
+        headers: headerOption,
+        next: { revalidate: 3600 }
       }
     ).then((response) => response.json());
 
@@ -72,7 +75,8 @@ async function DynamicBranches({
       `${getBaseUrl()}/api/food?branchName=${slug}&filter=${'non-Iranian'}&page=${1}`,
       {
         method: 'GET',
-        headers: headerOption
+        headers: headerOption,
+        next: { revalidate: 3600 }
       }
     ).then((response) => response.json());
 
@@ -122,7 +126,7 @@ async function DynamicBranches({
           address={branchAction?.address as string}
           durition={'همه‌روزه از ساعت 12 تا 23 بجز روزهای تعطیل'}
           images={
-            JSON.parse(branchAction?.images) as {
+            branchAction?.images as {
               images: {
                 id: number;
                 alt: string;
@@ -131,8 +135,9 @@ async function DynamicBranches({
               }[];
             }
           }
-          phones={JSON.parse(branchAction?.phones) as { phones: string[] }}
+          phones={branchAction?.phones as { phones: string[] }}
         />
+
 
         <span className="h6 md:h5 lg:h4 mt-6 md:mt-9 lg:mt-12 mb-3 md:mb-[18px]">
           نظرات کاربران

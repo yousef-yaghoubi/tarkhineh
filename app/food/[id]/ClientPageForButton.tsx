@@ -13,7 +13,7 @@ function ClientPageForButton({ food }: { food: FoodType }) {
   const [isRedHeart, setIsRedHeart] = useState(food.isFavorite);
 
 
-  const handleAddFoodToFavorite = async (id: number) => {
+  const handleAddFoodToFavorite = async (id: string) => {
     const addFood = await AddFoodToFavorite(id);
 
     if (addFood.status == 200) {

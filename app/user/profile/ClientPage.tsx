@@ -10,12 +10,13 @@ import { UpdateUser } from '@/app/actions/userAction';
 import { toast } from 'sonner';
 import { useSession } from 'next-auth/react';
 import dynamic from 'next/dynamic';
-const InputCustom = dynamic(()=> import('@/components/shared/input/InputCustom'))
+import InputCustom from '@/components/shared/input/InputCustom';
 const DatePic = dynamic(()=> import('./DatePic'))
 const Button = dynamic(()=> import('@/components/shared/button/Button'))
 
 
 type TypeOfFormEditProfile = z.infer<typeof SchemaEditProfile>;
+
 function ClientPage() {
     const [disabeldInput, setDisabeldInput] = useState(true);
     const {

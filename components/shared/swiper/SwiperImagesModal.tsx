@@ -13,6 +13,7 @@ import IconArrowLeftBack from '@icons/arrowLeftBack.svg';
 import IconArrowRightBack from '@icons/arrowRightBack.svg';
 import IconCloseBack from '@icons/CloseIconDark.svg';
 SwiperCore.use([Navigation]);
+
 interface Images {
   id: number;
   desc: string;

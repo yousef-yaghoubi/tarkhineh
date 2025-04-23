@@ -63,7 +63,7 @@ export const authOptions: AuthOptions = {
     callbacks: {
       async jwt({ token, user, trigger, session }) {
         if (user) {
-          token.id = typeof user.id === 'number' ? user.id : parseInt(user.id, 10);
+          token.id = user.id;
           token.email = user.email;
           token.name = `${user.firstName || 'کاربر'} ${user.lastName || 'ترخینه'}`;
           token.image = user.profile;

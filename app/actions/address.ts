@@ -23,7 +23,7 @@ export async function SendAddress(props: typeAdrress) {
       }
       const getQuantityAddress = await prisma.addresses.count({
         where: {
-          userId: Number(session.user.id),
+          userId: session.user.id,
         },
       });
 
@@ -36,7 +36,7 @@ export async function SendAddress(props: typeAdrress) {
               address: props.address,
               meReciver: true,
               phone: props.phone,
-              userId: Number(session.user.id),
+              userId: session.user.id,
             },
           });
         } else {
@@ -47,7 +47,7 @@ export async function SendAddress(props: typeAdrress) {
               meReciver: false,
               nameReciver: props.nameRecipient,
               phone: props.phoneRecipient as string,
-              userId: Number(session.user.id),
+              userId: session.user.id,
             },
           });
         }
@@ -82,7 +82,7 @@ export async function SendAddress(props: typeAdrress) {
   }
 }
 
-export async function DeleteAddress(id: number) {
+export async function DeleteAddress(id: string) {
   try {
     const response = await prisma.addresses.delete({
       where: {

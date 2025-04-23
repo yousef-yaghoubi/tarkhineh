@@ -10,7 +10,7 @@ import { FoodType } from '@/types';
 import { getBaseUrl } from '@/lib/getBaseUrl';
 const Button = dynamic(() => import('@/components/shared/button/Button'));
 
-async function page({ params }: { params: { id: number } }) {
+async function page({ params }: { params: { id: string } }) {
   const { id } = params;
   const food = await fetch(
     `${getBaseUrl()}/api/food/uniqeFood?id=${id}`

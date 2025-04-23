@@ -9,7 +9,7 @@ function ButtonOrder({
   order,
 }: {
   order: {
-    id: number;
+    id: string;
     price: number;
     foods: {
       quantity: number;
@@ -24,10 +24,10 @@ function ButtonOrder({
     date: Date;
     sendMethod: {
       name: string;
-      id: number;
+      id: string;
     };
     status: {
-      id: number;
+      id: string;
       name: string;
     };
   };

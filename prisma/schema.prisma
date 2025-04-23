@@ -3,21 +3,25 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
-  url      = "file:./dev.db"
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
 }
 
+enum Role {
+  USER
+  ADMIN
+}
 
 model User {
-  id             Int            @id @default(autoincrement())
+  id             String           @id @default(auto()) @map("_id") @db.ObjectId
   firstName      String?
   lastName       String?
   nickName       String?
-  profile        String            @default("https://res.cloudinary.com/dajtfamck/image/upload/v1735917511/bygk2ftxmju3gxseehtl.jpg")
+  profile        String           @default("https://res.cloudinary.com/dajtfamck/image/upload/f_auto/v1735917511/bygk2ftxmju3gxseehtl.jpg")
   phone          String?
   hashPass       String?
-  email          String            @unique
-  role           String @default("USER")
+  email          String           @unique
+  role           Role             @default(USER)
   birthDay       DateTime?
   orderTrack     OrderTracking[]
   addresses      Addresses[]
@@ -27,14 +31,14 @@ model User {
 }
 
 model Favorite {
-  id     Int  @id @default(autoincrement())
+  id     String  @id @default(auto()) @map("_id") @db.ObjectId
   user   User    @relation(fields: [userId], references: [id])
-  userId Int  @unique
+  userId String  @unique @db.ObjectId
   foods  Foods[]
 }
 
 model Foods {
-  id                  Int                @id @default(autoincrement())
+  id                  String                @id @default(auto()) @map("_id") @db.ObjectId
   name                String
   image               String
   desc                String
@@ -42,13 +46,13 @@ model Foods {
   order               Int                   @default(0)
   rating              Float                 @default(0)
   type                TypeFood              @relation(fields: [typeId], references: [id])
-  typeId              Int
+  typeId              String                @db.ObjectId
   categorie           CategorieFood         @relation(fields: [categorieId], references: [id])
-  categorieId         Int
+  categorieId         String                @db.ObjectId
   commentsFood        CommentsFood[]
-  favoriteId          Int?
+  favoriteId          String?               @db.ObjectId
   favorite            Favorite?             @relation(fields: [favoriteId], references: [id])
-  branchId            Int
+  branchId            String                @db.ObjectId
   branch              Branchs               @relation(fields: [branchId], references: [id])
   specialOffer        Boolean               @default(false)
   numberOfSell        Int                   @default(0)
@@ -56,103 +60,103 @@ model Foods {
 }
 
 model Addresses {
-  id           Int   @id @default(autoincrement())
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
   titleAddress String
   meReciver    Boolean?
   phone        String
   nameReciver  String?
   address      String
   user         User     @relation(fields: [userId], references: [id])
-  userId       Int
+  userId       String   @db.ObjectId
 }
 
 model TypeFood {
-  id   Int  @id @default(autoincrement())
+  id   String  @id @default(auto()) @map("_id") @db.ObjectId
   name String  @unique
   food Foods[]
 }
 
 model CategorieFood {
-  id   Int  @id @default(autoincrement())
+  id   String  @id @default(auto()) @map("_id") @db.ObjectId
   name String
   food Foods[]
 }
 
 model CommentsFood {
-  id        Int   @id @default(autoincrement())
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
   desc      String
   score     Float
   user      User     @relation(fields: [userId], references: [id])
-  userId    Int
+  userId    String   @db.ObjectId
   createdAt DateTime @default(now())
   public    Boolean? @default(false)
   food      Foods    @relation(fields: [foodId], references: [id])
-  foodId    Int
+  foodId    String   @db.ObjectId
 }
 
 model CommentsBranch {
-  id        Int   @id @default(autoincrement())
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
   desc      String
   score     Float
-  userId    Int
+  userId    String   @db.ObjectId
   user      User     @relation(fields: [userId], references: [id])
-  branchId  Int?
+  branchId  String?  @db.ObjectId
   branch    Branchs? @relation(fields: [branchId], references: [id])
   public    Boolean? @default(false)
   createdAt DateTime @default(now())
 }
 
 model Branchs {
-  id             Int           @id @default(autoincrement())
+  id             String           @id @default(auto()) @map("_id") @db.ObjectId
   name           String           @unique
   nickName       String           @unique
   address        String
-  phones         String
-  images         String
+  phones         Json
+  images         Json
   foods          Foods[]
   commentsBranch CommentsBranch[]
 }
 
 model OrderTracking {
-  id              Int                @id @default(autoincrement())
-  branchId        Int
+  id              String                @id @default(auto()) @map("_id") @db.ObjectId
+  branchId        String                @db.ObjectId
   foods           FoodOfOrderTracking[]
   price           Int
   discount        Int
-  userId          Int
+  userId          String                @db.ObjectId
   user            User                  @relation(fields: [userId], references: [id])
   date            DateTime              @default(now())
-  sendMethodId    Int
+  sendMethodId    String                @db.ObjectId
   sendMethod      SendMethod            @relation(fields: [sendMethodId], references: [id])
-  statusId        Int
+  statusId        String                @db.ObjectId
   status          StatusOfOrderTracking @relation(fields: [statusId], references: [id])
-  paymentMethodId Int
+  paymentMethodId String                @db.ObjectId
   paymentMethod   PaymentMethod         @relation(fields: [paymentMethodId], references: [id])
 }
 
 model SendMethod {
-  id         Int          @id @default(autoincrement())
+  id         String          @id @default(auto()) @map("_id") @db.ObjectId
   name       String
   orderTrack OrderTracking[]
 }
 
 model StatusOfOrderTracking {
-  id         Int          @id @default(autoincrement())
+  id         String          @id @default(auto()) @map("_id") @db.ObjectId
   name       String
   orderTrack OrderTracking[]
 }
 
 model PaymentMethod {
-  id         Int          @id @default(autoincrement())
+  id         String          @id @default(auto()) @map("_id") @db.ObjectId
   name       String
   orderTrack OrderTracking[]
 }
 
 model FoodOfOrderTracking {
-  id           Int        @id @default(autoincrement())
-  foodId       Int
+  id           String        @id @default(auto()) @map("_id") @db.ObjectId
+  foodId       String        @db.ObjectId
   food         Foods         @relation(fields: [foodId], references: [id])
-  orderTrackId Int
+  orderTrackId String        @db.ObjectId
   orderTrack   OrderTracking @relation(fields: [orderTrackId], references: [id])
   quantity     Int
 }

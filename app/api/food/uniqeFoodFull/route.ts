@@ -6,10 +6,10 @@ import { authOptions } from '@/lib/auth';
 
 export async function GET(req: Request) {
   const session = await getServerSession(authOptions);
-  const SchemaId = z.number().min(1).max(1000);
+  const SchemaId = z.string();
   type IdType = z.infer<typeof SchemaId>;
   const { searchParams } = new URL(req.url);
-  const id = Number(searchParams.get('id')) as IdType;
+  const id = searchParams.get('id') as IdType;
 
   try {
     const validation = SchemaId.safeParse(id);
@@ -52,7 +52,7 @@ export async function GET(req: Request) {
         favorite: session?.user.id
           ? {
               where: {
-                userId: Number(session.user.id),
+                userId: session.user.id,
               },
               select: {
                 id: true,

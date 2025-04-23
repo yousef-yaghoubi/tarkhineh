@@ -9,7 +9,7 @@ export default function QuantityFood({
   id,
 }: {
   quantity: number;
-  id: number;
+  id: string;
 }) {
   const { addQuantity, minuseQuantity, removeFromCart, cart, clearCart } = useCart();
   return (

@@ -39,16 +39,16 @@ export async function GET(req: Request) {
 
     switch (filter) {
       case 'irani':
-        categorieFilter = 1;
+        categorieFilter = '680655e88c5946ee9db8976c';
         break;
       case 'non-Iranian':
-        categorieFilter = 2;
+        categorieFilter = '680655e88c5946ee9db8976d';
         break;
       case 'pizzas':
-        categorieFilter = 3;
+        categorieFilter = '680655e88c5946ee9db8976e';
         break;
       case 'sandwiches':
-        categorieFilter = 4;
+        categorieFilter = '680655e88c5946ee9db8976f';
         break;
       case 'bestSeller':
         sortingFilter = { numberOfSell: 'desc' };
@@ -68,18 +68,16 @@ export async function GET(req: Request) {
 
     switch (type) {
       case 'food':
-        typeIdFoods = 1;
+        typeIdFoods = '6806567e8c5946ee9db897a3';
         break;
       case 'appetizer':
-        typeIdFoods = 2;
+        typeIdFoods = '6806567e8c5946ee9db897a4';
         break;
       case 'dessert':
-        typeIdFoods = 3;
+        typeIdFoods = '6806567e8c5946ee9db897a5';
         break;
       case 'drink':
-        typeIdFoods = 4;
-        break;
-      default:
+        typeIdFoods = '6806567e8c5946ee9db897a6';
         break;
     }
 
@@ -108,7 +106,7 @@ export async function GET(req: Request) {
         favorite: session?.user.id
           ? {
               where: {
-                userId: Number(session.user.id),
+                userId: session.user.id,
               },
               select: {
                 id: true,
@@ -116,15 +114,19 @@ export async function GET(req: Request) {
             }
           : undefined,
       },
+
       orderBy: sortingFilter
-      ? 'rating' in sortingFilter
-        ? { rating: sortingFilter.rating === 'asc' ? 'asc' : 'desc' }
-        : 'price' in sortingFilter
-          ? { price: sortingFilter.price === 'asc' ? 'asc' : 'desc' }
-          : 'numberOfSell' in sortingFilter 
-          ? {numberOfSell: sortingFilter.numberOfSell === 'asc' ? 'asc' : 'desc'} 
-          : undefined
-      : undefined,
+        ? 'rating' in sortingFilter
+          ? { rating: sortingFilter.rating === 'asc' ? 'asc' : 'desc' }
+          : 'price' in sortingFilter
+            ? { price: sortingFilter.price === 'asc' ? 'asc' : 'desc' }
+            : 'numberOfSell' in sortingFilter
+              ? {
+                  numberOfSell:
+                    sortingFilter.numberOfSell === 'asc' ? 'asc' : 'desc',
+                }
+              : undefined
+        : undefined,
       skip: skip,
       take: take,
     });
@@ -141,6 +143,6 @@ export async function GET(req: Request) {
     return NextResponse.json({
       foods: null,
     });
-    console.log(error)
+    console.log(error);
   }
 }

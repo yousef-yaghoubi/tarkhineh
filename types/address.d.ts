@@ -1,10 +1,10 @@
 export interface AddressUserProps {
-    id: number;
+    id: string;
     address: string;
     phone: string;
     titleAddress: string;
     meReciver: boolean | null;
     nameReciver: string | null;
-    userId: number;
+    userId: string;
   }
   

@@ -19,7 +19,7 @@ import { Metadata } from 'next';
 import { getBaseUrl } from '@/lib/getBaseUrl';
 
 interface OrderTrackType {
-  id: number;
+  id: string;
   price: number;
   foods: {
     quantity: number;
@@ -34,10 +34,10 @@ interface OrderTrackType {
   date: Date;
   sendMethod: {
     name: string;
-    id: number;
+    id: string;
   };
   status: {
-    id: number;
+    id: string;
     name: string;
   };
 }

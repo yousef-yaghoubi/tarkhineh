@@ -1,16 +1,16 @@
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
-import 'normalize.css';
-import './globals.css';
 import { ThemeProvider } from '@/providers/themeProvider';
 import Footer from '@/components/shared/footer/Footer';
 import AuthProvider from '@/providers/authProvider';
 import { CartProvider } from '@/providers/shopingCardProvider';
-import 'leaflet/dist/leaflet.css';
-import '@smastrom/react-rating/style.css';
 import { QueryProvider } from '@/providers/queryProvider';
 import Navbar from '@/components/shared/navbar/Navbar';
 import { Toaster } from '@/components/ui/sonner';
+import 'leaflet/dist/leaflet.css';
+import '@smastrom/react-rating/style.css';
+import 'normalize.css';
+import './globals.css';
 
 const estedad = localFont({
   src: './fonts/EstedadKSHD-wght.woff2',
@@ -44,19 +44,17 @@ export default async function RootLayout({
                 defaultTheme="light"
                 enableSystem
               >
-                <>
-                  <Navbar />
-                  {children}
-                  {intercepting}
-                  <Toaster
-                    richColors
-                    closeButton
-                    dir="rtl"
-                    className={estedad.className}
-                    position="top-right"
-                  />
-                  <Footer />
-                </>
+                <Navbar />
+                {children}
+                {intercepting}
+                <Toaster
+                  richColors
+                  closeButton
+                  dir="rtl"
+                  className={estedad.className}
+                  position="top-right"
+                />
+                <Footer />
               </ThemeProvider>
             </CartProvider>
           </AuthProvider>

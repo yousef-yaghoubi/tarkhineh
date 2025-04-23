@@ -1,7 +1,7 @@
 import { CommentType } from "./comment";
 
 export interface DemoFoodModalType {
-  id: number;
+  id: string;
   name: string;
   image: string;
   desc: string;
@@ -14,7 +14,7 @@ export interface DemoFoodModalType {
 export interface FoodType extends DemoFoodModalType {
   price: number;
   order: number;
-  favorite?: { id: number } | null;
+  favorite?: { id: string } | null;
   isFavorite?: boolean;
   commentsFood?: CommentType[]
 }
@@ -25,5 +25,5 @@ export interface CartFoodForShoppingCart extends FoodType {
 }
 
 export interface FoodTypeFull {
-  id: number;   name: string;   image: string;   desc: string;   price: number;   order: number;   rating: number;   typeId: number;   categorieId: number;   favoriteId: number | null;   branchId: number;   specialOffer: boolean;   numberOfSell: number;
+  id: string;   name: string;   image: string;   desc: string;   price: number;   order: number;   rating: number;   typeId: string;   categorieId: string;   favoriteId: string | null;   branchId: string;   specialOffer: boolean;   numberOfSell: number;
 }

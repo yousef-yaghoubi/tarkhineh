@@ -16,26 +16,26 @@ export async function GET(req: Request) {
 
     await prisma.orderTracking.updateMany({
       where: {
-        statusId: 1,
+        statusId: '680656548c5946ee9db89786',
         date: {
           lt: dateNew,
         },
       },
       data: {
-        statusId: 2,
+        statusId: '680656548c5946ee9db89787',
       },
     });
 
     const order = await prisma.orderTracking.findMany({
       where: {
-        userId: Number(data.user.id),
+        userId: data.user.id,
         statusId:
           status == 'current'
-            ? 1
+            ? '680656548c5946ee9db89786'
             : status == 'delivered'
-              ? 2
+              ? '680656548c5946ee9db89787'
               : status == 'canceled'
-                ? 3
+                ? '680656548c5946ee9db89788'
                 : undefined,
       },
       orderBy: {

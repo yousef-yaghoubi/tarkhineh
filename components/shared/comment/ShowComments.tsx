@@ -12,7 +12,7 @@ function ShowComments({
 }: {
   type: 'product' | 'branch';
   comments: CommentType[];
-  id: number;
+  id: string;
   className: ComponentProps<'div'>['className']
 }) {
   return (

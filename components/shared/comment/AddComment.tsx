@@ -16,7 +16,7 @@ const Button = dynamic(()=> import('@/components/shared/button/Button'))
 function AddComment({
   type,
 }: {
-  type: { name: 'branch'; id: number } | { name: 'product'; id: number };
+  type: { name: 'branch'; id: string } | { name: 'product'; id: string };
 }) {
   const [openModal, setOpenModal] = useState(false);
   const {

@@ -32,7 +32,7 @@ function RenderAddresses({
   addressesUser: AddressUserProps[] | undefined;
 }) {
   const [isOpenModal, setIsOpenModel] = useState(false);
-  const [idAddressForRemove, setIdAddressForRemove] = useState<number | null>(
+  const [idAddressForRemove, setIdAddressForRemove] = useState<string | null>(
     null
   );
   const [isOpenModalAddAddress, setIsOpenModalAddAddress] = useState(false);
@@ -154,7 +154,7 @@ function RenderAddresses({
           <button
             className="w-[117px] h-10 rounded bg-error-extralight text-error"
             onClick={() => {
-              if(DeleteAddress) DeleteAddress(idAddressForRemove as number);
+              if(DeleteAddress) DeleteAddress(idAddressForRemove as string);
               setIsOpenModel(false);
               toast.success('آدرس شما پاک شد');
             }}

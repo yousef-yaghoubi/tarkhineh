@@ -7,8 +7,8 @@ import { revalidatePath } from 'next/cache';
 import { z } from 'zod';
 import { FoodTypeFull } from '@/types';
 
-export async function AddFoodToFavorite(id: number) {
-  const SchemaId = z.number().min(1).max(1000);
+export async function AddFoodToFavorite(id: string) {
+  const SchemaId = z.string()
   const session = await getServerSession(authOptions);
 
   if (!session?.user.email) {
@@ -23,7 +23,7 @@ export async function AddFoodToFavorite(id: number) {
     }
 
     const favorite = await prisma.favorite.findUnique({
-      where: { userId: Number(session.user.id) },
+      where: { userId: session.user.id },
       include: {
         foods: true,
       },
@@ -32,7 +32,7 @@ export async function AddFoodToFavorite(id: number) {
     if (!favorite) {
       await prisma.favorite.create({
         data: {
-          userId: Number(session.user.id),
+          userId: session.user.id,
           foods: { connect: { id: id } },
         },
       });
@@ -45,7 +45,7 @@ export async function AddFoodToFavorite(id: number) {
       if (isFoodAlreadyInFavorites) {
         await prisma.favorite.update({
           where: {
-            userId: Number(session.user.id),
+            userId: session.user.id,
           },
           data: {
             foods: {
@@ -65,7 +65,7 @@ export async function AddFoodToFavorite(id: number) {
 
 
       await prisma.favorite.update({
-        where: { userId: Number(session.user.id) },
+        where: { userId: session.user.id },
         data: {
           foods: { connect: { id: id } },
         },

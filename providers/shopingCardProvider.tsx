@@ -13,9 +13,9 @@ import {
 interface CartContextType {
   cart: CartFoodForShoppingCart[];
   addToCart: (product: FoodType) => void;
-  addQuantity: (id: number) => void;
-  minuseQuantity: (id: number) => void;
-  removeFromCart: (id: number) => void;
+  addQuantity: (id: string) => void;
+  minuseQuantity: (id: string) => void;
+  removeFromCart: (id: string) => void;
   clearCart: () => void;
 }
 
@@ -49,7 +49,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     });
   };
 
-  const addQuantity = (id: number) => {
+  const addQuantity = (id: string) => {
     setCart((prev) => {
       return prev.map((item) =>
         item.id === id ? { ...item, quantity: item.quantity + 1 } : item
@@ -57,7 +57,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     });
   };
 
-  const minuseQuantity = (id: number) => {
+  const minuseQuantity = (id: string) => {
     setCart((prev) => {
       return prev.map((item) =>
         item.id === id ? { ...item, quantity: item.quantity - 1 } : item
@@ -65,7 +65,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     });
   };
 
-  const removeFromCart = (id: number) => {
+  const removeFromCart = (id: string) => {
     if(cart.length == 1){
       clearCart()
     } else{

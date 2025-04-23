@@ -14,7 +14,7 @@ function Address({
 }: {
   prop: AddressUserProps;
   setIsOpenModel?: Dispatch<SetStateAction<boolean>>;
-  setIdAddress?: Dispatch<SetStateAction<number | null>>;
+  setIdAddress?: Dispatch<SetStateAction<string | null>>;
 }) {
   const { data: session } = useSession();
   const { order, updateDelivery } = useOrder();
