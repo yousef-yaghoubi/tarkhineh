@@ -34,6 +34,7 @@ async function getBranchBySlug({ params }: { params: { slug: string } }) {
     const { branch: branchAction } = await response.json();
     return branchAction;
   } catch (error) {
+    console.log('url:', `${getBaseUrl()}/api/branch?branchName=${params.slug}`)
     console.error('Error fetching branch:', error);
     return null;
   }
@@ -46,7 +47,7 @@ export async function generateMetadata({
 }) {
   const branch = await getBranchBySlug({ params });
   
-  console.log(branch)
+
   if (!branch) {
     return {
       title: 'Branch Not Found',
@@ -57,9 +58,9 @@ export async function generateMetadata({
   return generateBranchMetadata({
     name: branch.name,
     address: branch.address,
-    phone: branch.phones.phones[0],
+    phone: JSON.stringify(branch.phones.phones[0]),
     slug: branch.nickName,
-    image: branch.images.images[0],
+    image: JSON.stringify(branch.images.images[0]),
   });
 }
 
