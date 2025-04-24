@@ -119,7 +119,7 @@ function LoginForm() {
           <div className="flex justify-center w-full absolute bottom-4">
             <p className="caption-sm text-gray-8 mt-4 dark:text-gray-2">
               ورود و عضویت در ترخینه به منزله قبول
-              <Link href={'/rules'} className="text-primary">
+              <Link href={'/ruls'} className="text-primary">
                 {' '}
                 قوانین و مقررات{' '}
               </Link>

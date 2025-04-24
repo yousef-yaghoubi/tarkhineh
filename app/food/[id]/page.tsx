@@ -23,10 +23,15 @@ const Rating = dynamic(
 );
 
 async function GetFood({id}:{id: string}) {
+  const headersList = headers();
+    const customHeaders = {
+      cookie: headersList.get('cookie') || '',
+    };
+
   const { food } = (await fetch(
     `${getBaseUrl()}/api/food/uniqeFoodFull?id=${id}`,
     {
-      headers: headers(),
+      headers: customHeaders,
     }
   ).then((result) => result.json())) as {
     status: number;

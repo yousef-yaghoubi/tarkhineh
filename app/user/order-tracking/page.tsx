@@ -42,13 +42,14 @@ interface OrderTrackType {
   };
 }
 
-
-export const metadata: Metadata  = {
+export const metadata: Metadata = {
   title: 'پیگیری سفارش | رهگیری سفارش آنلاین در ترخینه',
-  description: 'وضعیت سفارش خود را در هر لحظه بررسی کنید و از زمان تحویل آن مطلع شوید. پیگیری سریع و آسان سفارشات در ترخینه.',
+  description:
+    'وضعیت سفارش خود را در هر لحظه بررسی کنید و از زمان تحویل آن مطلع شوید. پیگیری سریع و آسان سفارشات در ترخینه.',
   openGraph: {
     title: 'پیگیری سفارش | رهگیری سفارش آنلاین در ترخینه',
-    description: 'سفارش خود را به صورت لحظه‌ای پیگیری کنید و از مراحل آماده‌سازی تا تحویل آگاه باشید.',
+    description:
+      'سفارش خود را به صورت لحظه‌ای پیگیری کنید و از مراحل آماده‌سازی تا تحویل آگاه باشید.',
     url: `${getBaseUrl()}/user/order-tracking`,
     images: [
       {
@@ -62,16 +63,20 @@ export const metadata: Metadata  = {
   alternates: {
     canonical: `${getBaseUrl()}/user/order-tracking`,
   },
-}
+};
 
 async function Page({
   searchParams,
 }: {
   searchParams: { [key: string]: string };
 }) {
+  const headersList = headers();
+  const customHeaders = {
+    cookie: headersList.get('cookie') || '',
+  };
   const orderTrack = (await fetch(
     `${getBaseUrl()}/api/orderTrack?status=${searchParams.status}`,
-    { headers: headers() }
+    { headers: customHeaders }
   ).then((res) => res.json())) as {
     status: number;
     message: string;
@@ -98,7 +103,10 @@ async function Page({
               ))}
             </div>
             {orderTrack.order?.map((order) => (
-              <div key={order.id} className="w-full h-fit border border-gray-4 dark:border-background-2 rounded px-3 pt-2 pb-4 md:p-6 md:pt-4 relative flex flex-col">
+              <div
+                key={order.id}
+                className="w-full h-fit border border-gray-4 dark:border-background-2 rounded px-3 pt-2 pb-4 md:p-6 md:pt-4 relative flex flex-col"
+              >
                 <div>
                   <h3 className="caption-md md:body-sm md:mt-2 text-gray-6">
                     شعبه اکباتان
@@ -220,7 +228,10 @@ async function Page({
 
                 <div className="flex w-full gap-4 overflow-auto mt-4 scrollbar">
                   {order.foods.map((food) => (
-                    <div key={food.food.name} className="flex flex-col min-w-[92px] h-[92px] md:min-w-[123px] md:h-[125px] border border-gray-4 dark:border-background-2 rounded-md overflow-hidden">
+                    <div
+                      key={food.food.name}
+                      className="flex flex-col min-w-[92px] h-[92px] md:min-w-[123px] md:h-[125px] border border-gray-4 dark:border-background-2 rounded-md overflow-hidden"
+                    >
                       <div className="relative w-full h-1/2 md:h-20">
                         <Image alt="foodImg" src={food.food.image} fill />
                         <div className="w-fit h-3 md:h-4 bg-white absolute bottom-1 left-1 rounded-[2px] md:rounded flex items-center justify-center caption-sm md:caption-md text-primary p-1">

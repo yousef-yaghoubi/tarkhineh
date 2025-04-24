@@ -8,7 +8,7 @@ This project demonstrates a complete web application, including a responsive fro
 ## 🖥️Demo 
 
 Check out the live demo here:  
-**[🔗 View Demo](https://tarkhineh-1307.onrender.com)**
+**[🔗 View Demo](https://tarkhineh-1307.vercel.app)**
 
 ## 🖼️Project Preview
 
@@ -92,6 +92,7 @@ AUTH_GOOGLE_ID=****
 AUTH_GOOGLE_SECRET=****
 HASH_PASS_SECRET=****
 NEXTAUTH_URL=http://localhost:3000
+DATABASE_URL=****
 ```
 
 ## 🤝Contribution 

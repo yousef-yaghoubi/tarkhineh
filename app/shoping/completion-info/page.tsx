@@ -6,10 +6,12 @@ import { getBaseUrl } from '@/lib/getBaseUrl';
 
 export const metadata: Metadata = {
   title: 'تکمیل اطلاعات سفارش | نهایی کردن خرید در ترخینه',
-  description: 'اطلاعات سفارش خود را وارد کنید و خریدتان را نهایی کنید. ترخینه، تجربه‌ای خوشمزه و آسان برای سفارش آنلاین غذا!',
+  description:
+    'اطلاعات سفارش خود را وارد کنید و خریدتان را نهایی کنید. ترخینه، تجربه‌ای خوشمزه و آسان برای سفارش آنلاین غذا!',
   openGraph: {
     title: 'تکمیل اطلاعات سفارش | نهایی کردن خرید در ترخینه',
-    description: 'تنها چند قدم تا دریافت غذای خوشمزه فاصله دارید! فرم سفارش را تکمیل کنید و آماده تحویل سریع از ترخینه باشید.',
+    description:
+      'تنها چند قدم تا دریافت غذای خوشمزه فاصله دارید! فرم سفارش را تکمیل کنید و آماده تحویل سریع از ترخینه باشید.',
     url: `${getBaseUrl()}/shoping/completion-info`,
     images: [
       {
@@ -23,18 +25,26 @@ export const metadata: Metadata = {
   alternates: {
     canonical: `${getBaseUrl()}/shoping/completion-info`,
   },
-}
-
+};
 
 async function page() {
-  const addressUser = await fetch(`${getBaseUrl()}/api/address/addressesOfUser`, {
-   cache: 'no-store',
-    headers: headers()
-  }).then(res => res).then(result => result.json());
+  const headersList = headers();
+  const customHeaders = {
+    cookie: headersList.get('cookie') || '',
+  };
+  const addressUser = await fetch(
+    `${getBaseUrl()}/api/address/addressesOfUser`,
+    {
+      cache: 'no-store',
+      headers: customHeaders,
+    }
+  )
+    .then((res) => res)
+    .then((result) => result.json());
 
   return (
     <>
-      <SectionPage userAddress={addressUser.addresses}/>
+      <SectionPage userAddress={addressUser.addresses} />
     </>
   );
 }

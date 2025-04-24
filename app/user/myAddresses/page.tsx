@@ -4,12 +4,14 @@ import RenderAddressesClient from './RenderAddressesClient';
 import { getBaseUrl } from '@/lib/getBaseUrl';
 import { Metadata } from 'next';
 
-export const metadata: Metadata  = {
+export const metadata: Metadata = {
   title: 'آدرس‌های من | مدیریت آدرس‌ها در ترخینه',
-  description: 'آدرس‌های خود را در ترخینه مدیریت کنید تا سفارش‌های شما سریع‌تر و دقیق‌تر ارسال شوند.',
+  description:
+    'آدرس‌های خود را در ترخینه مدیریت کنید تا سفارش‌های شما سریع‌تر و دقیق‌تر ارسال شوند.',
   openGraph: {
     title: 'آدرس‌های من | مدیریت آدرس‌ها در ترخینه',
-    description: 'آدرس‌های تحویل غذای خود را مدیریت کنید و تجربه‌ای راحت‌تر از سفارش آنلاین داشته باشید.',
+    description:
+      'آدرس‌های تحویل غذای خود را مدیریت کنید و تجربه‌ای راحت‌تر از سفارش آنلاین داشته باشید.',
     url: `${getBaseUrl()}/user/myAddresses`,
     images: [
       {
@@ -23,15 +25,21 @@ export const metadata: Metadata  = {
   alternates: {
     canonical: `${getBaseUrl()}/user/myAddresses`,
   },
-}
+};
 
 async function page() {
-  const {addresses: getAddresses} = await fetch(
+  const headersList = headers();
+  const customHeaders = {
+    cookie: headersList.get('cookie') || '',
+  };
+  const { addresses: getAddresses } = await fetch(
     `${getBaseUrl()}/api/address/addressesOfUser`,
     {
-      headers: headers(),
+      headers: customHeaders,
     }
-  ).then((res) => res).then((result) => result.json());
+  )
+    .then((res) => res)
+    .then((result) => result.json());
 
   return (
     <>

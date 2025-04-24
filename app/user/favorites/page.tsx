@@ -10,7 +10,7 @@ import { headers } from 'next/headers';
 import Image from 'next/image';
 import React from 'react';
 
-const Button = dynamic(()=> import('@/components/shared/button/Button'))
+const Button = dynamic(() => import('@/components/shared/button/Button'));
 const CardFood = dynamic(() => import('@/components/shared/card/CardFood'), {
   loading: () => <CardFoodLoading key={Math.random()} />,
   ssr: false,
@@ -18,7 +18,8 @@ const CardFood = dynamic(() => import('@/components/shared/card/CardFood'), {
 
 export const metadata: Metadata = {
   title: 'علاقه‌مندی‌های من | لیست غذاهای مورد علاقه در ترخینه',
-  description: 'غذاهای مورد علاقه خود را در لیست علاقه‌مندی‌های ترخینه ذخیره کنید و هر زمان سریع‌تر سفارش دهید!',
+  description:
+    'غذاهای مورد علاقه خود را در لیست علاقه‌مندی‌های ترخینه ذخیره کنید و هر زمان سریع‌تر سفارش دهید!',
   openGraph: {
     title: 'علاقه‌مندی‌های من | لیست غذاهای مورد علاقه در ترخینه',
     description: 'غذاهای محبوب خود را یکجا ببینید و راحت‌تر سفارش دهید.',
@@ -35,13 +36,23 @@ export const metadata: Metadata = {
   alternates: {
     canonical: `${getBaseUrl()}/user/favorites`,
   },
-}
+};
 
-async function page({ searchParams }: { searchParams: {'categorie': string, 'search': string} }) {
-
-  const response = await fetch(`${getBaseUrl()}/api/food/favorites?${searchParams.search && `search=${searchParams.search}`}&categorie=${searchParams.categorie}`, {
-    headers: headers(),
-  });
+async function page({
+  searchParams,
+}: {
+  searchParams: { categorie: string; search: string };
+}) {
+  const headersList = headers();
+  const customHeaders = {
+    cookie: headersList.get('cookie') || '',
+  };
+  const response = await fetch(
+    `${getBaseUrl()}/api/food/favorites?${searchParams.search && `search=${searchParams.search}`}&categorie=${searchParams.categorie}`,
+    {
+      headers: customHeaders,
+    }
+  );
 
   const data = (await response.json()) as {
     favorites: {
@@ -62,7 +73,7 @@ async function page({ searchParams }: { searchParams: {'categorie': string, 'sea
               forFavorite
             />
           </div>
-          
+
           <div
             className={`w-full h-fit grid ${data?.favorites?.foods && 'grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3 3xl:grid-cols-4'} justify-items-center gap-x-2 gap-y-4 mt-4 justify-center`}
           >
