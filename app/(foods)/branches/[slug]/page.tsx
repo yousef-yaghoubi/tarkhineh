@@ -80,6 +80,7 @@ async function fetchFoods(slug: string, filter: string) {
       }
     );
     
+    console.log(response)
     if (!response.ok) {
       throw new Error(`Failed to fetch ${filter} foods`);
     }
