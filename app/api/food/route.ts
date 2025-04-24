@@ -139,6 +139,7 @@ export async function GET(req: Request) {
     return NextResponse.json({
       foods: result,
     });
+    
   } catch (error) {
     console.log('Error:',error)
     console.log('session:',session)
