@@ -111,6 +111,9 @@ async function DynamicBranches({
   const notIraniFoods = notIraniData.foods || [];
 
   if (!branchAction) {
+    console.log('specialOfferFoods: ',specialOfferFoods)
+    console.log('popularFoods: ',popularFoods)
+    console.log('notIraniFoods: ',notIraniFoods)
     return <div>Branch not found</div>;
   }
 
