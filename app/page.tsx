@@ -10,10 +10,11 @@ import IconMenuBoard from '@icons/menu-board.svg';
 import IconArrowLeft from '@icons/arrow-left.svg';
 import dynamic from 'next/dynamic';
 import { getBaseUrl } from '@/lib/getBaseUrl';
+import { Metadata } from 'next';
 const SwiperMain = dynamic(() => import('@/components/shared/swiper/swiper'));
 const Button = dynamic(() => import('@/components/shared/button/Button'));
 
-export const metadata = {
+export const metadata: Metadata = {
   title: 'ترخینه | طعم اصیل ایرانی 🍲',
   description:
     'سفارش آنلاین غذاهای سنتی ایرانی با بهترین کیفیت از ترخینه. تجربه‌ای بی‌نظیر از طعم خانه!',

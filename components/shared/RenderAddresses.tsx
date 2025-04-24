@@ -297,6 +297,7 @@ function RenderAddresses({
                 btn={'fill'}
                 className={'h-8 md:h-10 !w-5/12 md:min-w-[266px]'}
                 theme={'Primary'}
+                type='button'
               >
                 ثبت آدرس
               </Button>

@@ -3,9 +3,9 @@
 Tarkhineh is a full-stack food ordering website built with Next.js. 🍽️
 
 It allows users to browse, search, and order traditional Persian food online.  
-This project demonstrates a complete web application, including a responsive frontend, interactive UI components, and backend API routes for handling data and user requests. 🚀
+This project demonstrates a complete web application, including a responsive frontend, interactive UI components, authentication, and backend API routes for handling data and user requests. 🚀
 
-## 🖥️Demo 
+## 🖥️Demo
 
 Check out the live demo here:  
 **[🔗 View Demo](https://tarkhineh-1307.vercel.app)**
@@ -18,14 +18,15 @@ Check out the live demo here:
   <img src="./assets/tarkhineh3.webp" width="500">
 </p>
 
-## 🛠️Technologies Used 
+## 🛠️Technologies Used
 
 🍞 **Next.js**: A React framework for building modern web applications with SSR (Server-Side Rendering) and Static Site Generation. ⚡  
 🎨 **Tailwind CSS**: A utility-first CSS framework for building custom designs rapidly and responsively.  
 🖼️ **SVGR**: Converts SVG files into React components for better scalability and customization.  
 📱 **shadcn/ui**: A UI library for implementing mobile menus with accordion functionality.  
 📡 **React Query**: Powerful asynchronous state management and server-state caching.  
-🗃️ **SQLite**: Lightweight, file-based relational database engine ideal for development and testing.
+🍃 **MongoDB**: A flexible, document-based NoSQL database for scalable data storage and retrieval.  
+🔐 **NextAuth.js**: Complete authentication solution for Next.js applications supporting OAuth and credentials.
 
 ## ✨Features
 
@@ -44,17 +45,20 @@ Fully responsive design optimized for mobile devices.
 🍔 **Interactive Mobile Menu**  
 Accordion-style mobile menu using shadcn/ui.
 
+👤 **Authentication with NextAuth.js**  
+Secure login with Google OAuth and credentials-based sign-in.
+
 🎨 **Custom UI**  
 Personalized user experience with flexible components and layouts.
 
 ## 🛠️Getting Started
 
-### 📦Prerequisites 
+### 📦Prerequisites
 
 ⚙️ Node.js (v16 or higher)  
 💻 Yarn or npm
 
-### 📥Installation 
+### 📥Installation
 
 1. Clone the repository:
 
@@ -66,20 +70,22 @@ Personalized user experience with flexible components and layouts.
 2. Install dependencies:
 
    ```bash
-   yarn install
-   # or
    npm install
    ```
 
-3. Start the development server:
+3. Generate Prisma client:
 
    ```bash
-   yarn dev
-   # or
+   npx prisma generate
+   ```
+
+4. Start the development server:
+
+   ```bash
    npm run dev
    ```
 
-4. Open the application in your browser:  
+5. Open the application in your browser:  
    `http://localhost:3000` 🌍
 
 ### 🔐Environment Variables
@@ -87,15 +93,15 @@ Personalized user experience with flexible components and layouts.
 Create a `.env` file in the root of the project and add the following variables:
 
 ```env
-NEXTAUTH_SECRET=****
-AUTH_GOOGLE_ID=****
-AUTH_GOOGLE_SECRET=****
-HASH_PASS_SECRET=****
+NEXTAUTH_SECRET=your-secret-key
+AUTH_GOOGLE_ID=your-google-client-id
+AUTH_GOOGLE_SECRET=your-google-client-secret
+HASH_PASS_SECRET=your-password-hash-secret
 NEXTAUTH_URL=http://localhost:3000
-DATABASE_URL=****
+DATABASE_URL=mongodb+srv://<username>:<password>@cluster0.mongodb.net/tarkhineh
 ```
 
-## 🤝Contribution 
+## 🤝Contribution
 
 Feel free to fork the project and submit pull requests. If you have any suggestions or improvements, open an issue and we’ll take a look! 💡
 
@@ -103,10 +109,10 @@ Feel free to fork the project and submit pull requests. If you have any suggesti
 
 This project is licensed under the **MIT License**. 🔒
 
-## 🎨Figma Design 
+## 🎨Figma Design
 
 🖌️ You can view the UI/UX design of this project on Figma:  
-**[🔗 View Figma File](https://www.figma.com/design/RSeAI35Xm1iwISm7cxU3zn/Tarkhineh-%7C-Food-ordering-Website-%26-Application-(Community))**
+**[🔗 View Figma File](<https://www.figma.com/design/RSeAI35Xm1iwISm7cxU3zn/Tarkhineh-%7C-Food-ordering-Website-%26-Application-(Community)>)**
 
 ---
 

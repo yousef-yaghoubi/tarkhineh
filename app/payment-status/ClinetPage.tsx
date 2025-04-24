@@ -13,7 +13,7 @@ function ClinetPage() {
     <>
       <Image
         alt="OK"
-        src={'/image/tick-primary.webp'}
+        src={'/image/tick-Primary.webp'}
         width={254}
         height={240}
         className="w-[120px] h-28 md:w-64 md:h-60"

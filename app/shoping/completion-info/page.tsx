@@ -32,6 +32,7 @@ async function page() {
   const customHeaders = {
     cookie: headersList.get('cookie') || '',
   };
+  
   const addressUser = await fetch(
     `${getBaseUrl()}/api/address/addressesOfUser`,
     {
