@@ -20,13 +20,13 @@ Check out the live demo here:
 
 ## 🛠️Technologies Used
 
-🍞 **Next.js(App Router)**
+🍞 **Next.js(App Router)**   
 🎨 **Tailwind CSS**  
 🖼️ **SVGR**  
 📱 **shadcn/ui**  
 📡 **React Query**  
 🍃 **MongoDB**  
-🔐 **NextAuth.js**
+🔐 **NextAuth.js**   
 
 ## ✨Features
 
