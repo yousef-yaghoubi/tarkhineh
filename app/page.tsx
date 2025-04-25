@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     siteName: 'ترخینه',
     images: [
       {
-        url: '/logoGreenBig.webp',
+        url: './assets/tarkhineh1.webp',
         width: 1200,
         height: 630,
         alt: 'ترخینه | طعم اصیل ایرانی 🍲',
