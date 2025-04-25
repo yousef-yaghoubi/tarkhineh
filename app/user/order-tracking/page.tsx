@@ -92,7 +92,7 @@ async function Page({
       <div className="flex flex-col w-full gap-4">
         {orderTrack.order?.length ? (
           <>
-            <div className="flex w-fit gap-2 mb-4 overflow-scroll scrollbar">
+            <div className="flex w-fit gap-2 mb-4">
               {NavBadgeOrderTracking.map((badge) => (
                 <Badge
                   title={badge.title}
@@ -168,7 +168,7 @@ async function Page({
                     </div>
                   </div>
                   {order.status.name == 'current' && (
-                    <span className="flex items-center gap-1 justify-end mt-3 md:mt-4">
+                    <span className="flex items-center gap-1 justify-end mt-1 md:mt-4">
                       <IconClock className="w-3 h-3 md:h-4 md:w-4 fill-gray-7" />
                       <span className="caption-sm md:caption-md text-gray-7">
                         تحویل تا{' '}
