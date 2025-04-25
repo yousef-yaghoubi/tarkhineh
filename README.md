@@ -24,7 +24,7 @@ Check out the live demo here:
 🎨 **Tailwind CSS**  
 🖼️ **SVGR**  
 📱 **shadcn/ui**  
-📡 **React Query**
+📡 **React Query**  
 🍃 **MongoDB**  
 🔐 **NextAuth.js**
 
