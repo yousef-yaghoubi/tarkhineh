@@ -117,3 +117,6 @@ This project is licensed under the **MIT License**. 🔒
 ---
 
 🔧 Built with ❤️ by **Yousef Yaghoubi**
+
+---
+❤️ **Enjoy using Tarkhineh? Give it a star ⭐ on GitHub!**
