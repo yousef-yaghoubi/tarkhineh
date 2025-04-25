@@ -4,6 +4,7 @@ import { authOptions } from '@/lib/auth';
 import prisma from '@/prisma/prismaClient';
 import { SchemaAddComment } from '@/validators/zod';
 import { getServerSession } from 'next-auth';
+import { revalidateTag } from 'next/cache';
 
 export async function AddCommentAction({
   type,
@@ -34,6 +35,7 @@ export async function AddCommentAction({
         },
       });
       if (commentBranch.id) {
+        revalidateTag('branch')
         return { status: 201, message: 'کامنت با موفقیت ثبت شد و پس از تایید نمایش داده میشود.' };
       } else {
         return { status: 400, message: 'مشکلی پیش آمده، بعدا تلاش کنید.' };
@@ -49,6 +51,7 @@ export async function AddCommentAction({
       });
 
       if (commentFood.id) {
+        revalidateTag('food')
         return { status: 201, message: 'کامنت با موفقیت ثبت شد و پس از تایید نمایش داده میشود.' };
       } else {
         return { status: 400, message: 'مشکلی پیش آمده، بعدا تلاش کنید.' };

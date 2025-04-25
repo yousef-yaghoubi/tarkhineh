@@ -31,6 +31,7 @@ async function GetFood({id}:{id: string}) {
   const { food } = (await fetch(
     `${getBaseUrl()}/api/food/uniqeFoodFull?id=${id}`,
     {
+      next: {tags: ['food']},
       headers: customHeaders,
     }
   ).then((result) => result.json())) as {
