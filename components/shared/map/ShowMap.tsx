@@ -87,7 +87,7 @@ export default function ShowMap({
   };
 
   const customIcon = new Icon({
-    iconUrl: '/icons/LocationSign.webp',
+    iconUrl: '/icons/LocationSign.png',
     iconSize: [35, 40],
   });
 
@@ -140,7 +140,7 @@ export default function ShowMap({
       >
         <TileLayer
           attribution="tarkhine"
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.webp"
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
         {showMiniMap !== undefined ? (
           <>
