@@ -9,7 +9,9 @@ export async function middleware(req: NextRequest) {
     return NextResponse.redirect(new URL("/", req.url));
   }
 
-  
+  if(!token && req.nextUrl.pathname.startsWith("/user")) {
+    return NextResponse.redirect(new URL("/", req.url));
+  }
   if (token && ["/login"].includes(req.nextUrl.pathname)) {
     return NextResponse.redirect(new URL("/", req.url));
   }
@@ -20,6 +22,7 @@ export async function middleware(req: NextRequest) {
 export const config = {
   matcher: [
     "/login",
+    "/user/:path*",
     "/menu/:path*",
   ],
 };
