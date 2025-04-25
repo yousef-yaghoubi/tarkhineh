@@ -6,7 +6,7 @@ import { z } from 'zod';
 
 export async function GET(req: Request) {
   const { searchParams } = new URL(req.url);
-  const SchemaSearchParams = z.string().max(25).min(3);
+  const SchemaSearchParams = z.string().max(25).min(1);
   type typeSearchParams = z.infer<typeof SchemaSearchParams>;
   const searchQuery = searchParams.get('search') as typeSearchParams;
 
