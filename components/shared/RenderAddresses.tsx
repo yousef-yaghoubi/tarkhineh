@@ -17,11 +17,11 @@ import { z } from 'zod';
 import TextAreaInfo from '@/app/shoping/completion-info/TextAreaInfo';
 import InputCustom from './input/InputCustom';
 import { usePathname } from 'next/navigation';
+import Button from './button/Button';
 
 const Leaflet = dynamic(() => import('@/components/shared/map/ShowMap'), {
   ssr: false,
 });
-const Button = dynamic(()=> import('@/components/shared/button/Button'))
 type AddressFormType = z.infer<typeof SchemaAddress>;
 
 function RenderAddresses({
@@ -279,6 +279,7 @@ function RenderAddresses({
                 {errors.address.message}
               </span>
             )}
+
             <div
               className={
                 'w-full flex justify-around gap-6 md:gap-5 mt-6 md:mt-4 absolute bottom-4'
