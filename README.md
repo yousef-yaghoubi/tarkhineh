@@ -60,7 +60,7 @@
 
 ### 📥 نصب
 
-1
+`1`
 
    ```bash
    git clone https://github.com/yousef-yaghoubi/tarkhineh.git
