@@ -60,32 +60,42 @@
 
 ### 📥 نصب
 
-1. مخزن رو کلون کن:
+```bash
+1
+```
 
    ```bash
    git clone https://github.com/yousef-yaghoubi/tarkhineh.git
    cd tarkhineh
    ```
 
-2. وابستگی‌ها رو نصب کن:
+```bash
+2
+```
 
    ```bash
    npm install
    ```
 
-3. کلاینت Prisma رو بساز:
+```bash
+3
+```
 
    ```bash
    npx prisma generate
    ```
 
-4. سرور توسعه رو اجرا کن:
+```bash
+4
+```
 
    ```bash
    npm run dev
    ```
 
-5. اپ رو در مرورگر باز کن:  
+  ```bash
+6
+```
    `http://localhost:3000` 🌍
 
 ### 🔐 متغیرهای محیطی
