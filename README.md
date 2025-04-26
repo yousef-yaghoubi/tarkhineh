@@ -67,26 +67,25 @@
    cd tarkhineh
    ```
 
-2
+`2`
 
    ```bash
    npm install
    ```
 
-3
+`3`
 
    ```bash
    npx prisma generate
    ```
 
-4
+`4`
 
    ```bash
    npm run dev
    ```
 
-
-5. اجرا روی لوکال هاست: 
+`5` 
    `http://localhost:3000` 🌍
 
 ### 🔐 متغیرهای محیطی
