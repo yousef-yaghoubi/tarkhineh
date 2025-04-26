@@ -60,42 +60,33 @@
 
 ### 📥 نصب
 
-```bash
 1
-```
 
    ```bash
    git clone https://github.com/yousef-yaghoubi/tarkhineh.git
    cd tarkhineh
    ```
 
-```bash
 2
-```
 
    ```bash
    npm install
    ```
 
-```bash
 3
-```
 
    ```bash
    npx prisma generate
    ```
 
-```bash
 4
-```
 
    ```bash
    npm run dev
    ```
 
-  ```bash
-6
-```
+
+5
    `http://localhost:3000` 🌍
 
 ### 🔐 متغیرهای محیطی
