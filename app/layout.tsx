@@ -23,6 +23,9 @@ export const metadata: Metadata = {
   title: 'ترخینه | طعم اصیل ایرانی 🍲',
   description:
     'سفارش آنلاین غذاهای سنتی ایرانی با بهترین کیفیت از ترخینه. تجربه‌ای بی‌نظیر از طعم خانه!',
+  other: {
+    'google-site-verification':'SbJIfFwhA1WyJ_B9Z1EO7COqcEg5SvAL_leBHy9KaNc',
+  },
 };
 
 export default async function RootLayout({
