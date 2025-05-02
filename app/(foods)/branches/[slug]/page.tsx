@@ -34,8 +34,6 @@ async function getBranchBySlug({ params }: { params: { slug: string } }) {
     const { branch: branchAction } = await response.json();
     return branchAction;
   } catch (error) {
-    console.log('url:', `${getBaseUrl()}/api/branch?branchName=${params.slug}`)
-    console.error('Error fetching branch:', error);
     return null;
   }
 }
@@ -80,7 +78,6 @@ async function fetchFoods(slug: string, filter: string) {
       }
     );
     
-    console.log(response)
     if (!response.ok) {
       throw new Error(`Failed to fetch ${filter} foods`);
     }
@@ -112,9 +109,10 @@ async function DynamicBranches({
   const notIraniFoods = notIraniData.foods || [];
 
   if (!branchAction) {
-    console.log('specialOfferFoods: ',specialOfferFoods)
-    console.log('popularFoods: ',popularFoods)
-    console.log('notIraniFoods: ',notIraniFoods)
+    console.log(branchAction)
+    console.log(notIraniData)
+    console.log(specialOfferData)
+    console.log(popularFoods)
     return <div>Branch not found</div>;
   }
 

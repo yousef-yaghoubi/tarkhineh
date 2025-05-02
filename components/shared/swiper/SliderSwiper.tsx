@@ -205,13 +205,13 @@ const SliderSwiper = ({
                     </SwiperSlide>
                   ))
                 : foodSlides?.map((item) => (
-                    <SwiperSlide
-                      key={item.id}
-                      className="p-0 !flex justify-center items-center"
-                    >
-                      <CardFood item={item} />
-                    </SwiperSlide>
-                  ))}
+                      <SwiperSlide
+                        key={item.id}
+                        className="p-0 !flex justify-center items-center"
+                      >
+                        <CardFood item={item} />
+                      </SwiperSlide>
+                    ))}
 
           {badgeSlides !== undefined ? (
             <button className="nextSlide absolute left-0 !z-20 top-1 justify-center items-center disabled:hidden w-6 h-6 bg-white rounded p-0 border border-gray-4 hidden md:flex">

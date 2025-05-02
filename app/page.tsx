@@ -60,7 +60,7 @@ async function Home() {
       <section className="w-full flex flex-col md:flex-row justify-between md:justify-around h-[339px] md:h-[390px] bg-[url(/image/bannerAboutMobile.webp)] bg-cover md:bg-[url(/image/bannerAbout.webp)] py-4 px-5 md:py-12">
         <div className="md:w-3/5 md:max-w-[600px] md:h-[294px]">
           <span className="overline-lg md:h4 text-withe md:mb-6">
-            رستوران های نجیره ای ترخینه
+            رستوران های ذنجیره ای ترخینه
           </span>
           <p className="caption-sm text-white text-justify mt-2 md:mt-6 sm:caption-md md:caption-lg lg:body-xl">
             مهمان‌نوازی یکی از مهم‌ترین مشخصه‌های ایرانیان است و باعث افتخار

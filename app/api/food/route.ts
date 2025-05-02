@@ -141,8 +141,6 @@ export async function GET(req: Request) {
     });
     
   } catch (error) {
-    console.log('Error:',error)
-    console.log('session:',session)
     return NextResponse.json({
       foods: null,
     });
