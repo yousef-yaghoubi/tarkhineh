@@ -2,7 +2,7 @@ import { FoodType } from '@/types';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react'
-import { RenderAddToCartButton } from './AddToCartButton';
+import RenderAddToCartButton from './AddToCartButton';
 import AddFavorite from './AddFavorite';
 import { OrderBadge, Price, PriceOrder, RenderRatingForCardFoodBranch } from './CardFoodNecessary';
 

@@ -43,6 +43,7 @@ export async function GET(req: Request) {
       branch,
     });
   } catch (error) {
+    console.log(error)
     return NextResponse.json({
       branch: null
     })

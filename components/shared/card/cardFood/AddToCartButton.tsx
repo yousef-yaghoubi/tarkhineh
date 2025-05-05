@@ -3,7 +3,7 @@ import { toast } from "sonner";
 import Button from "../../button/Button";
 import { FoodType } from "@/types";
 
-export function RenderAddToCartButton({ className, item }: { className: string, item: FoodType }) {
+export default function RenderAddToCartButton({ className, item }: { className: string, item: FoodType }) {
     return (
         <Button
             btn="fill"
@@ -15,4 +15,4 @@ export function RenderAddToCartButton({ className, item }: { className: string, 
             افزودن به سبد خرید
         </Button>
     )
-};
+}

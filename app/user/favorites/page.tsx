@@ -1,4 +1,3 @@
-import CardFoodBranch from '@/components/shared/card/cardFood/CardFoodBranch';
 import CardFoodLoading from '@/components/shared/card/cardFood/CardFoodLoading';
 import SearchBox from '@/components/shared/SearchBox/SearchBox';
 import BoxOfMain from '@/components/shared/shopingCart/BoxOfMain';
@@ -12,7 +11,7 @@ import Image from 'next/image';
 import React from 'react';
 
 const Button = dynamic(() => import('@/components/shared/button/Button'));
-const CardFood = dynamic(() => import('@/components/shared/card/CardFood'), {
+const CardFoodBranch = dynamic(() => import('@/components/shared/card/cardFood/CardFoodBranch'), {
   loading: () => <CardFoodLoading key={Math.random()} />,
   ssr: false,
 });

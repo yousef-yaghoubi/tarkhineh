@@ -5,7 +5,7 @@ import AddFavorite from './AddFavorite';
 import { FoodType } from '@/types';
 import { OrderBadge, Price, PriceOrder } from './CardFoodNecessary';
 import { Rating } from '@smastrom/react-rating';
-import { RenderAddToCartButton } from './AddToCartButton';
+import RenderAddToCartButton  from './AddToCartButton';
 
 function CardFoodMenu({ item }: { item: FoodType }) {
     return (

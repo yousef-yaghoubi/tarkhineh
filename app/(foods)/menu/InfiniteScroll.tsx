@@ -6,12 +6,10 @@ import { useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { useSearchParams } from 'next/navigation';
 import { useInfiniteQuery } from '@tanstack/react-query';
-
 import { FoodType } from '@/types';
 import CardFoodLoading from '@/components/shared/card/cardFood/CardFoodLoading';
-import CardFoodMenu from '@/components/shared/card/cardFood/CardFoodMenu';
 
-const CardFood = dynamic(() => import('@/components/shared/card/cardFood/CardFoodMenu'), {
+const CardFoodMenu = dynamic(() => import('@/components/shared/card/cardFood/CardFoodMenu'), {
   loading: () => <CardFoodLoading isShowForMenu />,
 });
 
