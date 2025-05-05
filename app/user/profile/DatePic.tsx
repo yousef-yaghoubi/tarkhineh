@@ -6,7 +6,7 @@ import 'react-multi-date-picker/styles/colors/green.css';
 import 'react-multi-date-picker/styles/layouts/mobile.css';
 import clsx from 'clsx';
 import { FieldError } from 'react-hook-form';
-import ErrorMessage from '@/components/shared/loginForm/ErrorMessage';
+import ErrorMessage from '@/components/shared/input/ErrorMessage';
 import DateObject from 'react-date-object';
 import dynamic from 'next/dynamic';
 const DatePicker = dynamic(()=> import('react-multi-date-picker'))

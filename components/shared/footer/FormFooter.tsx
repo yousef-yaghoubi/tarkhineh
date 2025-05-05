@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import InputFooter from './InputFooter';
 import { Textarea } from '@/components/ui/textarea';
 import { convertToPersianNumbers } from '@/lib/convertNumberToPersian';
+import Button from '../button/Button';
+import { toast } from 'sonner';
 
 function FormFooter() {
   const [quan, setQuan] = useState(0);
@@ -18,7 +20,6 @@ function FormFooter() {
           <InputFooter placeholder="آدرس ایمیل(اختیاری)" />
         </div>
 
-        {/* <div className="col-start-2"> */}
         <div className="w-1/2">
           <Textarea
             className="rounded-sm resize-none border-gray-7 h-[11.5em] hover:border-gray-1"
@@ -30,12 +31,10 @@ function FormFooter() {
             {convertToPersianNumbers(quan.toString())}/
             {convertToPersianNumbers(maxNumber.toString())}
           </span>
-          {/* </div> */}
+
         </div>
       </div>
-      <button className="border border-gray-7 w-[183px] h-10 rounded-sm mt-4 flex self-end justify-center items-center">
-        ارسال پیام
-      </button>
+      <Button btn='stroke' theme='White' className='w-[183px] h-10 self-end mt-4' onClickCustom={()=> toast.warning('این عمل فعلا در دسترس نیست.')}>ارسال پیام</Button>
     </>
   );
 }

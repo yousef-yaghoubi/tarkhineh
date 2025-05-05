@@ -1,6 +1,6 @@
 import React, { ComponentProps, forwardRef } from 'react';
 import { clsx } from 'clsx';
-import ErrorMessage from '../loginForm/ErrorMessage';
+import ErrorMessage from './ErrorMessage';
 import { FieldError } from 'react-hook-form';
 
 type PropsInput = {

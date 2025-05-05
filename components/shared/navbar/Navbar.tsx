@@ -1,19 +1,23 @@
 import Image from 'next/image';
 import React from 'react';
 import Icon from './Icon';
-import Nav from './Nav';
 import { ModeToggle } from './ChangeTheme';
 import { iconDetails } from '@/lib/dataPublic';
 import Link from 'next/link';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
+import NavDesktop from './NavDesktop';
+import NavMobile from './NavMobile';
+import { NavProvider } from '@/providers/navProvider';
 
 async function Navbar() {
   const session = await getServerSession(authOptions);
   return (
     <div className="w-full h-16 md:h-[115px] flex flex-row justify-between px-4 md:justify-around md:p-0 items-center shadow-shadow-10">
-      <div className="flex flex-col justify-start md:!hidden">
-        <Nav menuBar={true} />
+      <div className="flex flex-col justify-start md:hidden">
+        <NavProvider>
+          <NavMobile/>
+        </NavProvider>
       </div>
 
       <div className="w-[102px] h-8 lg:w-[155px] lg:h-[51px]">
@@ -37,7 +41,9 @@ async function Navbar() {
       </div>
 
       <div className="hidden md:flex w-full max-w-[500px] lg:max-w-[650px] xl:max-w-[808px]">
-        <Nav menuBar={false} />
+        <NavProvider>
+          <NavDesktop />
+        </NavProvider>
       </div>
 
       <div

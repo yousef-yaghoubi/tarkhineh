@@ -2,7 +2,7 @@
 import { Label } from '@/components/ui/label';
 import { RadioGroupItem, RadioGroup } from '@/components/ui/radio-group';
 import React, { useState } from 'react';
-import RenderAddresses from '../../../components/shared/RenderAddresses';
+import RenderAddresses from '../../../components/shared/address/RenderAddresses';
 import TextAreaInfo from './TextAreaInfo';
 import AsideFoodsForShopingCart from '@/components/shared/shopingCart/AsideFoodsForShopingCart';
 import { AddressUserProps } from '@/types';

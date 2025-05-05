@@ -132,5 +132,5 @@ export const SchemaEditProfile = z.object({
 
 export const SchemaAddComment = z.object({
   desc: z.string().min(3, 'حداقل 3 حرف باید وارد کنید.').max(250, 'حداکثر 250 حرف باید وارد کنید.'),
-  rate: z.number().min(0).max(5)
+  rate: z.number().min(0).max(5).default(1)
 })

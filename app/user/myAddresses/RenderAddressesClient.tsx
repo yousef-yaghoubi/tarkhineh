@@ -1,6 +1,6 @@
 'use client';
 import { OrderProvider } from '@/app/shoping/ShopingProvider';
-import RenderAddresses from '@/components/shared/RenderAddresses';
+import RenderAddresses from '@/components/shared/address/RenderAddresses';
 import React from 'react';
 
 export default function RenderAddressesClient({

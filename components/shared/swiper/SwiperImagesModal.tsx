@@ -12,6 +12,7 @@ import 'swiper/css/thumbs';
 import IconArrowLeftBack from '@icons/arrowLeftBack.svg';
 import IconArrowRightBack from '@icons/arrowRightBack.svg';
 import IconCloseBack from '@icons/CloseIconDark.svg';
+import clsx from 'clsx';
 SwiperCore.use([Navigation]);
 
 interface Images {
@@ -35,20 +36,23 @@ function SwiperImagesModal({
   const [thumbsSwiper, setThumbsSwiper] = useState<SwiperCore | null>(null);
   const prevRef = useRef(null);
   const nextRef = useRef(null);
+  const baseClassBTN = 'absolute bottom-[1.1em] w-12 flex justify-center items-center h-[74px] z-20 text-white bg-black/0 from-black/75 to-transparent disabled:hidden sm:hidden'
+  
   return (
     <>
       <button
         ref={prevRef}
-        className="custom-prev absolute right-0 bottom-[1.1em] w-12 flex justify-center items-center h-[74px] z-20 text-white bg-black/0 bg-gradient-to-l from-black/75 to-transparent disabled:hidden sm:hidden"
+        className={clsx(baseClassBTN, "custom-prev bg-gradient-to-l right-0")}
       >
         <IconArrowRightBack className=" w-6 h-6" />
       </button>
       <button
         ref={nextRef}
-        className="custom-next absolute left-0 bottom-[1.1em] w-12 flex justify-center items-center h-[74px] z-20 text-white bg-black/0 bg-gradient-to-r from-black/75 to-transparent disabled:hidden sm:hidden"
+        className={clsx(baseClassBTN, "custom-next bg-gradient-to-r left-0")}
       >
         <IconArrowLeftBack className="w-6 h-6" />
       </button>
+
       <Swiper
         spaceBetween={10}
         thumbs={{ swiper: thumbsSwiper }}

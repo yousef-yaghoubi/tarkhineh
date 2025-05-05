@@ -3,27 +3,10 @@ import React, { ReactNode } from 'react';
 import Portal from './Portal';
 import SwiperImagesModal from './swiper/SwiperImagesModal';
 import IconClose from '@icons/CloseIcon.svg';
-interface ImgArray {
-  id: number;
-  src: string;
-}
-interface Images {
-  id: number;
-  desc: string;
-  title: string;
-  images: ImgArray[];
-}
-interface ModalProps {
-  isOpen: boolean;
-  onClose: () => void;
-  children?: ReactNode;
-  images?: Images;
-  title?: React.ReactElement;
-  desc?: string;
-  state?: 'removeShopingCart' | 'showMap';
-}
+import { PropsModal } from '@/types/prop';
 
-const Modal: React.FC<ModalProps> = ({
+
+const Modal: React.FC<PropsModal> = ({
   isOpen,
   onClose,
   children,
@@ -33,20 +16,14 @@ const Modal: React.FC<ModalProps> = ({
   state,
 }) => {
   if (!isOpen) return null;
-  if (images !== undefined) {
-    return (
-      <Portal>
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 backdrop-blur-sm">
+  return (
+    <Portal>
+      <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 backdrop-blur-sm">
+        {images !== undefined ? (
           <div className="bg-white dark:bg-background-1 rounded-sm sm:rounded-md shadow-lg  max-w-[800px] w-11/12 relative flex flex-col items-center overflow-hidden">
             <SwiperImagesModal images={images} onClose={onClose} />
           </div>
-        </div>
-      </Portal>
-    );
-  } else {
-    return (
-      <Portal>
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 backdrop-blur-sm">
+        ) : (
           <div
             className={`bg-white dark:bg-background-1 rounded-sm shadow-lg w-11/12 ${state && state == 'removeShopingCart' ? '!max-w-[392px] h-56' : state && state == 'showMap' ? 'max-w-[600px] !h-[90%] max-h-[596px]' : 'max-w-[800px]'}  relative flex flex-col items-center overflow-hidden`}
           >
@@ -75,11 +52,10 @@ const Modal: React.FC<ModalProps> = ({
               </p>
               {children}
             </div>
-          </div>
-        </div>
-      </Portal>
-    );
-  }
+          </div>)}
+      </div>
+    </Portal>
+  )
 };
 
 export default Modal;

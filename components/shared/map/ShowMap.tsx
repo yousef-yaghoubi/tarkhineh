@@ -1,39 +1,17 @@
 import 'leaflet/dist/leaflet.css';
 import 'leaflet-geosearch/dist/geosearch.css';
-import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react';
-import { MapContainer, Marker, TileLayer, useMapEvents } from 'react-leaflet';
+import { useEffect, useRef, useState } from 'react';
 import { OpenStreetMapProvider } from 'leaflet-geosearch';
-import L, { Icon, LatLngExpression, Map } from 'leaflet';
+import { LatLngExpression, Map } from 'leaflet';
 import { useOrder } from '@/app/shoping/ShopingProvider';
 import IconGps from '@icons/gps.svg';
 import IconLocation from '@icons/location.svg';
-import dynamic from 'next/dynamic';
-const Button = dynamic(()=> import('../button/Button'))
+import Button from '../button/Button';
+import MapContainerComponent from './MapContainerComponent';
+import { MapProp } from '@/types/map';
 
 
 
-
-
-
-function LocationMarker({
-  setLocation,
-}: {
-  setLocation: Dispatch<SetStateAction<L.LatLngExpression | undefined>>;
-}) {
-  useMapEvents({
-    click(e) {
-      setLocation([e.latlng.lat, e.latlng.lng]);
-    },
-  });
-  return null;
-}
-
-interface MapProp {
-  showMiniMap?: LatLngExpression;
-  setStateShow?: Dispatch<SetStateAction<number>>;
-  stateAddress?: string;
-  setStateAddress?: boolean;
-}
 
 export default function ShowMap({
   showMiniMap,
@@ -86,11 +64,6 @@ export default function ShowMap({
     }
   };
 
-  const customIcon = new Icon({
-    iconUrl: '/icons/LocationSign.png',
-    iconSize: [35, 40],
-  });
-
   const getUserLocation = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
@@ -126,35 +99,7 @@ export default function ShowMap({
 
   return (
     <div className="w-full h-full relative">
-      <MapContainer
-        center={
-          userLocation ? userLocation : [35.71164720878694, 51.31006836891175]
-        }
-        zoom={11}
-        boxZoom
-        zoomControl={!showMiniMap}
-        scrollWheelZoom={false}
-        style={{ height: '100%', width: '100%' }}
-        className="!relative !cursor-pointer"
-        ref={mapRef}
-      >
-        <TileLayer
-          attribution="tarkhine"
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        />
-        {showMiniMap !== undefined ? (
-          <>
-            <Marker position={showMiniMap} icon={customIcon} />
-          </>
-        ) : (
-          <>
-            <LocationMarker setLocation={setUserLocation} />
-            {userLocation && (
-              <Marker position={userLocation} icon={customIcon} />
-            )}
-          </>
-        )}
-      </MapContainer>
+      <MapContainerComponent mapRef={mapRef} setLocation={setUserLocation} location={userLocation} showMiniMap={showMiniMap}/>
       <div
         className={`bg-withe dark:bg-background-2 rounded caption-md md:button-lg w-28 md:w-[156px] text-primary h-8 md:h-10 ${showMiniMap !== undefined ? 'hidden' : 'flex'} items-center justify-center z-[1000] absolute top-4 right-4 cursor-pointer`}
         onClick={() => getUserLocation()}
@@ -176,6 +121,7 @@ export default function ShowMap({
           className="outline-none caption-md md:body-sm !w-full !h-full px-2 bg-transparent"
         />
       </div>
+
       <Button
         btn="fill"
         theme="Primary"
