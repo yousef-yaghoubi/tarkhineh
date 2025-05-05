@@ -8,6 +8,7 @@ import IconArrowLeft from '@icons/arrow-left.svg';
 import { convertToPersianNumbers } from '@/lib/convertNumberToPersian';
 import { toast } from 'sonner';
 import dynamic from 'next/dynamic';
+import CardFoodBackDrop from './CardFoodBackDrop';
 
 
 const Button = dynamic(()=> import('@/components/shared/button/Button'))
@@ -69,29 +70,7 @@ function CardTarkhineGardi({
             className="w-full h-full z-30 !bg-[rgba(0,0,0,0.6)] absolute top-0 flex opacity-0  duration-500 transition-all ease-in-out  justify-center items-center sm:group-hover:opacity-100 cursor-pointer"
             onClick={showBTN !== undefined ? openModal : undefined}
           >
-            <div className="relative w-[52px] h-[52px] flex justify-center items-center">
-              <Image
-                src="/icons/backIcon1.png"
-                alt="back1"
-                width={58}
-                height={58}
-                className="absolute"
-              />
-              <Image
-                src="/icons/backIcon2.png"
-                alt="back1"
-                width={42}
-                height={42}
-                className="absolute"
-              />
-              <Image
-                src="/icons/gallery.png"
-                alt="gallery"
-                width={32}
-                height={32}
-                className="absolute"
-              />
-            </div>
+            <CardFoodBackDrop/>
           </div>
         </div>
 
@@ -147,29 +126,7 @@ function CardTarkhineGardi({
             className="w-full h-full z-30 !bg-[rgba(0,0,0,0.6)] absolute top-0 flex opacity-0  duration-500 transition-all ease-in-out  justify-center items-center sm:group-hover:opacity-100 cursor-pointer"
             onClick={showBTN !== undefined ? openModal : undefined}
           >
-            <div className="relative w-[52px] h-[52px] flex justify-center items-center">
-              <Image
-                src="/icons/backIcon1.png"
-                alt="back1"
-                width={58}
-                height={58}
-                className="absolute"
-              />
-              <Image
-                src="/icons/backIcon2.png"
-                alt="back1"
-                width={42}
-                height={42}
-                className="absolute"
-              />
-              <Image
-                src="/icons/gallery.png"
-                alt="gallery"
-                width={32}
-                height={32}
-                className="absolute"
-              />
-            </div>
+            <CardFoodBackDrop/>
           </div>
         </div>
 
@@ -220,29 +177,7 @@ function CardTarkhineGardi({
             className="w-full h-full z-30 !bg-[rgba(0,0,0,0.6)] absolute top-0 flex opacity-0  duration-500 transition-all ease-in-out  justify-center items-center sm:group-hover:opacity-100 cursor-pointer"
             onClick={openModal}
           >
-            <div className="relative w-[52px] h-[52px] flex justify-center items-center">
-              <Image
-                src="/icons/backIcon1.png"
-                alt="back1"
-                width={58}
-                height={58}
-                className="absolute"
-              />
-              <Image
-                src="/icons/backIcon2.png"
-                alt="back1"
-                width={42}
-                height={42}
-                className="absolute"
-              />
-              <Image
-                src="/icons/gallery.png"
-                alt="gallery"
-                width={32}
-                height={32}
-                className="absolute"
-              />
-            </div>
+            <CardFoodBackDrop/>
           </div>
         </div>
 
