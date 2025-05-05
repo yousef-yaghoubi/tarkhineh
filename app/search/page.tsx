@@ -2,10 +2,11 @@ import Image from 'next/image';
 import React from 'react';
 import { FoodType } from '@/types';
 import dynamic from 'next/dynamic';
-import CardFoodLoading from '@/components/shared/card/CardFoodLoading';
+import CardFoodLoading from '@/components/shared/card/cardFood/CardFoodLoading';
 import { getBaseUrl } from '@/lib/getBaseUrl';
 import { Metadata } from 'next';
 import SearchBox from '@/components/shared/SearchBox/SearchBox';
+import CardFoodBranch from '@/components/shared/card/cardFood/CardFoodBranch';
 
 const CardFood = dynamic(() => import('@/components/shared/card/CardFood'), {
   loading: () => <CardFoodLoading />,
@@ -66,7 +67,7 @@ async function Page({ searchParams }: { searchParams: SearchParams }) {
       ) : (
         <section className="mt-12 grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-2 lg:grid-cols-3 w-full sm:max-w-[90%] justify-items-center gap-y-4 md:gap-y-8 mb-10">
           {foods.map((food) => (
-            <CardFood item={food} key={food.id} />
+            <CardFoodBranch item={food} key={food.id} />
           ))}
         </section>
       )}

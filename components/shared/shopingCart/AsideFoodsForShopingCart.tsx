@@ -1,7 +1,7 @@
 'use client';
 import { convertToPersianNumbers } from '@/lib/convertNumberToPersian';
 import React, { useEffect, useState } from 'react';
-import { Price } from '../card/CardFoodNecessary';
+import { Price } from '../card/cardFood/CardFoodNecessary';
 import { useCart } from '../../../providers/shopingCardProvider';
 import { useSession } from 'next-auth/react';
 import QuantityFood from '@/app/shoping/shopingCart/QuantityFood';

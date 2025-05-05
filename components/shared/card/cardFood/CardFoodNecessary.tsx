@@ -1,5 +1,7 @@
 import { convertToPersianNumbers } from "@/lib/convertNumberToPersian";
+import { FoodType } from "@/types";
 import { ComponentProps } from "react";
+import IconStar from '@icons/StarRate.svg';
 
 export function PriceOrder({
   price,
@@ -45,4 +47,20 @@ export function Price({ price, order }: { price: number; order: number }) {
       تومان
     </>
   );
+}
+
+export function RenderRatingForCardFoodBranch ({item}: {item: FoodType}) {
+  return (
+      <div className="w-full h-1/2 flex items-center">
+          <IconStar className="w-4 h-4" />
+          <span className="caption-sm md:button-sm flex">
+              {convertToPersianNumbers(item.rating.toString())}
+              &nbsp;
+              <span className="caption-sm text-gray-5 items-center hidden md:flex">
+                  (
+                  {convertToPersianNumbers(item._count.commentsFood.toLocaleString())} امتیاز)
+              </span>
+          </span>
+      </div>
+  )
 }

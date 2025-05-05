@@ -11,9 +11,10 @@ import Badge from '@/components/shared/badge/Badge';
 
 import { CommentType, FoodType } from '@/types';
 import dynamic from 'next/dynamic';
-import CardFoodLoading from '../card/CardFoodLoading';
+import CardFoodLoading from '../card/cardFood/CardFoodLoading';
+// import CardFoodBranch from '../card/cardFood/CardFoodBranch';
 
-const CardFood = dynamic(() => import('@/components/shared/card/CardFood'), {
+const CardFoodBranch = dynamic(() => import('@/components/shared/card/cardFood/CardFoodBranch'), {
   loading: () => <CardFoodLoading />,
 });
 
@@ -209,7 +210,7 @@ const SliderSwiper = ({
                         key={item.id}
                         className="p-0 !flex justify-center items-center"
                       >
-                        <CardFood item={item} />
+                        <CardFoodBranch item={item} />
                       </SwiperSlide>
                     ))}
 

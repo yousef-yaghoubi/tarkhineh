@@ -8,9 +8,10 @@ import { useSearchParams } from 'next/navigation';
 import { useInfiniteQuery } from '@tanstack/react-query';
 
 import { FoodType } from '@/types';
-import CardFoodLoading from '@/components/shared/card/CardFoodLoading';
+import CardFoodLoading from '@/components/shared/card/cardFood/CardFoodLoading';
+import CardFoodMenu from '@/components/shared/card/cardFood/CardFoodMenu';
 
-const CardFood = dynamic(() => import('@/components/shared/card/CardFood'), {
+const CardFood = dynamic(() => import('@/components/shared/card/cardFood/CardFoodMenu'), {
   loading: () => <CardFoodLoading isShowForMenu />,
 });
 
@@ -65,7 +66,7 @@ function InfiniteScroll() {
     <>
       <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 xl:grid-cols-2 justify-items-center gap-y-4 mt-10 mb-48">
         {allFoods.map((item: FoodType) => (
-          <CardFood isShowForMenu item={item} key={item.id} />
+          <CardFoodMenu item={item} key={item.id} />
         ))}
       </section>
 

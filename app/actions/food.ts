@@ -57,6 +57,9 @@ export async function AddFoodToFavorite(id: string) {
         });
 
         revalidatePath('/user/favorites');
+        revalidatePath('/branches');
+        revalidatePath('/menu');
+        
         return {
           status: 200,
           message: 'محصول با موفقیت از لیست علاقمندی ها حذف شد.',
@@ -73,6 +76,8 @@ export async function AddFoodToFavorite(id: string) {
     }
 
     revalidatePath('/user/favorites');
+    revalidatePath('/branches');
+    revalidatePath('/menu');
     return { status: 201, message: 'محصول با موفقیت به علاقمندی ها اضافه شد.' };
   } catch (error) {
     return { status: 400, message: error as string };

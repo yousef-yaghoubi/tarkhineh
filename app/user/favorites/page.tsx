@@ -1,4 +1,5 @@
-import CardFoodLoading from '@/components/shared/card/CardFoodLoading';
+import CardFoodBranch from '@/components/shared/card/cardFood/CardFoodBranch';
+import CardFoodLoading from '@/components/shared/card/cardFood/CardFoodLoading';
 import SearchBox from '@/components/shared/SearchBox/SearchBox';
 import BoxOfMain from '@/components/shared/shopingCart/BoxOfMain';
 import SliderSwiper from '@/components/shared/swiper/SliderSwiper';
@@ -79,7 +80,7 @@ async function page({
           >
             {data?.favorites?.foods ? (
               data?.favorites?.foods.map((food) => (
-                <CardFood item={food} key={food.id} />
+                <CardFoodBranch item={food} key={food.id} />
               ))
             ) : (
               <div
