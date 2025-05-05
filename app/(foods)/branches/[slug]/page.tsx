@@ -34,6 +34,7 @@ async function getBranchBySlug({ params }: { params: { slug: string } }) {
     const { branch: branchAction } = await response.json();
     return branchAction;
   } catch (error) {
+    console.log(error)
     return null;
   }
 }

@@ -6,9 +6,8 @@ import CardFoodLoading from '@/components/shared/card/cardFood/CardFoodLoading';
 import { getBaseUrl } from '@/lib/getBaseUrl';
 import { Metadata } from 'next';
 import SearchBox from '@/components/shared/SearchBox/SearchBox';
-import CardFoodBranch from '@/components/shared/card/cardFood/CardFoodBranch';
 
-const CardFood = dynamic(() => import('@/components/shared/card/CardFood'), {
+const CardFoodBranch = dynamic(() => import('@/components/shared/card/cardFood/CardFoodBranch'), {
   loading: () => <CardFoodLoading />,
 });
 
