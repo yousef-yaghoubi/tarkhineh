@@ -26,7 +26,7 @@ function Icon({ alt, icon, className }: Props) {
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
   const isActive = pathName.includes(alt)
-  let isLogin = status === 'authenticated';
+  const isLogin = status === 'authenticated';
 
   useEffect(() => {
     if (pathName == '/search') {

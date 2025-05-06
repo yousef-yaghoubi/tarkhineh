@@ -23,8 +23,8 @@ function ModalRemoveShoping({ isOpenModal, setIsOpenModal }: { isOpenModal: bool
                 <button
                     className="w-32 h-8 md:w-[117px] md:h-10 !bg-error-extralight rounded text-error"
                     onClick={() => {
-                        clearCart(),
-                        setIsOpenModal(false)
+                        clearCart();
+                        setIsOpenModal(false);
                     }}
                 >
                     حذف

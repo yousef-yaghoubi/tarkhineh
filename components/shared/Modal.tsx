@@ -1,5 +1,5 @@
 'use client';
-import React, { ReactNode } from 'react';
+import React from 'react';
 import Portal from './Portal';
 import SwiperImagesModal from './swiper/SwiperImagesModal';
 import IconClose from '@icons/CloseIcon.svg';
