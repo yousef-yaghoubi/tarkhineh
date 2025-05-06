@@ -9,11 +9,11 @@ import { AddressUserProps } from '@/types';
 
 function Address({
   prop,
-  setIsOpenModel,
+  setIsOpenModal,
   setIdAddress,
 }: {
   prop: AddressUserProps;
-  setIsOpenModel?: Dispatch<SetStateAction<boolean>>;
+  setIsOpenModal?: Dispatch<SetStateAction<boolean>>;
   setIdAddress?: Dispatch<SetStateAction<string | null>>;
 }) {
   const { data: session } = useSession();
@@ -43,7 +43,7 @@ function Address({
             className="cursor-pointer h-fit"
             onClick={() => {
               if (setIdAddress) setIdAddress(prop.id);
-              if (setIsOpenModel) setIsOpenModel(true);
+              if (setIsOpenModal) setIsOpenModal(true);
             }}
           >
             <IconRemove
