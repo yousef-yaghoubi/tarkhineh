@@ -1,14 +1,15 @@
 'use client';
 import React, { useEffect, useState } from 'react';
-import Modal from '../Modal';
-import SearchBox from '../SearchBox/SearchBox';
+import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { useSession } from 'next-auth/react';
-import { useCart } from '../../../providers/shopingCardProvider';
+import { useCart } from '@/providers/shopingCardProvider';
 import { convertToPersianNumbers } from '@/lib/convertNumberToPersian';
-import clsx from 'clsx';
 import { icons } from '@/lib/indexIcon';
 import IconProfile from './IconProfile';
+import clsx from 'clsx';
+import Modal from '../Modal';
+import SearchBox from '../SearchBox/SearchBox';
 
 interface Props {
   alt: string;
@@ -20,49 +21,71 @@ function Icon({ alt, icon, className }: Props) {
   const { status } = useSession();
   const router = useRouter();
   const pathName = usePathname();
+  const { cart } = useCart();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isProfile, setIsProfile] = useState(false);
-  const { cart } = useCart();
-  const openModal = () => setIsModalOpen(true);
-  const closeModal = () => setIsModalOpen(false);
-  const isActive = pathName.includes(alt)
+  const [loading, setLoading] = useState(false);
+
   const isLogin = status === 'authenticated';
+  const isActive = pathName.includes(alt);
 
   useEffect(() => {
-    if (pathName == '/search') {
-      closeModal();
-    }
-  }, [isModalOpen, pathName]);
-
-
-  useEffect(() => {
-    if (alt == 'user') {
-      setIsProfile(true);
-    } else {
-      setIsProfile(false);
-    }
+    if (alt === 'user') setIsProfile(true);
+    else setIsProfile(false);
   }, [alt]);
 
+  useEffect(() => {
+    if (pathName === '/search') setIsModalOpen(false);
+  }, [pathName]);
+
   const IconComponent = icons[icon];
+
+  const handleClick = async (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (alt === 'search') {
+      e.preventDefault();
+      setIsModalOpen(true);
+      return;
+    }
+
+    if (alt === 'user' && !isLogin) {
+      return;
+    }
+
+    if (alt === 'shoping') {
+      return;
+    }
+  };
+
+  const href =
+    alt === 'user' && !isLogin
+      ? '/login'
+      : alt === 'shoping'
+        ? '/shoping/shopingCart'
+        : pathName;
+
   return (
     <>
-      <div
+      <Link
+        href={href}
+        onClick={handleClick}
         className={clsx(
-          `${alt == 'user' && isLogin ? 'w-8 !h-6 md:!w-14 md:!h-10' : 'w-6 md:!w-10 md:!h-10'}
-          ${isActive ? 'bg-primary' : 'bg-tint-1'}
-          justify-center flex items-center relative rounded cursor-pointer
-          ${className}`
+          'flex justify-center items-center relative rounded cursor-pointer transition-all duration-200',
+          isProfile && isLogin
+            ? 'w-8 !h-6 md:!w-14 md:!h-10'
+            : 'w-6 md:!w-10 md:!h-10',
+          isActive ? 'bg-primary' : 'bg-tint-1',
+          className
         )}
-        onClick={() => {
-          if (!isLogin && alt == 'user') router.push('/login');
-          if (alt == 'search') openModal();
-          if (alt == 'shoping') router.push('/shoping/shopingCart');
-        }}
       >
-        {alt == 'shoping' && cart.length !== 0 && (
+
+        {alt === 'shoping' && cart.length > 0 && (
           <div
-            className={`absolute -top-1.5 -right-1 md:top-[2px] md:right-[2px] ${isActive ? 'bg-tint-6 text-white' : 'bg-white text-primary'
-              } rounded-full w-4 h-4 text-xs flex justify-center items-center z-10`}
+            className={clsx(
+              'absolute w-4 h-4 text-xs flex justify-center items-center rounded-full z-10',
+              'md:top-[2px] md:right-[2px]',
+              '-top-1.5 -right-1',
+              isActive ? 'bg-tint-6 text-white' : 'bg-white text-primary'
+            )}
           >
             {convertToPersianNumbers(cart.length.toString())}
           </div>
@@ -70,20 +93,19 @@ function Icon({ alt, icon, className }: Props) {
 
         <div className="w-[18px] md:w-6 h-[18px] md:h-6 flex justify-center items-center relative">
           {!isProfile ? (
-            <IconComponent
-              fill={isActive ? 'white' : '#417F56'}
-            />
+            <IconComponent fill={isActive ? 'white' : '#417F56'} />
           ) : isLogin ? (
             <IconProfile icon={icon} isActive={isActive} />
           ) : (
             <IconComponent fill={isActive ? 'white' : '#417F56'} />
           )}
         </div>
-      </div>
+      </Link>
+
 
       <Modal
         isOpen={isModalOpen}
-        onClose={closeModal}
+        onClose={() => setIsModalOpen(false)}
         title={<h3 className="caption-lg md:h7">جستجو</h3>}
         desc="لطفا متن خود را تایپ و سپس دکمه Enter را بزنید."
       >

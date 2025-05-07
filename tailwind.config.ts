@@ -12,14 +12,10 @@ const config: Config = {
     extend: {
       gridTemplateColumns:{
         'customCardShopingCard': '1fr,1fr,1fr,1fr,1fr'
-        // 'customCardShopingCard': 'auto, auto'
       },
       position: {
         unset: 'unset',
       },
-      // fontFamily: {
-      //   estedad: ['Estedad'],
-      // },
       boxShadow: {
         'content-cards':
           '0px 42px 17px rgba(0, 0, 0, 0.01), 0px 24px 14px rgba(0, 0, 0, 0.05), 0px 11px 11px rgba(0, 0, 0, 0.09), 0px 3px 6px rgba(0, 0, 0, 0.1), 0px 0px 0px rgba(0, 0, 0, 0.1)',

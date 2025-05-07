@@ -5,6 +5,7 @@ import { icons, iconsProfile } from '@/lib/indexIcon';
 import React from 'react'
 import IconArrowDown from '@icons/arrow-down.svg';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 function IconProfile({ icon, isActive }: {
     icon: keyof typeof icons,
@@ -29,27 +30,28 @@ function IconProfile({ icon, isActive }: {
                     height="16"
                 />
             </DropdownMenuTrigger>
-            
+
             <DropdownMenuContent
                 className={`bg-white dark:bg-background-2 dark:border-background-1 ml-4 mt-2`}
             >
                 {ProfileRoute.map((route) => {
                     const IconProf = iconsProfile[route.icon as keyof typeof iconsProfile] as React.ElementType;
                     return (
-                        <DropdownMenuItem
-                            onClick={() => router.push(route.url)}
+                        <DropdownMenuItem asChild
                             dir="rtl"
                             key={route.id}
                             className="hover:!bg-slate-100 dark:hover:!bg-background-1"
                         >
-                            {IconProf && (
-                                <IconProf
-                                    className="fill-black dark:fill-white"
-                                    width="16"
-                                    height="16"
-                                />
-                            )}
-                            <span className="pr-1">{route.title}</span>
+                            <Link href={route.url}>
+                                {IconProf && (
+                                    <IconProf
+                                        className="fill-black dark:fill-white"
+                                        width="16"
+                                        height="16"
+                                    />
+                                )}
+                                <span className="pr-1">{route.title}</span>
+                            </Link>
                         </DropdownMenuItem>
                     );
                 })}

@@ -1,8 +1,9 @@
 'use client';
 
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 import Cookies from 'js-cookie';
+import { useRouter } from 'next/navigation';
+import clsx from 'clsx';
 import { useNavContext } from '@/providers/navProvider';
 
 type SubNavItemProps = {
@@ -21,11 +22,17 @@ export const SubNavItem = ({
   isActive,
 }: SubNavItemProps) => {
   const router = useRouter();
-  const {setOpen, sessionCookie, setShowChooseModal, setUrlMenu} = useNavContext()
+  const {
+    setOpen,
+    sessionCookie,
+    setShowChooseModal,
+    setUrlMenu,
+  } = useNavContext();
 
-  const className = `w-fit mr-2 pt-2 caption-sm sm:body-sm ${
-    isActive ? 'border-primary dark:border-primary' : ''
-  }`;
+  const baseClass = clsx(
+    'w-fit mr-2 pt-2 caption-sm sm:body-sm text-start',
+    isActive && 'border-primary dark:border-primary'
+  );
 
   if (statsLabel === 'شعبه') {
     return (
@@ -34,28 +41,34 @@ export const SubNavItem = ({
         onClick={() => {
           Cookies.set('branches', sub.label, { path: '/' });
           setUrlMenu(sub.routeQuery);
-          setOpen(false)
+          setOpen(false);
         }}
-        className={className}
+        className={baseClass}
       >
         {sub.label}
       </Link>
     );
   }
 
-  return (
+  return sessionCookie ? (
+    <Link
+      href={`/menu?type=${sub.routeQuery}`}
+      onClick={() => {
+        setUrlMenu(sub.routeQuery);
+        setOpen(false);
+      }}
+      className={baseClass}
+    >
+      {sub.label}
+    </Link>
+  ) : (
     <button
       onClick={() => {
-        if (sessionCookie) {
-          router.push(`/menu?type=${sub.routeQuery}`);
-          setOpen?.(false);
-        } else {
-          setOpen?.(false);
-          setShowChooseModal?.(true);
-        }
+        setOpen(false);
+        setShowChooseModal(true);
         setUrlMenu(sub.routeQuery);
       }}
-      className={className + ' text-start'}
+      className={baseClass}
     >
       {sub.label}
     </button>
