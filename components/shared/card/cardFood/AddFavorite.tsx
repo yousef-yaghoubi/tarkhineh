@@ -10,6 +10,7 @@ import { toast } from 'sonner';
 function AddFavorite({ item, showText, width, height, className }: { item: FoodType, showText?: boolean, width: 24 | 16, height: 24 | 16, className?: ComponentProps<'svg'>['className'] }) {
     const [isRedHeart, setIsRedHeart] = useState(item.isFavorite);
     const [isLoading, setIsLoading] = useState(false);
+
     const handleAddFoodToFavorite = async (id: string) => {
         setIsLoading(true)
         const response = await AddFoodToFavorite(JSON.parse(JSON.stringify(id)));
@@ -32,7 +33,7 @@ function AddFavorite({ item, showText, width, height, className }: { item: FoodT
         >
 
             {isLoading == true ? (
-                <div className='flex h-6 gap-x-2 justify-center items-center bg-gray-3 dark:bg-background-2 px-2 rounded-md'>
+                <div className='flex h-4 md:h-6 gap-x-2 justify-center items-center bg-gray-3 dark:bg-background-2 px-2 rounded-md'>
                     <span className='sr-only'>Loading...</span>
                     <div className='h-[5px] w-[5px] bg-primary rounded-full animate-bounce [animation-delay:-0.3s]'></div>
                     <div className='h-[5px] w-[5px] bg-primary rounded-full animate-bounce [animation-delay:-0.15s]'></div>

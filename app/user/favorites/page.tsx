@@ -51,6 +51,10 @@ async function page({
     `${getBaseUrl()}/api/food/favorites?${searchParams.search && `search=${searchParams.search}`}&categorie=${searchParams.categorie}`,
     {
       headers: customHeaders,
+      next:{
+        tags: ['favorites'],
+        revalidate: 3600,
+      }
     }
   );
 

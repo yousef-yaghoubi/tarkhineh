@@ -75,7 +75,9 @@ async function fetchFoods(slug: string, filter: string) {
       {
         method: 'GET',
         headers: customHeaders,
-        next: { revalidate: 3600 },
+        next: {
+          tags: ['food'], 
+          revalidate: 3600 },
       }
     );
     

@@ -100,7 +100,11 @@ export async function GET(req: Request) {
         rating: true,
         _count: {
           select: {
-            commentsFood: true,
+            commentsFood: {
+              where:{
+                public: true
+              }
+            },
           },
         },
         favorite: session?.user.id
