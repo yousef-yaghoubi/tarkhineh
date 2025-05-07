@@ -26,12 +26,12 @@ const OrderContext = createContext<OrderContextType | undefined>(undefined);
 export const OrderProvider = ({ children }: { children: ReactNode }) => {
   const [order, setOrder] = useState<OrderState>(initialOrder);
 
-  const updateDelivery = (delivery: DeliveryMethod) => {
+  const updateDelivery = useCallback((delivery: DeliveryMethod) => {
     setOrder((prev) => ({
       ...prev,
       delivery,
     }));
-  };
+  }, [])
 
   // ✅ تغییر روش پرداخت
   const updatePayment = (payment: PaymentMethod) => {

@@ -13,7 +13,7 @@ function ShowComments({
   type: 'product' | 'branch';
   comments: CommentType[];
   id: string;
-  className: ComponentProps<'div'>['className']
+  className?: ComponentProps<'div'>['className']
 }) {
   return (
     <div className={clsx('w-full flex flex-col items-center mt-5', className)}>
@@ -22,11 +22,15 @@ function ShowComments({
       </span>
 
       <AddComment type={{ name: type, id: id }} />
-      {comments.length != 0 ? (
-        <SliderSwiper theme="White" commentSlides={comments as CommentType[]}/>
+      {comments.length > 0 ? (
+        <SliderSwiper
+          theme="White"
+          commentSlides={comments as CommentType[]}
+        />
       ) : (
         <div className="h-16 mt-10">کامنتی وجود ندارد</div>
       )}
+
     </div>
   );
 }

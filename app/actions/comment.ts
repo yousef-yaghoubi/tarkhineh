@@ -5,6 +5,7 @@ import prisma from '@/prisma/prismaClient';
 import { SchemaAddComment } from '@/validators/zod';
 import { getServerSession } from 'next-auth';
 import { revalidateTag } from 'next/cache';
+import { UpdateFoodRating } from './food';
 
 export async function AddCommentAction({
   type,
@@ -50,12 +51,14 @@ export async function AddCommentAction({
         },
       });
 
+      await UpdateFoodRating(type.id)
       if (commentFood.id) {
         revalidateTag('food')
         return { status: 201, message: 'کامنت با موفقیت ثبت شد و پس از تایید نمایش داده میشود.' };
       } else {
         return { status: 400, message: 'مشکلی پیش آمده، بعدا تلاش کنید.' };
       }
+
     }
   } catch (error) {
     return { status: 400, message: 'مشکلی پیش آمده، بعدا تلاش کنید.' };

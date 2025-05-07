@@ -77,3 +77,20 @@ export async function AddFoodToFavorite(id: string) {
     };
   }
 }
+
+
+export async function UpdateFoodRating(foodId: string) {
+  const comments = await prisma.commentsFood.findMany({
+    where: { foodId, public: true },
+    select: { score: true },
+  });
+
+  if (comments.length === 0) return;
+
+  const avgRating = comments.length > 0 ? comments.reduce((acc, curr) => acc + curr.score, 0) / comments.length : 0;
+
+  await prisma.foods.update({
+    where: { id: foodId },
+    data: { rating: avgRating },
+  });
+}

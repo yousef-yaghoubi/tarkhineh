@@ -1,19 +1,13 @@
 import SearchBox from '@/components/shared/SearchBox/SearchBox';
 import React from 'react';
 import SwiperDeatail from './SwiperDeatail';
-import { CommentType } from '@/types';
 import IconNote from '@icons/note.svg';
 import { headers } from 'next/headers';
-import AddComment from '@/components/shared/comment/AddComment';
 import SliderSwiper from '@/components/shared/swiper/SliderSwiper';
-import dynamic from 'next/dynamic';
 import { generateBranchMetadata } from '@/lib/seo';
 import { getBaseUrl } from '@/lib/getBaseUrl';
-
-const Button = dynamic(() => import('@/components/shared/button/Button'), {
-  loading: () => <div>Loading...</div>,
-  ssr: false
-});
+import ShowComments from '@/components/shared/comment/ShowComments';
+import Button from '@/components/shared/button/Button';
 
 async function getBranchBySlug({ params }: { params: { slug: string } }) {
   try {
@@ -171,19 +165,7 @@ async function DynamicBranches({
         phones={branchAction?.phones as { phones: string[] }}
       />
 
-      <span className="h6 md:h5 lg:h4 mt-6 md:mt-9 lg:mt-12 mb-3 md:mb-[18px]">
-        نظرات کاربران
-      </span>
-
-      <AddComment type={{ name: 'branch', id: branchAction.id }} />
-      {branchAction?.commentsBranch?.length > 0 ? (
-        <SliderSwiper
-          theme="White"
-          commentSlides={branchAction?.commentsBranch as CommentType[]}
-        />
-      ) : (
-        <div className="h-16 mt-10">کامنتی وجود ندارد</div>
-      )}
+      <ShowComments comments={branchAction?.commentsBranch} id={branchAction.id} type='branch'/>
     </section>
   );
 }
