@@ -1,4 +1,4 @@
-import CardTarkhineGardi from '@/components/shared/card/CardTarkhineGardi';
+import CardTarkhineGardi from '@/components/shared/card/CardTarkhinehGardi';
 import MiniCardMenu from '@/components/shared/card/MiniCardMenu';
 import SearchBox from '@/components/shared/SearchBox/SearchBox';
 import { arraySlideMain, branches, miniCards } from '@/lib/dataPublic';

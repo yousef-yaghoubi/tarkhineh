@@ -2,7 +2,7 @@
 import React from 'react'
 import Modal from '../Modal';
 import { branches } from '@/lib/dataPublic';
-import CardTarkhineGardi from '../card/CardTarkhineGardi';
+import CardTarkhineGardi from '../card/CardTarkhinehGardi';
 import { useRouter } from 'next/navigation';
 import Cookies from 'js-cookie';
 function ModalBranch({ showChooseModal, closeModal, urlMenu }: { showChooseModal: boolean, closeModal: () => void, urlMenu?: string }) {

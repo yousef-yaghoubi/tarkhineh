@@ -1,4 +1,4 @@
-import CardTarkhineGardi from '@/components/shared/card/CardTarkhineGardi';
+import CardTarkhineGardi from '@/components/shared/card/CardTarkhinehGardi';
 import SwiperMain from '@/components/shared/swiper/swiper';
 import { branches } from '@/lib/dataPublic';
 import { getBaseUrl } from '@/lib/getBaseUrl';
