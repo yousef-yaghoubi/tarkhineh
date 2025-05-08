@@ -26,6 +26,7 @@ export async function GET() {
   </urlset>`
 
   return new NextResponse(xml, {
+    status: 200,
     headers: {
       'Content-Type': 'application/xml',
     },
