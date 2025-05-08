@@ -1,10 +1,7 @@
 'use client';
 import { convertToPersianNumbers } from '@/lib/convertNumberToPersian';
 import { FoodType } from '@/types';
-import React, { useState } from 'react';
-import IconHeart from '@icons/Heart.svg';
-import IconHeartFill from '@icons/HeartFill.svg';
-import { AddFoodToFavorite } from '@/app/actions/food';
+import React from 'react';
 import { toast } from 'sonner';
 import dynamic from 'next/dynamic';
 import AddFavorite from '@/components/shared/card/cardFood/AddFavorite';

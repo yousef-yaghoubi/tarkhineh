@@ -1,7 +1,7 @@
 'use client';
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import { useSession } from 'next-auth/react';
 import { useCart } from '@/providers/shopingCardProvider';
 import { convertToPersianNumbers } from '@/lib/convertNumberToPersian';
@@ -19,12 +19,10 @@ interface Props {
 
 function Icon({ alt, icon, className }: Props) {
   const { status } = useSession();
-  const router = useRouter();
   const pathName = usePathname();
   const { cart } = useCart();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isProfile, setIsProfile] = useState(false);
-  const [loading, setLoading] = useState(false);
 
   const isLogin = status === 'authenticated';
   const isActive = pathName.includes(alt);

@@ -2,7 +2,6 @@
 
 import Link from 'next/link';
 import Cookies from 'js-cookie';
-import { useRouter } from 'next/navigation';
 import clsx from 'clsx';
 import { useNavContext } from '@/providers/navProvider';
 
@@ -21,7 +20,6 @@ export const SubNavItem = ({
   statsLabel,
   isActive,
 }: SubNavItemProps) => {
-  const router = useRouter();
   const {
     setOpen,
     sessionCookie,

@@ -4,14 +4,12 @@ import { ProfileRoute } from '@/lib/dataPublic';
 import { icons, iconsProfile } from '@/lib/indexIcon';
 import React from 'react'
 import IconArrowDown from '@icons/arrow-down.svg';
-import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 
 function IconProfile({ icon, isActive }: {
     icon: keyof typeof icons,
     isActive: boolean
 }) {
-    const router = useRouter();
     const IconComponent = icons[icon];
 
     return (
