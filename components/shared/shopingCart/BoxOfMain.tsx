@@ -2,7 +2,7 @@
 import clsx from 'clsx';
 import React, { ComponentProps, useContext } from 'react';
 import IconRight from '@icons/arrow-right.svg';
-import { CountShowMenuBar } from '@/app/user/ContextProvider';
+import { CountShowMenuBar } from '@/app/(main)/user/ContextProvider';
 interface PropsBox {
   title: string | React.ReactNode;
   className?: ComponentProps<'div'>['className'];

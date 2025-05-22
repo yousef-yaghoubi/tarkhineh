@@ -3,7 +3,7 @@ import 'leaflet-geosearch/dist/geosearch.css';
 import { useEffect, useRef, useState } from 'react';
 import { OpenStreetMapProvider } from 'leaflet-geosearch';
 import { LatLngExpression, Map } from 'leaflet';
-import { useOrder } from '@/app/shoping/ShopingProvider';
+import { useOrder } from '@/app/(main)/shoping/ShopingProvider';
 import IconGps from '@icons/gps.svg';
 import IconLocation from '@icons/location.svg';
 import Button from '../button/Button';

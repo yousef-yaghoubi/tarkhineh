@@ -1,7 +1,7 @@
 'use client';
 import Image from 'next/image';
 import React, { useState } from 'react';
-import Address from '../../../app/shoping/completion-info/Address';
+import Address from '../../../app/(main)/shoping/completion-info/Address';
 import { AddressUserProps } from '@/types';
 import IconLocation from '@icons/location.svg';
 import IconCloseCircle from '@icons/close-circle.svg';

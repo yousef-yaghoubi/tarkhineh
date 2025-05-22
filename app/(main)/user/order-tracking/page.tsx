@@ -12,7 +12,7 @@ import IconWallet from '@icons/wallet-2.svg';
 import Image from 'next/image';
 import { convertToPersianNumbers } from '@/lib/convertNumberToPersian';
 import moment from 'jalali-moment';
-import WithoutCart from '@/app/shoping/shopingCart/WithoutCart';
+import WithoutCart from '@/app/(main)/shoping/shopingCart/WithoutCart';
 import ButtonOrder from './ButtonOrder';
 import { headers } from 'next/headers';
 import { Metadata } from 'next';

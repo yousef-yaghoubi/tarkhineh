@@ -1,14 +1,14 @@
 import Image from 'next/image';
 import React from 'react';
-import Icon from './Icon';
-import { ModeToggle } from './ChangeTheme';
 import { iconDetails } from '@/lib/dataPublic';
 import Link from 'next/link';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
-import NavDesktop from './NavDesktop';
-import NavMobile from './NavMobile';
 import { NavProvider } from '@/providers/navProvider';
+import NavMobile from './NavMobile';
+import NavDesktop from './NavDesktop';
+import { ModeToggle } from './ChangeTheme';
+import Icon from './Icon';
 
 async function Navbar() {
   const session = await getServerSession(authOptions);

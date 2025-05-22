@@ -1,5 +1,5 @@
 'use client';
-import { OrderProvider } from '@/app/shoping/ShopingProvider';
+import { OrderProvider } from '@/app/(main)/shoping/ShopingProvider';
 import RenderAddresses from '@/components/shared/address/RenderAddresses';
 import React from 'react';
 

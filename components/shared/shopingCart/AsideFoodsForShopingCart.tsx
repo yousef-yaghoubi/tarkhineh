@@ -5,7 +5,7 @@ import { Price } from '../card/cardFood/CardFoodNecessary';
 import { useCart } from '../../../providers/shopingCardProvider';
 import IconRemove from '@icons/remove.svg';
 import IconWarning from '@icons/warning-2.svg';
-import { useOrder } from '@/app/shoping/ShopingProvider';
+import { useOrder } from '@/app/(main)/shoping/ShopingProvider';
 import { CartFoodForShoppingCart } from '@/types';
 import ModalRemoveShoping from './ModalRemoveShoping';
 import MapCard from './MapCard';

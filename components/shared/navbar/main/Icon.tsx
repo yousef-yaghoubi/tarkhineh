@@ -8,8 +8,8 @@ import { convertToPersianNumbers } from '@/lib/convertNumberToPersian';
 import { icons } from '@/lib/indexIcon';
 import IconProfile from './IconProfile';
 import clsx from 'clsx';
-import Modal from '../Modal';
-import SearchBox from '../SearchBox/SearchBox';
+import Modal from '../../Modal';
+import SearchBox from '../../SearchBox/SearchBox';
 
 interface Props {
   alt: string;

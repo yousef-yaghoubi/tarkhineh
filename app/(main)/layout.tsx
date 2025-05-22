@@ -1,17 +1,17 @@
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 import Footer from '@/components/shared/footer/Footer';
-import Navbar from '@/components/shared/navbar/Navbar';
 import { Toaster } from '@/components/ui/sonner';
 import 'leaflet/dist/leaflet.css';
 import '@smastrom/react-rating/style.css';
 import 'normalize.css';
-import './globals.css';
+import '../globals.css';
 import AppProviders from '@/providers';
 import clsx from 'clsx';
+import Navbar from '@/components/shared/navbar/main/Navbar';
 
 const estedad = localFont({
-  src: './fonts/EstedadKSHD-wght.woff2',
+  src: '../fonts/EstedadKSHD-wght.woff2',
   variable: '--font-estedad',
   weight: '100 900',
   display: 'swap',

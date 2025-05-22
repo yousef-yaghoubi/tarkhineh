@@ -1,7 +1,7 @@
 import { CartFoodForShoppingCart } from '@/types'
 import React from 'react'
 import { Price } from '../card/cardFood/CardFoodNecessary'
-import QuantityFood from '@/app/shoping/shopingCart/QuantityFood'
+import QuantityFood from '@/app/(main)/shoping/shopingCart/QuantityFood'
 
 function MapCard({ cart }: { cart: CartFoodForShoppingCart[] }) {
     return (

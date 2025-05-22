@@ -1,10 +1,10 @@
 'use client'
 import React from 'react'
-import Modal from '../Modal';
 import { branches } from '@/lib/dataPublic';
-import CardTarkhineGardi from '../card/CardTarkhinehGardi';
 import { useRouter } from 'next/navigation';
 import Cookies from 'js-cookie';
+import Modal from '../../Modal';
+import CardTarkhinehGardi from '../../card/CardTarkhinehGardi';
 function ModalBranch({ showChooseModal, closeModal, urlMenu }: { showChooseModal: boolean, closeModal: () => void, urlMenu?: string }) {
     const router = useRouter()
     return (
@@ -16,7 +16,7 @@ function ModalBranch({ showChooseModal, closeModal, urlMenu }: { showChooseModal
         >
             <div className="flex flex-col md:flex-row justify-evenly items-center w-full">
                 {branches.map((branch) => (
-                    <CardTarkhineGardi
+                    <CardTarkhinehGardi
                         key={branch.id}
                         showType="small"
                         desc={branch.desc}
