@@ -20,6 +20,7 @@ export async function GET(req: Request) {
     const foods: FoodType[] | undefined = await prisma.foods.findMany({
       where: {
         name: { contains: searchQuery },
+        isExtant: true,
       },
       select: {
         id: true,

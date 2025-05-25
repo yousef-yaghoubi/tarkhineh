@@ -26,7 +26,7 @@ function SideBar() {
     const classNameBase = 'w-full h-10 pr-2 flex rounded items-center'
 
     return (
-        <div className='bg-white dark:bg-background-2 h-[100dvh] min-h-96 p-5 w-1/6 min-w-48 flex flex-col'>
+        <aside className='hidden lg:flex bg-white fixed dark:bg-background-2 h-[100dvh] min-h-96 p-5 w-1/6 min-w-48 flex-col'>
             <div className='p-2 rounded'>
                 <div className='w-full h-[10dvh] min-h-[51px] relative '>
                     <Image alt='logo' src={logo} className='' fill />
@@ -48,7 +48,7 @@ function SideBar() {
                 )}
             </ul>
 
-        </div>
+        </aside>
     )
 }
 

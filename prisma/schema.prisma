@@ -57,6 +57,7 @@ model Foods {
   specialOffer        Boolean               @default(false)
   numberOfSell        Int                   @default(0)
   foodOfOrderTracking FoodOfOrderTracking[]
+  isExtant           Boolean               @default(true)
 }
 
 model Addresses {

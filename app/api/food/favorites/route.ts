@@ -44,6 +44,7 @@ export async function GET(req: Request) {
         foods: {
           some: {
             typeId: typeIdFoods,
+            isExtant: true,
           },
         },
       },

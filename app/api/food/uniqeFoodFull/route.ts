@@ -21,8 +21,10 @@ export async function GET(req: Request) {
     const food = await prisma.foods.findUnique({
       where: {
         id: id,
+        isExtant: true,
       },
       select: {
+        isExtant: true,
         _count: {
           select: {
             commentsFood: true,

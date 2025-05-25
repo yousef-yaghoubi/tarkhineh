@@ -7,10 +7,10 @@ import IconRemove from '@icons/remove.svg';
 import IconWarning from '@icons/warning-2.svg';
 import { useOrder } from '@/app/(main)/shoping/ShopingProvider';
 import { CartFoodForShoppingCart } from '@/types';
-import ModalRemoveShoping from './ModalRemoveShoping';
 import MapCard from './MapCard';
 import ConditionalButton from './ConditionalButton';
 import { PropAsideFoodsForShopingCart } from '@/types/prop';
+import ModalRemoving from '../ModalRemoving';
 
 const calcDiscountPrice = (cart: CartFoodForShoppingCart[]) => {
   const offerCart = cart.filter((item) => item.order !== 0);
@@ -116,7 +116,7 @@ function AsideFoodsForShopingCart({
         <ConditionalButton onClickCustom={onClickCustom} linkBTN={linkBTN} BtnDisabeld={BtnDisabeld}/>
       </div>
 
-      <ModalRemoveShoping isOpenModal={isOpenModal} setIsOpenModal={setIsOpenModel}/>
+      <ModalRemoving isOpenModal={isOpenModal} setIsOpenModal={setIsOpenModel} idForRemoving={null} typeRemove='shoppingCart'/>
     </aside>
   );
 }

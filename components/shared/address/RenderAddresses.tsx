@@ -7,8 +7,8 @@ import IconLocation from '@icons/location.svg';
 import IconCloseCircle from '@icons/close-circle.svg';
 import { usePathname } from 'next/navigation';
 import ModalAddAddress from './ModalAddAddress';
-import ModalRemoveAddress from './ModalRemoveAddress';
 import ShowStaticAddress from './ShowStaticAddress';
+import ModalRemoving from '../ModalRemoving';
 
 function RenderAddresses({
   showAddressBranch,
@@ -75,7 +75,7 @@ function RenderAddresses({
         <ShowStaticAddress/>
       )}
 
-      <ModalRemoveAddress idAddressForRemove={idAddressForRemove} isOpenModal={isOpenModal} setIsOpenModal={setIsOpenModal}/> 
+      <ModalRemoving idForRemoving={idAddressForRemove} isOpenModal={isOpenModal} setIsOpenModal={setIsOpenModal} typeRemove='address'/>
       <ModalAddAddress isOpenModalAddAddress={isOpenModalAddAddress} setIsOpenModalAddAddress={setIsOpenModalAddAddress}/>
     </div>
   );

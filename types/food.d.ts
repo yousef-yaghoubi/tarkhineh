@@ -25,5 +25,5 @@ export interface CartFoodForShoppingCart extends FoodType {
 }
 
 export interface FoodTypeFull {
-  id: string;   name: string;   image: string;   desc: string;   price: number;   order: number;   rating: number;   typeId: string;   categorieId: string;   favoriteId: string | null;   branchId: string;   specialOffer: boolean;   numberOfSell: number;
+  id: string; name: string; image: string; desc: string; price: number; order: number; rating: number; typeId: string; categorieId: string; favoriteId: string | null; branchId: string; specialOffer: boolean; numberOfSell: number; isExtant: boolean
 }

@@ -3,11 +3,11 @@
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
 import prisma from '@/prisma/prismaClient';
-import { revalidateTag } from 'next/cache';
+import { revalidatePath, revalidateTag } from 'next/cache';
 import { z } from 'zod';
 import { FoodTypeFull } from '@/types';
 
-const SchemaId = z.string();
+const SchemaId = z.string().min(1, 'آیدی نمی‌تواند خالی باشد');
 
 export async function AddFoodToFavorite(id: string) {
   const validation = SchemaId.safeParse(id);
@@ -94,3 +94,110 @@ export async function UpdateFoodRating(foodId: string) {
     data: { rating: avgRating },
   });
 }
+
+type DeleteFoodResponse = {
+  status: number;
+  message: string;
+  data?: any;
+};
+
+export async function DeleteFood(id: string): Promise<DeleteFoodResponse> {
+  // Validation
+  const validation = SchemaId.safeParse(id);
+  if (!validation.success) {
+    console.error('خطای validation:', validation.error.issues);
+    return {
+      status: 400,
+      message: 'آیدی نامعتبر است'
+    };
+  }
+
+  try {
+    // بررسی وجود food قبل از حذف
+    const existingFood = await prisma.foods.findUnique({
+      where: { id }
+    });
+
+    if (!existingFood) {
+      return {
+        status: 404,
+        message: 'محصول مورد نظر یافت نشد'
+      };
+    }
+
+
+    const deletedFood = await prisma.foods.update({
+      where: { id },
+      data: {
+        isExtant: false
+      }
+    });
+
+    revalidatePath('/admin/foods');
+
+    console.log('محصول با موفقیت حذف شد:', deletedFood.id);
+
+    return {
+      status: 200,
+      message: 'محصول با موفقیت حذف شد',
+      data: { id: deletedFood.id }
+    };
+
+  } catch (error: any) {
+    console.error('خطا در حذف محصول:', error);
+
+    // بررسی نوع خطا
+    if (error.code === 'P2025') {
+      // Prisma error: Record not found
+      return {
+        status: 404,
+        message: 'محصول مورد نظر یافت نشد'
+      };
+    }
+
+    return {
+      status: 500,
+      message: 'خطای داخلی سرور. لطفا دوباره تلاش کنید'
+    };
+  }
+}
+
+export async function DeleteBackFood(id: string) {
+  // Validation
+  const validation = SchemaId.safeParse(id);
+  if (!validation.success) {
+    console.error('خطای validation:', validation.error.issues);
+    return {
+      status: 400,
+      message: 'آیدی نامعتبر است'
+    };
+  }
+
+  try {
+    // بررسی وجود food قبل از حذف
+    const existingFood = await prisma.foods.findUnique({
+      where: { id, isExtant: false }
+    });
+
+    if (!existingFood) {
+      return {
+        status: 404,
+        message: 'محصول مورد نظر یافت نشد'
+      };
+    }
+
+    await prisma.foods.update({
+      where: { id },
+      data: {
+        isExtant: true
+      }
+    })
+    return {
+      status: 200,
+      message: 'محصول با موفقیت بازگردانی شد',
+    }
+  } catch (error: any) {
+
+  }
+}
+

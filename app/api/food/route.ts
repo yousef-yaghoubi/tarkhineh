@@ -83,6 +83,7 @@ export async function GET(req: Request) {
 
     const foods = await prisma.foods.findMany({
       where: {
+        isExtant: true,
         branch: {
           OR: [{ name: branchName }, { nickName: branchName }],
         },

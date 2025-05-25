@@ -19,6 +19,7 @@ export async function GET(req: Request) {
     const food: DemoFoodModalType | null = await prisma.foods.findUnique({
       where: {
         id: id,
+        isExtant: true,
       },
       select: {
         id: true,

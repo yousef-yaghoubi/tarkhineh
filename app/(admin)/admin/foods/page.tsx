@@ -1,8 +1,10 @@
 import React from 'react'
-
-function page() {
+import FetchingData from './FetchingData'
+async function page() {
   return (
-    <div>page foods</div>
+    <div>
+      <FetchingData />
+    </div>
   )
 }
 
