@@ -26,6 +26,7 @@ function CardFoodAdmin({ food, setIsOpenModal, setIdForRemoving }: { food: FoodT
                         <span>ویرایش</span>
                     </Button>
                     <Button btn='stroke' theme='Primary' className='w-12 md:w-20 h-8 md:h-10' onClickCustom={() => {
+                        console.log(food.id)
                         setIdForRemoving(food.id)
                         setIsOpenModal(true)
                     }}>

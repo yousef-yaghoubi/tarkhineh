@@ -9,6 +9,7 @@ import { usePathname } from 'next/navigation';
 import ModalAddAddress from './ModalAddAddress';
 import ShowStaticAddress from './ShowStaticAddress';
 import ModalRemoving from '../ModalRemoving';
+import { useModalStateRemoving } from '@/hooks/modal';
 
 function RenderAddresses({
   showAddressBranch,
@@ -17,12 +18,9 @@ function RenderAddresses({
   showAddressBranch: boolean;
   addressesUser: AddressUserProps[] | undefined;
 }) {
-  const [isOpenModal, setIsOpenModal] = useState(false);
-  const [idAddressForRemove, setIdAddressForRemove] = useState<string | null>(
-    null
-  );
   const [isOpenModalAddAddress, setIsOpenModalAddAddress] = useState(false);
   const pathName = usePathname();
+  const { idForRemoving, isOpenModal, setIdForRemoving, setIsOpenModal} = useModalStateRemoving()
 
   return (
     <div className="flex w-full h-fit rounded-md border border-gray-4 dark:border-background-2 p-4">
@@ -65,7 +63,7 @@ function RenderAddresses({
                   key={address.id}
                   prop={address}
                   setIsOpenModal={setIsOpenModal}
-                  setIdAddress={setIdAddressForRemove}
+                  setIdAddress={setIdForRemoving}
                 />
               ))}
             </div>
@@ -75,7 +73,7 @@ function RenderAddresses({
         <ShowStaticAddress/>
       )}
 
-      <ModalRemoving idForRemoving={idAddressForRemove} isOpenModal={isOpenModal} setIsOpenModal={setIsOpenModal} typeRemove='address'/>
+      <ModalRemoving idForRemoving={idForRemoving} isOpenModal={isOpenModal} setIsOpenModal={setIsOpenModal} typeRemove='address'/>
       <ModalAddAddress isOpenModalAddAddress={isOpenModalAddAddress} setIsOpenModalAddAddress={setIsOpenModalAddAddress}/>
     </div>
   );

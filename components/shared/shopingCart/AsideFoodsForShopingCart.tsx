@@ -11,6 +11,7 @@ import MapCard from './MapCard';
 import ConditionalButton from './ConditionalButton';
 import { PropAsideFoodsForShopingCart } from '@/types/prop';
 import ModalRemoving from '../ModalRemoving';
+import { useModalStateRemoving } from '@/hooks/modal';
 
 const calcDiscountPrice = (cart: CartFoodForShoppingCart[]) => {
   const offerCart = cart.filter((item) => item.order !== 0);
@@ -53,7 +54,8 @@ function AsideFoodsForShopingCart({
 }: PropAsideFoodsForShopingCart) {
   const { cart } = useCart();
   const { updateFee } = useOrder();
-  const [isOpenModal, setIsOpenModel] = useState(false);
+  const { isOpenModal, setIsOpenModal} = useModalStateRemoving()
+  // const [isOpenModal, setIsOpenModel] = useState(false);
 
 
   
@@ -69,7 +71,7 @@ function AsideFoodsForShopingCart({
         <span>
           سبد خرید ({convertToPersianNumbers(cart.length.toString())})
         </span>
-        <span onClick={() => setIsOpenModel(true)} className="cursor-pointer">
+        <span onClick={() => setIsOpenModal(true)} className="cursor-pointer">
           <IconRemove className="w-6 h-6" />
         </span>
       </div>
@@ -116,7 +118,7 @@ function AsideFoodsForShopingCart({
         <ConditionalButton onClickCustom={onClickCustom} linkBTN={linkBTN} BtnDisabeld={BtnDisabeld}/>
       </div>
 
-      <ModalRemoving isOpenModal={isOpenModal} setIsOpenModal={setIsOpenModel} idForRemoving={null} typeRemove='shoppingCart'/>
+      <ModalRemoving isOpenModal={isOpenModal} setIsOpenModal={setIsOpenModal} idForRemoving={null} typeRemove='shoppingCart'/>
     </aside>
   );
 }

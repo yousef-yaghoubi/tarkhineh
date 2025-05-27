@@ -18,7 +18,7 @@ function layout({ children }: { children: React.ReactNode }) {
     return (
         <html dir="rtl" lang="fa-Ir">
             <body
-                className={clsx(estedad.className, 'antialiased bg-gray-100 dark:bg-background-1 selection:bg-tint-1 selection:text-gray-7')}
+                className={clsx(estedad.className, 'antialiased scrollbar bg-gray-100 dark:bg-background-1 selection:bg-tint-1 selection:text-gray-7')}
             >
                 <AppProviders>
                 <ReactQueryDevtools/>

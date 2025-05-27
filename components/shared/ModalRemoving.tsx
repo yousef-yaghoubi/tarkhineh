@@ -47,6 +47,7 @@ function ModalRemoving({ isOpenModal, setIsOpenModal, idForRemoving, typeRemove 
     const { clearCart } = useCart();
     const queryClient = useQueryClient();
     const texts = getRemoveTexts(typeRemove);
+    
     const removeMutation = useMutation({
         mutationFn: async () => {
             switch (typeRemove) {
@@ -67,13 +68,9 @@ function ModalRemoving({ isOpenModal, setIsOpenModal, idForRemoving, typeRemove 
             }
         },
         onSuccess: () => {
-            // invalidate کردن query های مربوطه
-            if (typeRemove === 'food') {
-                queryClient.invalidateQueries({ queryKey: ['foods'] });
-            } else if (typeRemove === 'foodBack') {
-                queryClient.invalidateQueries({ queryKey: ['foods'] });
+            if (typeRemove !== 'address' && typeRemove !== 'shoppingCart') {
+                queryClient.invalidateQueries({ queryKey: ['foods-infinite'] });
             }
-
             setIsOpenModal(false);
             toast.success(texts.success);
         },
