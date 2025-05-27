@@ -24,7 +24,7 @@ const SliderSwiper = ({
 }: Props) => {
   return (
     <div
-      className={`${badgeSlides == 'sort' ? '!w-full md:!w-3/5 !h-8' : badgeSlides == 'type' ? '!w-full md:!w-[90%] md:max-w-[27em] lg:max-w-none !h-8' : commentSlides !== undefined ? 'h-52 md:h-64 w-full' : 'h-[301px] md:h-[555px] w-full'} flex flex-col overflow-hidden ${theme == 'Primary' ? 'bg-primary' : 'bg-white dark:bg-background-1'
+      className={`${badgeSlides == 'sort' ? '!w-full md:!w-3/5 !h-8' : badgeSlides == 'type' ? '!w-full md:!w-[90%] md:max-w-[27em] lg:max-w-none !h-8' : commentSlides !== undefined ? 'h-52 md:h-64 w-full' : 'h-[301px] md:h-[555px] w-full'} flex flex-col overflow-hidden ${theme == 'Primary' ? 'bg-primary' : 'bg-transparent'
         }`}
     >
       {title && (

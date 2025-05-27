@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     title: 'پروفایل من | حساب کاربری در ترخینه',
     description:
       'وارد حساب کاربری خود شوید و به راحتی اطلاعاتتان را مدیریت کنید.',
-    url: `${getBaseUrl()}/user/profile`,
+    url: `${getBaseUrl()}/user`,
     images: [
       {
         url: `/logoGreenBig.webp`,
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     ],
   },
   alternates: {
-    canonical: `${getBaseUrl()}/user/profile`,
+    canonical: `${getBaseUrl()}/user`,
   },
 };
 

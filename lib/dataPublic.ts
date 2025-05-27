@@ -204,7 +204,7 @@ export const NavBadgeOrderTracking: BadgeType[] = [
 ];
 
 export const ProfileRoute: ProfileRoutes[] = [
-  { id: 1, title: 'پروفایل', icon: 'IconProfile', url: '/user/profile' },
+  { id: 1, title: 'پروفایل', icon: 'IconProfile', url: '/user' },
   {
     id: 2,
     title: 'پیگیری سفارش',

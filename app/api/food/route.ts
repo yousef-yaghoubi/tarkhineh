@@ -1,33 +1,17 @@
 import prisma from '@/prisma/prismaClient';
-import { getServerSession } from 'next-auth';
 import { NextResponse } from 'next/server';
 import { authOptions } from '@/lib/auth';
+import { getServerSession } from 'next-auth';
+import { FilterSearchParams, TypeSearchParams } from '@/types/routeHandlers';
 
 export async function GET(req: Request) {
   const { searchParams } = new URL(req.url);
   const session = await getServerSession(authOptions);
   const branchName = searchParams.get('branchName') as string;
   const page = searchParams.get('page') as string;
-  const type = searchParams.get('type') as
-    | 'food'
-    | 'appetizer'
-    | 'dessert'
-    | 'drink'
-    | 'all'
-    | string
-    | null;
+  const type = searchParams.get('type') as TypeSearchParams;
 
-  const filter = searchParams.get('filter') as
-    | 'irani'
-    | 'non-Iranian'
-    | 'pizzas'
-    | 'sandwiches'
-    | 'bestSeller'
-    | 'mostEconomical'
-    | 'mostPopular'
-    | 'specialOffer'
-    | string
-    | null;
+  const filter = searchParams.get('filter') as FilterSearchParams;
 
   try {
     const take = 10;

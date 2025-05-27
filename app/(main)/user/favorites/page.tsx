@@ -74,7 +74,7 @@ async function page({
             <SliderSwiper theme="White" badgeSlides="type" />
             <SearchBox
               classes="w-[90%] max-w-[496px] md:rounded-md mt-2 lg:mt-0"
-              forFavorite
+              forCustomPage
             />
           </div>
 

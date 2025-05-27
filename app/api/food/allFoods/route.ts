@@ -1,29 +1,16 @@
 import prisma from "@/prisma/prismaClient";
+import { FilterSearchParams, TypeSearchParams } from "@/types/routeHandlers";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(req: NextRequest) {
     const { searchParams } = new URL(req.url);
     const page = searchParams.get('page') as string;
-    const type = searchParams.get('type') as
-        | 'food'
-        | 'appetizer'
-        | 'dessert'
-        | 'drink'
-        | 'all'
-        | string
-        | null;
-    const filter = searchParams.get('filter') as
-        | 'irani'
-        | 'non-Iranian'
-        | 'pizzas'
-        | 'sandwiches'
-        | 'bestSeller'
-        | 'mostEconomical'
-        | 'mostPopular'
-        | 'specialOffer'
-        | string
-        | null;
+    const type = searchParams.get('type') as TypeSearchParams
+    const filter = searchParams.get('filter') as FilterSearchParams;
+    const search = searchParams.get('search') as string | null;
+
     try {
+        console.log(search)
         const take = 10;
         const skip = (Number(page) - 1) * take;
         let categorieFilter;
@@ -80,6 +67,7 @@ export async function GET(req: NextRequest) {
                 typeId: typeIdFoods,
                 categorieId: categorieFilter,
                 specialOffer: specialOffer,
+                ...(search && { name: { contains: search } })
             },
             orderBy: sortingFilter
                 ? 'rating' in sortingFilter

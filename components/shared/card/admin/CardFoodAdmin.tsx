@@ -6,7 +6,7 @@ import React from 'react'
 import Button from '../../button/Button'
 import { FoodTypeFull } from '@/types'
 
-function CardFoodAdmin({ food, setIsOpenModal, setIdForRemoving }: { food: FoodTypeFull, setIsOpenModal: React.Dispatch<React.SetStateAction<boolean>>, setIdForRemoving: React.Dispatch<React.SetStateAction<string>> }) {
+function CardFoodAdmin({ food, setIsOpenModal, setIdForRemoving }: { food: FoodTypeFull, setIsOpenModal: React.Dispatch<React.SetStateAction<boolean>>, setIdForRemoving: React.Dispatch<React.SetStateAction<string | null>> }) {
     return (
         <div className='w-full h-32 sm:h-32 shadow dark:shadow-background-2 flex items-center rounded md:rounded-md overflow-hidden'>
             <div className='relative min-w-24 sm:min-w-32 h-full'>

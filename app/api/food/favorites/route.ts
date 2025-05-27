@@ -2,18 +2,13 @@ import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
 import prisma from '@/prisma/prismaClient';
 import { NextResponse } from 'next/server';
+import { TypeSearchParams } from '@/types/routeHandlers';
 
 export async function GET(req: Request) {
   const session = await getServerSession(authOptions);
   const { searchParams } = new URL(req.url);
   const search = searchParams.get('search');
-  const type = searchParams.get('categorie') as
-    | 'food'
-    | 'appetizer'
-    | 'dessert'
-    | 'drink'
-    | 'all'
-    | string;
+  const type = searchParams.get('categorie') as TypeSearchParams;
 
   let typeIdFoods;
 

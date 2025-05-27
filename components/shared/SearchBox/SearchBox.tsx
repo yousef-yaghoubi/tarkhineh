@@ -6,10 +6,10 @@ import IconsSearch from '@icons/search-icon.svg'
 import IconClose from '@icons/close-circle.svg'
 function SearchBox({
   classes,
-  forFavorite,
+  forCustomPage,
 }: {
   classes: string;
-  forFavorite?: boolean;
+  forCustomPage?: boolean;
 }) {
   const [inputValue, setInputValue] = useState<string>();
   const router = useRouter();
@@ -30,7 +30,7 @@ function SearchBox({
       categorie: categorie!,
     }).toString();
 
-    if (forFavorite) {
+    if (forCustomPage) {
       router.push(`?${query}`);
     } else {
       router.push(`/search?${query}`);

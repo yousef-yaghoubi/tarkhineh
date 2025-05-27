@@ -1,21 +1,16 @@
 import { useInfiniteQuery } from "@tanstack/react-query"
 
-export const useInfiniteFoodsData = (query: { queryFilter?: string | null, queryType?: string | null }) => {
+type UseInfiniteFoodsDataProps<T> = {
+    Fn: (params: { pageParam: number }) => Promise<T>
+    Key: string[]
+}
+
+export const useInfiniteFoodsData = <T extends { hasMore: boolean; nextPage: number }>(
+    { Fn, Key }: UseInfiniteFoodsDataProps<T>
+) => {
     return useInfiniteQuery({
-        queryKey: ['foods-infinite'],
-        queryFn: async ({ pageParam = 1 }) => {
-            const response = await fetch(`/api/food/allFoods?page=${pageParam}&filter=${query.queryFilter}&type=${query.queryType}`, {
-                cache: 'no-store',
-                headers: { 'Content-Type': 'application/json' },
-            })
-            if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`)
-            const data = await response.json()
-            return {
-                foods: data,
-                nextPage: pageParam + 1,
-                hasMore: data.length > 0,
-            }
-        },
+        queryKey: Key,
+        queryFn: Fn,
         getNextPageParam: (lastPage) => lastPage?.hasMore ? lastPage.nextPage : undefined,
         initialPageParam: 1,
         staleTime: 1000 * 60 * 5,
