@@ -1,12 +1,12 @@
 import { useInfiniteQuery } from "@tanstack/react-query"
 
-type UseInfiniteFoodsDataProps<T> = {
+type useInfiniteDataCustomProps<T> = {
     Fn: (params: { pageParam: number }) => Promise<T>
     Key: string[]
 }
 
-export const useInfiniteFoodsData = <T extends { hasMore: boolean; nextPage: number }>(
-    { Fn, Key }: UseInfiniteFoodsDataProps<T>
+export const useInfiniteDataCustom = <T extends { hasMore: boolean; nextPage: number }>(
+    { Fn, Key }: useInfiniteDataCustomProps<T>
 ) => {
     return useInfiniteQuery({
         queryKey: Key,

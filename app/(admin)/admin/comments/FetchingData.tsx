@@ -11,26 +11,21 @@ import { useSearchParams } from 'next/navigation'
 import HeaderMenu from '@/app/(main)/(foods)/menu/HeaderMenu'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { branches } from '@/lib/dataPublic'
+import { CommentType } from '@/types'
 
 const FoodsListPage = () => {
-    const searchParams = useSearchParams();
-    const queryType = searchParams.get('type') || 'all';
-    const queryFilter = searchParams.get('categorie') || 'all';
-    const querySearch = searchParams.get('search') || '';
-    const [queryBranch, setQueryBranch] = useState<string>('all');
-    const [queryIsExent, setQueryIsExent] = useState<string>('all');
-    const fetchFoods = useCallback(async ({ pageParam = 1 }) => {
-        const response = await fetch(`/api/food/allFoods?page=${pageParam}&filter=${queryFilter}&type=${queryType}&search=${querySearch}&branch=${queryBranch}&isExent=${queryIsExent}`, {
+    const fetchComments = useCallback(async ({ pageParam = 1 }) => {
+        const response = await fetch(`/api/comment?page=${pageParam}`, {
             cache: 'no-store',
         })
         if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`)
         const data = await response.json()
         return {
-            foods: data,
+            comments: data,
             nextPage: pageParam + 1,
             hasMore: data.length > 0,
         }
-    }, [queryType, queryFilter, querySearch, queryBranch, queryIsExent])
+    }, [])
 
     const {
         data,
@@ -39,32 +34,34 @@ const FoodsListPage = () => {
         fetchNextPage,
         hasNextPage,
         isFetchingNextPage
-    } = useInfiniteDataCustom({ Key: ['foods-infinite', queryFilter, queryType, querySearch, queryBranch, queryIsExent], Fn: fetchFoods })
+    } = useInfiniteDataCustom({ Key: ['comments-infinite'], Fn: fetchComments })
+
     const {
         isOpenModal,
         setIdForRemoving,
         setIsOpenModal,
         idForRemoving
     } = useModalStateRemoving()
-    const selectedFood = data?.pages?.flatMap(page => page.foods || []).find(food => food.id === idForRemoving)
+
+    const selectedFood = data?.pages?.flatMap(page => page.comments || []).find(comment => comment.id === idForRemoving)
     const { ref: loadMoreRef, inView } = useInView({ threshold: 0.1, rootMargin: '20px' })
 
     useEffect(() => {
         if (inView && hasNextPage) fetchNextPage()
     }, [inView, hasNextPage, fetchNextPage])
 
-    const allFoods = useMemo(() => {
-        return data?.pages?.flatMap(page => page.foods || []) || []
+    const allComments: CommentType[] | [] = useMemo(() => {
+        return data?.pages?.flatMap(page => page.comments || []) || []
     }, [data])
 
+    console.log(allComments)
 
-    console.log(allFoods)
     return (
         <div className='gap-y-4 flex flex-col'>
             <div className='flex flex-col sm:flex-row gap-y-2 w-full justify-between'>
-                <h1 className='h5 sm:h4 md:h2'>لیست غذاها</h1>
+                <h1 className='h5 sm:h4 md:h2'>لیست کامنت ها</h1>
                 <div className='flex items-center gap-2'>
-                    <Select dir='rtl' onValueChange={(value) => setQueryBranch(value)} defaultValue='all'>
+                    {/* <Select dir='rtl' onValueChange={(value) => setQueryBranch(value)} defaultValue='all'>
                         <SelectTrigger className="w-[180px] bg-gray-3 dark:bg-background-2 border-none">
                             <SelectValue placeholder="شعبه" />
                         </SelectTrigger>
@@ -74,9 +71,9 @@ const FoodsListPage = () => {
                                 <SelectItem value={branch.nickName} key={branch.id} className='cursor-pointer'>{branch.title}</SelectItem>
                             ))}
                         </SelectContent>
-                    </Select>
+                    </Select> */}
 
-                    <Select dir='rtl' onValueChange={(value) => setQueryIsExent(value)} defaultValue='all'>
+                    {/* <Select dir='rtl' onValueChange={(value) => setQueryIsExent(value)} defaultValue='all'>
                         <SelectTrigger className="w-[180px] bg-gray-3 dark:bg-background-2 border-none">
                             <SelectValue placeholder="موجودیت" />
                         </SelectTrigger>
@@ -85,11 +82,10 @@ const FoodsListPage = () => {
                             <SelectItem value='isExent' className='cursor-pointer'>غذا های موجود</SelectItem>
                             <SelectItem value='isNotExent' className='cursor-pointer'>غذا های حذف شده</SelectItem>
                         </SelectContent>
-                    </Select>
+                    </Select> */}
                 </div>
             </div>
 
-            <HeaderMenu forCustomPage />
             {error ? (<>
                 <div className='p-4 bg-red-50 border border-red-200 rounded-md'>
                     <p className='text-red-600'>خطا در بارگذاری اطلاعات غذاها: {error.message}</p>
@@ -111,18 +107,22 @@ const FoodsListPage = () => {
                     </div>
                 )}
 
-                {!isLoading && allFoods.length === 0 && (
+                {!isLoading && allComments.length === 0 && (
                     <div className='text-center py-8 text-gray-500'>غذایی یافت نشد</div>
                 )}
 
-                {allFoods.map((food, index) => (
-                    <CardFoodAdmin
-                        key={`${food.id}-${index}`}
-                        food={food}
-                        setIdForRemoving={setIdForRemoving}
-                        setIsOpenModal={setIsOpenModal}
-                    />
-                ))}
+                <div className='flex flex-col gap-4'>
+                    {allComments.map((comment, index) => (
+                        <div className='w-full h-32 sm:h-32 shadow dark:shadow-background-2 flex items-center rounded md:rounded-md overflow-hidden' key={comment.id}>
+                            <div className='w-full h-full px-2 md:px-4 flex items-center'>
+                                <div className='w-1/2 h-full flex flex-col justify-evenly'>
+                                    <span className='body-sm xs:text-[15px] sm:h5 text-gray-8 dark:text-gray-4'>{comment.food.name}</span>
+                                    <span className='caption-sm xs:text-[10px] sm:h5 text-gray-8 dark:text-gray-4'>{comment.desc}</span>
+                                </div>
+                            </div>
+                        </div>
+                    ))}
+                </div>
 
                 {hasNextPage && (
                     <div ref={loadMoreRef} className="w-full flex flex-col justify-center items-center">
@@ -137,7 +137,7 @@ const FoodsListPage = () => {
                     </div>
                 )}
 
-                {!hasNextPage && allFoods.length > 0 && (
+                {!hasNextPage && allComments.length > 0 && (
                     <div className="text-center py-8 text-gray-400">
                         همه غذاها نمایش داده شدند
                     </div>

@@ -7,7 +7,7 @@ import { useInView } from 'react-intersection-observer';
 import { useSearchParams } from 'next/navigation';
 import { FoodType } from '@/types';
 import CardFoodLoading from '@/components/shared/card/cardFood/CardFoodLoading';
-import { useInfiniteFoodsData } from '@/hooks/foods';
+import { useInfiniteDataCustom } from '@/hooks/foods';
 
 const CardFoodMenu = dynamic(() => import('@/components/shared/card/cardFood/CardFoodMenu'), {
   loading: () => <CardFoodLoading isShowForMenu />,
@@ -37,7 +37,7 @@ function InfiniteScroll() {
     hasNextPage,
     refetch,
     isLoading
-  } = useInfiniteFoodsData({Fn: fetchFoods, Key: ['foods', queryType, queryFilter, cookieBranch!]});
+  } = useInfiniteDataCustom({ Fn: fetchFoods, Key: ['foods', queryType, queryFilter, cookieBranch!] });
 
 
   // Load more when in view

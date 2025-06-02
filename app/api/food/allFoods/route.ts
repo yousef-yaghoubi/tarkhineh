@@ -8,9 +8,9 @@ export async function GET(req: NextRequest) {
     const type = searchParams.get('type') as TypeSearchParams
     const filter = searchParams.get('filter') as FilterSearchParams;
     const search = searchParams.get('search') as string | null;
-
+    const branch = searchParams.get('branch') as string;
+    const isExent = searchParams.get('isExent') as string;
     try {
-        console.log(search)
         const take = 10;
         const skip = (Number(page) - 1) * take;
         let categorieFilter;
@@ -64,10 +64,14 @@ export async function GET(req: NextRequest) {
 
         const foods = await prisma.foods.findMany({
             where: {
+                branch: {
+                    nickName: branch !== 'all' ? branch : undefined
+                },
                 typeId: typeIdFoods,
                 categorieId: categorieFilter,
                 specialOffer: specialOffer,
-                ...(search && { name: { contains: search } })
+                ...(search && { name: { contains: search } }),
+                isExtant: isExent == 'all' ? undefined : isExent == 'isExent' ? true : false,
             },
             orderBy: sortingFilter
                 ? 'rating' in sortingFilter

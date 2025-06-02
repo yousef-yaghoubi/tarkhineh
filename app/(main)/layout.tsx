@@ -38,19 +38,19 @@ export default async function RootLayout({
       <body
         className={clsx(estedad.className, 'antialiased dark:bg-background-1 selection:bg-tint-1 selection:text-gray-7')}
       >
-        <AppProviders>
-          <Navbar />
-          {children}
-          {intercepting}
-          <Toaster
-            richColors
-            closeButton
-            dir="rtl"
-            className={estedad.className}
-            position="top-right"
-          />
-          <Footer />
-        </AppProviders>
+          <AppProviders>
+            <Navbar />
+            {children}
+            {intercepting}
+            <Toaster
+              richColors
+              closeButton
+              dir="rtl"
+              className={estedad.className}
+              position="top-right"
+            />
+            <Footer />
+          </AppProviders>
       </body>
     </html>
   );
