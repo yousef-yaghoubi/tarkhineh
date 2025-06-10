@@ -59,9 +59,9 @@ function Footer() {
           <FormFooter />
         </div>
       </div>
-      {/*<div className='w-full bg-primary text-white flex justify-center items-center py-2 caption-md md:body-md'>
+      <div className='w-full bg-primary text-white flex justify-center items-center py-2 caption-md md:body-md'>
         ساخته شده با ❤️ توسط <Link href={'https://github.com/yousef-yaghoubi'} className='font-semibold mr-1'>یوسف یعقوبی</Link>
-      </div>*/} 
+      </div>
     </footer>
   );
 }
