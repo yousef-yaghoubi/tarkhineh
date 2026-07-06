@@ -11,6 +11,7 @@ import IconArrowLeft from '@icons/arrow-left.svg';
 import dynamic from 'next/dynamic';
 import { getBaseUrl } from '@/lib/getBaseUrl';
 import { Metadata } from 'next';
+
 const SwiperMain = dynamic(() => import('@/components/shared/swiper/swiper'));
 const Button = dynamic(() => import('@/components/shared/button/Button'));
 

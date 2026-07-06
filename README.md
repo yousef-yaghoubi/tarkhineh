@@ -70,19 +70,19 @@
 `2`
 
    ```bash
-   npm install
+   pnpm install
    ```
 
 `3`
 
    ```bash
-   npx prisma generate
+   pnpm prisma generate
    ```
 
 `4`
 
    ```bash
-   npm run dev
+   pnpm run dev
    ```
 
 `5` 
@@ -99,6 +99,7 @@ AUTH_GOOGLE_SECRET=your-google-client-secret
 HASH_PASS_SECRET=your-password-hash-secret
 NEXTAUTH_URL=http://localhost:3000
 DATABASE_URL=mongodb+srv://<username>:<password>@cluster0.mongodb.net/tarkhineh
+ZARINPAL_MERCHANT_ID=random-string
 ```
 
 ## 🤝 مشارکت
