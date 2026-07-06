@@ -1,4 +1,4 @@
-import bcrypt from 'bcrypt';
+import bcrypt from 'bcryptjs';
 
 const keySeret = process.env.HASH_PASS_SECRET;
 
