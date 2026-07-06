@@ -8,7 +8,6 @@ import 'swiper/css/navigation';
 import { Pagination, Navigation } from 'swiper/modules';
 import Image from 'next/image';
 import { Slide } from '@/types/swiper';
-import dynamic from 'next/dynamic';
 import IconRight from '@icons/arrow-right.svg';
 import IconLeft from '@icons/arrow-left.svg';
 import Button from '../button/Button';

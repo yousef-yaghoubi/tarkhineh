@@ -19,7 +19,13 @@ export const metadata: Metadata = {
   title: 'ترخینه | طعم اصیل ایرانی 🍲',
   description:
     'سفارش آنلاین غذاهای سنتی ایرانی با بهترین کیفیت از ترخینه. تجربه‌ای بی‌نظیر از طعم خانه!',
-  keywords: ['ترخینه', 'غذای ایرانی', 'سنتی', 'سفارش آنلاین غذا', 'پروژه ترخینه'],
+  keywords: [
+    'ترخینه',
+    'غذای ایرانی',
+    'سنتی',
+    'سفارش آنلاین غذا',
+    'پروژه ترخینه',
+  ],
   openGraph: {
     title: 'ترخینه | طعم اصیل ایرانی 🍲',
     description: 'سفارش آنلاین غذاهای سنتی ایرانی با بهترین کیفیت از ترخینه.',
@@ -41,6 +47,12 @@ export const metadata: Metadata = {
   },
 };
 
+const items = [
+  { id: 1, title: 'پرسنلی مجرب و حرفه‌ای', icon: IconProfile },
+  { id: 2, title: 'کیفیت بالای غذا ها', icon: IconDiagram },
+  { id: 3, title: 'محیطی دلنشین و آرام', icon: IconHomeWifi },
+  { id: 4, title: 'منوی متنوع', icon: IconMenuBoard },
+];
 async function Home() {
   return (
     <div>
@@ -86,38 +98,19 @@ async function Home() {
         </div>
 
         <div className="grid grid-cols-2 text-white gap-y-4">
-          <div className="flex flex-col justify-center items-center">
-            <IconProfile fill="white" className="w-6 h-6 md:w-12 md:h-12" />
-            <span className="caption-md md:caption-lg lg:body-xl mt-1">
-              پرسنلی مجرب و حرفه‌ای
-            </span>
-          </div>
-
-          <div className="flex flex-col justify-center items-center">
-            <IconDiagram fill="white" className="w-6 h-6 md:w-12 md:h-12" />
-            <span className="caption-md md:caption-lg lg:body-xl mt-1">
-              کیفیت بالای غذا ها
-            </span>
-          </div>
-
-          <div className="flex flex-col justify-center items-center">
-            <IconHomeWifi fill="white" className="w-6 h-6 md:w-12 md:h-12" />
-            <span className="caption-md md:caption-lg lg:body-xl mt-1">
-              محیطی دلنشین و آرام
-            </span>
-          </div>
-
-          <div className="flex flex-col justify-center items-center">
-            <IconMenuBoard fill="white" className="w-6 h-6 md:w-12 md:h-12" />
-            <span className="caption-md md:caption-lg lg:body-xl mt-1">
-              منوی متنوع
-            </span>
-          </div>
+          {items.map((item) => (
+            <div className="flex flex-col justify-center items-center" key={item.id}>
+              <item.icon fill="white" className="w-6 h-6 md:w-12 md:h-12" />
+              <span className="caption-md md:caption-lg lg:body-xl mt-1">
+                {item.title}
+              </span>
+            </div>
+          ))}
         </div>
       </section>
 
       <section className="w-full flex py-6 px-5 flex-col items-center">
-        <h6 className="h6 sm:h4 sm:mt-12">ترخینه گردی</h6>
+        <h4 className="h4 sm:h4 sm:mt-12">ترخینه گردی</h4>
         <div className="flex flex-col sm:grid sm:grid-cols-2 sm:gap-6 xl:grid-cols-4">
           {branches.map((branch) => (
             <CardTarkhineGardi

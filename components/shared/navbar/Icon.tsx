@@ -66,6 +66,7 @@ function Icon({ alt, icon, className }: Props) {
       <Link
         href={href}
         onClick={handleClick}
+        aria-label={alt}
         className={clsx(
           'flex justify-center items-center relative rounded cursor-pointer transition-all duration-200',
           isProfile && isLogin
@@ -75,7 +76,6 @@ function Icon({ alt, icon, className }: Props) {
           className
         )}
       >
-
         {alt === 'shoping' && cart.length > 0 && (
           <div
             className={clsx(
@@ -99,7 +99,6 @@ function Icon({ alt, icon, className }: Props) {
           )}
         </div>
       </Link>
-
 
       <Modal
         isOpen={isModalOpen}

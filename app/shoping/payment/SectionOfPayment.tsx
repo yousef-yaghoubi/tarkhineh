@@ -1,5 +1,5 @@
 'use client';
-import React, { useState } from 'react';
+import React from 'react';
 import MainOfPaymentPage from './MainOfPaymentPage';
 import AsideFoodsForShopingCart from '@/components/shared/shopingCart/AsideFoodsForShopingCart';
 import { useOrder } from '../ShopingProvider';
