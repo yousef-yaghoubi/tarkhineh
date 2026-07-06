@@ -6,6 +6,7 @@ import { useSession } from 'next-auth/react';
 import { PropAsideFoodsForShopingCart } from '@/types/prop';
 function ConditionalButton({ linkBTN, BtnDisabeld, onClickCustom }: PropAsideFoodsForShopingCart) {
     const { status } = useSession()
+    
     return (
         <>
             {status == 'unauthenticated' ? (

@@ -18,6 +18,8 @@ export async function SendOrder({
   const data = await getServerSession(authOptions);
   if (!data?.user)
     return { status: 401, message: 'لطفا وارد حساب کاربری شوید.' };
+
+  
   try {
     const filteredCart = cart.map(({ name, image, price, quantity }) => ({
       name,
@@ -68,7 +70,6 @@ export async function SendOrder({
     return { status: 201, message: 'سفارش شما با موفقیت ثبت شد.' };
   } catch (error) {
     return { status: 500, message: 'خطایی رخ داده است.' };
-    console.log(error);
   }
 }
 
@@ -87,7 +88,6 @@ export async function CancelOrderTrack(id: string) {
     return { status: 200, message: 'سفارش شما با موفقیت لغو شد.' };
   } catch (error) {
     return { status: 400, message: 'لغو سفارش شما با مشکل مواجه شد.' };
-    console.log(error);
   }
 }
 
@@ -123,6 +123,5 @@ export async function AgainSubmitOrderTrack(id: string) {
     return { status: 201, message: 'سفارش شما با موفقیت ثبت شد.' };
   } catch (error) {
     return { status: 400, message: 'سفارش مجدد شما با مشکل مواجه شد.' };
-    console.log(error);
   }
 }
