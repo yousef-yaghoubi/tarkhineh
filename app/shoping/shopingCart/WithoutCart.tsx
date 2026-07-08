@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import React from 'react';
-const Button = dynamic(()=> import('@/components/shared/button/Button'))
+const Button = dynamic(() => import('@/components/shared/button/Button'));
 function WithoutCart({ setBorder }: { setBorder?: boolean }) {
   return (
     <div
@@ -21,6 +21,7 @@ function WithoutCart({ setBorder }: { setBorder?: boolean }) {
         btn="stroke"
         theme="Primary"
         className="w-[184px] z-10 h-10 mt-6 !bg-white dark:!bg-background-1 caption-md md:button-lg"
+        link="/"
       >
         منوی رستوران
       </Button>

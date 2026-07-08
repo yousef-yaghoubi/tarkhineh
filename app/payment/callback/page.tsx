@@ -2,19 +2,21 @@
 
 import { useEffect } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
+import { useCart } from '@/providers/shopingCardProvider';
 
 export default function Callback() {
   const search = useSearchParams();
   const router = useRouter();
+  const { clearCart } = useCart();
 
   useEffect(() => {
     const authority = search.get('Authority');
     const status = search.get('Status');
 
+    console.log(status);
     if (status !== 'OK') {
-      return;
+      router.push(`/payment-status?status=NOK`);
     }
-
 
     fetch('/api/payment/verify', {
       method: 'POST',
@@ -26,7 +28,8 @@ export default function Callback() {
       .then((res) => res.json())
       .then(({ success }) => {
         if (success) {
-          router.push('/payment-status');
+          clearCart();
+          router.push(`/payment-status?status=OK`);
         }
       })
       .catch(console.error);

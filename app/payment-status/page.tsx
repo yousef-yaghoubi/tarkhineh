@@ -12,7 +12,11 @@ export const metadata: Metadata = {
     'سفارش آنلاین غذاهای سنتی ایرانی با بهترین کیفیت از ترخینه. تجربه‌ای بی‌نظیر از طعم خانه!',
 };
 
-function page() {
+async function page({
+  searchParams,
+}: {
+  searchParams: { status: 'OK' | 'NOK' };
+}) {
   const requestHeaders = headers();
   const referer = requestHeaders.get('referer') || '';
   const allowedDomain = getBaseUrl() as string; // دومین مجاز
@@ -22,10 +26,11 @@ function page() {
     redirect('/'); // انتقال به صفحه اصلی
   }
 
+  const statusData = await searchParams.status;
   return (
     <div className="h-[calc(100vh_-_64px)] md:h-[calc(100vh_-_115px)] w-screen flex flex-col justify-center items-center relative">
-      <ClinetPage />
-      <Celebrate />
+      <ClinetPage status={statusData} />
+      {statusData == 'OK' && <Celebrate />}
     </div>
   );
 }

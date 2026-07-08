@@ -41,7 +41,7 @@ function SectionOfPayment() {
           linkBTN={''}
           onClickCustom={async () => {
             await handlePayment();
-            clearCart();
+            // clearCart();
           }}
         />
       </section>
